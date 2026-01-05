@@ -14,3 +14,6 @@
 # limitations under the License.
 
 from agent_system.environments.env_manager import EnvironmentManagerBase, make_envs
+
+from agent_system.environments.env_manager_parallel import build_parallel_alfworld_envs
+from agent_system.environments.env_manager_parallel_sciworld import build_parallel_sciworld_envs

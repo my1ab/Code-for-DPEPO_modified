@@ -129,7 +129,7 @@ class FSDPCheckpointManager(BaseCheckpointManager):
     def save_checkpoint(self, local_path: str, hdfs_path: str = None, global_step: int = 0, max_ckpt_to_keep=None):
         """
         Save an FSDP checkpoint for this rank.
-
+        
         Writes:
           - model & optimizer shard files
           - extra state dict (scheduler + RNG)

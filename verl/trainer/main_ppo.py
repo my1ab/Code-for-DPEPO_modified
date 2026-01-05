@@ -36,7 +36,7 @@ def run_ppo(config) -> None:
             runtime_env={"env_vars": {"TOKENIZERS_PARALLELISM": "true", "NCCL_DEBUG": "WARN", "VLLM_LOGGING_LEVEL": "WARN", "VLLM_ALLOW_RUNTIME_LORA_UPDATING": "true"}},
             num_cpus=config.ray_init.num_cpus,
         )
-
+    
     runner = TaskRunner.remote()
     ray.get(runner.run.remote(config))
 
@@ -53,20 +53,20 @@ class TaskRunner:
 
         pprint(OmegaConf.to_container(config, resolve=True))  # resolve=True will eval symbol values
         OmegaConf.resolve(config)
-
+        
         # download the checkpoint from hdfs
         local_path = copy_to_local(config.actor_rollout_ref.model.path, use_shm=config.actor_rollout_ref.model.get("use_shm", False))
 
         from agent_system.environments import make_envs
         envs, val_envs = make_envs(config)
-
+        
         # instantiate tokenizer
         from verl.utils import hf_processor, hf_tokenizer
 
         trust_remote_code = config.data.get("trust_remote_code", False)
         tokenizer = hf_tokenizer(local_path, trust_remote_code=trust_remote_code)
         processor = hf_processor(local_path, trust_remote_code=trust_remote_code, use_fast=True)  # used for multimodal LLM, could be none
-
+        
         # vllm early verify
         if config.actor_rollout_ref.rollout.name in ["vllm"]:
             from verl.utils.vllm_utils import is_version_ge
@@ -126,7 +126,7 @@ class TaskRunner:
                 raise NotImplementedError
             role_worker_mapping[Role.RewardModel] = ray.remote(RewardModelWorker)
             mapping[Role.RewardModel] = global_pool_id
-
+        
         # use reference model
         if config.algorithm.use_kl_in_reward or config.actor_rollout_ref.actor.use_kl_loss:
             role_worker_mapping[Role.RefPolicy] = ray.remote(ActorRolloutRefWorker)
@@ -150,7 +150,7 @@ class TaskRunner:
 
         from agent_system.multi_turn_rollout import TrajectoryCollector
         traj_collector = TrajectoryCollector(config=config, tokenizer=tokenizer, processor=processor)
-
+        
         from verl.utils.dataset.rl_dataset import collate_fn
 
         train_dataset = create_rl_dataset(config.data.train_files, config.data, tokenizer, processor)

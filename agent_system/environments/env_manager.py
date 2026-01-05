@@ -137,7 +137,7 @@ class AlfWorldEnvironmentManager(EnvironmentManagerBase):
     
     def reset(self, kwargs):
         text_obs, image_obs, infos = self.envs.reset()
-        self.gamefile = parse_gamefile(infos)
+        self.gamefile = parse_gamefile(infos) 
         # initialize the history buffer
         self.memory.reset(batch_size = len(text_obs))
         self.tasks = []
@@ -147,19 +147,19 @@ class AlfWorldEnvironmentManager(EnvironmentManagerBase):
         full_text_obs = self.build_text_obs(text_obs, self.envs.get_admissible_commands, init=True)
         return {'text': full_text_obs, 'image': image_obs, 'anchor': text_obs}, infos
     
-    def step(self, text_actions: List[str]):
+    def step(self, text_actions: List[str]): 
         actions, valids = self.projection_f(text_actions, self.envs.get_admissible_commands)
         text_obs, image_obs, rewards, dones, infos = self.envs.step(actions)
-        self.memory.store({'text_obs': self.pre_text_obs, 'action': actions})
-        self.pre_text_obs = text_obs
-
+        self.memory.store({'text_obs': self.pre_text_obs, 'action': actions}) 
+        self.pre_text_obs = text_obs 
+        # Build the next prompts or observations for next step
         full_text_obs = self.build_text_obs(text_obs, self.envs.get_admissible_commands)
         if infos[0].get("extra.gamefile") is None:
             infos = set_gamefile(infos, self.gamefile)
 
         # add action_valid to infos
         for i, info in enumerate(infos):
-            info['is_action_valid'] = to_numpy(valids[i])
+            info['is_action_valid'] = to_numpy(valids[i]) 
 
         next_observations = {'text': full_text_obs, 'image': image_obs, 'anchor': text_obs}
         rewards = to_numpy(rewards)
@@ -191,7 +191,7 @@ class AlfWorldEnvironmentManager(EnvironmentManagerBase):
         for i in range(len(text_obs)):
             # exclude 'help' in admissible_actions[i]
             reformatted_admissible_actions = "\n ".join(f"'{s}'" for s in admissible_actions[i] if s != 'help')
-
+            
             if init or self.config.env.history_length <= 0:
                 obs = ALFWORLD_TEMPLATE_NO_HIS.format(
                     current_observation=text_obs[i],
@@ -388,9 +388,9 @@ class WebshopEnvironmentManager(EnvironmentManagerBase):
         super().__init__(envs, projection_f, config)
     
     def reset(self, kwargs) -> Dict[str, Any]:
-        obs, infos = self.envs.reset()
-        self.tasks = self.extract_task(obs)
-        obs = self.format_obs(obs)
+        obs, infos = self.envs.reset() 
+        self.tasks = self.extract_task(obs) 
+        obs = self.format_obs(obs) 
         # infos = [None] * self.envs.num_envs
         observations = {'text': self.build_text_obs(obs, infos, init=True), 
                         'image': None, 
@@ -398,8 +398,8 @@ class WebshopEnvironmentManager(EnvironmentManagerBase):
                         }
         self.pre_text_obs = obs
         self.memory.reset(batch_size = len(infos))
-        return observations, infos
-
+        return observations, infos 
+    
     def step(self, text_actions: List[str]):
         actions, valids = self.projection_f(text_actions)
         next_obs, rewards, dones, infos = self.envs.step(actions)
@@ -552,11 +552,11 @@ class AppWorldEnvironmentManager(EnvironmentManagerBase):
 
         return next_observations, rewards, dones, infos
     
-
+    
     def build_text_obs(self, text_obs: List[str], init: bool = False) -> List[str]:
         """
         This function builds the text observation for the agent.
-        """
+        """ 
         postprocess_text_obs = []
         if init and self.supervisors is not None:
             for i in range(len(text_obs)):
@@ -608,7 +608,7 @@ def make_envs(config):
         raise ValueError("config.env.rollout.n should be an integer")
     group_n = config.env.rollout.n if config.env.rollout.n > 0 else 1
     resources_per_worker = OmegaConf.to_container(config.env.resources_per_worker, resolve=True)
-
+    
     if "search" in config.env.env_name.lower():
         from agent_system.environments.env_package.search import build_search_envs, search_projection
         _envs = build_search_envs(seed=config.env.seed, env_num=config.data.train_batch_size, group_n=group_n, is_train=True, env_config=config.env)
@@ -638,7 +638,7 @@ def make_envs(config):
 
         env_kwargs = {
             'eval_dataset': 'eval_in_distribution', # 'eval_in_distribution' or 'eval_out_of_distribution'
-        }
+        } 
         _envs = build_alfworld_envs(alf_config_path, config.env.seed, config.data.train_batch_size, group_n, is_train=True, env_kwargs=env_kwargs, resources_per_worker=resources_per_worker)
         _val_envs = build_alfworld_envs(alf_config_path, config.env.seed + 1000, config.data.val_batch_size, 1, is_train=False, env_kwargs=env_kwargs, resources_per_worker=resources_per_worker)
         
@@ -679,12 +679,12 @@ def make_envs(config):
         _envs = build_webshop_envs(seed=config.env.seed, env_num=config.data.train_batch_size, group_n=group_n, is_train=True, env_kwargs=env_kwargs, resources_per_worker=resources_per_worker)
         _val_envs = build_webshop_envs(seed=config.env.seed + 1000, env_num=config.data.val_batch_size, group_n=1, is_train=False, env_kwargs=env_kwargs, resources_per_worker=resources_per_worker)
 
-        projection_f = partial(webshop_projection)
+        projection_f = partial(webshop_projection) 
         envs = WebshopEnvironmentManager(_envs, projection_f, config)
         val_envs = WebshopEnvironmentManager(_val_envs, projection_f, config)
-        import time
+        import time 
         time.sleep((config.data.train_batch_size * group_n + config.data.val_batch_size) * 0.1) # wait for the envs to be ready
-        return envs, val_envs
+        return envs, val_envs 
     elif "appworld" in config.env.env_name.lower():
         from agent_system.environments.env_package.appworld import build_appworld_envs, appworld_projection
         _envs = build_appworld_envs(dataset_name='train', seed=config.env.seed, env_num=config.data.train_batch_size, group_n=group_n, start_server_id=0, resources_per_worker=resources_per_worker)

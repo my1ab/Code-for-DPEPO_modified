@@ -58,5 +58,5 @@ def alfworld_projection(actions: List[str], action_pools: List[List[str]]):
         # check if contains any Chinese characters
         if re.search(r'[\u4e00-\u9fff]', original_str):
             valids[i] = 0
-
+    
     return actions, valids

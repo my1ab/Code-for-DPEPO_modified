@@ -12,7 +12,7 @@ def build_env(env_name, env_num=1):
         # Test AlfWorldEnvironmentManager
         from agent_system.environments.env_package.alfworld import alfworld_projection
         from agent_system.environments.env_package.alfworld import build_alfworld_envs
-        alf_config_path = os.path.join(os.path.dirname(__file__), '../../agent_system/environments/env_package/alfworld/configs/config_tw.yaml')
+        alf_config_path = os.path.join(os.path.dirname(__file__), '../../agent_system/environments/env_package/alfworld/configs/config_tw.yaml') 
         envs = build_alfworld_envs(alf_config_path, seed=1, env_num=env_num, group_n=group_n, is_train=False)
         env_manager = AlfWorldEnvironmentManager(envs, alfworld_projection, 'alfworld/AlfredThorEnv')
     else:
@@ -85,7 +85,7 @@ if __name__ == "__main__":
         logging.info(f"\n========== Start test {test_idx} ==========")
         start_time = time.time()
 
-        obs, infos = env_manager.reset()
+        obs, infos = env_manager.reset() 
         env_dones = [False] * env_num
 
         # Statistics for single round

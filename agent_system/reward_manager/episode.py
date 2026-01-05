@@ -20,7 +20,7 @@ import numpy as np
 class EpisodeRewardManager:
     """The reward manager.
     """
-
+    
     def __init__(self, tokenizer, num_examine, normalize_by_length=False) -> None:
         self.tokenizer = tokenizer
         self.num_examine = num_examine  # the number of batches of decoded responses to print to the console
@@ -49,8 +49,8 @@ class EpisodeRewardManager:
 
             valid_prompt_length = data_item.batch['attention_mask'][:prompt_length].sum()
             valid_prompt_ids = prompt_ids[-valid_prompt_length:]
-
-            response_ids = data_item.batch['responses']
+            
+            response_ids = data_item.batch['responses'] 
             valid_response_length = data_item.batch['attention_mask'][prompt_length:].sum()
             valid_response_ids = response_ids[:valid_response_length]
 
@@ -59,7 +59,7 @@ class EpisodeRewardManager:
             response_str = self.tokenizer.decode(valid_response_ids, skip_special_tokens=False)
 
             # ground_truth = data_item.non_tensor_batch['reward_model']['ground_truth']
-
+            
             data_source = data_item.non_tensor_batch['data_source']
 
             extra_info = data_item.non_tensor_batch.get('extra_info', None)

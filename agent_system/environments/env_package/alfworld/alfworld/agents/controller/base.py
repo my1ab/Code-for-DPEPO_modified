@@ -133,7 +133,7 @@ class BaseAgent(object):
             task = get_templated_task_desc(self.traj_data)
 
         self.feedback += "Your task is to: %s" % task
-
+        
         self.intro = str(self.feedback)
 
     # choose between different navigator available

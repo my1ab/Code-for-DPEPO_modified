@@ -92,12 +92,12 @@ class AlfworldEnvs(gym.Env):
             
         eval_dataset = env_kwargs.get('eval_dataset', 'eval_in_distribution')
         config = load_config_file(alf_config_path)
-        env_type = config['env']['type']
+        env_type = config['env']['type'] 
         base_env = get_environment(env_type)(config, train_eval='train' if is_train else eval_dataset)
-        self.multi_modal = (env_type == 'AlfredThorEnv')
+        self.multi_modal = (env_type == 'AlfredThorEnv') 
         self.num_processes = env_num * group_n
         self.group_n = group_n
-
+        
         # Create Ray remote actors instead of processes
         env_worker = ray.remote(**resources_per_worker)(AlfworldWorker)
         self.workers = []
@@ -115,7 +115,7 @@ class AlfworldEnvs(gym.Env):
         futures = []
         for i, worker in enumerate(self.workers):
             future = worker.step.remote(actions[i])
-            futures.append(future)
+            futures.append(future) 
 
         # Collect results
         text_obs_list = []
@@ -203,4 +203,4 @@ class AlfworldEnvs(gym.Env):
             ray.kill(worker)
 
 def build_alfworld_envs(alf_config_path, seed, env_num, group_n, resources_per_worker, is_train=True, env_kwargs={}):
-    return AlfworldEnvs(alf_config_path, seed, env_num, group_n, resources_per_worker, is_train, env_kwargs)
+    return AlfworldEnvs(alf_config_path, seed, env_num, group_n, resources_per_worker, is_train, env_kwargs) 

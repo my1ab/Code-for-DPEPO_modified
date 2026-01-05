@@ -10,7 +10,7 @@ class BaseEnv(ABC):
     Abstract base class for all environments.
     The class needs to handle text-based input, input may be invalid
         - Environment will track the total reward for the trajectory
-
+    
     """
     INVALID_ACTION = 0
     PENALTY_FOR_INVALID = -1
@@ -148,7 +148,7 @@ class BaseEnv(ABC):
                     action_is_valid=av, 
                     action_is_effective=extra_info.get("action_is_effective", False), 
                     reward=thinking_reward + env_reward, 
-                )
+                ) 
             next_obs.append(obs)
             dones.append(done)
         return next_obs, dones

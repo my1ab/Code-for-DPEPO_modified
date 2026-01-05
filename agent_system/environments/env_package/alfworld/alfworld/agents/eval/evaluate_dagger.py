@@ -98,7 +98,7 @@ def evaluate_dagger(env, agent, num_games, debug=False):
                 scores = [float(item) for item in infos["won"]]
                 gcs =[float(item) for item in infos["goal_condition_success_rate"]] if "goal_condition_success_rate" in infos else [0.0]*batch_size
                 dones = [float(item) for item in dones]
-
+                
                 if debug:
                     print(execute_actions[0])
                     print(obs[0])

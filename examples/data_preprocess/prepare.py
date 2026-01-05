@@ -24,11 +24,11 @@ import argparse
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--mode', default='visual', choices=['visual', 'text'])
-    parser.add_argument('--local_dir', default='~/data/verl-agent/')
+    parser.add_argument('--local_dir', default='/data/home/zhangjs/disk/project/verl-agent/data/')
     parser.add_argument('--hdfs_dir', default=None)
     parser.add_argument('--train_data_size', default=256, type=int)
     parser.add_argument('--val_data_size', default=256, type=int)
-
+    
     args = parser.parse_args()
     print(f"processing data for mode: {args.mode}")
     args.local_dir = os.path.join(args.local_dir, args.mode)

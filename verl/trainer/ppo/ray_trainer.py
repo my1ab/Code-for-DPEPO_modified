@@ -209,7 +209,7 @@ def apply_invalid_action_penalty(data: DataProto, invalid_action_penalty_coef=fl
         prompt_length = prompt_ids.shape[-1]
 
         valid_response_length = data_item.batch['attention_mask'][prompt_length:].sum()
-
+        
         action_valids = data_item.non_tensor_batch['is_action_valid'].astype(np.float32)
         action_invalids = torch.tensor(1 - action_valids, dtype=torch.float32, device=prompt_ids.device).squeeze(0)
         # invalid action penalty
@@ -241,7 +241,20 @@ def compute_response_mask(data: DataProto):
     return attention_mask[:, -response_length:]
 
 
-def compute_advantage(data: DataProto, adv_estimator, gamma=1.0, lam=1.0, num_repeat=1, multi_turn=False, norm_adv_by_std_in_grpo=True, step_advantage_w=1.0, gigpo_mode="mean_std_norm", gigpo_enable_similarity=False, gigpo_similarity_thresh=0.95, **kwargs):
+def compute_advantage(
+        data: DataProto, 
+        adv_estimator, 
+        gamma=1.0, 
+        lam=1.0, 
+        num_repeat=1, 
+        multi_turn=False, 
+        norm_adv_by_std_in_grpo=True, 
+        step_advantage_w=1.0, 
+        gigpo_mode="mean_std_norm", 
+        gigpo_enable_similarity=False, 
+        gigpo_similarity_thresh=0.95,
+        add_step_penalty=False, 
+        **kwargs):
     """Compute advantage estimates for policy optimization.
 
     This function computes advantage estimates using various estimators like GAE, GRPO, REINFORCE++, etc.
@@ -288,13 +301,21 @@ def compute_advantage(data: DataProto, adv_estimator, gamma=1.0, lam=1.0, num_re
             response_length = grpo_calculation_mask.size(1)  # Get length from the initial response mask
             grpo_calculation_mask = data.batch["loss_mask"][:, -response_length:]  # This mask is the one intended for GRPO
         # Call compute_grpo_outcome_advantage with parameters matching its definition
+
+        if 'penalty_W' in data.non_tensor_batch:
+            step_penalty_list = data.non_tensor_batch['penalty_W']
+        else:
+            step_penalty_list = None
+
         advantages, returns = core_algos.compute_grpo_outcome_advantage(
             token_level_rewards=data.batch["token_level_rewards"],
             response_mask=grpo_calculation_mask,
             index=data.non_tensor_batch["uid"],
             traj_index=data.non_tensor_batch['traj_uid'],
             norm_adv_by_std_in_grpo=norm_adv_by_std_in_grpo,
-        )
+            add_step_penalty=add_step_penalty,
+            step_penalty_list=step_penalty_list,
+        ) 
         data.batch["advantages"] = advantages
         data.batch["returns"] = returns
     elif adv_estimator == AdvantageEstimator.GRPO_PASSK:
@@ -406,6 +427,8 @@ class RayPPOTrainer:
         train_sampler: Optional[Sampler] = None,
         device_name="cuda",
         traj_collector: TrajectoryCollector = None,
+        lazy_envs=False,
+        build_env_func=None,
         envs=None,
         val_envs=None,
     ):
@@ -416,6 +439,8 @@ class RayPPOTrainer:
         self.config = config
         self.reward_fn = reward_fn
         self.val_reward_fn = val_reward_fn
+        self.lazy_envs=lazy_envs
+        self.build_env_func=build_env_func
         self.envs = envs
         self.val_envs = val_envs
         self.traj_collector = traj_collector
@@ -425,7 +450,7 @@ class RayPPOTrainer:
 
         if self.hybrid_engine:
             assert Role.ActorRollout in role_worker_mapping, f"{role_worker_mapping.keys()=}"
-
+        
         self.role_worker_mapping = role_worker_mapping
         self.resource_pool_manager = resource_pool_manager
         self.use_reference_policy = Role.RefPolicy in role_worker_mapping
@@ -572,7 +597,7 @@ class RayPPOTrainer:
             assert config.algorithm.adv_estimator in [AdvantageEstimator.GRPO], "only GRPO is tested for multi-turn with tool"
 
         print("[validate_config] All configuration checks passed successfully!")
-
+    
     def _create_dataloader(self, train_dataset, val_dataset, collate_fn, train_sampler):
         """
         Creates the train and validation dataloaders.
@@ -704,12 +729,23 @@ class RayPPOTrainer:
             # repeat test batch
             test_batch = test_batch.repeat(repeat_times=self.config.actor_rollout_ref.rollout.val_kwargs.n, interleave=True)
 
+
+            if self.lazy_envs:
+                current_step_gamefiles = test_batch.non_tensor_batch['gamefile']
+
+                self.val_envs = self.build_env_func(
+                    gamefiles=current_step_gamefiles,
+                    group_n=self.config.actor_rollout_ref.rollout.val_kwargs.n,
+                    resources_per_worker={'num_cpus': self.config.env.resources_per_worker.num_cpus},
+                    num_parallel=self.config.env.num_parallel,
+                )
+            
             # we only do validation on rule-based rm
             if self.config.reward_model.enable and test_batch[0].non_tensor_batch["reward_model"]["style"] == "model":
                 return {}
 
             # Store original inputs
-            input_ids = test_batch.batch["input_ids"]
+            input_ids = test_batch.batch["input_ids"] 
             # TODO: Can we keep special tokens except for padding tokens?
             input_texts = [self.tokenizer.decode(ids, skip_special_tokens=True) for ids in input_ids]
             sample_inputs.extend(input_texts)
@@ -724,6 +760,13 @@ class RayPPOTrainer:
                 non_tensor_batch_keys_to_pop.append("tools_kwargs")
             if "env_kwargs" in test_batch.non_tensor_batch:
                 non_tensor_batch_keys_to_pop.append("env_kwargs")
+
+            if "gamefile" in test_batch.non_tensor_batch:
+                    non_tensor_batch_keys_to_pop.append("gamefile")
+            
+            if "expert_actions" in test_batch.non_tensor_batch:
+                    non_tensor_batch_keys_to_pop.append("expert_actions") 
+            
             test_gen_batch = test_batch.pop(
                 batch_keys=batch_keys_to_pop,
                 non_tensor_batch_keys=non_tensor_batch_keys_to_pop,
@@ -735,95 +778,100 @@ class RayPPOTrainer:
                 "recompute_log_prob": False,
                 "do_sample": self.config.actor_rollout_ref.rollout.val_kwargs.do_sample,
                 "validate": True,
-            }
+            } 
             print(f"test_gen_batch meta info: {test_gen_batch.meta_info}")
-
+            
             # # pad to be divisible by dp_size
             # test_gen_batch_padded, pad_size = pad_dataproto_to_divisor(test_gen_batch, self.actor_rollout_wg.world_size)
             # test_output_gen_batch_padded = self.actor_rollout_wg.generate_sequences(test_gen_batch_padded)
 
             # # unpad
             # test_output_gen_batch = unpad_dataproto(test_output_gen_batch_padded, pad_size=pad_size)
+            ################ agent-environment loop ############### 
+            total_batch_list, total_episode_rewards, total_episode_lengths, total_traj_uid, totoal_tool_callings = \
+                self.traj_collector.multi_turn_loop(
+                    gen_batch=test_gen_batch,
+                    actor_rollout_wg=self.actor_rollout_wg,
+                    envs=self.val_envs,
+                    is_train=False,
+                )
+            
+            
+            accuracy = np.sum(total_episode_rewards) / 140 
+        
+        
+        #     print('validation generation end') 
+        #     del test_batch 
+        #     test_batch = test_output_gen_batch
+        #     # Store generated outputs
+        #     output_ids = test_output_gen_batch.batch["responses"] 
+        #     output_texts = [self.tokenizer.decode(ids, skip_special_tokens=True) for ids in output_ids]
+        #     sample_outputs.extend(output_texts)
 
-            ################ agent-environment loop ###############
-            test_output_gen_batch = self.traj_collector.multi_turn_loop(
-                                                    gen_batch=test_gen_batch,
-                                                    actor_rollout_wg=self.actor_rollout_wg,
-                                                    envs=self.val_envs,
-                                                    is_train=False,
-                                                    )
-            print('validation generation end')
-            del test_batch
-            test_batch = test_output_gen_batch
-            # Store generated outputs
-            output_ids = test_output_gen_batch.batch["responses"]
-            output_texts = [self.tokenizer.decode(ids, skip_special_tokens=True) for ids in output_ids]
-            sample_outputs.extend(output_texts)
+        #     # test_batch = test_batch.union(test_output_gen_batch)
 
-            # test_batch = test_batch.union(test_output_gen_batch)
+        #     # evaluate using reward_function 
+        #     result = self.val_reward_fn(test_batch, return_dict=True)
+        #     reward_tensor = result["reward_tensor"]
+        #     scores = reward_tensor.sum(-1).cpu().tolist()
+        #     sample_scores.extend(scores)
 
-            # evaluate using reward_function
-            result = self.val_reward_fn(test_batch, return_dict=True)
-            reward_tensor = result["reward_tensor"]
-            scores = reward_tensor.sum(-1).cpu().tolist()
-            sample_scores.extend(scores)
+        #     reward_tensor_lst.append(reward_tensor)
+        #     data_source_lst.append(test_batch.non_tensor_batch.get('data_source', ['unknown'] * reward_tensor.shape[0]))
+        #     tool_calling_list.append(test_output_gen_batch.non_tensor_batch['tool_callings'])
+        #     traj_uid_list.append(test_output_gen_batch.non_tensor_batch['traj_uid'])
+        #     # success rate 
+        #     for k in test_batch.non_tensor_batch.keys():
+        #         if 'success_rate' in k:
+        #             if k not in success_rate_dict:
+        #                 success_rate_dict[k] = []
+        #             success_rate_dict[k].append(test_batch.non_tensor_batch[k][0])
+        #             # all success_rate should be the same
+        #             for i in range(1, len(test_batch.non_tensor_batch[k])):
+        #                 assert test_batch.non_tensor_batch[k][0] == test_batch.non_tensor_batch[k][i], f'not all success_rate are the same, 0: {test_batch.non_tensor_batch[k][0]}, {i}: {test_batch.non_tensor_batch[k][i]}'
+        
+        # self._maybe_log_val_generations(inputs=sample_inputs, outputs=sample_outputs, scores=sample_scores)
 
-            reward_tensor_lst.append(reward_tensor)
-            data_source_lst.append(test_batch.non_tensor_batch.get('data_source', ['unknown'] * reward_tensor.shape[0]))
-            tool_calling_list.append(test_output_gen_batch.non_tensor_batch['tool_callings'])
-            traj_uid_list.append(test_output_gen_batch.non_tensor_batch['traj_uid'])
-            # success rate
-            for k in test_batch.non_tensor_batch.keys():
-                if 'success_rate' in k:
-                    if k not in success_rate_dict:
-                        success_rate_dict[k] = []
-                    success_rate_dict[k].append(test_batch.non_tensor_batch[k][0])
-                    # all success_rate should be the same
-                    for i in range(1, len(test_batch.non_tensor_batch[k])):
-                        assert test_batch.non_tensor_batch[k][0] == test_batch.non_tensor_batch[k][i], f'not all success_rate are the same, 0: {test_batch.non_tensor_batch[k][0]}, {i}: {test_batch.non_tensor_batch[k][i]}'
+        # reward_tensor = torch.cat(reward_tensor_lst, dim=0).sum(-1).cpu()  # (batch_size,)
+        # data_sources = np.concatenate(data_source_lst, axis=0)
+        # tool_callings = np.concatenate(tool_calling_list, axis=0)
+        # traj_uids = np.concatenate(traj_uid_list, axis=0)
+        # success_rate = {k: np.mean(v) for k, v in success_rate_dict.items()}
 
-        self._maybe_log_val_generations(inputs=sample_inputs, outputs=sample_outputs, scores=sample_scores)
+        # # evaluate test_score based on data source
+        # data_source_reward = {}
+        # for i in range(reward_tensor.shape[0]):
+        #     data_source = data_sources[i]
+        #     if data_source not in data_source_reward:
+        #         data_source_reward[data_source] = []
+        #     data_source_reward[data_source].append(reward_tensor[i].item())
 
-        reward_tensor = torch.cat(reward_tensor_lst, dim=0).sum(-1).cpu()  # (batch_size,)
-        data_sources = np.concatenate(data_source_lst, axis=0)
-        tool_callings = np.concatenate(tool_calling_list, axis=0)
-        traj_uids = np.concatenate(traj_uid_list, axis=0)
-        success_rate = {k: np.mean(v) for k, v in success_rate_dict.items()}
+        # # evaluate tool call based on data source
+        # # the values in tool_callings represent the tool call count for each trajectory; however, since the batch is expanded by step, we only need to take one value for each unique trajectories.
+        # data_source_tool_calling = {}
+        # unique_traj_uid, unique_idx = np.unique(traj_uids, return_index=True)
+        # unique_data_sources = data_sources[unique_idx]
+        # unique_tool_callings = tool_callings[unique_idx]
 
-        # evaluate test_score based on data source
-        data_source_reward = {}
-        for i in range(reward_tensor.shape[0]):
-            data_source = data_sources[i]
-            if data_source not in data_source_reward:
-                data_source_reward[data_source] = []
-            data_source_reward[data_source].append(reward_tensor[i].item())
+        # for i in range(unique_tool_callings.shape[0]):
+        #     data_source = unique_data_sources[i]
+        #     if data_source not in data_source_tool_calling:
+        #         data_source_tool_calling[data_source] = []
+        #     data_source_tool_calling[data_source].append(unique_tool_callings[i].item())
 
-        # evaluate tool call based on data source
-        # the values in tool_callings represent the tool call count for each trajectory; however, since the batch is expanded by step, we only need to take one value for each unique trajectories.
-        data_source_tool_calling = {}
-        unique_traj_uid, unique_idx = np.unique(traj_uids, return_index=True)
-        unique_data_sources = data_sources[unique_idx]
-        unique_tool_callings = tool_callings[unique_idx]
+        # metric_dict = {}
+        # for data_source, rewards in data_source_reward.items():
+        #     metric_dict[f'val/{data_source}/test_score'] = np.mean(rewards)
 
-        for i in range(unique_tool_callings.shape[0]):
-            data_source = unique_data_sources[i]
-            if data_source not in data_source_tool_calling:
-                data_source_tool_calling[data_source] = []
-            data_source_tool_calling[data_source].append(unique_tool_callings[i].item())
+        # for data_source, tool_calls in data_source_tool_calling.items():
+        #     metric_dict[f'val/{data_source}/tool_call_count/mean'] = np.mean(tool_calls)
+        #     metric_dict[f'val/{data_source}/tool_call_count/max'] = np.max(tool_calls)
+        #     metric_dict[f'val/{data_source}/tool_call_count/min'] = np.min(tool_calls)
 
-        metric_dict = {}
-        for data_source, rewards in data_source_reward.items():
-            metric_dict[f'val/{data_source}/test_score'] = np.mean(rewards)
+        # for k, v in success_rate.items():
+        #     metric_dict[f'val/{k}'] = v
 
-        for data_source, tool_calls in data_source_tool_calling.items():
-            metric_dict[f'val/{data_source}/tool_call_count/mean'] = np.mean(tool_calls)
-            metric_dict[f'val/{data_source}/tool_call_count/max'] = np.max(tool_calls)
-            metric_dict[f'val/{data_source}/tool_call_count/min'] = np.min(tool_calls)
-
-        for k, v in success_rate.items():
-            metric_dict[f'val/{k}'] = v
-
-        return metric_dict
+        # return metric_dict
 
     def init_workers(self):
         """Initialize distributed training workers using Ray backend.
@@ -919,7 +967,7 @@ class RayPPOTrainer:
 
         remove_previous_ckpt_in_save = self.config.trainer.get("remove_previous_ckpt_in_save", False)
         if remove_previous_ckpt_in_save:
-            print("Warning: remove_previous_ckpt_in_save is deprecated," + " set max_actor_ckpt_to_keep=1 and max_critic_ckpt_to_keep=1 instead")
+            print("Warning: remove_previous_ckpt_in_save is deprecated," + " set max_actor_ckpt_to_keep=1 and max_critic_ckpt_to_keep=1 instead") 
         max_actor_ckpt_to_keep = self.config.trainer.get("max_actor_ckpt_to_keep", None) if not remove_previous_ckpt_in_save else 1
         max_critic_ckpt_to_keep = self.config.trainer.get("max_critic_ckpt_to_keep", None) if not remove_previous_ckpt_in_save else 1
 
@@ -1003,7 +1051,7 @@ class RayPPOTrainer:
         batch.reorder(global_idx)
         global_balance_stats = log_seqlen_unbalance(seqlen_list=global_seqlen_lst, partitions=global_partition_lst, prefix=logging_prefix)
         metrics.update(global_balance_stats)
-
+    
     def fit(self):
         """
         The training loop of PPO.
@@ -1014,7 +1062,7 @@ class RayPPOTrainer:
         from omegaconf import OmegaConf
 
         from verl.utils.tracking import Tracking
-
+        
         logger = Tracking(
             project_name=self.config.trainer.project_name,
             experiment_name=self.config.trainer.experiment_name,
@@ -1026,7 +1074,7 @@ class RayPPOTrainer:
 
         # load checkpoint before doing anything
         self._load_checkpoint()
-
+        
         # perform validation before training
         # currently, we only support validation using the reward_function.
         if self.val_reward_fn is not None and self.config.trainer.get("val_before_train", True):
@@ -1037,19 +1085,35 @@ class RayPPOTrainer:
             if self.config.trainer.get("val_only", False):
                 return
 
-        # add tqdm
+        # add tqdm 
         progress_bar = tqdm(total=self.total_training_steps, initial=self.global_steps, desc="Training Progress")
 
         # we start from step 1
         self.global_steps += 1
         last_val_metrics = None
 
+
         for epoch in range(self.config.trainer.total_epochs):
             for batch_dict in self.train_dataloader:
-                metrics = {}
-                timing_raw = {}
-                batch: DataProto = DataProto.from_single_dict(batch_dict)
+                # if self.global_steps == 88:
+                #     continue 
+                
+                metrics = {} 
+                timing_raw = {} 
+                batch: DataProto = DataProto.from_single_dict(batch_dict) 
 
+                if self.lazy_envs:
+                    current_step_gamefiles = batch.non_tensor_batch['gamefile']
+                    current_step_gamefiles = [json.loads(elem) for elem in batch.non_tensor_batch['gamefile']]
+                    batch.non_tensor_batch['gamefile'] = current_step_gamefiles
+
+                    self.envs = self.build_env_func(
+                        gamefiles=current_step_gamefiles,
+                        group_n=self.config.env.rollout.n,
+                        resources_per_worker={'num_cpus': self.config.env.resources_per_worker.num_cpus},
+                        num_parallel=self.config.env.num_parallel,
+                    ) 
+                
                 # pop those keys for generation
                 batch_keys_to_pop = ["input_ids", "attention_mask", "position_ids"]
                 non_tensor_batch_keys_to_pop = ["raw_prompt_ids", "data_source"]
@@ -1061,15 +1125,22 @@ class RayPPOTrainer:
                     non_tensor_batch_keys_to_pop.append("tools_kwargs")
                 if "env_kwargs" in batch.non_tensor_batch:
                     non_tensor_batch_keys_to_pop.append("env_kwargs")
+
+                if "gamefile" in batch.non_tensor_batch:
+                    non_tensor_batch_keys_to_pop.append("gamefile")
+                
+                if "expert_actions" in batch.non_tensor_batch:
+                    non_tensor_batch_keys_to_pop.append("expert_actions") 
+                
                 gen_batch = batch.pop(
                     batch_keys=batch_keys_to_pop,
                     non_tensor_batch_keys=non_tensor_batch_keys_to_pop,
                 )
-
+                
                 is_last_step = self.global_steps >= self.total_training_steps
-
+                
                 with _timer("step", timing_raw):
-                    # generate a batch
+                    # generate a batch 
                     with _timer("gen", timing_raw):
                         # if not self.async_rollout_mode:
                         #     gen_batch_output = self.actor_rollout_wg.generate_sequences(gen_batch)
@@ -1077,15 +1148,16 @@ class RayPPOTrainer:
                         #     self.async_rollout_manager.wake_up()
                         #     gen_batch_output = self.async_rollout_manager.generate_sequences(gen_batch)
                         #     self.async_rollout_manager.sleep()
-
+                        
                         ################ agent-environment loop ###############
+                        # breakpoint() 
                         gen_batch_output = self.traj_collector.multi_turn_loop(
                                                                 gen_batch=gen_batch,
                                                                 actor_rollout_wg=self.actor_rollout_wg,
                                                                 envs=self.envs,
                                                                 is_train=True,
-                                                                )
-                    if self.config.algorithm.adv_estimator == AdvantageEstimator.REMAX:
+                                                                ) 
+                    if self.config.algorithm.adv_estimator == AdvantageEstimator.REMAX: 
                         with _timer("gen_max", timing_raw):
                             gen_baseline_batch = deepcopy(gen_batch)
                             gen_baseline_batch.meta_info["do_sample"] = False
@@ -1094,7 +1166,7 @@ class RayPPOTrainer:
                             batch = batch.union(gen_baseline_output)
                             reward_baseline_tensor = self.reward_fn(batch)
                             reward_baseline_tensor = reward_baseline_tensor.sum(dim=-1)
-
+                            
                             batch.pop(batch_keys=list(gen_baseline_output.batch.keys()))
 
                             batch.batch["reward_baselines"] = reward_baseline_tensor
@@ -1124,7 +1196,7 @@ class RayPPOTrainer:
                     if self.config.trainer.balance_batch:
                         self._balance_batch(batch, metrics=metrics)
 
-                    # compute global_valid tokens
+                    # compute global_valid tokens global_tokens = torch.sum(batch.batch["attention_mask"], dim=-1).tolist()
                     batch.meta_info["global_token_num"] = torch.sum(batch.batch["attention_mask"], dim=-1).tolist()
 
                     with _timer("reward", timing_raw):
@@ -1138,7 +1210,7 @@ class RayPPOTrainer:
                         else:
                             reward_tensor, reward_extra_infos_dict = compute_reward(batch, self.reward_fn)
 
-                    # recompute old_log_probs
+                    # recompute old_log_probs 
                     with _timer("old_log_prob", timing_raw):
                         old_log_prob = self.actor_rollout_wg.compute_log_prob(batch)
                         entropys = old_log_prob.batch["entropys"]
@@ -1217,7 +1289,8 @@ class RayPPOTrainer:
                         # compute advantages, executed on the driver process
 
                         norm_adv_by_std_in_grpo = self.config.algorithm.get("norm_adv_by_std_in_grpo", True)  # GRPO adv normalization factor
-
+                        
+                        # breakpoint() 
                         batch = compute_advantage(
                             batch,
                             adv_estimator=self.config.algorithm.adv_estimator,
@@ -1233,7 +1306,8 @@ class RayPPOTrainer:
                             gigpo_mode=self.config.algorithm.gigpo.mode,
                             gigpo_enable_similarity= self.config.algorithm.gigpo.enable_similarity,
                             gigpo_similarity_thresh=self.config.algorithm.gigpo.similarity_thresh,
-                        )
+                            add_step_penalty=self.config.reward_model.parallel_reward
+                        ) 
 
                     # update critic
                     if self.use_critic:
@@ -1285,7 +1359,7 @@ class RayPPOTrainer:
                         "training/global_step": self.global_steps,
                         "training/epoch": epoch,
                     }
-                )
+                ) 
                 # collect metrics
                 metrics.update(compute_data_metrics(batch=batch, use_critic=self.use_critic))
                 metrics.update(compute_timing_metrics(batch=batch, timing_raw=timing_raw))

@@ -210,7 +210,7 @@ class AlfredThorEnv(object):
                 raise NotImplementedError
             self._done = won or self.steps > max_nb_steps_per_episode
             return (self._feedback, self._done, acs, won, goal_condition_success_rate, expert_actions)
-
+        
         def get_last_frame(self):
             return self.env.last_event.frame[:,:,::-1]
 

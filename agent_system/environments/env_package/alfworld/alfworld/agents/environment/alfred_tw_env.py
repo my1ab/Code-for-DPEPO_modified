@@ -123,10 +123,11 @@ class AlfredTWEnv(object):
             msg = ("Warning! Changing `goal_desc_human_anns_prob` should be done with"
                    " the script `alfworld-generate`. Ignoring it and loading games as they are.")
             print(colored(msg, "yellow"))
-
+        
         self.collect_game_files()
         self.use_expert = False
-        print(f"use_expert = {self.use_expert}")
+        print(f"use_expert = {self.use_expert}") 
+
     def collect_game_files(self, verbose=False):
         def log(info):
             if verbose:

@@ -129,7 +129,7 @@ class EnvironmentManagerBase:
             self._process_batch(bs, total_batch_list, total_infos, success)
         
         assert len(success['success_rate']) == batch_size
-
+        
         return {key: np.array(value) for key, value in success.items()}
     
     def _process_batch(self, batch_idx, total_batch_list, total_infos, success):

@@ -118,6 +118,8 @@ def compute_grpo_outcome_advantage(
     epsilon: float = 1e-6,
     norm_adv_by_std_in_grpo: str = True,
     compute_mean_std_cross_steps: bool = True,
+    add_step_penalty: bool = True,
+    step_penalty_list = None,
 ):
     """
     Compute advantage for GRPO, operating only on Outcome reward
@@ -151,7 +153,7 @@ def compute_grpo_outcome_advantage(
         bsz = scores.shape[0]
         for i in range(bsz):
             if (index[i], traj_index[i]) in seen_pairs:
-                continue
+                continue 
             id2score[index[i]].append(scores[i])
             if not compute_mean_std_cross_steps:
                 seen_pairs.add((index[i], traj_index[i]))
@@ -169,8 +171,16 @@ def compute_grpo_outcome_advantage(
                 scores[i] = (scores[i] - id2mean[index[i]]) / (id2std[index[i]] + epsilon)
             else:
                 scores[i] = scores[i] - id2mean[index[i]]
-        scores = scores.unsqueeze(-1) * response_mask
 
+            if add_step_penalty:
+                if torch.all(scores[i] < 0):
+                    W = 2 - step_penalty_list[i]
+                else:
+                    W = step_penalty_list[i]
+                scores[i] = scores[i] * W
+            
+        scores = scores.unsqueeze(-1) * response_mask
+    
     return scores, scores
 
 
