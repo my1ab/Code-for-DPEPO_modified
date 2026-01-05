@@ -28,7 +28,6 @@ conda activate verl-agent-sciworld
 export CUDA_VISIBLE_DEVICES=0,1,2,3
 export VLLM_ATTENTION_BACKEND=XFORMERS
 export TMPDIR=/root/autodl-tmp/tmp
-cd verl-agent
 ```
 
 ### 3. Launch Training
