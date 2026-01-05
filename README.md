@@ -14,7 +14,7 @@ bash install_sciworld.sh
 
 ## Training the Parallel Agent
 
-Follow the steps below to start training the parallel agent using PPO with GRPO advantage estimation.
+Follow the steps below to start training the parallel agent with DPEPO on ScienceWorld.
 
 ### 1. Activate Conda Environment
 
