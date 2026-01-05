@@ -1,5 +1,4 @@
 # README
-
 ## 🚀 Quick Start
 
 To install the required dependencies, run the installation script:
