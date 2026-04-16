@@ -13,8 +13,9 @@ bash install_sciworld.sh
 ---
 
 ## Training the Parallel Agent with ColdStart SFT
-We conducted SFT on Qwen2.5 series with OpenRLHF framework in turn-level. 
+We conducted SFT on Qwen2.5 series with OpenRLHF framework in turn-level.   
 You can also finetune the LLM with other ms-swift, llama-factory, and etc.
+The ColdStart datas and synthestic scripts can be found in [Ciallo～ (∠・ω< )⌒★](https://github.com/LePanda026/Code-for-DPEPO/blob/main/data_pipelines/ColdStart.zip)
 
 
 ## Training the Parallel Agent with DPEPO
