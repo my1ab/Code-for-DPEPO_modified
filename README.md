@@ -30,7 +30,17 @@ export VLLM_ATTENTION_BACKEND=XFORMERS
 export TMPDIR=/root/autodl-tmp/tmp
 ```
 
-### 3. Launch Training
+### 3. Modify the Path in Configs into Your Local Path
+For ALFWorld, You May need to modify the path in the following three files:
+```bash
+# https://github.com/LePanda026/Code-for-DPEPO/tree/main/data_pipelines/gamefiles/alfworld
+1. gamefiles_eval.json
+2. gamefiles_ood.json
+3. gamefiles_train.json
+```
+The same as ScienceWorld.
+
+### 4. Launch Training
 
 ```bash
 python3 -m verl.trainer.main_ppo_sciworld \
