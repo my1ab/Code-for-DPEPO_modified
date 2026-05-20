@@ -18,8 +18,8 @@ You can also finetune the LLM with other ms-swift, llama-factory, and etc.
 The ColdStart datas and synthestic scripts can be found in [Ciallo～ (∠・ω< )⌒★](https://github.com/LePanda026/Code-for-DPEPO/blob/main/data_pipelines/)
 
 ## Availiable Models
-[ALFWorld](https://www.modelscope.cn/models/LoveHuang/DPEPO-Qwen-2.5-7B-ALFWorld)
-[ScienceWorld](https://www.modelscope.cn/models/LoveHuang/DPEPO-Qwen-2.5-7B-ScienceWorld-L01) Uploading
+[ALFWorld](https://www.modelscope.cn/models/LoveHuang/DPEPO-Qwen-2.5-7B-ALFWorld)   
+[ScienceWorld](https://www.modelscope.cn/models/LoveHuang/DPEPO-Qwen-2.5-7B-ScienceWorld-L01)   
 
 ## Training the Parallel Agent with DPEPO
 
