@@ -1,7 +1,7 @@
-# README
+# ReadMe
 DPEPO: Diverse Parallel Exploration Policy Optimization for LLM-based Agents
 ---
-
+(DPEPO.png)
 ## 🚀 Quick Start
  
 To install the required dependencies, run the installation script:
