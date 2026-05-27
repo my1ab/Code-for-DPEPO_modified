@@ -1,5 +1,52 @@
 # ReadMe
 DPEPO: Diverse Parallel Exploration Policy Optimization for LLM-based Agents
+
+<div align="center">
+</div>
+
+<hr>
+
+<div align="center" style="line-height: 1;">
+  <!-- Paper Link -->
+  <a href="https://arxiv.org/abs/2604.24320">
+    <img alt="ArXiv Paper" src="https://img.shields.io/badge/arXiv-2604.24320-b31b1b?logo=arxiv&logoColor=white"/>
+  </a>
+  
+  <!-- Code / Data Repository -->
+  <a href="https://github.com/LePanda026/Code-for-DPEPO">
+    <img alt="GitHub Code & Data" src="https://img.shields.io/badge/GitHub-Code_%26_Data-181717?logo=github&logoColor=white"/>
+  </a>
+
+  <br>
+
+  <!-- Models: ALFWorld -->
+  <a href="https://www.modelscope.cn/models/LoveHuang/DPEPO-Qwen-2.5-7B-ALFWorld">
+    <img alt="ModelScope ALFWorld" src="https://img.shields.io/badge/ModelScope-ALFWorld_7B-624aff?logo=modelscope&logoColor=white"/>
+  </a>
+
+  <!-- Models: ScienceWorld -->
+  <a href="https://www.modelscope.cn/models/LoveHuang/DPEPO-Qwen-2.5-7B-ScienceWorld-L01">
+    <img alt="ModelScope ScienceWorld" src="https://img.shields.io/badge/ModelScope-ScienceWorld_7B-624aff?logo=modelscope&logoColor=white"/>
+  </a>
+
+  <br>
+
+  <!-- Licenses (请根据实际情况修改链接和文字) -->
+  <a href="https://github.com/LePanda026/Code-for-DPEPO/blob/main/LICENSE">
+    <img alt="Code License" src="https://img.shields.io/badge/Code_License-MIT-green?color=green"/>
+  </a>
+  
+  <a href="https://github.com/LePanda026/Code-for-DPEPO">
+    <img alt="Framework" src="https://img.shields.io/badge/Built_with-OpenRLHF-orange?logo=pytorch&logoColor=white"/>
+  </a>
+
+  <br>
+  
+  <!-- Optional: Add HuggingFace if you upload there later -->
+  <!-- <a href="https://huggingface.co/your-repo"><img alt="Hugging Face" src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-ffc107?color=ffc107&logoColor=white"/></a> -->
+
+</div>
+
 ---
 ![Large language model (LLM) agents that follow the sequential "reason-then-act" paradigm have achieved superior performance in many complex this http URL, these methods suffer from limited exploration and incomplete environmental understanding, as they interact with only a single environment per step. In this paper, we first introduce a novel paradigm that enables an agent to interact with multiple environments simultaneously and share cross-trajectory experiences. Building upon this paradigm, we further propose DPEPO, a reinforcement learning (RL) algorithm that encourages the agent to perform diverse parallel exploration. There are two stages in DPEPO: initial supervised fine-tuning (SFT) imparts basic parallel reasoning and action generation, followed by reinforcement learning stage with a hierarchical reward scheme. We design a parallel trajectory-level success reward and two step-level rewards: Diverse Action Reward and Diverse State Transition Reward, which actively penalize behavioral redundancy and promote broad exploration. Extensive experiments on ALFWorld and ScienceWorld show that DPEPO achieves state-of-the-art (SOTA) success rates, while maintaining comparable efficiency to strong sequential baselines.](DPEPO.png)
 
