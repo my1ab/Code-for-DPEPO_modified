@@ -45,7 +45,7 @@
 ## TL;DR
 We propose a new paradigm DPEPO, where LLM agents explore in multiple environments in parallel, sharing insights across trajectories. Our method DPEPO combines SFT and RL with diversity rewards (action & state transitions) to boost exploration. It achieves SOTA success rates on ALFWorld and ScienceWorld without losing efficiency.  
 
-🚀 Now, Our paper has been accepted by **ACL 2026**!
+🚀 Our paper has been accepted by **ACL 2026**!
 
 ## Introduction
 Large language model (LLM) agents that follow the sequential "reason-then-act" paradigm have achieved superior performance in many complex this http URL, these methods suffer from limited exploration and incomplete environmental understanding, as they interact with only a single environment per step. In this paper, we first introduce a novel paradigm that enables an agent to interact with multiple environments simultaneously and share cross-trajectory experiences. Building upon this paradigm, we further propose DPEPO, a reinforcement learning (RL) algorithm that encourages the agent to perform diverse parallel exploration. There are two stages in DPEPO: initial supervised fine-tuning (SFT) imparts basic parallel reasoning and action generation, followed by reinforcement learning stage with a hierarchical reward scheme. We design a parallel trajectory-level success reward and two step-level rewards: Diverse Action Reward and Diverse State Transition Reward, which actively penalize behavioral redundancy and promote broad exploration. Extensive experiments on ALFWorld and ScienceWorld show that DPEPO achieves state-of-the-art (SOTA) success rates, while maintaining comparable efficiency to strong sequential baselines.
