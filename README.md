@@ -1,5 +1,4 @@
-# ReadMe
-DPEPO: Diverse Parallel Exploration Policy Optimization for LLM-based Agents
+# DPEPO: Diverse Parallel Exploration Policy Optimization for LLM-based Agents
 
 <div align="center">
 </div>
