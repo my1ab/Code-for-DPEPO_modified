@@ -1,5 +1,3 @@
-# DPEPO: Diverse Parallel Exploration Policy Optimization for LLM-based Agents
-
 <div align="center">
 </div>
 <div align="center" style="line-height: 1;">
@@ -41,6 +39,7 @@
   <!-- <a href="https://huggingface.co/your-repo"><img alt="Hugging Face" src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Models-ffc107?color=ffc107&logoColor=white"/></a> -->
 
 </div>
+# DPEPO: Diverse Parallel Exploration Policy Optimization for LLM-based Agents
 
 ## TL;DR
 We propose a new paradigm DPEPO, where LLM agents explore in multiple environments in parallel, sharing insights across trajectories. Our method DPEPO combines SFT and RL with diversity rewards (action & state transitions) to boost exploration. It achieves SOTA success rates on ALFWorld and ScienceWorld without losing efficiency.  
