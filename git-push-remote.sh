@@ -53,9 +53,9 @@ git add -A  # 添加所有修改、新增和删除的文件，等同于git add -
 echo ""
 echo "=== 定义需要排除的路径 ==="
 EXCLUDE_PATHS=(
-    "coldstart_test/*/"  # 排除coldstart_test下的所有子文件夹
-    "coldstart_result_webshop/"
-    "coldstart_test_new/model_hislen8_result_v2/"
+    # "coldstart_test/*/"  # 排除coldstart_test下的所有子文件夹
+    # "coldstart_result_webshop/"
+    # "coldstart_test_new/model_hislen8_result_v2/"
 
     "*.pt"
     "*.ckpt"
