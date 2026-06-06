@@ -523,15 +523,18 @@ class TrajectoryCollector:
         assert len(total_batch_list) == len(total_traj_uid)
         assert len(total_batch_list) == len(totoal_tool_callings)
         
-        
-        # Create trajectory data 
-        gen_batch_output: DataProto = self.gather_rollout_data(
-            total_batch_list=total_batch_list,
-            episode_rewards=total_episode_rewards,
-            episode_lengths=total_episode_lengths,
-            success=total_success,
-            traj_uid=total_traj_uid,
-            tool_callings=totoal_tool_callings,
-        )
-        
-        return gen_batch_output
+        if is_train:
+            # Create trajectory data 
+            # 与parallel的行为统一
+            # 只有在训练时才进行batch的收集和处理，验证时直接返回原始的batch数据，由验证模块根据需要进行处理
+            gen_batch_output: DataProto = self.gather_rollout_data(
+                total_batch_list=total_batch_list,
+                episode_rewards=total_episode_rewards,
+                episode_lengths=total_episode_lengths,
+                success=total_success,
+                traj_uid=total_traj_uid,
+                tool_callings=totoal_tool_callings,
+            )
+            return gen_batch_output
+        else:
+            return total_batch_list, total_episode_rewards, total_episode_lengths, total_traj_uid, totoal_tool_callings

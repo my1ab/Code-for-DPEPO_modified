@@ -542,7 +542,8 @@ class TrajectoryCollectorParallel:
             
             batch = batch.union(batch_output) 
             batch.non_tensor_batch['gamefile'] = gen_batch.non_tensor_batch['gamefile']
-            batch.non_tensor_batch['expert_actions'] = gen_batch.non_tensor_batch['expert_actions']
+            if 'expert_actions' in gen_batch.non_tensor_batch:
+                batch.non_tensor_batch['expert_actions'] = gen_batch.non_tensor_batch['expert_actions']
             
             text_actions = self.tokenizer.batch_decode(
                 batch.batch['responses'], 

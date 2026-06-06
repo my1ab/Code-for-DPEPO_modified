@@ -1,0 +1,74 @@
+# Parallel ALF-World training script derived from test_alf.sh.
+# 修改点：
+# 1. 使用并行入口 main_ppo_alfworld
+# 2. 添加 env.num_parallel 和 env.env_path 参数
+# 3. 保留原始 test_alf.sh 的模型、数据、batch 和 PPO 配置
+# 并行环境配置：
+# env.num_parallel 决定每个 worker 内部并行的环境数量
+# env.env_path 指定 AlfWorld gamefile JSON，用于并行环境加载
+export CUDA_VISIBLE_DEVICES=3,5
+echo GPU:$CUDA_VISIBLE_DEVICES
+export VLLM_ATTENTION_BACKEND=XFORMERS 
+export TMPDIR=/diskpool/home/xuxz/tmp 
+export PYTHONUNBUFFERED=1
+
+LOG_FILE="test_alf_parallel_grpo.log"
+
+nohup python3 -m verl.trainer.main_ppo_alfworld \
+    algorithm.adv_estimator=grpo \
+    data.train_files=/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/verl_train_data/alfworld/train.parquet \
+    data.val_files=/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/verl_train_data/alfworld/test.parquet \
+    actor_rollout_ref.model.path=/diskpool/home/xuxz/ms-swift/model/Qwen2.5-0.5B-Instruct \
+    data.train_batch_size=2 \
+    data.val_batch_size=128 \
+    env.num_parallel=5 \
+    env.env_path=/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/alfworld/gamefiles_train.json \
+    env.rollout.n=2 \
+    env.lazy_envs=True \
+    actor_rollout_ref.actor.ppo_mini_batch_size=4 \
+    actor_rollout_ref.actor.ppo_micro_batch_size_per_gpu=2 \
+    actor_rollout_ref.rollout.log_prob_micro_batch_size_per_gpu=2 \
+    actor_rollout_ref.ref.log_prob_micro_batch_size_per_gpu=2 \
+    actor_rollout_ref.rollout.tensor_model_parallel_size=2 \
+    actor_rollout_ref.rollout.gpu_memory_utilization=0.6 \
+    actor_rollout_ref.rollout.val_kwargs.temperature=0.4 \
+    data.max_prompt_length=2048 \
+    data.max_response_length=512 \
+    data.filter_overlong_prompts=True \
+    data.truncation='error' \
+    data.return_raw_chat=True \
+    actor_rollout_ref.actor.optim.lr=1e-6 \
+    actor_rollout_ref.model.use_remove_padding=True \
+    actor_rollout_ref.actor.use_kl_loss=True \
+    actor_rollout_ref.actor.kl_loss_coef=0.01 \
+    actor_rollout_ref.actor.kl_loss_type=low_var_kl \
+    actor_rollout_ref.model.enable_gradient_checkpointing=True \
+    actor_rollout_ref.actor.fsdp_config.param_offload=False \
+    actor_rollout_ref.actor.fsdp_config.optimizer_offload=False \
+    actor_rollout_ref.rollout.name=vllm \
+    actor_rollout_ref.rollout.enable_chunked_prefill=False \
+    actor_rollout_ref.rollout.enforce_eager=False \
+    actor_rollout_ref.rollout.free_cache_engine=False \
+    actor_rollout_ref.rollout.val_kwargs.do_sample=True \
+    actor_rollout_ref.ref.fsdp_config.param_offload=True \
+    actor_rollout_ref.actor.use_invalid_action_penalty=True \
+    actor_rollout_ref.actor.invalid_action_penalty_coef=0.1 \
+    algorithm.use_kl_in_reward=False \
+    env.env_name=alfworld/AlfredTWEnv \
+    env.seed=0 \
+    env.max_steps=50 \
+    env.resources_per_worker.num_cpus=0.1 \
+    trainer.critic_warmup=0 \
+    trainer.logger=['console'] \
+    trainer.project_name='parallel_verl_agent_alfworld' \
+    trainer.experiment_name='grpo_qwen2.5_1.5b_parallel' \
+    trainer.n_gpus_per_node=2 \
+    trainer.nnodes=1 \
+    trainer.save_freq=-1 \
+    trainer.test_freq=5 \
+    trainer.total_epochs=1 \
+    trainer.val_before_train=False > "$LOG_FILE" 2>&1 &
+
+echo "PID: $!"
+echo "Log: $LOG_FILE"
+tail -f "$LOG_FILE"

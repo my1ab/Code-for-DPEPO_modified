@@ -1,0 +1,1680 @@
+2026-06-05 20:53:49,647	INFO worker.py:1908 -- Started a local Ray instance. View the dashboard at [1m[32mhttp://127.0.0.1:8265 [39m[22m
+[36m(TaskRunner pid=1320203)[0m {'actor_rollout_ref': {'actor': {'checkpoint': {'contents': ['model',
+[36m(TaskRunner pid=1320203)[0m                                                              'optimizer',
+[36m(TaskRunner pid=1320203)[0m                                                              'extra']},
+[36m(TaskRunner pid=1320203)[0m                                  'clip_ratio': 0.2,
+[36m(TaskRunner pid=1320203)[0m                                  'clip_ratio_c': 3.0,
+[36m(TaskRunner pid=1320203)[0m                                  'clip_ratio_high': 0.2,
+[36m(TaskRunner pid=1320203)[0m                                  'clip_ratio_low': 0.2,
+[36m(TaskRunner pid=1320203)[0m                                  'entropy_coeff': 0.001,
+[36m(TaskRunner pid=1320203)[0m                                  'fsdp_config': {'fsdp_size': -1,
+[36m(TaskRunner pid=1320203)[0m                                                  'offload_policy': False,
+[36m(TaskRunner pid=1320203)[0m                                                  'optimizer_offload': False,
+[36m(TaskRunner pid=1320203)[0m                                                  'param_offload': False,
+[36m(TaskRunner pid=1320203)[0m                                                  'reshard_after_forward': True,
+[36m(TaskRunner pid=1320203)[0m                                                  'wrap_policy': {'min_num_params': 0}},
+[36m(TaskRunner pid=1320203)[0m                                  'grad_clip': 1.0,
+[36m(TaskRunner pid=1320203)[0m                                  'invalid_action_penalty_coef': 0.1,
+[36m(TaskRunner pid=1320203)[0m                                  'kl_loss_coef': 0.01,
+[36m(TaskRunner pid=1320203)[0m                                  'kl_loss_type': 'low_var_kl',
+[36m(TaskRunner pid=1320203)[0m                                  'loss_agg_mode': 'token-mean',
+[36m(TaskRunner pid=1320203)[0m                                  'optim': {'lr': 1e-06,
+[36m(TaskRunner pid=1320203)[0m                                            'lr_warmup_steps': -1,
+[36m(TaskRunner pid=1320203)[0m                                            'lr_warmup_steps_ratio': 0.0,
+[36m(TaskRunner pid=1320203)[0m                                            'min_lr_ratio': 0.0,
+[36m(TaskRunner pid=1320203)[0m                                            'num_cycles': 0.5,
+[36m(TaskRunner pid=1320203)[0m                                            'total_training_steps': -1,
+[36m(TaskRunner pid=1320203)[0m                                            'warmup_style': 'constant',
+[36m(TaskRunner pid=1320203)[0m                                            'weight_decay': 0.01},
+[36m(TaskRunner pid=1320203)[0m                                  'ppo_epochs': 1,
+[36m(TaskRunner pid=1320203)[0m                                  'ppo_max_token_len_per_gpu': 16384,
+[36m(TaskRunner pid=1320203)[0m                                  'ppo_micro_batch_size': None,
+[36m(TaskRunner pid=1320203)[0m                                  'ppo_micro_batch_size_per_gpu': 2,
+[36m(TaskRunner pid=1320203)[0m                                  'ppo_mini_batch_size': 4,
+[36m(TaskRunner pid=1320203)[0m                                  'shuffle': False,
+[36m(TaskRunner pid=1320203)[0m                                  'strategy': 'fsdp',
+[36m(TaskRunner pid=1320203)[0m                                  'ulysses_sequence_parallel_size': 1,
+[36m(TaskRunner pid=1320203)[0m                                  'use_dynamic_bsz': False,
+[36m(TaskRunner pid=1320203)[0m                                  'use_invalid_action_penalty': True,
+[36m(TaskRunner pid=1320203)[0m                                  'use_kl_loss': True,
+[36m(TaskRunner pid=1320203)[0m                                  'use_torch_compile': True},
+[36m(TaskRunner pid=1320203)[0m                        'hybrid_engine': True,
+[36m(TaskRunner pid=1320203)[0m                        'model': {'enable_activation_offload': False,
+[36m(TaskRunner pid=1320203)[0m                                  'enable_gradient_checkpointing': True,
+[36m(TaskRunner pid=1320203)[0m                                  'external_lib': None,
+[36m(TaskRunner pid=1320203)[0m                                  'lora_alpha': 16,
+[36m(TaskRunner pid=1320203)[0m                                  'lora_rank': 0,
+[36m(TaskRunner pid=1320203)[0m                                  'override_config': {},
+[36m(TaskRunner pid=1320203)[0m                                  'path': '/diskpool/home/xuxz/ms-swift/model/Qwen2.5-0.5B-Instruct',
+[36m(TaskRunner pid=1320203)[0m                                  'target_modules': 'all-linear',
+[36m(TaskRunner pid=1320203)[0m                                  'trust_remote_code': False,
+[36m(TaskRunner pid=1320203)[0m                                  'use_fused_kernels': False,
+[36m(TaskRunner pid=1320203)[0m                                  'use_liger': False,
+[36m(TaskRunner pid=1320203)[0m                                  'use_remove_padding': True,
+[36m(TaskRunner pid=1320203)[0m                                  'use_shm': False},
+[36m(TaskRunner pid=1320203)[0m                        'ref': {'fsdp_config': {'param_offload': True,
+[36m(TaskRunner pid=1320203)[0m                                                'reshard_after_forward': True,
+[36m(TaskRunner pid=1320203)[0m                                                'wrap_policy': {'min_num_params': 0}},
+[36m(TaskRunner pid=1320203)[0m                                'log_prob_max_token_len_per_gpu': 16384,
+[36m(TaskRunner pid=1320203)[0m                                'log_prob_micro_batch_size': None,
+[36m(TaskRunner pid=1320203)[0m                                'log_prob_micro_batch_size_per_gpu': 2,
+[36m(TaskRunner pid=1320203)[0m                                'log_prob_use_dynamic_bsz': False,
+[36m(TaskRunner pid=1320203)[0m                                'strategy': 'fsdp',
+[36m(TaskRunner pid=1320203)[0m                                'ulysses_sequence_parallel_size': 1,
+[36m(TaskRunner pid=1320203)[0m                                'use_torch_compile': True},
+[36m(TaskRunner pid=1320203)[0m                        'rollout': {'chat_scheduler': None,
+[36m(TaskRunner pid=1320203)[0m                                    'disable_log_stats': True,
+[36m(TaskRunner pid=1320203)[0m                                    'do_sample': True,
+[36m(TaskRunner pid=1320203)[0m                                    'dtype': 'bfloat16',
+[36m(TaskRunner pid=1320203)[0m                                    'enable_chunked_prefill': False,
+[36m(TaskRunner pid=1320203)[0m                                    'enforce_eager': False,
+[36m(TaskRunner pid=1320203)[0m                                    'engine_kwargs': {'sglang': {'attention_backend': None},
+[36m(TaskRunner pid=1320203)[0m                                                      'vllm': {'swap_space': None}},
+[36m(TaskRunner pid=1320203)[0m                                    'free_cache_engine': False,
+[36m(TaskRunner pid=1320203)[0m                                    'gpu_memory_utilization': 0.6,
+[36m(TaskRunner pid=1320203)[0m                                    'ignore_eos': False,
+[36m(TaskRunner pid=1320203)[0m                                    'layered_summon': False,
+[36m(TaskRunner pid=1320203)[0m                                    'load_format': 'dummy_dtensor',
+[36m(TaskRunner pid=1320203)[0m                                    'log_prob_max_token_len_per_gpu': 16384,
+[36m(TaskRunner pid=1320203)[0m                                    'log_prob_micro_batch_size': None,
+[36m(TaskRunner pid=1320203)[0m                                    'log_prob_micro_batch_size_per_gpu': 2,
+[36m(TaskRunner pid=1320203)[0m                                    'log_prob_use_dynamic_bsz': False,
+[36m(TaskRunner pid=1320203)[0m                                    'max_model_len': None,
+[36m(TaskRunner pid=1320203)[0m                                    'max_num_batched_tokens': 8192,
+[36m(TaskRunner pid=1320203)[0m                                    'max_num_seqs': 1024,
+[36m(TaskRunner pid=1320203)[0m                                    'mode': 'sync',
+[36m(TaskRunner pid=1320203)[0m                                    'multi_turn': {'enable': False,
+[36m(TaskRunner pid=1320203)[0m                                                   'format': 'chatml',
+[36m(TaskRunner pid=1320203)[0m                                                   'max_turns': None,
+[36m(TaskRunner pid=1320203)[0m                                                   'tool_config_path': None},
+[36m(TaskRunner pid=1320203)[0m                                    'n': 1,
+[36m(TaskRunner pid=1320203)[0m                                    'name': 'vllm',
+[36m(TaskRunner pid=1320203)[0m                                    'prompt_length': 2048,
+[36m(TaskRunner pid=1320203)[0m                                    'response_length': 512,
+[36m(TaskRunner pid=1320203)[0m                                    'temperature': 1.0,
+[36m(TaskRunner pid=1320203)[0m                                    'tensor_model_parallel_size': 2,
+[36m(TaskRunner pid=1320203)[0m                                    'top_k': -1,
+[36m(TaskRunner pid=1320203)[0m                                    'top_p': 1,
+[36m(TaskRunner pid=1320203)[0m                                    'use_fire_sampling': False,
+[36m(TaskRunner pid=1320203)[0m                                    'val_kwargs': {'do_sample': True,
+[36m(TaskRunner pid=1320203)[0m                                                   'n': 1,
+[36m(TaskRunner pid=1320203)[0m                                                   'temperature': 0.4,
+[36m(TaskRunner pid=1320203)[0m                                                   'top_k': -1,
+[36m(TaskRunner pid=1320203)[0m                                                   'top_p': 1.0}}},
+[36m(TaskRunner pid=1320203)[0m  'algorithm': {'adv_estimator': 'grpo',
+[36m(TaskRunner pid=1320203)[0m                'filter_groups': {'enable': False, 'max_num_gen_batches': 10},
+[36m(TaskRunner pid=1320203)[0m                'gamma': 1.0,
+[36m(TaskRunner pid=1320203)[0m                'gigpo': {'enable_similarity': False,
+[36m(TaskRunner pid=1320203)[0m                          'mode': 'mean_norm',
+[36m(TaskRunner pid=1320203)[0m                          'similarity_thresh': 0.95,
+[36m(TaskRunner pid=1320203)[0m                          'step_advantage_w': 1.0},
+[36m(TaskRunner pid=1320203)[0m                'kl_ctrl': {'horizon': 10000,
+[36m(TaskRunner pid=1320203)[0m                            'kl_coef': 0.001,
+[36m(TaskRunner pid=1320203)[0m                            'target_kl': 0.1,
+[36m(TaskRunner pid=1320203)[0m                            'type': 'fixed'},
+[36m(TaskRunner pid=1320203)[0m                'kl_penalty': 'kl',
+[36m(TaskRunner pid=1320203)[0m                'lam': 1.0,
+[36m(TaskRunner pid=1320203)[0m                'norm_adv_by_std_in_grpo': True,
+[36m(TaskRunner pid=1320203)[0m                'pf_ppo': {'reweight_method': 'pow', 'weight_pow': 2.0},
+[36m(TaskRunner pid=1320203)[0m                'use_kl_in_reward': False,
+[36m(TaskRunner pid=1320203)[0m                'use_pf_ppo': False},
+[36m(TaskRunner pid=1320203)[0m  'critic': {'checkpoint': {'contents': ['model', 'optimizer', 'extra']},
+[36m(TaskRunner pid=1320203)[0m             'cliprange_value': 0.5,
+[36m(TaskRunner pid=1320203)[0m             'forward_max_token_len_per_gpu': 32768,
+[36m(TaskRunner pid=1320203)[0m             'forward_micro_batch_size': None,
+[36m(TaskRunner pid=1320203)[0m             'forward_micro_batch_size_per_gpu': None,
+[36m(TaskRunner pid=1320203)[0m             'grad_clip': 1.0,
+[36m(TaskRunner pid=1320203)[0m             'loss_agg_mode': 'token-mean',
+[36m(TaskRunner pid=1320203)[0m             'model': {'enable_activation_offload': False,
+[36m(TaskRunner pid=1320203)[0m                       'enable_gradient_checkpointing': True,
+[36m(TaskRunner pid=1320203)[0m                       'external_lib': None,
+[36m(TaskRunner pid=1320203)[0m                       'fsdp_config': {'fsdp_size': -1,
+[36m(TaskRunner pid=1320203)[0m                                       'offload_policy': False,
+[36m(TaskRunner pid=1320203)[0m                                       'optimizer_offload': False,
+[36m(TaskRunner pid=1320203)[0m                                       'param_offload': False,
+[36m(TaskRunner pid=1320203)[0m                                       'reshard_after_forward': True,
+[36m(TaskRunner pid=1320203)[0m                                       'wrap_policy': {'min_num_params': 0}},
+[36m(TaskRunner pid=1320203)[0m                       'lora_alpha': 16,
+[36m(TaskRunner pid=1320203)[0m                       'lora_rank': 0,
+[36m(TaskRunner pid=1320203)[0m                       'override_config': {},
+[36m(TaskRunner pid=1320203)[0m                       'path': '~/models/deepseek-llm-7b-chat',
+[36m(TaskRunner pid=1320203)[0m                       'target_modules': 'all-linear',
+[36m(TaskRunner pid=1320203)[0m                       'tokenizer_path': '/diskpool/home/xuxz/ms-swift/model/Qwen2.5-0.5B-Instruct',
+[36m(TaskRunner pid=1320203)[0m                       'trust_remote_code': False,
+[36m(TaskRunner pid=1320203)[0m                       'use_remove_padding': False,
+[36m(TaskRunner pid=1320203)[0m                       'use_shm': False},
+[36m(TaskRunner pid=1320203)[0m             'optim': {'lr': 1e-05,
+[36m(TaskRunner pid=1320203)[0m                       'lr_warmup_steps_ratio': 0.0,
+[36m(TaskRunner pid=1320203)[0m                       'min_lr_ratio': None,
+[36m(TaskRunner pid=1320203)[0m                       'total_training_steps': -1,
+[36m(TaskRunner pid=1320203)[0m                       'warmup_style': 'constant',
+[36m(TaskRunner pid=1320203)[0m                       'weight_decay': 0.01},
+[36m(TaskRunner pid=1320203)[0m             'ppo_epochs': 1,
+[36m(TaskRunner pid=1320203)[0m             'ppo_max_token_len_per_gpu': 32768,
+[36m(TaskRunner pid=1320203)[0m             'ppo_micro_batch_size': None,
+[36m(TaskRunner pid=1320203)[0m             'ppo_micro_batch_size_per_gpu': None,
+[36m(TaskRunner pid=1320203)[0m             'ppo_mini_batch_size': 4,
+[36m(TaskRunner pid=1320203)[0m             'rollout_n': 1,
+[36m(TaskRunner pid=1320203)[0m             'shuffle': False,
+[36m(TaskRunner pid=1320203)[0m             'strategy': 'fsdp',
+[36m(TaskRunner pid=1320203)[0m             'ulysses_sequence_parallel_size': 1,
+[36m(TaskRunner pid=1320203)[0m             'use_dynamic_bsz': False},
+[36m(TaskRunner pid=1320203)[0m  'custom_reward_function': {'name': 'compute_score', 'path': None},
+[36m(TaskRunner pid=1320203)[0m  'data': {'custom_cls': {'name': None, 'path': None},
+[36m(TaskRunner pid=1320203)[0m           'filter_overlong_prompts': True,
+[36m(TaskRunner pid=1320203)[0m           'filter_overlong_prompts_workers': 1,
+[36m(TaskRunner pid=1320203)[0m           'image_key': 'images',
+[36m(TaskRunner pid=1320203)[0m           'max_prompt_length': 2048,
+[36m(TaskRunner pid=1320203)[0m           'max_response_length': 512,
+[36m(TaskRunner pid=1320203)[0m           'prompt_key': 'prompt',
+[36m(TaskRunner pid=1320203)[0m           'return_full_prompt': False,
+[36m(TaskRunner pid=1320203)[0m           'return_raw_chat': True,
+[36m(TaskRunner pid=1320203)[0m           'return_raw_input_ids': False,
+[36m(TaskRunner pid=1320203)[0m           'reward_fn_key': 'data_source',
+[36m(TaskRunner pid=1320203)[0m           'shuffle': True,
+[36m(TaskRunner pid=1320203)[0m           'tokenizer': None,
+[36m(TaskRunner pid=1320203)[0m           'train_batch_size': 2,
+[36m(TaskRunner pid=1320203)[0m           'train_files': '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/verl_train_data/alfworld/train.parquet',
+[36m(TaskRunner pid=1320203)[0m           'truncation': 'error',
+[36m(TaskRunner pid=1320203)[0m           'trust_remote_code': False,
+[36m(TaskRunner pid=1320203)[0m           'use_shm': False,
+[36m(TaskRunner pid=1320203)[0m           'val_batch_size': 128,
+[36m(TaskRunner pid=1320203)[0m           'val_files': '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/verl_train_data/alfworld/test.parquet',
+[36m(TaskRunner pid=1320203)[0m           'video_key': 'videos'},
+[36m(TaskRunner pid=1320203)[0m  'env': {'env_name': 'alfworld/AlfredTWEnv',
+[36m(TaskRunner pid=1320203)[0m          'history_length': 2,
+[36m(TaskRunner pid=1320203)[0m          'max_steps': 50,
+[36m(TaskRunner pid=1320203)[0m          'resources_per_worker': {'num_cpus': 0.1, 'num_gpus': 0},
+[36m(TaskRunner pid=1320203)[0m          'rollout': {'n': 2},
+[36m(TaskRunner pid=1320203)[0m          'search': {'log_requests': False,
+[36m(TaskRunner pid=1320203)[0m                     'search_url': 'http://127.0.0.1:8000/retrieve',
+[36m(TaskRunner pid=1320203)[0m                     'timeout': 60,
+[36m(TaskRunner pid=1320203)[0m                     'topk': 3},
+[36m(TaskRunner pid=1320203)[0m          'seed': 0,
+[36m(TaskRunner pid=1320203)[0m          'sokoban': {'dim_room': [6, 6],
+[36m(TaskRunner pid=1320203)[0m                      'mode': 'tiny_rgb_array',
+[36m(TaskRunner pid=1320203)[0m                      'num_boxes': 1,
+[36m(TaskRunner pid=1320203)[0m                      'search_depth': 30},
+[36m(TaskRunner pid=1320203)[0m          'webshop': {'human_goals': False, 'use_small': True}},
+[36m(TaskRunner pid=1320203)[0m  'ray_init': {'num_cpus': None},
+[36m(TaskRunner pid=1320203)[0m  'reward_model': {'enable': False,
+[36m(TaskRunner pid=1320203)[0m                   'forward_max_token_len_per_gpu': 32768,
+[36m(TaskRunner pid=1320203)[0m                   'launch_reward_fn_async': False,
+[36m(TaskRunner pid=1320203)[0m                   'max_length': None,
+[36m(TaskRunner pid=1320203)[0m                   'micro_batch_size': None,
+[36m(TaskRunner pid=1320203)[0m                   'micro_batch_size_per_gpu': None,
+[36m(TaskRunner pid=1320203)[0m                   'model': {'external_lib': None,
+[36m(TaskRunner pid=1320203)[0m                             'fsdp_config': {'fsdp_size': -1,
+[36m(TaskRunner pid=1320203)[0m                                             'param_offload': False,
+[36m(TaskRunner pid=1320203)[0m                                             'reshard_after_forward': True,
+[36m(TaskRunner pid=1320203)[0m                                             'wrap_policy': {'min_num_params': 0}},
+[36m(TaskRunner pid=1320203)[0m                             'input_tokenizer': '/diskpool/home/xuxz/ms-swift/model/Qwen2.5-0.5B-Instruct',
+[36m(TaskRunner pid=1320203)[0m                             'path': '~/models/FsfairX-LLaMA3-RM-v0.1',
+[36m(TaskRunner pid=1320203)[0m                             'trust_remote_code': False,
+[36m(TaskRunner pid=1320203)[0m                             'use_fused_kernels': False,
+[36m(TaskRunner pid=1320203)[0m                             'use_remove_padding': False,
+[36m(TaskRunner pid=1320203)[0m                             'use_shm': False},
+[36m(TaskRunner pid=1320203)[0m                   'parallel_reward': False,
+[36m(TaskRunner pid=1320203)[0m                   'reward_manager': 'episode',
+[36m(TaskRunner pid=1320203)[0m                   'sandbox_fusion': {'max_concurrent': 64, 'url': None},
+[36m(TaskRunner pid=1320203)[0m                   'strategy': 'fsdp',
+[36m(TaskRunner pid=1320203)[0m                   'ulysses_sequence_parallel_size': 1,
+[36m(TaskRunner pid=1320203)[0m                   'use_dynamic_bsz': False},
+[36m(TaskRunner pid=1320203)[0m  'trainer': {'balance_batch': True,
+[36m(TaskRunner pid=1320203)[0m              'critic_warmup': 0,
+[36m(TaskRunner pid=1320203)[0m              'default_hdfs_dir': None,
+[36m(TaskRunner pid=1320203)[0m              'default_local_dir': 'checkpoints/verl_agent_alfworld/grpo_qwen2.5_1.5b',
+[36m(TaskRunner pid=1320203)[0m              'del_local_ckpt_after_load': False,
+[36m(TaskRunner pid=1320203)[0m              'device': 'cuda',
+[36m(TaskRunner pid=1320203)[0m              'experiment_name': 'grpo_qwen2.5_1.5b',
+[36m(TaskRunner pid=1320203)[0m              'log_val_generations': 0,
+[36m(TaskRunner pid=1320203)[0m              'logger': ['console'],
+[36m(TaskRunner pid=1320203)[0m              'max_actor_ckpt_to_keep': None,
+[36m(TaskRunner pid=1320203)[0m              'max_critic_ckpt_to_keep': None,
+[36m(TaskRunner pid=1320203)[0m              'n_gpus_per_node': 2,
+[36m(TaskRunner pid=1320203)[0m              'nnodes': 1,
+[36m(TaskRunner pid=1320203)[0m              'project_name': 'verl_agent_alfworld',
+[36m(TaskRunner pid=1320203)[0m              'ray_wait_register_center_timeout': 300,
+[36m(TaskRunner pid=1320203)[0m              'resume_from_path': None,
+[36m(TaskRunner pid=1320203)[0m              'resume_mode': 'auto',
+[36m(TaskRunner pid=1320203)[0m              'rollout_data_dir': None,
+[36m(TaskRunner pid=1320203)[0m              'save_freq': -1,
+[36m(TaskRunner pid=1320203)[0m              'test_freq': 5,
+[36m(TaskRunner pid=1320203)[0m              'total_epochs': 1,
+[36m(TaskRunner pid=1320203)[0m              'total_training_steps': None,
+[36m(TaskRunner pid=1320203)[0m              'val_before_train': False,
+[36m(TaskRunner pid=1320203)[0m              'validation_data_dir': None}}
+[36m(TaskRunner pid=1320203)[0m Initializing AlfredTWEnv...
+[36m(TaskRunner pid=1320203)[0m   0%|          | 0/8810 [00:00<?, ?it/s]  2%|▏         | 213/8810 [00:00<00:04, 2109.69it/s]
+[36m(TaskRunner pid=1320203)[0m   5%|▌         | 456/8810 [00:00<00:03, 2291.01it/s]
+[36m(TaskRunner pid=1320203)[0m   8%|▊         | 703/8810 [00:00<00:03, 2369.90it/s]
+[33m(raylet)[0m [2026-06-05 20:53:58,624 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.7 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m  11%|█         | 941/8810 [00:00<00:06, 1167.73it/s]
+[36m(TaskRunner pid=1320203)[0m  14%|█▍        | 1213/8810 [00:00<00:05, 1503.06it/s]
+[36m(TaskRunner pid=1320203)[0m  17%|█▋        | 1478/8810 [00:00<00:04, 1773.58it/s]
+[36m(TaskRunner pid=1320203)[0m  20%|█▉        | 1721/8810 [00:00<00:03, 1939.09it/s]
+[36m(TaskRunner pid=1320203)[0m  22%|██▏       | 1953/8810 [00:01<00:05, 1331.00it/s]
+[36m(TaskRunner pid=1320203)[0m  25%|██▍       | 2194/8810 [00:01<00:04, 1543.54it/s]
+[36m(TaskRunner pid=1320203)[0m  27%|██▋       | 2411/8810 [00:01<00:03, 1679.65it/s]
+[36m(TaskRunner pid=1320203)[0m  30%|██▉       | 2617/8810 [00:01<00:03, 1768.90it/s]
+[36m(TaskRunner pid=1320203)[0m  33%|███▎      | 2875/8810 [00:01<00:03, 1975.00it/s]
+[36m(TaskRunner pid=1320203)[0m  35%|███▌      | 3097/8810 [00:02<00:04, 1197.90it/s]
+[36m(TaskRunner pid=1320203)[0m  37%|███▋      | 3293/8810 [00:02<00:04, 1335.01it/s]
+[36m(TaskRunner pid=1320203)[0m  40%|████      | 3563/8810 [00:02<00:03, 1615.62it/s]
+[36m(TaskRunner pid=1320203)[0m  43%|████▎     | 3793/8810 [00:02<00:02, 1771.40it/s]
+[36m(TaskRunner pid=1320203)[0m  45%|████▌     | 4007/8810 [00:02<00:02, 1841.43it/s]
+[36m(TaskRunner pid=1320203)[0m  48%|████▊     | 4218/8810 [00:02<00:03, 1200.90it/s]
+[36m(TaskRunner pid=1320203)[0m  50%|█████     | 4423/8810 [00:02<00:03, 1357.70it/s]
+[36m(TaskRunner pid=1320203)[0m  53%|█████▎    | 4667/8810 [00:02<00:02, 1585.35it/s]
+[36m(TaskRunner pid=1320203)[0m  55%|█████▌    | 4872/8810 [00:03<00:02, 1686.61it/s]
+[36m(TaskRunner pid=1320203)[0m  58%|█████▊    | 5073/8810 [00:03<00:02, 1765.37it/s] 60%|█████▉    | 5280/8810 [00:03<00:01, 1844.18it/s]
+[36m(TaskRunner pid=1320203)[0m  62%|██████▏   | 5482/8810 [00:03<00:02, 1155.03it/s]
+[36m(TaskRunner pid=1320203)[0m  65%|██████▍   | 5690/8810 [00:03<00:02, 1331.71it/s] 67%|██████▋   | 5904/8810 [00:03<00:01, 1504.27it/s]
+[36m(TaskRunner pid=1320203)[0m  69%|██████▉   | 6113/8810 [00:03<00:01, 1638.73it/s]
+[36m(TaskRunner pid=1320203)[0m  72%|███████▏  | 6306/8810 [00:04<00:01, 1686.91it/s]
+[36m(TaskRunner pid=1320203)[0m  74%|███████▍  | 6500/8810 [00:04<00:01, 1750.97it/s]
+[36m(TaskRunner pid=1320203)[0m  76%|███████▌  | 6691/8810 [00:04<00:01, 1135.41it/s]
+[36m(TaskRunner pid=1320203)[0m  78%|███████▊  | 6886/8810 [00:04<00:01, 1295.83it/s]
+[36m(TaskRunner pid=1320203)[0m  80%|████████  | 7090/8810 [00:04<00:01, 1455.05it/s]
+[36m(TaskRunner pid=1320203)[0m  83%|████████▎ | 7304/8810 [00:04<00:00, 1612.30it/s]
+[36m(TaskRunner pid=1320203)[0m  86%|████████▌ | 7558/8810 [00:04<00:00, 1846.17it/s]
+[36m(TaskRunner pid=1320203)[0m  88%|████████▊ | 7779/8810 [00:04<00:00, 1941.50it/s]
+[36m(TaskRunner pid=1320203)[0m  91%|█████████ | 7990/8810 [00:05<00:00, 1243.32it/s]
+[36m(TaskRunner pid=1320203)[0m  94%|█████████▎| 8243/8810 [00:05<00:00, 1496.73it/s]
+[36m(TaskRunner pid=1320203)[0m Overall we have 3553 games in split=train
+[36m(TaskRunner pid=1320203)[0m Training with 3553 games
+[36m(TaskRunner pid=1320203)[0m use_expert = False
+[36m(TaskRunner pid=1320203)[0m  97%|█████████▋| 8539/8810 [00:05<00:00, 1816.65it/s]100%|██████████| 8810/8810 [00:05<00:00, 1591.10it/s]
+[36m(TaskRunner pid=1320203)[0m Initializing AlfredTWEnv...
+[36m(TaskRunner pid=1320203)[0m   0%|          | 0/494 [00:00<?, ?it/s]
+[36m(TaskRunner pid=1320203)[0m Overall we have 140 games in split=eval_in_distribution
+[36m(TaskRunner pid=1320203)[0m Evaluating with 140 games
+[36m(TaskRunner pid=1320203)[0m use_expert = False
+[36m(TaskRunner pid=1320203)[0m  76%|███████▌  | 374/494 [00:00<00:00, 3732.01it/s]100%|██████████| 494/494 [00:00<00:00, 3632.21it/s]
+[33m(raylet)[0m [2026-06-05 20:54:08,652 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.7 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m Using dataset class: RLHFDataset
+[36m(TaskRunner pid=1320203)[0m dataset len: 16
+[36m(TaskRunner pid=1320203)[0m Setting TOKENIZERS_PARALLELISM=false for forked processes.
+[36m(TaskRunner pid=1320203)[0m WARNING:2026-06-05 20:54:11,129:Setting TOKENIZERS_PARALLELISM=false for forked processes.
+[36m(TaskRunner pid=1320203)[0m Filtering prompts longer than 2048 tokens (num_proc=1):   0%|          | 0/16 [00:00<?, ? examples/s]
+[36m(TaskRunner pid=1320203)[0m Filtering prompts longer than 2048 tokens (num_proc=1): 100%|██████████| 16/16 [00:00<00:00, 22.56 examples/s]
+[36m(TaskRunner pid=1320203)[0m filter dataset len: 16
+[36m(TaskRunner pid=1320203)[0m Using dataset class: RLHFDataset
+[36m(TaskRunner pid=1320203)[0m Filtering prompts longer than 2048 tokens (num_proc=1): 100%|██████████| 16/16 [00:00<00:00, 19.59 examples/s]
+[36m(TaskRunner pid=1320203)[0m dataset len: 128
+[36m(TaskRunner pid=1320203)[0m Setting TOKENIZERS_PARALLELISM=false for forked processes.
+[36m(TaskRunner pid=1320203)[0m WARNING:2026-06-05 20:54:12,370:Setting TOKENIZERS_PARALLELISM=false for forked processes.
+[36m(TaskRunner pid=1320203)[0m Filtering prompts longer than 2048 tokens (num_proc=1):   0%|          | 0/128 [00:00<?, ? examples/s]
+[36m(TaskRunner pid=1320203)[0m Filtering prompts longer than 2048 tokens (num_proc=1): 100%|██████████| 128/128 [00:00<00:00, 200.80 examples/s]
+[36m(TaskRunner pid=1320203)[0m filter dataset len: 128
+[36m(TaskRunner pid=1320203)[0m WARNING: val_batch_size is deprecated. Validation datasets are sent to inference engines as a whole batch, which will schedule the memory themselves.
+[36m(TaskRunner pid=1320203)[0m [validate_config] All configuration checks passed successfully!
+[36m(TaskRunner pid=1320203)[0m Filtering prompts longer than 2048 tokens (num_proc=1): 100%|██████████| 128/128 [00:00<00:00, 168.38 examples/s]
+[36m(TaskRunner pid=1320203)[0m Size of train dataloader: 8, Size of val dataloader: 1
+[36m(TaskRunner pid=1320203)[0m Total training steps: 8
+[36m(TaskRunner pid=1320203)[0m colocated worker base class <class 'verl.single_controller.base.worker.Worker'>
+[36m(TaskRunner pid=1320203)[0m DeprecationWarning: `ray.state.available_resources_per_node` is a private attribute and access will be removed in a future Ray version.
+[36m(TaskRunner pid=1320203)[0m WARNING:2026-06-05 20:54:14,101:Waiting for register center actor 1GTAco_register_center to be ready. Elapsed time: 0 seconds out of 300 seconds.
+[33m(raylet)[0m [2026-06-05 20:54:18,666 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.69 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-05 20:54:28,691 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.69 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=1338576)[0m You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[36m(WorkerDict pid=1333723)[0m Model config after override: Qwen2Config {
+[36m(WorkerDict pid=1333723)[0m   "architectures": [
+[36m(WorkerDict pid=1333723)[0m     "Qwen2ForCausalLM"
+[36m(WorkerDict pid=1333723)[0m   ],
+[36m(WorkerDict pid=1333723)[0m   "attention_dropout": 0.0,
+[36m(WorkerDict pid=1333723)[0m   "eos_token_id": 151645,
+[36m(WorkerDict pid=1333723)[0m   "hidden_act": "silu",
+[36m(WorkerDict pid=1333723)[0m   "hidden_size": 896,
+[36m(WorkerDict pid=1333723)[0m   "initializer_range": 0.02,
+[36m(WorkerDict pid=1333723)[0m   "intermediate_size": 4864,
+[36m(WorkerDict pid=1333723)[0m   "max_position_embeddings": 32768,
+[36m(WorkerDict pid=1333723)[0m   "max_window_layers": 21,
+[36m(WorkerDict pid=1333723)[0m   "model_type": "qwen2",
+[36m(WorkerDict pid=1333723)[0m   "num_attention_heads": 14,
+[36m(WorkerDict pid=1333723)[0m   "num_hidden_layers": 24,
+[36m(WorkerDict pid=1333723)[0m   "num_key_value_heads": 2,
+[36m(WorkerDict pid=1333723)[0m   "pad_token_id": 151643,
+[36m(WorkerDict pid=1333723)[0m   "rms_norm_eps": 1e-06,
+[36m(WorkerDict pid=1333723)[0m   "rope_scaling": null,
+[36m(WorkerDict pid=1333723)[0m   "rope_theta": 1000000.0,
+[36m(WorkerDict pid=1333723)[0m   "sliding_window": 32768,
+[36m(WorkerDict pid=1333723)[0m   "tie_word_embeddings": true,
+[36m(WorkerDict pid=1333723)[0m   "torch_dtype": "bfloat16",
+[36m(WorkerDict pid=1333723)[0m   "transformers_version": "4.51.1",
+[36m(WorkerDict pid=1333723)[0m   "use_cache": true,
+[36m(WorkerDict pid=1333723)[0m   "use_sliding_window": false,
+[36m(WorkerDict pid=1333723)[0m   "vocab_size": 151936
+[36m(WorkerDict pid=1333723)[0m }
+[36m(WorkerDict pid=1333723)[0m 
+[36m(WorkerDict pid=1338576)[0m Monkey patch _flash_attention_forward in transformers.integrations.flash_attention
+[36m(WorkerDict pid=1333723)[0m Qwen2ForCausalLM contains 494.03M parameters
+[36m(WorkerDict pid=1333723)[0m wrap_policy: functools.partial(<function _or_policy at 0x7dfd0b4c9300>, policies=[functools.partial(<function transformer_auto_wrap_policy at 0x7dfd0b4c91c0>, transformer_layer_cls={<class 'transformers.models.qwen2.modeling_qwen2.Qwen2DecoderLayer'>})])
+[36m(WorkerDict pid=1333723)[0m NCCL version 2.21.5+cuda12.4
+[36m(WorkerDict pid=1338576)[0m Actor use_remove_padding=True
+[36m(WorkerDict pid=1338576)[0m Actor use_fused_kernels=False
+[36m(WorkerDict pid=1333723)[0m Model config after override: Qwen2Config {
+[36m(WorkerDict pid=1333723)[0m   "architectures": [
+[36m(WorkerDict pid=1333723)[0m     "Qwen2ForCausalLM"
+[36m(WorkerDict pid=1333723)[0m   ],
+[36m(WorkerDict pid=1333723)[0m   "attention_dropout": 0.0,
+[36m(WorkerDict pid=1333723)[0m   "eos_token_id": 151645,
+[36m(WorkerDict pid=1333723)[0m   "hidden_act": "silu",
+[36m(WorkerDict pid=1333723)[0m   "hidden_size": 896,
+[36m(WorkerDict pid=1333723)[0m   "initializer_range": 0.02,
+[36m(WorkerDict pid=1333723)[0m   "intermediate_size": 4864,
+[36m(WorkerDict pid=1333723)[0m   "max_position_embeddings": 32768,
+[36m(WorkerDict pid=1333723)[0m   "max_window_layers": 21,
+[36m(WorkerDict pid=1333723)[0m   "model_type": "qwen2",
+[36m(WorkerDict pid=1333723)[0m   "num_attention_heads": 14,
+[36m(WorkerDict pid=1333723)[0m   "num_hidden_layers": 24,
+[36m(WorkerDict pid=1333723)[0m   "num_key_value_heads": 2,
+[36m(WorkerDict pid=1333723)[0m   "pad_token_id": 151643,
+[36m(WorkerDict pid=1333723)[0m   "rms_norm_eps": 1e-06,
+[36m(WorkerDict pid=1333723)[0m   "rope_scaling": null,
+[36m(WorkerDict pid=1333723)[0m   "rope_theta": 1000000.0,
+[36m(WorkerDict pid=1333723)[0m   "sliding_window": 32768,
+[36m(WorkerDict pid=1333723)[0m   "tie_word_embeddings": true,
+[36m(WorkerDict pid=1333723)[0m   "torch_dtype": "bfloat16",
+[36m(WorkerDict pid=1333723)[0m   "transformers_version": "4.51.1",
+[36m(WorkerDict pid=1333723)[0m   "use_cache": true,
+[36m(WorkerDict pid=1333723)[0m   "use_sliding_window": false,
+[36m(WorkerDict pid=1333723)[0m   "vocab_size": 151936
+[36m(WorkerDict pid=1333723)[0m }
+[36m(WorkerDict pid=1333723)[0m 
+[36m(WorkerDict pid=1333723)[0m Flash Attention 2.0 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen2ForCausalLM is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `torch_dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", torch_dtype=torch.float16)`
+[33m(raylet)[0m [2026-06-05 20:54:38,701 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.69 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=1333723)[0m Qwen2ForCausalLM contains 494.03M parameters
+[36m(WorkerDict pid=1333723)[0m Total steps: 8, num_warmup_steps: 0
+[36m(WorkerDict pid=1333723)[0m You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[36m(WorkerDict pid=1338576)[0m Flash Attention 2.0 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen2ForCausalLM is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `torch_dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", torch_dtype=torch.float16)`
+[33m(raylet)[0m [2026-06-05 20:54:48,711 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.69 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=1333723)[0m WARNING 06-05 20:54:51 [arg_utils.py:1658] VLLM_ATTENTION_BACKEND=XFORMERS is not supported by the V1 Engine. Falling back to V0. We recommend to remove VLLM_ATTENTION_BACKEND=XFORMERS from your config in favor of the V1 Engine.
+[36m(WorkerDict pid=1338576)[0m Monkey patch _flash_attention_forward in transformers.integrations.flash_attention[32m [repeated 3x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(WorkerDict pid=1338576)[0m wrap_policy: functools.partial(<function _or_policy at 0x72cf28fbd300>, policies=[functools.partial(<function transformer_auto_wrap_policy at 0x72cf28fbd1c0>, transformer_layer_cls={<class 'transformers.models.qwen2.modeling_qwen2.Qwen2DecoderLayer'>})])[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=1338576)[0m Actor use_remove_padding=True[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=1338576)[0m Actor use_fused_kernels=False[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=1338576)[0m Total steps: 8, num_warmup_steps: 0
+[33m(raylet)[0m [2026-06-05 20:54:58,720 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.69 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:   0%|          | 0/35 [00:00<?, ?it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:   3%|▎         | 1/35 [00:01<00:44,  1.30s/it]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:   6%|▌         | 2/35 [00:02<00:32,  1.00it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:   9%|▊         | 3/35 [00:02<00:27,  1.14it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  11%|█▏        | 4/35 [00:03<00:25,  1.23it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  14%|█▍        | 5/35 [00:04<00:23,  1.27it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  17%|█▋        | 6/35 [00:04<00:21,  1.37it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  20%|██        | 7/35 [00:05<00:20,  1.40it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  23%|██▎       | 8/35 [00:06<00:19,  1.36it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  26%|██▌       | 9/35 [00:07<00:19,  1.36it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  29%|██▊       | 10/35 [00:07<00:18,  1.38it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  31%|███▏      | 11/35 [00:08<00:17,  1.41it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  34%|███▍      | 12/35 [00:09<00:16,  1.42it/s]
+[33m(raylet)[0m [2026-06-05 20:55:08,729 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.69 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  37%|███▋      | 13/35 [00:09<00:16,  1.36it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  40%|████      | 14/35 [00:10<00:14,  1.42it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  43%|████▎     | 15/35 [00:11<00:13,  1.46it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  46%|████▌     | 16/35 [00:11<00:12,  1.49it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  49%|████▊     | 17/35 [00:12<00:12,  1.49it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  51%|█████▏    | 18/35 [00:13<00:11,  1.50it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  54%|█████▍    | 19/35 [00:13<00:10,  1.51it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  57%|█████▋    | 20/35 [00:14<00:09,  1.53it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  60%|██████    | 21/35 [00:15<00:09,  1.54it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  63%|██████▎   | 22/35 [00:15<00:08,  1.55it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  66%|██████▌   | 23/35 [00:16<00:07,  1.57it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  69%|██████▊   | 24/35 [00:17<00:07,  1.55it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  71%|███████▏  | 25/35 [00:17<00:06,  1.55it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  74%|███████▍  | 26/35 [00:18<00:05,  1.54it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  77%|███████▋  | 27/35 [00:19<00:05,  1.54it/s]
+[33m(raylet)[0m [2026-06-05 20:55:18,740 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.69 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  80%|████████  | 28/35 [00:19<00:04,  1.55it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  83%|████████▎ | 29/35 [00:20<00:03,  1.55it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  86%|████████▌ | 30/35 [00:20<00:03,  1.57it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  89%|████████▊ | 31/35 [00:21<00:02,  1.57it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  91%|█████████▏| 32/35 [00:22<00:01,  1.60it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  94%|█████████▍| 33/35 [00:22<00:01,  1.61it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes:  97%|█████████▋| 34/35 [00:23<00:00,  1.62it/s]
+[36m(WorkerDict pid=1333723)[0m Capturing CUDA graph shapes: 100%|██████████| 35/35 [00:24<00:00,  1.40it/s]Capturing CUDA graph shapes: 100%|██████████| 35/35 [00:24<00:00,  1.44it/s]
+[33m(raylet)[0m [2026-06-05 20:55:28,750 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.69 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=1338576)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:690: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+[36m(WorkerDict pid=1338576)[0m   warnings.warn(
+[36m(WorkerDict pid=1338576)[0m kwargs: {'n': 1, 'logprobs': 0, 'max_tokens': 512, 'detokenize': False, 'temperature': 1.0, 'top_k': -1, 'top_p': 1, 'ignore_eos': False}
+[36m(WorkerDict pid=1338576)[0m WARNING 06-05 20:54:51 [arg_utils.py:1658] VLLM_ATTENTION_BACKEND=XFORMERS is not supported by the V1 Engine. Falling back to V0. We recommend to remove VLLM_ATTENTION_BACKEND=XFORMERS from your config in favor of the V1 Engine.
+[36m(TaskRunner pid=1320203)[0m Using LocalLogger is deprecated. The constructor API will change 
+[36m(TaskRunner pid=1320203)[0m Checkpoint tracker file does not exist: %s /diskpool/home/xuxz/Code-for-DPEPO/checkpoints/verl_agent_alfworld/grpo_qwen2.5_1.5b/latest_checkpointed_iteration.txt
+[36m(TaskRunner pid=1320203)[0m Training from scratch
+[36m(TaskRunner pid=1320203)[0m Training Progress:   0%|          | 0/8 [00:00<?, ?it/s]
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   0%|          | 0/50 [00:00<?, ?it/s][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   2%|▏         | 1/50 [00:02<02:06,  2.58s/it][A
+[36m(WorkerDict pid=1333723)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:690: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+[36m(WorkerDict pid=1333723)[0m   warnings.warn(
+[33m(raylet)[0m [2026-06-05 20:55:38,760 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   4%|▍         | 2/50 [00:05<02:01,  2.53s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   6%|▌         | 3/50 [00:08<02:11,  2.80s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   8%|▊         | 4/50 [00:10<02:03,  2.68s/it][A
+[33m(raylet)[0m [2026-06-05 20:55:48,769 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  10%|█         | 5/50 [00:13<02:08,  2.86s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  12%|█▏        | 6/50 [00:16<02:09,  2.94s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  14%|█▍        | 7/50 [00:19<02:04,  2.89s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  16%|█▌        | 8/50 [00:22<02:02,  2.92s/it][A
+[33m(raylet)[0m [2026-06-05 20:55:58,778 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  18%|█▊        | 9/50 [00:25<01:56,  2.84s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  20%|██        | 10/50 [00:28<01:51,  2.79s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  22%|██▏       | 11/50 [00:30<01:46,  2.73s/it][A
+[33m(raylet)[0m [2026-06-05 20:56:08,787 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  24%|██▍       | 12/50 [00:33<01:50,  2.91s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  26%|██▌       | 13/50 [00:37<01:50,  2.99s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  28%|██▊       | 14/50 [00:39<01:41,  2.82s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  30%|███       | 15/50 [00:42<01:35,  2.74s/it][A
+[33m(raylet)[0m [2026-06-05 20:56:18,797 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  32%|███▏      | 16/50 [00:44<01:29,  2.63s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  34%|███▍      | 17/50 [00:46<01:22,  2.49s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  36%|███▌      | 18/50 [00:49<01:18,  2.47s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  38%|███▊      | 19/50 [00:52<01:21,  2.62s/it][A
+[33m(raylet)[0m [2026-06-05 20:56:28,806 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  40%|████      | 20/50 [00:55<01:26,  2.87s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  42%|████▏     | 21/50 [00:58<01:21,  2.82s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  44%|████▍     | 22/50 [01:02<01:27,  3.14s/it][A
+[33m(raylet)[0m [2026-06-05 20:56:38,816 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  46%|████▌     | 23/50 [01:04<01:20,  2.98s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  48%|████▊     | 24/50 [01:08<01:26,  3.33s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  50%|█████     | 25/50 [01:11<01:17,  3.11s/it][A
+[33m(raylet)[0m [2026-06-05 20:56:48,824 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  52%|█████▏    | 26/50 [01:14<01:12,  3.00s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  54%|█████▍    | 27/50 [01:17<01:08,  2.98s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  56%|█████▌    | 28/50 [01:19<01:04,  2.92s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  58%|█████▊    | 29/50 [01:23<01:03,  3.02s/it][A
+[33m(raylet)[0m [2026-06-05 20:56:58,835 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  60%|██████    | 30/50 [01:27<01:05,  3.26s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  62%|██████▏   | 31/50 [01:30<01:03,  3.34s/it][A
+[33m(raylet)[0m [2026-06-05 20:57:08,844 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  64%|██████▍   | 32/50 [01:33<00:58,  3.27s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  66%|██████▌   | 33/50 [01:36<00:55,  3.29s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  68%|██████▊   | 34/50 [01:40<00:52,  3.25s/it][A
+[33m(raylet)[0m [2026-06-05 20:57:18,854 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  70%|███████   | 35/50 [01:43<00:48,  3.26s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  72%|███████▏  | 36/50 [01:45<00:41,  2.96s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  74%|███████▍  | 37/50 [01:48<00:36,  2.79s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  76%|███████▌  | 38/50 [01:50<00:32,  2.74s/it][A
+[33m(raylet)[0m [2026-06-05 20:57:28,864 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  78%|███████▊  | 39/50 [01:53<00:30,  2.73s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  80%|████████  | 40/50 [01:56<00:28,  2.89s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  82%|████████▏ | 41/50 [01:58<00:24,  2.68s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  84%|████████▍ | 42/50 [02:01<00:21,  2.68s/it][A
+[33m(raylet)[0m [2026-06-05 20:57:38,874 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  86%|████████▌ | 43/50 [02:03<00:17,  2.57s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  88%|████████▊ | 44/50 [02:06<00:16,  2.75s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  90%|█████████ | 45/50 [02:10<00:14,  2.87s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  92%|█████████▏| 46/50 [02:12<00:11,  2.78s/it][A
+[33m(raylet)[0m [2026-06-05 20:57:48,883 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  94%|█████████▍| 47/50 [02:15<00:07,  2.65s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  96%|█████████▌| 48/50 [02:17<00:05,  2.72s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  98%|█████████▊| 49/50 [02:21<00:03,  3.09s/it][A
+[33m(raylet)[0m [2026-06-05 20:57:58,893 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m  98%|█████████▊| 49/50 [02:24<00:02,  2.94s/it]
+[33m(raylet)[0m [2026-06-05 20:58:08,903 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m list(reward_extra_infos_dict.keys())=[]
+[36m(WorkerDict pid=1333723)[0m kwargs: {'n': 1, 'logprobs': 0, 'max_tokens': 512, 'detokenize': False, 'temperature': 1.0, 'top_k': -1, 'top_p': 1, 'ignore_eos': False}
+[33m(raylet)[0m [2026-06-05 20:58:18,914 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m step:1 - global_seqlen/min:64543.000 - global_seqlen/max:68816.000 - global_seqlen/minmax_diff:4273.000 - global_seqlen/balanced_min:66679.000 - global_seqlen/balanced_max:66680.000 - global_seqlen/mean:66679.500 - actor/entropy_loss:1.535 - training/rollout_probs_diff_max:0.138 - training/rollout_probs_diff_mean:0.007 - training/rollout_probs_diff_std:0.011 - episode/valid_action_ratio:0.275 - actor/kl_loss:0.016 - actor/kl_coef:0.010 - actor/pg_loss:0.031 - actor/pg_clipfrac:0.034 - actor/ppo_kl:0.006 - actor/pg_clipfrac_lower:0.000 - actor/grad_norm:19.181 - perf/mfu/actor:0.083 - perf/max_memory_allocated_gb:30.739 - perf/max_memory_reserved_gb:39.973 - perf/cpu_memory_used_gb:685.975 - actor/lr:0.000 - training/global_step:1.000 - training/epoch:0.000 - critic/score/mean:-0.072 - critic/score/max:0.000 - critic/score/min:-0.100 - critic/rewards/mean:-0.072 - critic/rewards/max:0.000 - critic/rewards/min:-0.100 - critic/advantages/mean:-0.103 - critic/advantages/max:1.723 - critic/advantages/min:-0.651 - critic/returns/mean:-0.103 - critic/returns/max:1.723 - critic/returns/min:-0.651 - response_length/mean:140.800 - response_length/max:512.000 - response_length/min:11.000 - response_length/clip_ratio:0.020 - prompt_length/mean:525.995 - prompt_length/max:815.000 - prompt_length/min:443.000 - prompt_length/clip_ratio:0.000 - episode/reward/mean:0.000 - episode/reward/max:0.000 - episode/reward/min:0.000 - episode/length/mean:50.000 - episode/length/max:50.000 - episode/length/min:50.000 - episode/tool_call_count/mean:0.000 - episode/tool_call_count/max:0.000 - episode/tool_call_count/min:0.000 - episode/success_rate:0.000 - episode/pick_heat_then_place_in_recep_success_rate:0.000 - episode/pick_cool_then_place_in_recep_success_rate:0.000 - timing_s/gen:147.339 - timing_s/reward:0.056 - timing_s/old_log_prob:3.965 - timing_s/ref:5.764 - timing_s/adv:0.028 - timing_s/update_actor:17.640 - timing_s/step:174.811 - timing_per_token_ms/adv:0.000 - timing_per_token_ms/ref:0.043 - timing_per_token_ms/update_actor:0.132 - timing_per_token_ms/gen:5.232 - perf/total_num_tokens:133359.000 - perf/time_per_step:174.811 - perf/throughput:381.437
+[36m(TaskRunner pid=1320203)[0m Training Progress:  12%|█▎        | 1/8 [02:55<20:25, 175.00s/it]
+[33m(raylet)[0m [2026-06-05 20:58:28,925 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   0%|          | 0/50 [00:00<?, ?it/s][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   2%|▏         | 1/50 [00:03<02:36,  3.19s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   4%|▍         | 2/50 [00:06<02:37,  3.28s/it][A
+[33m(raylet)[0m [2026-06-05 20:58:38,935 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   6%|▌         | 3/50 [00:09<02:27,  3.13s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   8%|▊         | 4/50 [00:11<02:10,  2.84s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  10%|█         | 5/50 [00:14<02:02,  2.72s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  12%|█▏        | 6/50 [00:17<01:58,  2.69s/it][A
+[33m(raylet)[0m [2026-06-05 20:58:48,945 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  14%|█▍        | 7/50 [00:19<01:46,  2.48s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  16%|█▌        | 8/50 [00:20<01:36,  2.30s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  18%|█▊        | 9/50 [00:23<01:41,  2.48s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  20%|██        | 10/50 [00:25<01:33,  2.34s/it][A
+[33m(raylet)[0m [2026-06-05 20:58:58,955 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  22%|██▏       | 11/50 [00:29<01:41,  2.60s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  24%|██▍       | 12/50 [00:32<01:46,  2.79s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  26%|██▌       | 13/50 [00:35<01:44,  2.82s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  28%|██▊       | 14/50 [00:37<01:32,  2.56s/it][A
+[33m(raylet)[0m [2026-06-05 20:59:08,965 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  30%|███       | 15/50 [00:40<01:34,  2.69s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  32%|███▏      | 16/50 [00:42<01:26,  2.53s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  34%|███▍      | 17/50 [00:45<01:34,  2.86s/it][A
+[33m(raylet)[0m [2026-06-05 20:59:18,975 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  36%|███▌      | 18/50 [00:48<01:31,  2.87s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  38%|███▊      | 19/50 [00:51<01:22,  2.66s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  40%|████      | 20/50 [00:53<01:21,  2.70s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  42%|████▏     | 21/50 [00:55<01:13,  2.54s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  44%|████▍     | 22/50 [00:58<01:11,  2.55s/it][A
+[33m(raylet)[0m [2026-06-05 20:59:28,985 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  46%|████▌     | 23/50 [01:01<01:14,  2.76s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  48%|████▊     | 24/50 [01:04<01:14,  2.88s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  50%|█████     | 25/50 [01:08<01:14,  2.97s/it][A
+[33m(raylet)[0m [2026-06-05 20:59:38,994 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  52%|█████▏    | 26/50 [01:10<01:05,  2.74s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  54%|█████▍    | 27/50 [01:13<01:02,  2.73s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  56%|█████▌    | 28/50 [01:15<00:59,  2.69s/it][A
+[33m(raylet)[0m [2026-06-05 20:59:49,004 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  58%|█████▊    | 29/50 [01:19<01:04,  3.08s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  60%|██████    | 30/50 [01:22<00:57,  2.89s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  62%|██████▏   | 31/50 [01:24<00:54,  2.85s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  64%|██████▍   | 32/50 [01:27<00:50,  2.79s/it][A
+[33m(raylet)[0m [2026-06-05 20:59:59,014 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  66%|██████▌   | 33/50 [01:31<00:53,  3.12s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  68%|██████▊   | 34/50 [01:34<00:48,  3.03s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  70%|███████   | 35/50 [01:36<00:41,  2.74s/it][A
+[33m(raylet)[0m [2026-06-05 21:00:09,025 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  72%|███████▏  | 36/50 [01:39<00:38,  2.76s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  74%|███████▍  | 37/50 [01:42<00:39,  3.03s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  76%|███████▌  | 38/50 [01:46<00:38,  3.23s/it][A
+[33m(raylet)[0m [2026-06-05 21:00:19,034 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  78%|███████▊  | 39/50 [01:49<00:36,  3.33s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  80%|████████  | 40/50 [01:53<00:33,  3.35s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  82%|████████▏ | 41/50 [01:55<00:27,  3.04s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  84%|████████▍ | 42/50 [01:57<00:22,  2.81s/it][A
+[33m(raylet)[0m [2026-06-05 21:00:29,043 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  86%|████████▌ | 43/50 [02:01<00:21,  3.05s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  88%|████████▊ | 44/50 [02:05<00:19,  3.27s/it][A
+[33m(raylet)[0m [2026-06-05 21:00:39,053 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  90%|█████████ | 45/50 [02:09<00:17,  3.41s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  92%|█████████▏| 46/50 [02:11<00:12,  3.24s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  94%|█████████▍| 47/50 [02:14<00:09,  3.04s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  96%|█████████▌| 48/50 [02:17<00:05,  2.88s/it][A
+[33m(raylet)[0m [2026-06-05 21:00:49,063 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  98%|█████████▊| 49/50 [02:20<00:02,  2.95s/it][A
+[36m(TaskRunner pid=1320203)[0m  98%|█████████▊| 49/50 [02:22<00:02,  2.91s/it]
+[33m(raylet)[0m [2026-06-05 21:00:59,075 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m list(reward_extra_infos_dict.keys())=[]
+[33m(raylet)[0m [2026-06-05 21:01:09,085 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m step:2 - global_seqlen/min:58438.000 - global_seqlen/max:69557.000 - global_seqlen/minmax_diff:11119.000 - global_seqlen/balanced_min:63997.000 - global_seqlen/balanced_max:63998.000 - global_seqlen/mean:63997.500 - actor/entropy_loss:1.513 - training/rollout_probs_diff_max:0.137 - training/rollout_probs_diff_mean:0.007 - training/rollout_probs_diff_std:0.010 - episode/valid_action_ratio:0.505 - actor/kl_loss:0.020 - actor/kl_coef:0.010 - actor/pg_loss:0.053 - actor/pg_clipfrac:0.024 - actor/ppo_kl:0.003 - actor/pg_clipfrac_lower:0.000 - actor/grad_norm:18.279 - perf/mfu/actor:0.081 - perf/max_memory_allocated_gb:30.739 - perf/max_memory_reserved_gb:39.973 - perf/cpu_memory_used_gb:683.783 - actor/lr:0.000 - training/global_step:2.000 - training/epoch:0.000 - critic/score/mean:-0.049 - critic/score/max:0.000 - critic/score/min:-0.100 - critic/rewards/mean:-0.049 - critic/rewards/max:0.000 - critic/rewards/min:-0.100 - critic/advantages/mean:-0.216 - critic/advantages/max:1.244 - critic/advantages/min:-1.271 - critic/returns/mean:-0.216 - critic/returns/max:1.244 - critic/returns/min:-1.271 - response_length/mean:156.475 - response_length/max:512.000 - response_length/min:24.000 - response_length/clip_ratio:0.050 - prompt_length/mean:483.500 - prompt_length/max:727.000 - prompt_length/min:374.000 - prompt_length/clip_ratio:0.000 - episode/reward/mean:0.000 - episode/reward/max:0.000 - episode/reward/min:0.000 - episode/length/mean:50.000 - episode/length/max:50.000 - episode/length/min:50.000 - episode/tool_call_count/mean:0.000 - episode/tool_call_count/max:0.000 - episode/tool_call_count/min:0.000 - episode/success_rate:0.000 - episode/pick_cool_then_place_in_recep_success_rate:0.000 - episode/look_at_obj_in_light_success_rate:0.000 - timing_s/gen:145.591 - timing_s/reward:0.054 - timing_s/old_log_prob:3.923 - timing_s/ref:4.435 - timing_s/adv:0.024 - timing_s/update_actor:17.229 - timing_s/step:171.266 - timing_per_token_ms/adv:0.000 - timing_per_token_ms/ref:0.035 - timing_per_token_ms/update_actor:0.135 - timing_per_token_ms/gen:4.652 - perf/total_num_tokens:127995.000 - perf/time_per_step:171.266 - perf/throughput:373.672
+[36m(TaskRunner pid=1320203)[0m Training Progress:  25%|██▌       | 2/8 [05:46<17:16, 172.81s/it]
+[33m(raylet)[0m [2026-06-05 21:01:19,098 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   0%|          | 0/50 [00:00<?, ?it/s][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   2%|▏         | 1/50 [00:03<02:39,  3.25s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   4%|▍         | 2/50 [00:05<02:07,  2.67s/it][A
+[33m(raylet)[0m [2026-06-05 21:01:29,107 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   6%|▌         | 3/50 [00:08<02:03,  2.62s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   8%|▊         | 4/50 [00:11<02:09,  2.81s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  10%|█         | 5/50 [00:14<02:14,  2.99s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  12%|█▏        | 6/50 [00:16<02:01,  2.76s/it][A
+[33m(raylet)[0m [2026-06-05 21:01:39,117 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  14%|█▍        | 7/50 [00:19<01:53,  2.65s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  16%|█▌        | 8/50 [00:21<01:50,  2.63s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  18%|█▊        | 9/50 [00:25<01:58,  2.90s/it][A
+[33m(raylet)[0m [2026-06-05 21:01:49,126 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  20%|██        | 10/50 [00:29<02:07,  3.19s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  22%|██▏       | 11/50 [00:31<01:56,  2.98s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  24%|██▍       | 12/50 [00:34<01:50,  2.92s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  26%|██▌       | 13/50 [00:37<01:46,  2.87s/it][A
+[33m(raylet)[0m [2026-06-05 21:01:59,136 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  28%|██▊       | 14/50 [00:41<01:54,  3.18s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  30%|███       | 15/50 [00:43<01:42,  2.92s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  32%|███▏      | 16/50 [00:45<01:34,  2.76s/it][A
+[33m(raylet)[0m [2026-06-05 21:02:09,147 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  34%|███▍      | 17/50 [00:48<01:28,  2.69s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  36%|███▌      | 18/50 [00:51<01:27,  2.74s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  38%|███▊      | 19/50 [00:54<01:32,  2.99s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  40%|████      | 20/50 [00:56<01:22,  2.75s/it][A
+[33m(raylet)[0m [2026-06-05 21:02:19,157 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  42%|████▏     | 21/50 [01:00<01:23,  2.89s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  44%|████▍     | 22/50 [01:02<01:15,  2.71s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  46%|████▌     | 23/50 [01:06<01:20,  2.99s/it][A
+[33m(raylet)[0m [2026-06-05 21:02:29,166 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  48%|████▊     | 24/50 [01:08<01:10,  2.73s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  50%|█████     | 25/50 [01:10<01:06,  2.68s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  52%|█████▏    | 26/50 [01:13<01:01,  2.56s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  54%|█████▍    | 27/50 [01:15<00:56,  2.46s/it][A
+[33m(raylet)[0m [2026-06-05 21:02:39,176 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  56%|█████▌    | 28/50 [01:17<00:52,  2.37s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  58%|█████▊    | 29/50 [01:19<00:47,  2.24s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  60%|██████    | 30/50 [01:21<00:45,  2.29s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  62%|██████▏   | 31/50 [01:24<00:46,  2.44s/it][A
+[33m(raylet)[0m [2026-06-05 21:02:49,187 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  64%|██████▍   | 32/50 [01:27<00:46,  2.59s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  66%|██████▌   | 33/50 [01:29<00:41,  2.43s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  68%|██████▊   | 34/50 [01:31<00:37,  2.32s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  70%|███████   | 35/50 [01:34<00:37,  2.47s/it][A
+[33m(raylet)[0m [2026-06-05 21:02:59,196 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  72%|███████▏  | 36/50 [01:37<00:36,  2.64s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  74%|███████▍  | 37/50 [01:40<00:34,  2.67s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  76%|███████▌  | 38/50 [01:44<00:36,  3.04s/it][A
+[33m(raylet)[0m [2026-06-05 21:03:09,206 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  78%|███████▊  | 39/50 [01:47<00:34,  3.17s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  80%|████████  | 40/50 [01:50<00:29,  2.95s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  82%|████████▏ | 41/50 [01:52<00:24,  2.77s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  84%|████████▍ | 42/50 [01:54<00:21,  2.68s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  86%|████████▌ | 43/50 [01:56<00:17,  2.46s/it][A
+[33m(raylet)[0m [2026-06-05 21:03:19,215 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  88%|████████▊ | 44/50 [01:58<00:14,  2.35s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  90%|█████████ | 45/50 [02:01<00:11,  2.29s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  92%|█████████▏| 46/50 [02:04<00:10,  2.71s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  94%|█████████▍| 47/50 [02:07<00:07,  2.64s/it][A
+[33m(raylet)[0m [2026-06-05 21:03:29,225 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  96%|█████████▌| 48/50 [02:09<00:05,  2.51s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  98%|█████████▊| 49/50 [02:12<00:02,  2.56s/it][A
+[36m(TaskRunner pid=1320203)[0m  98%|█████████▊| 49/50 [02:13<00:02,  2.73s/it]
+[33m(raylet)[0m [2026-06-05 21:03:39,233 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m list(reward_extra_infos_dict.keys())=[]
+[33m(raylet)[0m [2026-06-05 21:03:49,241 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-05 21:03:59,249 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m step:3 - global_seqlen/min:66442.000 - global_seqlen/max:72947.000 - global_seqlen/minmax_diff:6505.000 - global_seqlen/balanced_min:69694.000 - global_seqlen/balanced_max:69695.000 - global_seqlen/mean:69694.500 - actor/entropy_loss:1.222 - training/rollout_probs_diff_max:0.210 - training/rollout_probs_diff_mean:0.007 - training/rollout_probs_diff_std:0.011 - episode/valid_action_ratio:0.695 - actor/kl_loss:0.019 - actor/kl_coef:0.010 - actor/pg_loss:0.105 - actor/pg_clipfrac:0.033 - actor/ppo_kl:0.004 - actor/pg_clipfrac_lower:0.000 - actor/grad_norm:17.851 - perf/mfu/actor:0.089 - perf/max_memory_allocated_gb:30.739 - perf/max_memory_reserved_gb:39.973 - perf/cpu_memory_used_gb:686.968 - actor/lr:0.000 - training/global_step:3.000 - training/epoch:0.000 - critic/score/mean:-0.031 - critic/score/max:0.000 - critic/score/min:-0.100 - critic/rewards/mean:-0.031 - critic/rewards/max:0.000 - critic/rewards/min:-0.100 - critic/advantages/mean:-0.263 - critic/advantages/max:0.683 - critic/advantages/min:-1.557 - critic/returns/mean:-0.263 - critic/returns/max:0.683 - critic/returns/min:-1.557 - response_length/mean:130.215 - response_length/max:512.000 - response_length/min:23.000 - response_length/clip_ratio:0.020 - prompt_length/mean:566.730 - prompt_length/max:874.000 - prompt_length/min:512.000 - prompt_length/clip_ratio:0.000 - episode/reward/mean:0.000 - episode/reward/max:0.000 - episode/reward/min:0.000 - episode/length/mean:50.000 - episode/length/max:50.000 - episode/length/min:50.000 - episode/tool_call_count/mean:0.000 - episode/tool_call_count/max:0.000 - episode/tool_call_count/min:0.000 - episode/success_rate:0.000 - episode/pick_clean_then_place_in_recep_success_rate:0.000 - episode/pick_heat_then_place_in_recep_success_rate:0.000 - timing_s/gen:137.455 - timing_s/reward:0.054 - timing_s/old_log_prob:3.575 - timing_s/ref:4.290 - timing_s/adv:0.030 - timing_s/update_actor:17.251 - timing_s/step:162.662 - timing_per_token_ms/adv:0.000 - timing_per_token_ms/ref:0.031 - timing_per_token_ms/update_actor:0.124 - timing_per_token_ms/gen:5.278 - perf/total_num_tokens:139389.000 - perf/time_per_step:162.662 - perf/throughput:428.461
+[36m(TaskRunner pid=1320203)[0m Training Progress:  38%|███▊      | 3/8 [08:28<14:00, 168.18s/it]
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   0%|          | 0/50 [00:00<?, ?it/s][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   2%|▏         | 1/50 [00:03<02:40,  3.28s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   4%|▍         | 2/50 [00:05<02:02,  2.56s/it][A
+[33m(raylet)[0m [2026-06-05 21:04:09,259 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   6%|▌         | 3/50 [00:08<02:17,  2.92s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   8%|▊         | 4/50 [00:10<02:02,  2.67s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  10%|█         | 5/50 [00:13<01:55,  2.56s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  12%|█▏        | 6/50 [00:15<01:46,  2.41s/it][A
+[33m(raylet)[0m [2026-06-05 21:04:19,268 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  14%|█▍        | 7/50 [00:17<01:42,  2.39s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  16%|█▌        | 8/50 [00:20<01:50,  2.63s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  18%|█▊        | 9/50 [00:23<01:46,  2.59s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  20%|██        | 10/50 [00:25<01:40,  2.52s/it][A
+[33m(raylet)[0m [2026-06-05 21:04:29,276 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  22%|██▏       | 11/50 [00:28<01:35,  2.45s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  24%|██▍       | 12/50 [00:30<01:35,  2.52s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  26%|██▌       | 13/50 [00:33<01:33,  2.53s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  28%|██▊       | 14/50 [00:35<01:31,  2.54s/it][A
+[33m(raylet)[0m [2026-06-05 21:04:39,286 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  30%|███       | 15/50 [00:38<01:29,  2.56s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  32%|███▏      | 16/50 [00:42<01:40,  2.97s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  34%|███▍      | 17/50 [00:45<01:38,  2.98s/it][A
+[33m(raylet)[0m [2026-06-05 21:04:49,296 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  36%|███▌      | 18/50 [00:47<01:27,  2.73s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  38%|███▊      | 19/50 [00:49<01:20,  2.58s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  40%|████      | 20/50 [00:53<01:28,  2.95s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  42%|████▏     | 21/50 [00:55<01:16,  2.65s/it][A
+[33m(raylet)[0m [2026-06-05 21:04:59,307 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  44%|████▍     | 22/50 [00:57<01:10,  2.51s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  46%|████▌     | 23/50 [00:59<01:03,  2.37s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  48%|████▊     | 24/50 [01:01<00:58,  2.24s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  50%|█████     | 25/50 [01:04<00:58,  2.35s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  52%|█████▏    | 26/50 [01:06<00:57,  2.38s/it][A
+[33m(raylet)[0m [2026-06-05 21:05:09,318 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  54%|█████▍    | 27/50 [01:08<00:52,  2.30s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  56%|█████▌    | 28/50 [01:11<00:51,  2.35s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  58%|█████▊    | 29/50 [01:13<00:48,  2.33s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  60%|██████    | 30/50 [01:15<00:46,  2.33s/it][A
+[33m(raylet)[0m [2026-06-05 21:05:19,327 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  62%|██████▏   | 31/50 [01:18<00:45,  2.38s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  64%|██████▍   | 32/50 [01:20<00:42,  2.37s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  66%|██████▌   | 33/50 [01:23<00:41,  2.41s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  68%|██████▊   | 34/50 [01:26<00:42,  2.63s/it][A
+[33m(raylet)[0m [2026-06-05 21:05:29,336 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  70%|███████   | 35/50 [01:28<00:36,  2.44s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  72%|███████▏  | 36/50 [01:30<00:33,  2.38s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  74%|███████▍  | 37/50 [01:33<00:30,  2.36s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  76%|███████▌  | 38/50 [01:35<00:28,  2.34s/it][A
+[33m(raylet)[0m [2026-06-05 21:05:39,346 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  78%|███████▊  | 39/50 [01:38<00:27,  2.49s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  80%|████████  | 40/50 [01:41<00:26,  2.61s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  82%|████████▏ | 41/50 [01:43<00:23,  2.61s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  84%|████████▍ | 42/50 [01:46<00:21,  2.70s/it][A
+[33m(raylet)[0m [2026-06-05 21:05:49,355 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  86%|████████▌ | 43/50 [01:48<00:17,  2.50s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  88%|████████▊ | 44/50 [01:51<00:15,  2.62s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  90%|█████████ | 45/50 [01:53<00:12,  2.47s/it][A
+[33m(raylet)[0m [2026-06-05 21:05:59,366 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  92%|█████████▏| 46/50 [01:57<00:11,  2.85s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  94%|█████████▍| 47/50 [02:00<00:08,  2.87s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  96%|█████████▌| 48/50 [02:02<00:05,  2.72s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  98%|█████████▊| 49/50 [02:05<00:02,  2.67s/it][A
+[33m(raylet)[0m [2026-06-05 21:06:09,377 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m  98%|█████████▊| 49/50 [02:07<00:02,  2.60s/it]
+[36m(TaskRunner pid=1320203)[0m list(reward_extra_infos_dict.keys())=[]
+[33m(raylet)[0m [2026-06-05 21:06:19,387 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-05 21:06:29,397 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m step:4 - global_seqlen/min:52069.000 - global_seqlen/max:53527.000 - global_seqlen/minmax_diff:1458.000 - global_seqlen/balanced_min:52798.000 - global_seqlen/balanced_max:52798.000 - global_seqlen/mean:52798.000 - actor/entropy_loss:1.182 - training/rollout_probs_diff_max:0.214 - training/rollout_probs_diff_mean:0.006 - training/rollout_probs_diff_std:0.011 - episode/valid_action_ratio:0.850 - actor/kl_loss:0.042 - actor/kl_coef:0.010 - actor/pg_loss:0.057 - actor/pg_clipfrac:0.034 - actor/ppo_kl:0.005 - actor/pg_clipfrac_lower:0.000 - actor/grad_norm:17.058 - perf/mfu/actor:0.070 - perf/max_memory_allocated_gb:30.739 - perf/max_memory_reserved_gb:39.973 - perf/cpu_memory_used_gb:685.988 - actor/lr:0.000 - training/global_step:4.000 - training/epoch:0.000 - critic/score/mean:-0.015 - critic/score/max:0.000 - critic/score/min:-0.100 - critic/rewards/mean:-0.015 - critic/rewards/max:0.000 - critic/rewards/min:-0.100 - critic/advantages/mean:-0.247 - critic/advantages/max:0.418 - critic/advantages/min:-2.368 - critic/returns/mean:-0.247 - critic/returns/max:0.418 - critic/returns/min:-2.368 - response_length/mean:117.460 - response_length/max:512.000 - response_length/min:26.000 - response_length/clip_ratio:0.015 - prompt_length/mean:410.520 - prompt_length/max:619.000 - prompt_length/min:368.000 - prompt_length/clip_ratio:0.000 - episode/reward/mean:0.000 - episode/reward/max:0.000 - episode/reward/min:0.000 - episode/length/mean:50.000 - episode/length/max:50.000 - episode/length/min:50.000 - episode/tool_call_count/mean:0.000 - episode/tool_call_count/max:0.000 - episode/tool_call_count/min:0.000 - episode/success_rate:0.000 - episode/pick_two_obj_and_place_success_rate:0.000 - episode/pick_and_place_success_rate:0.000 - timing_s/gen:128.641 - timing_s/reward:0.062 - timing_s/old_log_prob:3.597 - timing_s/ref:4.144 - timing_s/adv:0.028 - timing_s/update_actor:16.320 - timing_s/step:152.804 - timing_per_token_ms/adv:0.000 - timing_per_token_ms/ref:0.039 - timing_per_token_ms/update_actor:0.155 - timing_per_token_ms/gen:5.476 - perf/total_num_tokens:105596.000 - perf/time_per_step:152.804 - perf/throughput:345.528
+[36m(TaskRunner pid=1320203)[0m Training Progress:  50%|█████     | 4/8 [11:01<10:48, 162.11s/it]
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   0%|          | 0/50 [00:00<?, ?it/s][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   2%|▏         | 1/50 [00:02<02:21,  2.88s/it][A
+[33m(raylet)[0m [2026-06-05 21:06:39,408 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   4%|▍         | 2/50 [00:04<01:50,  2.30s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   6%|▌         | 3/50 [00:06<01:37,  2.07s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   8%|▊         | 4/50 [00:08<01:31,  2.00s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  10%|█         | 5/50 [00:10<01:30,  2.00s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  12%|█▏        | 6/50 [00:13<01:37,  2.21s/it][A
+[33m(raylet)[0m [2026-06-05 21:06:49,418 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  14%|█▍        | 7/50 [00:15<01:42,  2.39s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  16%|█▌        | 8/50 [00:18<01:38,  2.35s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  18%|█▊        | 9/50 [00:20<01:35,  2.33s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  20%|██        | 10/50 [00:22<01:33,  2.33s/it][A
+[33m(raylet)[0m [2026-06-05 21:06:59,428 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  22%|██▏       | 11/50 [00:24<01:24,  2.16s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  24%|██▍       | 12/50 [00:26<01:23,  2.19s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  26%|██▌       | 13/50 [00:28<01:19,  2.16s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  28%|██▊       | 14/50 [00:31<01:23,  2.33s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  30%|███       | 15/50 [00:33<01:22,  2.34s/it][A
+[33m(raylet)[0m [2026-06-05 21:07:09,438 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.62 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  32%|███▏      | 16/50 [00:35<01:16,  2.25s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  34%|███▍      | 17/50 [00:38<01:13,  2.24s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  36%|███▌      | 18/50 [00:40<01:09,  2.17s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  38%|███▊      | 19/50 [00:42<01:06,  2.14s/it][A
+[33m(raylet)[0m [2026-06-05 21:07:19,448 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.74 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  40%|████      | 20/50 [00:44<01:01,  2.06s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  42%|████▏     | 21/50 [00:46<01:02,  2.15s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  44%|████▍     | 22/50 [00:48<01:03,  2.25s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  46%|████▌     | 23/50 [00:50<00:58,  2.18s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  48%|████▊     | 24/50 [00:53<00:56,  2.16s/it][A
+[33m(raylet)[0m [2026-06-05 21:07:29,458 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.74 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  50%|█████     | 25/50 [00:55<00:55,  2.22s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  52%|█████▏    | 26/50 [00:57<00:55,  2.31s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  54%|█████▍    | 27/50 [01:00<00:53,  2.33s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  56%|█████▌    | 28/50 [01:03<00:58,  2.64s/it][A
+[33m(raylet)[0m [2026-06-05 21:07:39,468 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.74 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  58%|█████▊    | 29/50 [01:06<00:55,  2.65s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  60%|██████    | 30/50 [01:09<00:52,  2.64s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  62%|██████▏   | 31/50 [01:10<00:46,  2.44s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  64%|██████▍   | 32/50 [01:12<00:41,  2.31s/it][A
+[33m(raylet)[0m [2026-06-05 21:07:49,478 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.74 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  66%|██████▌   | 33/50 [01:15<00:39,  2.33s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  68%|██████▊   | 34/50 [01:17<00:35,  2.21s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  70%|███████   | 35/50 [01:19<00:32,  2.19s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  72%|███████▏  | 36/50 [01:21<00:30,  2.15s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  74%|███████▍  | 37/50 [01:23<00:28,  2.21s/it][A
+[33m(raylet)[0m [2026-06-05 21:07:59,488 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.74 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  76%|███████▌  | 38/50 [01:25<00:26,  2.18s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  78%|███████▊  | 39/50 [01:28<00:25,  2.30s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  80%|████████  | 40/50 [01:30<00:22,  2.25s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  82%|████████▏ | 41/50 [01:32<00:19,  2.22s/it][A
+[33m(raylet)[0m [2026-06-05 21:08:09,497 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.74 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  84%|████████▍ | 42/50 [01:34<00:17,  2.18s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  86%|████████▌ | 43/50 [01:37<00:15,  2.20s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  88%|████████▊ | 44/50 [01:39<00:12,  2.11s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  90%|█████████ | 45/50 [01:41<00:10,  2.17s/it][A
+[33m(raylet)[0m [2026-06-05 21:08:19,507 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.74 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  92%|█████████▏| 46/50 [01:44<00:09,  2.41s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  94%|█████████▍| 47/50 [01:46<00:07,  2.34s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  96%|█████████▌| 48/50 [01:49<00:04,  2.42s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  98%|█████████▊| 49/50 [01:51<00:02,  2.32s/it][A
+[36m(TaskRunner pid=1320203)[0m  98%|█████████▊| 49/50 [01:53<00:02,  2.31s/it]
+[33m(raylet)[0m [2026-06-05 21:08:29,517 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.74 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m list(reward_extra_infos_dict.keys())=[]
+[33m(raylet)[0m [2026-06-05 21:08:39,528 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.74 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-05 21:08:49,538 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2967.74 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m test_gen_batch meta info: {'eos_token_id': 151645, 'pad_token_id': 151643, 'recompute_log_prob': False, 'do_sample': True, 'validate': True}
+[33m(raylet)[0m [2026-06-05 21:08:59,550 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2966.28 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   0%|          | 0/50 [00:00<?, ?it/s][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   2%|▏         | 1/50 [00:07<06:05,  7.45s/it][A
+[33m(raylet)[0m [2026-06-05 21:09:09,559 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.61 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   4%|▍         | 2/50 [00:14<05:51,  7.33s/it][A
+[33m(raylet)[0m [2026-06-05 21:09:19,569 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.24 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   6%|▌         | 3/50 [00:22<05:53,  7.53s/it][A
+[33m(raylet)[0m [2026-06-05 21:09:29,579 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.24 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   8%|▊         | 4/50 [00:29<05:34,  7.27s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  10%|█         | 5/50 [00:36<05:20,  7.13s/it][A
+[33m(raylet)[0m [2026-06-05 21:09:39,588 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.24 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  12%|█▏        | 6/50 [00:42<05:06,  6.97s/it][A
+[33m(raylet)[0m [2026-06-05 21:09:49,598 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.24 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  14%|█▍        | 7/50 [00:49<04:55,  6.88s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  16%|█▌        | 8/50 [00:56<04:52,  6.97s/it][A
+[33m(raylet)[0m [2026-06-05 21:09:59,607 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.24 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  18%|█▊        | 9/50 [01:03<04:39,  6.81s/it][A
+[33m(raylet)[0m [2026-06-05 21:10:09,617 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.24 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  20%|██        | 10/50 [01:10<04:36,  6.92s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  22%|██▏       | 11/50 [01:16<04:26,  6.83s/it][A
+[33m(raylet)[0m [2026-06-05 21:10:19,627 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.24 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  24%|██▍       | 12/50 [01:23<04:18,  6.79s/it][A
+[33m(raylet)[0m [2026-06-05 21:10:29,637 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.24 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  26%|██▌       | 13/50 [01:30<04:11,  6.79s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  28%|██▊       | 14/50 [01:37<04:05,  6.81s/it][A
+[33m(raylet)[0m [2026-06-05 21:10:39,650 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.24 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  30%|███       | 15/50 [01:43<03:54,  6.70s/it][A
+[33m(raylet)[0m [2026-06-05 21:10:49,660 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.24 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  32%|███▏      | 16/50 [01:50<03:44,  6.60s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  34%|███▍      | 17/50 [01:56<03:38,  6.61s/it][A
+[33m(raylet)[0m [2026-06-05 21:10:59,675 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.24 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  36%|███▌      | 18/50 [02:03<03:34,  6.69s/it][A
+[33m(raylet)[0m [2026-06-05 21:11:09,685 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.24 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  38%|███▊      | 19/50 [02:10<03:29,  6.75s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  40%|████      | 20/50 [02:17<03:22,  6.74s/it][A
+[33m(raylet)[0m [2026-06-05 21:11:19,696 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.24 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  42%|████▏     | 21/50 [02:24<03:15,  6.74s/it][A
+[33m(raylet)[0m [2026-06-05 21:11:29,708 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.24 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  44%|████▍     | 22/50 [02:30<03:06,  6.67s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  46%|████▌     | 23/50 [02:37<03:00,  6.69s/it][A
+[33m(raylet)[0m [2026-06-05 21:11:39,721 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.24 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  48%|████▊     | 24/50 [02:43<02:53,  6.66s/it][A
+[33m(raylet)[0m [2026-06-05 21:11:49,733 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.24 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  50%|█████     | 25/50 [02:50<02:49,  6.76s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  52%|█████▏    | 26/50 [02:57<02:43,  6.82s/it][A
+[33m(raylet)[0m [2026-06-05 21:11:59,746 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.24 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  54%|█████▍    | 27/50 [03:04<02:36,  6.79s/it][A
+[33m(raylet)[0m [2026-06-05 21:12:09,755 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.24 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  56%|█████▌    | 28/50 [03:11<02:28,  6.75s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  58%|█████▊    | 29/50 [03:18<02:23,  6.85s/it][A
+[33m(raylet)[0m [2026-06-05 21:12:19,766 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.24 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  60%|██████    | 30/50 [03:24<02:15,  6.78s/it][A
+[33m(raylet)[0m [2026-06-05 21:12:29,775 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.24 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  62%|██████▏   | 31/50 [03:31<02:06,  6.67s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  64%|██████▍   | 32/50 [03:37<01:59,  6.61s/it][A
+[33m(raylet)[0m [2026-06-05 21:12:39,788 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  66%|██████▌   | 33/50 [03:44<01:51,  6.58s/it][A
+[33m(raylet)[0m [2026-06-05 21:12:49,798 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  68%|██████▊   | 34/50 [03:51<01:46,  6.64s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  70%|███████   | 35/50 [03:57<01:39,  6.61s/it][A
+[33m(raylet)[0m [2026-06-05 21:12:59,810 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  72%|███████▏  | 36/50 [04:04<01:32,  6.62s/it][A
+[33m(raylet)[0m [2026-06-05 21:13:09,820 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  74%|███████▍  | 37/50 [04:11<01:26,  6.67s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  76%|███████▌  | 38/50 [04:17<01:19,  6.60s/it][A
+[33m(raylet)[0m [2026-06-05 21:13:19,830 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  78%|███████▊  | 39/50 [04:24<01:12,  6.62s/it][A
+[33m(raylet)[0m [2026-06-05 21:13:29,842 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  80%|████████  | 40/50 [04:30<01:05,  6.55s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  82%|████████▏ | 41/50 [04:37<00:59,  6.58s/it][A
+[33m(raylet)[0m [2026-06-05 21:13:39,851 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  84%|████████▍ | 42/50 [04:43<00:52,  6.59s/it][A
+[33m(raylet)[0m [2026-06-05 21:13:49,861 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  86%|████████▌ | 43/50 [04:50<00:45,  6.50s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  88%|████████▊ | 44/50 [04:56<00:39,  6.51s/it][A
+[33m(raylet)[0m [2026-06-05 21:13:59,871 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  90%|█████████ | 45/50 [05:03<00:33,  6.60s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  92%|█████████▏| 46/50 [05:08<00:24,  6.22s/it][A
+[33m(raylet)[0m [2026-06-05 21:14:09,879 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  94%|█████████▍| 47/50 [05:15<00:18,  6.32s/it][A
+[33m(raylet)[0m [2026-06-05 21:14:19,890 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  96%|█████████▌| 48/50 [05:21<00:12,  6.39s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  98%|█████████▊| 49/50 [05:28<00:06,  6.43s/it][A
+[33m(raylet)[0m [2026-06-05 21:14:29,901 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m  98%|█████████▊| 49/50 [05:34<00:06,  6.83s/it]
+[36m(TaskRunner pid=1320203)[0m step:5 - global_seqlen/min:47207.000 - global_seqlen/max:52917.000 - global_seqlen/minmax_diff:5710.000 - global_seqlen/balanced_min:50062.000 - global_seqlen/balanced_max:50062.000 - global_seqlen/mean:50062.000 - actor/entropy_loss:1.120 - training/rollout_probs_diff_max:0.235 - training/rollout_probs_diff_mean:0.006 - training/rollout_probs_diff_std:0.011 - episode/valid_action_ratio:0.930 - actor/kl_loss:0.064 - actor/kl_coef:0.010 - actor/pg_loss:0.017 - actor/pg_clipfrac:0.037 - actor/ppo_kl:0.004 - actor/pg_clipfrac_lower:0.000 - actor/grad_norm:13.782 - perf/mfu/actor:0.066 - perf/max_memory_allocated_gb:30.739 - perf/max_memory_reserved_gb:39.973 - perf/cpu_memory_used_gb:686.309 - actor/lr:0.000 - val/unknown/test_score:0.078 - val/unknown/tool_call_count/mean:0.000 - val/unknown/tool_call_count/max:0.000 - val/unknown/tool_call_count/min:0.000 - val/val/success_rate:0.078 - training/global_step:5.000 - training/epoch:0.000 - critic/score/mean:-0.007 - critic/score/max:0.000 - critic/score/min:-0.100 - critic/rewards/mean:-0.007 - critic/rewards/max:0.000 - critic/rewards/min:-0.100 - critic/advantages/mean:-0.084 - critic/advantages/max:0.313 - critic/advantages/min:-4.337 - critic/returns/mean:-0.084 - critic/returns/max:0.313 - critic/returns/min:-4.337 - response_length/mean:91.700 - response_length/max:382.000 - response_length/min:16.000 - response_length/clip_ratio:0.000 - prompt_length/mean:408.920 - prompt_length/max:600.000 - prompt_length/min:355.000 - prompt_length/clip_ratio:0.000 - episode/reward/mean:0.000 - episode/reward/max:0.000 - episode/reward/min:0.000 - episode/length/mean:50.000 - episode/length/max:50.000 - episode/length/min:50.000 - episode/tool_call_count/mean:0.000 - episode/tool_call_count/max:0.000 - episode/tool_call_count/min:0.000 - episode/success_rate:0.000 - episode/pick_clean_then_place_in_recep_success_rate:0.000 - timing_s/gen:114.482 - timing_s/reward:0.046 - timing_s/old_log_prob:3.418 - timing_s/ref:4.091 - timing_s/adv:0.028 - timing_s/update_actor:16.523 - timing_s/testing:342.781 - timing_s/step:481.377 - timing_per_token_ms/adv:0.000 - timing_per_token_ms/ref:0.041 - timing_per_token_ms/update_actor:0.165 - timing_per_token_ms/gen:6.242 - perf/total_num_tokens:100124.000 - perf/time_per_step:481.377 - perf/throughput:103.998
+[36m(TaskRunner pid=1320203)[0m Training Progress:  62%|██████▎   | 5/8 [19:03<13:51, 277.24s/it]
+[33m(raylet)[0m [2026-06-05 21:14:39,912 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   0%|          | 0/50 [00:00<?, ?it/s][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   2%|▏         | 1/50 [00:02<01:43,  2.11s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   4%|▍         | 2/50 [00:05<02:09,  2.70s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   6%|▌         | 3/50 [00:07<01:59,  2.53s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   8%|▊         | 4/50 [00:09<01:46,  2.31s/it][A
+[33m(raylet)[0m [2026-06-05 21:14:49,921 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  10%|█         | 5/50 [00:12<01:47,  2.39s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  12%|█▏        | 6/50 [00:14<01:44,  2.37s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  14%|█▍        | 7/50 [00:16<01:40,  2.34s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  16%|█▌        | 8/50 [00:19<01:38,  2.34s/it][A
+[33m(raylet)[0m [2026-06-05 21:14:59,936 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  18%|█▊        | 9/50 [00:21<01:35,  2.32s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  20%|██        | 10/50 [00:24<01:40,  2.52s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  22%|██▏       | 11/50 [00:27<01:45,  2.71s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  24%|██▍       | 12/50 [00:29<01:35,  2.51s/it][A
+[33m(raylet)[0m [2026-06-05 21:15:09,945 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  26%|██▌       | 13/50 [00:31<01:28,  2.38s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  28%|██▊       | 14/50 [00:33<01:24,  2.35s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  30%|███       | 15/50 [00:35<01:19,  2.27s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  32%|███▏      | 16/50 [00:37<01:15,  2.22s/it][A
+[33m(raylet)[0m [2026-06-05 21:15:19,955 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  34%|███▍      | 17/50 [00:40<01:14,  2.27s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  36%|███▌      | 18/50 [00:42<01:12,  2.25s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  38%|███▊      | 19/50 [00:44<01:09,  2.25s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  40%|████      | 20/50 [00:47<01:10,  2.36s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  42%|████▏     | 21/50 [00:49<01:08,  2.37s/it][A
+[33m(raylet)[0m [2026-06-05 21:15:29,964 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  44%|████▍     | 22/50 [00:52<01:07,  2.40s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  46%|████▌     | 23/50 [00:54<01:02,  2.33s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  48%|████▊     | 24/50 [00:57<01:02,  2.40s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  50%|█████     | 25/50 [00:59<01:00,  2.41s/it][A
+[33m(raylet)[0m [2026-06-05 21:15:39,974 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  52%|█████▏    | 26/50 [01:03<01:08,  2.86s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  54%|█████▍    | 27/50 [01:05<01:02,  2.71s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  56%|█████▌    | 28/50 [01:08<00:57,  2.61s/it][A
+[33m(raylet)[0m [2026-06-05 21:15:49,983 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  58%|█████▊    | 29/50 [01:10<00:54,  2.59s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  60%|██████    | 30/50 [01:12<00:49,  2.48s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  62%|██████▏   | 31/50 [01:15<00:47,  2.51s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  64%|██████▍   | 32/50 [01:17<00:44,  2.48s/it][A
+[33m(raylet)[0m [2026-06-05 21:15:59,992 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  66%|██████▌   | 33/50 [01:20<00:40,  2.37s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  68%|██████▊   | 34/50 [01:21<00:35,  2.23s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  70%|███████   | 35/50 [01:24<00:36,  2.43s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  72%|███████▏  | 36/50 [01:27<00:35,  2.53s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  74%|███████▍  | 37/50 [01:29<00:31,  2.44s/it][A
+[33m(raylet)[0m [2026-06-05 21:16:10,002 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  76%|███████▌  | 38/50 [01:32<00:28,  2.37s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  78%|███████▊  | 39/50 [01:34<00:26,  2.40s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  80%|████████  | 40/50 [01:36<00:24,  2.42s/it][A
+[33m(raylet)[0m [2026-06-05 21:16:20,011 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  82%|████████▏ | 41/50 [01:40<00:25,  2.85s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  84%|████████▍ | 42/50 [01:44<00:25,  3.23s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  86%|████████▌ | 43/50 [01:48<00:23,  3.39s/it][A
+[33m(raylet)[0m [2026-06-05 21:16:30,021 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  88%|████████▊ | 44/50 [01:51<00:19,  3.20s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  90%|█████████ | 45/50 [01:54<00:15,  3.03s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  92%|█████████▏| 46/50 [01:56<00:11,  2.92s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  94%|█████████▍| 47/50 [01:59<00:08,  2.85s/it][A
+[33m(raylet)[0m [2026-06-05 21:16:40,030 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  96%|█████████▌| 48/50 [02:01<00:05,  2.74s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  98%|█████████▊| 49/50 [02:04<00:02,  2.62s/it][A
+[36m(TaskRunner pid=1320203)[0m  98%|█████████▊| 49/50 [02:06<00:02,  2.59s/it]
+[33m(raylet)[0m [2026-06-05 21:16:50,040 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m list(reward_extra_infos_dict.keys())=[]
+[33m(raylet)[0m [2026-06-05 21:17:00,049 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-05 21:17:10,058 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m step:6 - global_seqlen/min:50360.000 - global_seqlen/max:84282.000 - global_seqlen/minmax_diff:33922.000 - global_seqlen/balanced_min:67321.000 - global_seqlen/balanced_max:67321.000 - global_seqlen/mean:67321.000 - actor/entropy_loss:1.002 - training/rollout_probs_diff_max:0.249 - training/rollout_probs_diff_mean:0.006 - training/rollout_probs_diff_std:0.011 - episode/valid_action_ratio:0.960 - actor/kl_loss:0.043 - actor/kl_coef:0.010 - actor/pg_loss:0.027 - actor/pg_clipfrac:0.031 - actor/ppo_kl:0.007 - actor/pg_clipfrac_lower:0.000 - actor/grad_norm:8.922 - perf/mfu/actor:0.088 - perf/max_memory_allocated_gb:30.797 - perf/max_memory_reserved_gb:39.973 - perf/cpu_memory_used_gb:688.364 - actor/lr:0.000 - training/global_step:6.000 - training/epoch:0.000 - critic/score/mean:-0.004 - critic/score/max:0.000 - critic/score/min:-0.100 - critic/rewards/mean:-0.004 - critic/rewards/max:0.000 - critic/rewards/min:-0.100 - critic/advantages/mean:-0.185 - critic/advantages/max:0.228 - critic/advantages/min:-5.657 - critic/returns/mean:-0.185 - critic/returns/max:0.228 - critic/returns/min:-5.657 - response_length/mean:109.310 - response_length/max:512.000 - response_length/min:26.000 - response_length/clip_ratio:0.010 - prompt_length/mean:563.900 - prompt_length/max:974.000 - prompt_length/min:303.000 - prompt_length/clip_ratio:0.000 - episode/reward/mean:0.000 - episode/reward/max:0.000 - episode/reward/min:0.000 - episode/length/mean:50.000 - episode/length/max:50.000 - episode/length/min:50.000 - episode/tool_call_count/mean:0.000 - episode/tool_call_count/max:0.000 - episode/tool_call_count/min:0.000 - episode/success_rate:0.000 - episode/pick_heat_then_place_in_recep_success_rate:0.000 - episode/look_at_obj_in_light_success_rate:0.000 - timing_s/gen:131.672 - timing_s/reward:0.055 - timing_s/old_log_prob:4.229 - timing_s/ref:4.351 - timing_s/adv:0.024 - timing_s/update_actor:16.806 - timing_s/step:157.150 - timing_per_token_ms/adv:0.000 - timing_per_token_ms/ref:0.032 - timing_per_token_ms/update_actor:0.125 - timing_per_token_ms/gen:6.023 - perf/total_num_tokens:134642.000 - perf/time_per_step:157.150 - perf/throughput:428.387
+[36m(TaskRunner pid=1320203)[0m Training Progress:  75%|███████▌  | 6/8 [21:40<07:52, 236.41s/it]
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   0%|          | 0/50 [00:00<?, ?it/s][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   2%|▏         | 1/50 [00:03<02:38,  3.24s/it][A
+[33m(raylet)[0m [2026-06-05 21:17:20,068 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   4%|▍         | 2/50 [00:05<02:08,  2.67s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   6%|▌         | 3/50 [00:09<02:29,  3.18s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   8%|▊         | 4/50 [00:11<02:03,  2.69s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  10%|█         | 5/50 [00:13<01:54,  2.56s/it][A
+[33m(raylet)[0m [2026-06-05 21:17:30,076 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  12%|█▏        | 6/50 [00:16<01:59,  2.71s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  14%|█▍        | 7/50 [00:18<01:50,  2.57s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  16%|█▌        | 8/50 [00:21<01:46,  2.54s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  18%|█▊        | 9/50 [00:23<01:42,  2.50s/it][A
+[33m(raylet)[0m [2026-06-05 21:17:40,081 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  20%|██        | 10/50 [00:26<01:41,  2.54s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  22%|██▏       | 11/50 [00:29<01:48,  2.79s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  24%|██▍       | 12/50 [00:32<01:42,  2.69s/it][A
+[33m(raylet)[0m [2026-06-05 21:17:50,091 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  26%|██▌       | 13/50 [00:34<01:36,  2.60s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  28%|██▊       | 14/50 [00:37<01:40,  2.80s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  30%|███       | 15/50 [00:40<01:32,  2.63s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  32%|███▏      | 16/50 [00:44<01:45,  3.09s/it][A
+[33m(raylet)[0m [2026-06-05 21:18:00,100 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  34%|███▍      | 17/50 [00:46<01:34,  2.87s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  36%|███▌      | 18/50 [00:48<01:23,  2.62s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  38%|███▊      | 19/50 [00:51<01:19,  2.56s/it][A
+[33m(raylet)[0m [2026-06-05 21:18:10,110 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  40%|████      | 20/50 [00:54<01:27,  2.91s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  42%|████▏     | 21/50 [00:56<01:17,  2.67s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  44%|████▍     | 22/50 [00:58<01:08,  2.46s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  46%|████▌     | 23/50 [01:00<01:01,  2.28s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  48%|████▊     | 24/50 [01:03<01:00,  2.31s/it][A
+[33m(raylet)[0m [2026-06-05 21:18:20,120 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  50%|█████     | 25/50 [01:05<01:01,  2.46s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  52%|█████▏    | 26/50 [01:08<00:58,  2.44s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  54%|█████▍    | 27/50 [01:10<00:55,  2.42s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  56%|█████▌    | 28/50 [01:13<00:52,  2.39s/it][A
+[33m(raylet)[0m [2026-06-05 21:18:30,128 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  58%|█████▊    | 29/50 [01:16<00:56,  2.69s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  60%|██████    | 30/50 [01:18<00:51,  2.60s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  62%|██████▏   | 31/50 [01:21<00:47,  2.52s/it][A
+[33m(raylet)[0m [2026-06-05 21:18:40,137 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  64%|██████▍   | 32/50 [01:24<00:51,  2.85s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  66%|██████▌   | 33/50 [01:26<00:45,  2.65s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  68%|██████▊   | 34/50 [01:29<00:40,  2.54s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  70%|███████   | 35/50 [01:31<00:36,  2.45s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  72%|███████▏  | 36/50 [01:33<00:33,  2.38s/it][A
+[33m(raylet)[0m [2026-06-05 21:18:50,146 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  74%|███████▍  | 37/50 [01:36<00:34,  2.65s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  76%|███████▌  | 38/50 [01:39<00:31,  2.59s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  78%|███████▊  | 39/50 [01:41<00:27,  2.52s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  80%|████████  | 40/50 [01:44<00:24,  2.49s/it][A
+[33m(raylet)[0m [2026-06-05 21:19:00,155 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  82%|████████▏ | 41/50 [01:46<00:22,  2.47s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  84%|████████▍ | 42/50 [01:49<00:21,  2.63s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  86%|████████▌ | 43/50 [01:52<00:18,  2.58s/it][A
+[33m(raylet)[0m [2026-06-05 21:19:10,164 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  88%|████████▊ | 44/50 [01:54<00:15,  2.59s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  90%|█████████ | 45/50 [01:56<00:12,  2.42s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  92%|█████████▏| 46/50 [01:58<00:09,  2.35s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  94%|█████████▍| 47/50 [02:01<00:07,  2.42s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  96%|█████████▌| 48/50 [02:03<00:04,  2.27s/it][A
+[33m(raylet)[0m [2026-06-05 21:19:20,174 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  98%|█████████▊| 49/50 [02:05<00:02,  2.24s/it][A
+[36m(TaskRunner pid=1320203)[0m  98%|█████████▊| 49/50 [02:07<00:02,  2.61s/it]
+[33m(raylet)[0m [2026-06-05 21:19:30,180 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m list(reward_extra_infos_dict.keys())=[]
+[33m(raylet)[0m [2026-06-05 21:19:40,189 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m step:7 - global_seqlen/min:53196.000 - global_seqlen/max:68650.000 - global_seqlen/minmax_diff:15454.000 - global_seqlen/balanced_min:60923.000 - global_seqlen/balanced_max:60923.000 - global_seqlen/mean:60923.000 - actor/entropy_loss:1.009 - training/rollout_probs_diff_max:0.225 - training/rollout_probs_diff_mean:0.005 - training/rollout_probs_diff_std:0.010 - episode/valid_action_ratio:0.960 - actor/kl_loss:0.042 - actor/kl_coef:0.010 - actor/pg_loss:-0.017 - actor/pg_clipfrac:0.026 - actor/ppo_kl:0.005 - actor/pg_clipfrac_lower:0.000 - actor/grad_norm:10.249 - perf/mfu/actor:0.077 - perf/max_memory_allocated_gb:30.797 - perf/max_memory_reserved_gb:39.973 - perf/cpu_memory_used_gb:690.064 - actor/lr:0.000 - training/global_step:7.000 - training/epoch:0.000 - critic/score/mean:-0.004 - critic/score/max:0.000 - critic/score/min:-0.100 - critic/rewards/mean:-0.004 - critic/rewards/max:0.000 - critic/rewards/min:-0.100 - critic/advantages/mean:-0.285 - critic/advantages/max:0.203 - critic/advantages/min:-4.874 - critic/returns/mean:-0.285 - critic/returns/max:0.203 - critic/returns/min:-4.874 - response_length/mean:99.845 - response_length/max:512.000 - response_length/min:28.000 - response_length/clip_ratio:0.010 - prompt_length/mean:509.385 - prompt_length/max:807.000 - prompt_length/min:383.000 - prompt_length/clip_ratio:0.000 - episode/reward/mean:0.000 - episode/reward/max:0.000 - episode/reward/min:0.000 - episode/length/mean:50.000 - episode/length/max:50.000 - episode/length/min:50.000 - episode/tool_call_count/mean:0.000 - episode/tool_call_count/max:0.000 - episode/tool_call_count/min:0.000 - episode/success_rate:0.000 - episode/pick_clean_then_place_in_recep_success_rate:0.000 - episode/pick_cool_then_place_in_recep_success_rate:0.000 - timing_s/gen:131.116 - timing_s/reward:0.050 - timing_s/old_log_prob:3.566 - timing_s/ref:4.265 - timing_s/adv:0.023 - timing_s/update_actor:17.207 - timing_s/step:156.240 - timing_per_token_ms/adv:0.000 - timing_per_token_ms/ref:0.035 - timing_per_token_ms/update_actor:0.141 - timing_per_token_ms/gen:6.566 - perf/total_num_tokens:121846.000 - perf/time_per_step:156.240 - perf/throughput:389.931
+[36m(TaskRunner pid=1320203)[0m Training Progress:  88%|████████▊ | 7/8 [24:16<03:30, 210.20s/it]
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   0%|          | 0/50 [00:00<?, ?it/s][A
+[33m(raylet)[0m [2026-06-05 21:19:50,199 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   2%|▏         | 1/50 [00:03<02:38,  3.23s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   4%|▍         | 2/50 [00:05<02:18,  2.88s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   6%|▌         | 3/50 [00:08<02:03,  2.63s/it][A
+[33m(raylet)[0m [2026-06-05 21:20:00,209 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   8%|▊         | 4/50 [00:10<01:53,  2.47s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  10%|█         | 5/50 [00:12<01:46,  2.38s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  12%|█▏        | 6/50 [00:14<01:38,  2.23s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  14%|█▍        | 7/50 [00:16<01:30,  2.10s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  16%|█▌        | 8/50 [00:18<01:33,  2.22s/it][A
+[33m(raylet)[0m [2026-06-05 21:20:10,218 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  18%|█▊        | 9/50 [00:22<01:51,  2.73s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  20%|██        | 10/50 [00:24<01:42,  2.57s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  22%|██▏       | 11/50 [00:26<01:33,  2.40s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  24%|██▍       | 12/50 [00:29<01:27,  2.30s/it][A
+[33m(raylet)[0m [2026-06-05 21:20:20,229 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  26%|██▌       | 13/50 [00:31<01:23,  2.27s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  28%|██▊       | 14/50 [00:33<01:22,  2.28s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  30%|███       | 15/50 [00:35<01:18,  2.24s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  32%|███▏      | 16/50 [00:37<01:15,  2.21s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  34%|███▍      | 17/50 [00:39<01:11,  2.18s/it][A
+[33m(raylet)[0m [2026-06-05 21:20:30,238 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  36%|███▌      | 18/50 [00:42<01:08,  2.15s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  38%|███▊      | 19/50 [00:44<01:05,  2.10s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  40%|████      | 20/50 [00:46<01:02,  2.09s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  42%|████▏     | 21/50 [00:48<01:00,  2.08s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  44%|████▍     | 22/50 [00:49<00:56,  2.01s/it][A
+[33m(raylet)[0m [2026-06-05 21:20:40,248 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  46%|████▌     | 23/50 [00:52<00:54,  2.02s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  48%|████▊     | 24/50 [00:54<00:53,  2.07s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  50%|█████     | 25/50 [00:56<00:52,  2.09s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  52%|█████▏    | 26/50 [00:58<00:49,  2.05s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  54%|█████▍    | 27/50 [01:00<00:45,  1.97s/it][A
+[33m(raylet)[0m [2026-06-05 21:20:50,259 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  56%|█████▌    | 28/50 [01:02<00:43,  1.96s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  58%|█████▊    | 29/50 [01:04<00:43,  2.09s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  60%|██████    | 30/50 [01:07<00:45,  2.26s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  62%|██████▏   | 31/50 [01:09<00:42,  2.24s/it][A
+[33m(raylet)[0m [2026-06-05 21:21:00,268 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  64%|██████▍   | 32/50 [01:11<00:40,  2.23s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  66%|██████▌   | 33/50 [01:13<00:37,  2.19s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  68%|██████▊   | 34/50 [01:15<00:34,  2.13s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  70%|███████   | 35/50 [01:17<00:31,  2.08s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  72%|███████▏  | 36/50 [01:19<00:28,  2.06s/it][A
+[33m(raylet)[0m [2026-06-05 21:21:10,279 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  74%|███████▍  | 37/50 [01:21<00:27,  2.08s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  76%|███████▌  | 38/50 [01:23<00:24,  2.08s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  78%|███████▊  | 39/50 [01:25<00:22,  2.04s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  80%|████████  | 40/50 [01:27<00:19,  1.96s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  82%|████████▏ | 41/50 [01:29<00:17,  1.96s/it][A
+[33m(raylet)[0m [2026-06-05 21:21:20,288 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  84%|████████▍ | 42/50 [01:31<00:15,  1.90s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  86%|████████▌ | 43/50 [01:33<00:13,  1.90s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  88%|████████▊ | 44/50 [01:34<00:11,  1.90s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  90%|█████████ | 45/50 [01:36<00:09,  1.87s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  92%|█████████▏| 46/50 [01:38<00:07,  1.91s/it][A
+[33m(raylet)[0m [2026-06-05 21:21:30,298 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  94%|█████████▍| 47/50 [01:41<00:06,  2.20s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  96%|█████████▌| 48/50 [01:43<00:04,  2.14s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  98%|█████████▊| 49/50 [01:45<00:02,  2.18s/it][A
+[36m(TaskRunner pid=1320203)[0m  98%|█████████▊| 49/50 [01:47<00:02,  2.20s/it]
+[33m(raylet)[0m [2026-06-05 21:21:40,307 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m list(reward_extra_infos_dict.keys())=[]
+[33m(raylet)[0m [2026-06-05 21:21:50,316 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-05 21:22:00,326 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m test_gen_batch meta info: {'eos_token_id': 151645, 'pad_token_id': 151643, 'recompute_log_prob': False, 'do_sample': True, 'validate': True}
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   0%|          | 0/50 [00:00<?, ?it/s][A
+[33m(raylet)[0m [2026-06-05 21:22:10,344 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   2%|▏         | 1/50 [00:06<05:23,  6.59s/it][A
+[33m(raylet)[0m [2026-06-05 21:22:20,354 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   4%|▍         | 2/50 [00:13<05:26,  6.79s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   6%|▌         | 3/50 [00:20<05:26,  6.95s/it][A
+[33m(raylet)[0m [2026-06-05 21:22:30,364 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m   8%|▊         | 4/50 [00:27<05:09,  6.73s/it][A
+[33m(raylet)[0m [2026-06-05 21:22:40,378 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  10%|█         | 5/50 [00:33<04:57,  6.62s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  12%|█▏        | 6/50 [00:40<04:52,  6.65s/it][A
+[33m(raylet)[0m [2026-06-05 21:22:50,387 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  14%|█▍        | 7/50 [00:46<04:38,  6.49s/it][A
+[33m(raylet)[0m [2026-06-05 21:23:00,397 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  16%|█▌        | 8/50 [00:52<04:28,  6.38s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  18%|█▊        | 9/50 [00:58<04:23,  6.42s/it][A
+[33m(raylet)[0m [2026-06-05 21:23:10,406 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  20%|██        | 10/50 [01:04<04:00,  6.01s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  22%|██▏       | 11/50 [01:10<03:59,  6.14s/it][A
+[33m(raylet)[0m [2026-06-05 21:23:20,419 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  24%|██▍       | 12/50 [01:16<03:54,  6.18s/it][A
+[33m(raylet)[0m [2026-06-05 21:23:30,431 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  26%|██▌       | 13/50 [01:23<03:55,  6.35s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  28%|██▊       | 14/50 [01:29<03:47,  6.32s/it][A
+[33m(raylet)[0m [2026-06-05 21:23:40,441 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  30%|███       | 15/50 [01:36<03:45,  6.43s/it][A
+[33m(raylet)[0m [2026-06-05 21:23:50,451 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  32%|███▏      | 16/50 [01:42<03:35,  6.34s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  34%|███▍      | 17/50 [01:48<03:26,  6.27s/it][A
+[33m(raylet)[0m [2026-06-05 21:24:00,466 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  36%|███▌      | 18/50 [01:54<03:19,  6.23s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  38%|███▊      | 19/50 [02:01<03:13,  6.24s/it][A
+[33m(raylet)[0m [2026-06-05 21:24:10,476 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  40%|████      | 20/50 [02:07<03:06,  6.22s/it][A
+[33m(raylet)[0m [2026-06-05 21:24:20,485 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  42%|████▏     | 21/50 [02:13<03:01,  6.26s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  44%|████▍     | 22/50 [02:19<02:52,  6.18s/it][A
+[33m(raylet)[0m [2026-06-05 21:24:30,497 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  46%|████▌     | 23/50 [02:25<02:45,  6.14s/it][A
+[33m(raylet)[0m [2026-06-05 21:24:40,509 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  48%|████▊     | 24/50 [02:31<02:39,  6.14s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  50%|█████     | 25/50 [02:38<02:34,  6.19s/it][A
+[33m(raylet)[0m [2026-06-05 21:24:50,520 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  52%|█████▏    | 26/50 [02:44<02:27,  6.15s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  54%|█████▍    | 27/50 [02:50<02:21,  6.13s/it][A
+[33m(raylet)[0m [2026-06-05 21:25:00,534 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  56%|█████▌    | 28/50 [02:56<02:16,  6.21s/it][A
+[33m(raylet)[0m [2026-06-05 21:25:10,544 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  58%|█████▊    | 29/50 [03:02<02:10,  6.22s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  60%|██████    | 30/50 [03:09<02:05,  6.27s/it][A
+[33m(raylet)[0m [2026-06-05 21:25:20,554 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  62%|██████▏   | 31/50 [03:15<02:00,  6.33s/it][A
+[33m(raylet)[0m [2026-06-05 21:25:30,567 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  64%|██████▍   | 32/50 [03:21<01:53,  6.29s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  66%|██████▌   | 33/50 [03:28<01:45,  6.22s/it][A
+[33m(raylet)[0m [2026-06-05 21:25:40,576 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  68%|██████▊   | 34/50 [03:34<01:39,  6.20s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  70%|███████   | 35/50 [03:40<01:33,  6.23s/it][A
+[33m(raylet)[0m [2026-06-05 21:25:50,587 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  72%|███████▏  | 36/50 [03:46<01:26,  6.17s/it][A
+[33m(raylet)[0m [2026-06-05 21:26:00,597 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  74%|███████▍  | 37/50 [03:52<01:20,  6.17s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  76%|███████▌  | 38/50 [03:59<01:14,  6.24s/it][A
+[33m(raylet)[0m [2026-06-05 21:26:10,611 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  78%|███████▊  | 39/50 [04:05<01:08,  6.25s/it][A
+[33m(raylet)[0m [2026-06-05 21:26:20,621 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  80%|████████  | 40/50 [04:11<01:02,  6.30s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  82%|████████▏ | 41/50 [04:18<00:56,  6.28s/it][A
+[33m(raylet)[0m [2026-06-05 21:26:30,634 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  84%|████████▍ | 42/50 [04:24<00:50,  6.34s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  86%|████████▌ | 43/50 [04:29<00:42,  6.01s/it][A
+[33m(raylet)[0m [2026-06-05 21:26:40,647 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  88%|████████▊ | 44/50 [04:36<00:37,  6.24s/it][A
+[33m(raylet)[0m [2026-06-05 21:26:50,660 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  90%|█████████ | 45/50 [04:42<00:30,  6.19s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  92%|█████████▏| 46/50 [04:48<00:24,  6.14s/it][A
+[33m(raylet)[0m [2026-06-05 21:27:00,670 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  94%|█████████▍| 47/50 [04:54<00:18,  6.20s/it][A
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  96%|█████████▌| 48/50 [05:01<00:12,  6.25s/it][A
+[33m(raylet)[0m [2026-06-05 21:27:10,680 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m 
+[36m(TaskRunner pid=1320203)[0m  98%|█████████▊| 49/50 [05:07<00:06,  6.30s/it][A
+[33m(raylet)[0m [2026-06-05 21:27:20,690 E 1312567 1312604] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-05_20-53-46_057137_1311242 is over 95% full, available space: 2965.23 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=1320203)[0m  98%|█████████▊| 49/50 [05:14<00:06,  6.41s/it]
+[36m(TaskRunner pid=1320203)[0m step:8 - global_seqlen/min:45631.000 - global_seqlen/max:52142.000 - global_seqlen/minmax_diff:6511.000 - global_seqlen/balanced_min:48884.000 - global_seqlen/balanced_max:48889.000 - global_seqlen/mean:48886.500 - actor/entropy_loss:0.966 - training/rollout_probs_diff_max:0.111 - training/rollout_probs_diff_mean:0.005 - training/rollout_probs_diff_std:0.010 - episode/valid_action_ratio:0.990 - actor/kl_loss:0.037 - actor/kl_coef:0.010 - actor/pg_loss:0.063 - actor/pg_clipfrac:0.020 - actor/ppo_kl:0.006 - actor/pg_clipfrac_lower:0.000 - actor/grad_norm:3.986 - perf/mfu/actor:0.062 - perf/max_memory_allocated_gb:30.797 - perf/max_memory_reserved_gb:39.973 - perf/cpu_memory_used_gb:690.615 - actor/lr:0.000 - val/unknown/test_score:0.000 - val/unknown/tool_call_count/mean:0.000 - val/unknown/tool_call_count/max:0.000 - val/unknown/tool_call_count/min:0.000 - val/val/success_rate:0.000 - training/global_step:8.000 - training/epoch:0.000 - critic/score/mean:-0.001 - critic/score/max:0.000 - critic/score/min:-0.100 - critic/rewards/mean:-0.001 - critic/rewards/max:0.000 - critic/rewards/min:-0.100 - critic/advantages/mean:-0.178 - critic/advantages/max:0.142 - critic/advantages/min:-6.964 - critic/returns/mean:-0.178 - critic/returns/max:0.142 - critic/returns/min:-6.964 - response_length/mean:85.095 - response_length/max:512.000 - response_length/min:25.000 - response_length/clip_ratio:0.005 - prompt_length/mean:403.770 - prompt_length/max:578.000 - prompt_length/min:309.000 - prompt_length/clip_ratio:0.000 - episode/reward/mean:0.000 - episode/reward/max:0.000 - episode/reward/min:0.000 - episode/length/mean:50.000 - episode/length/max:50.000 - episode/length/min:50.000 - episode/tool_call_count/mean:0.000 - episode/tool_call_count/max:0.000 - episode/tool_call_count/min:0.000 - episode/success_rate:0.000 - episode/pick_and_place_success_rate:0.000 - timing_s/gen:108.841 - timing_s/reward:0.046 - timing_s/old_log_prob:3.680 - timing_s/ref:4.111 - timing_s/adv:0.024 - timing_s/update_actor:16.935 - timing_s/testing:320.778 - timing_s/step:454.428 - timing_per_token_ms/adv:0.000 - timing_per_token_ms/ref:0.042 - timing_per_token_ms/update_actor:0.173 - timing_per_token_ms/gen:6.395 - perf/total_num_tokens:97773.000 - perf/time_per_step:454.428 - perf/throughput:107.578
+[36m(TaskRunner pid=1320203)[0m ("Final validation metrics: {'val/unknown/test_score': 0.0, "
+[36m(TaskRunner pid=1320203)[0m  "'val/unknown/tool_call_count/mean': 0.0, 'val/unknown/tool_call_count/max': "
+[36m(TaskRunner pid=1320203)[0m  "0.0, 'val/unknown/tool_call_count/min': 0.0, 'val/val/success_rate': 0.0}")
+[36m(TaskRunner pid=1320203)[0m Training Progress: 100%|██████████| 8/8 [31:50<00:00, 287.95s/it]Training Progress: 100%|██████████| 8/8 [31:50<00:00, 238.87s/it]
+[33m(raylet)[0m A worker died or was killed while executing a task by an unexpected system error. To troubleshoot the problem, check the logs for the dead worker. RayTask ID: ffffffffffffffffccad4a7aa8733aeb4ffa6ffc01000000 Worker ID: 3c48b9a4ad682344592dbfd39915a6449d6f276cd2a292be8b7f1c85 Node ID: 9d91640463c99f8132292659c86fb1d38d6409cca9c8c58316a76994 Worker IP address: 121.48.164.87 Worker port: 42405 Worker PID: 1338576 Worker exit type: SYSTEM_ERROR Worker exit detail: Worker exits unexpectedly by a signal. SystemExit is raised (sys.exit is called). Exit code: 1. The process receives a SIGTERM.
