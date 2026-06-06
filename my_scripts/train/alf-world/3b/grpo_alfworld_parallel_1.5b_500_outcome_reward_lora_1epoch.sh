@@ -2,7 +2,7 @@
 conda activate verl-agent 
 export CUDA_VISIBLE_DEVICES=0,1,4,5
 export VLLM_ATTENTION_BACKEND=XFORMERS 
-export TMPDIR=/diskpool/tmp 
+export TMPDIR=/diskpool/home/xuxz/tmp 
 
 nohup python3 -m verl.trainer.main_ppo_alfworld \
     algorithm.adv_estimator=grpo \

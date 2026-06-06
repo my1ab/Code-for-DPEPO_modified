@@ -18,7 +18,7 @@ group_size=8
 conda activate verl-agent
 export CUDA_VISIBLDE_DEVICES=0,1,2,3
 export VLLM_ATTENTION_BACKEND=XFORMERS
-export TMPDIR=/diskpool/tmp
+export TMPDIR=/diskpool/home/xuxz/tmp
 python3 -m verl.trainer.main_ppo \
     algorithm.adv_estimator=grpo \
     data.train_files=/data/home/zhangjs/disk/project/verl-agent/data_pipelines/verl_train_data/train.parquet \

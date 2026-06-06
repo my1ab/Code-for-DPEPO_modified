@@ -1,0 +1,508 @@
+2026-06-06 10:59:57,958	INFO worker.py:1908 -- Started a local Ray instance. View the dashboard at [1m[32mhttp://127.0.0.1:8265 [39m[22m
+[36m(TaskRunner pid=2587616)[0m {'actor_rollout_ref': {'actor': {'checkpoint': {'contents': ['model',
+[36m(TaskRunner pid=2587616)[0m                                                              'optimizer',
+[36m(TaskRunner pid=2587616)[0m                                                              'extra']},
+[36m(TaskRunner pid=2587616)[0m                                  'clip_ratio': 0.2,
+[36m(TaskRunner pid=2587616)[0m                                  'clip_ratio_c': 3.0,
+[36m(TaskRunner pid=2587616)[0m                                  'clip_ratio_high': 0.2,
+[36m(TaskRunner pid=2587616)[0m                                  'clip_ratio_low': 0.2,
+[36m(TaskRunner pid=2587616)[0m                                  'entropy_coeff': 0.001,
+[36m(TaskRunner pid=2587616)[0m                                  'fsdp_config': {'fsdp_size': -1,
+[36m(TaskRunner pid=2587616)[0m                                                  'offload_policy': False,
+[36m(TaskRunner pid=2587616)[0m                                                  'optimizer_offload': True,
+[36m(TaskRunner pid=2587616)[0m                                                  'param_offload': True,
+[36m(TaskRunner pid=2587616)[0m                                                  'reshard_after_forward': True,
+[36m(TaskRunner pid=2587616)[0m                                                  'wrap_policy': {'min_num_params': 0}},
+[36m(TaskRunner pid=2587616)[0m                                  'grad_clip': 1.0,
+[36m(TaskRunner pid=2587616)[0m                                  'invalid_action_penalty_coef': 0.1,
+[36m(TaskRunner pid=2587616)[0m                                  'kl_loss_coef': 0.01,
+[36m(TaskRunner pid=2587616)[0m                                  'kl_loss_type': 'low_var_kl',
+[36m(TaskRunner pid=2587616)[0m                                  'loss_agg_mode': 'token-mean',
+[36m(TaskRunner pid=2587616)[0m                                  'optim': {'lr': 1e-06,
+[36m(TaskRunner pid=2587616)[0m                                            'lr_warmup_steps': -1,
+[36m(TaskRunner pid=2587616)[0m                                            'lr_warmup_steps_ratio': 0.0,
+[36m(TaskRunner pid=2587616)[0m                                            'min_lr_ratio': 0.0,
+[36m(TaskRunner pid=2587616)[0m                                            'num_cycles': 0.5,
+[36m(TaskRunner pid=2587616)[0m                                            'total_training_steps': -1,
+[36m(TaskRunner pid=2587616)[0m                                            'warmup_style': 'constant',
+[36m(TaskRunner pid=2587616)[0m                                            'weight_decay': 0.01},
+[36m(TaskRunner pid=2587616)[0m                                  'ppo_epochs': 1,
+[36m(TaskRunner pid=2587616)[0m                                  'ppo_max_token_len_per_gpu': 16384,
+[36m(TaskRunner pid=2587616)[0m                                  'ppo_micro_batch_size': None,
+[36m(TaskRunner pid=2587616)[0m                                  'ppo_micro_batch_size_per_gpu': 4,
+[36m(TaskRunner pid=2587616)[0m                                  'ppo_mini_batch_size': 32,
+[36m(TaskRunner pid=2587616)[0m                                  'shuffle': False,
+[36m(TaskRunner pid=2587616)[0m                                  'strategy': 'fsdp',
+[36m(TaskRunner pid=2587616)[0m                                  'ulysses_sequence_parallel_size': 1,
+[36m(TaskRunner pid=2587616)[0m                                  'use_dynamic_bsz': False,
+[36m(TaskRunner pid=2587616)[0m                                  'use_invalid_action_penalty': False,
+[36m(TaskRunner pid=2587616)[0m                                  'use_kl_loss': True,
+[36m(TaskRunner pid=2587616)[0m                                  'use_torch_compile': True},
+[36m(TaskRunner pid=2587616)[0m                        'hybrid_engine': True,
+[36m(TaskRunner pid=2587616)[0m                        'model': {'enable_activation_offload': False,
+[36m(TaskRunner pid=2587616)[0m                                  'enable_gradient_checkpointing': True,
+[36m(TaskRunner pid=2587616)[0m                                  'external_lib': None,
+[36m(TaskRunner pid=2587616)[0m                                  'lora_alpha': 16,
+[36m(TaskRunner pid=2587616)[0m                                  'lora_rank': 0,
+[36m(TaskRunner pid=2587616)[0m                                  'override_config': {},
+[36m(TaskRunner pid=2587616)[0m                                  'path': '/diskpool/home/xuxz/ms-swift/model/Qwen2.5-0.5B-Instruct',
+[36m(TaskRunner pid=2587616)[0m                                  'target_modules': 'all-linear',
+[36m(TaskRunner pid=2587616)[0m                                  'trust_remote_code': False,
+[36m(TaskRunner pid=2587616)[0m                                  'use_fused_kernels': False,
+[36m(TaskRunner pid=2587616)[0m                                  'use_liger': False,
+[36m(TaskRunner pid=2587616)[0m                                  'use_remove_padding': True,
+[36m(TaskRunner pid=2587616)[0m                                  'use_shm': False},
+[36m(TaskRunner pid=2587616)[0m                        'ref': {'fsdp_config': {'param_offload': True,
+[36m(TaskRunner pid=2587616)[0m                                                'reshard_after_forward': True,
+[36m(TaskRunner pid=2587616)[0m                                                'wrap_policy': {'min_num_params': 0}},
+[36m(TaskRunner pid=2587616)[0m                                'log_prob_max_token_len_per_gpu': 16384,
+[36m(TaskRunner pid=2587616)[0m                                'log_prob_micro_batch_size': None,
+[36m(TaskRunner pid=2587616)[0m                                'log_prob_micro_batch_size_per_gpu': 4,
+[36m(TaskRunner pid=2587616)[0m                                'log_prob_use_dynamic_bsz': False,
+[36m(TaskRunner pid=2587616)[0m                                'strategy': 'fsdp',
+[36m(TaskRunner pid=2587616)[0m                                'ulysses_sequence_parallel_size': 1,
+[36m(TaskRunner pid=2587616)[0m                                'use_torch_compile': True},
+[36m(TaskRunner pid=2587616)[0m                        'rollout': {'chat_scheduler': None,
+[36m(TaskRunner pid=2587616)[0m                                    'disable_log_stats': True,
+[36m(TaskRunner pid=2587616)[0m                                    'do_sample': True,
+[36m(TaskRunner pid=2587616)[0m                                    'dtype': 'bfloat16',
+[36m(TaskRunner pid=2587616)[0m                                    'enable_chunked_prefill': False,
+[36m(TaskRunner pid=2587616)[0m                                    'enforce_eager': False,
+[36m(TaskRunner pid=2587616)[0m                                    'engine_kwargs': {'sglang': {'attention_backend': None},
+[36m(TaskRunner pid=2587616)[0m                                                      'vllm': {'swap_space': None}},
+[36m(TaskRunner pid=2587616)[0m                                    'free_cache_engine': False,
+[36m(TaskRunner pid=2587616)[0m                                    'gpu_memory_utilization': 0.6,
+[36m(TaskRunner pid=2587616)[0m                                    'ignore_eos': False,
+[36m(TaskRunner pid=2587616)[0m                                    'layered_summon': False,
+[36m(TaskRunner pid=2587616)[0m                                    'load_format': 'dummy_dtensor',
+[36m(TaskRunner pid=2587616)[0m                                    'log_prob_max_token_len_per_gpu': 16384,
+[36m(TaskRunner pid=2587616)[0m                                    'log_prob_micro_batch_size': None,
+[36m(TaskRunner pid=2587616)[0m                                    'log_prob_micro_batch_size_per_gpu': 4,
+[36m(TaskRunner pid=2587616)[0m                                    'log_prob_use_dynamic_bsz': False,
+[36m(TaskRunner pid=2587616)[0m                                    'max_model_len': None,
+[36m(TaskRunner pid=2587616)[0m                                    'max_num_batched_tokens': 20480,
+[36m(TaskRunner pid=2587616)[0m                                    'max_num_seqs': 1024,
+[36m(TaskRunner pid=2587616)[0m                                    'mode': 'sync',
+[36m(TaskRunner pid=2587616)[0m                                    'multi_turn': {'enable': False,
+[36m(TaskRunner pid=2587616)[0m                                                   'format': 'chatml',
+[36m(TaskRunner pid=2587616)[0m                                                   'max_turns': None,
+[36m(TaskRunner pid=2587616)[0m                                                   'tool_config_path': None},
+[36m(TaskRunner pid=2587616)[0m                                    'n': 1,
+[36m(TaskRunner pid=2587616)[0m                                    'name': 'vllm',
+[36m(TaskRunner pid=2587616)[0m                                    'prompt_length': 16384,
+[36m(TaskRunner pid=2587616)[0m                                    'response_length': 1024,
+[36m(TaskRunner pid=2587616)[0m                                    'temperature': 1.0,
+[36m(TaskRunner pid=2587616)[0m                                    'tensor_model_parallel_size': 2,
+[36m(TaskRunner pid=2587616)[0m                                    'top_k': -1,
+[36m(TaskRunner pid=2587616)[0m                                    'top_p': 1,
+[36m(TaskRunner pid=2587616)[0m                                    'use_fire_sampling': False,
+[36m(TaskRunner pid=2587616)[0m                                    'val_kwargs': {'do_sample': True,
+[36m(TaskRunner pid=2587616)[0m                                                   'n': 1,
+[36m(TaskRunner pid=2587616)[0m                                                   'temperature': 0.4,
+[36m(TaskRunner pid=2587616)[0m                                                   'top_k': -1,
+[36m(TaskRunner pid=2587616)[0m                                                   'top_p': 1.0}}},
+[36m(TaskRunner pid=2587616)[0m  'algorithm': {'adv_estimator': 'grpo',
+[36m(TaskRunner pid=2587616)[0m                'filter_groups': {'enable': False, 'max_num_gen_batches': 10},
+[36m(TaskRunner pid=2587616)[0m                'gamma': 1.0,
+[36m(TaskRunner pid=2587616)[0m                'gigpo': {'enable_similarity': False,
+[36m(TaskRunner pid=2587616)[0m                          'mode': 'mean_norm',
+[36m(TaskRunner pid=2587616)[0m                          'similarity_thresh': 0.95,
+[36m(TaskRunner pid=2587616)[0m                          'step_advantage_w': 1.0},
+[36m(TaskRunner pid=2587616)[0m                'kl_ctrl': {'horizon': 10000,
+[36m(TaskRunner pid=2587616)[0m                            'kl_coef': 0.001,
+[36m(TaskRunner pid=2587616)[0m                            'target_kl': 0.1,
+[36m(TaskRunner pid=2587616)[0m                            'type': 'fixed'},
+[36m(TaskRunner pid=2587616)[0m                'kl_penalty': 'kl',
+[36m(TaskRunner pid=2587616)[0m                'lam': 1.0,
+[36m(TaskRunner pid=2587616)[0m                'norm_adv_by_std_in_grpo': True,
+[36m(TaskRunner pid=2587616)[0m                'pf_ppo': {'reweight_method': 'pow', 'weight_pow': 2.0},
+[36m(TaskRunner pid=2587616)[0m                'use_kl_in_reward': False,
+[36m(TaskRunner pid=2587616)[0m                'use_pf_ppo': False},
+[36m(TaskRunner pid=2587616)[0m  'critic': {'checkpoint': {'contents': []},
+[36m(TaskRunner pid=2587616)[0m             'cliprange_value': 0.5,
+[36m(TaskRunner pid=2587616)[0m             'forward_max_token_len_per_gpu': 32768,
+[36m(TaskRunner pid=2587616)[0m             'forward_micro_batch_size': None,
+[36m(TaskRunner pid=2587616)[0m             'forward_micro_batch_size_per_gpu': None,
+[36m(TaskRunner pid=2587616)[0m             'grad_clip': 1.0,
+[36m(TaskRunner pid=2587616)[0m             'loss_agg_mode': 'token-mean',
+[36m(TaskRunner pid=2587616)[0m             'model': {'enable_activation_offload': False,
+[36m(TaskRunner pid=2587616)[0m                       'enable_gradient_checkpointing': True,
+[36m(TaskRunner pid=2587616)[0m                       'external_lib': None,
+[36m(TaskRunner pid=2587616)[0m                       'fsdp_config': {'fsdp_size': -1,
+[36m(TaskRunner pid=2587616)[0m                                       'offload_policy': False,
+[36m(TaskRunner pid=2587616)[0m                                       'optimizer_offload': False,
+[36m(TaskRunner pid=2587616)[0m                                       'param_offload': False,
+[36m(TaskRunner pid=2587616)[0m                                       'reshard_after_forward': True,
+[36m(TaskRunner pid=2587616)[0m                                       'wrap_policy': {'min_num_params': 0}},
+[36m(TaskRunner pid=2587616)[0m                       'lora_alpha': 16,
+[36m(TaskRunner pid=2587616)[0m                       'lora_rank': 0,
+[36m(TaskRunner pid=2587616)[0m                       'override_config': {},
+[36m(TaskRunner pid=2587616)[0m                       'path': '~/models/deepseek-llm-7b-chat',
+[36m(TaskRunner pid=2587616)[0m                       'target_modules': 'all-linear',
+[36m(TaskRunner pid=2587616)[0m                       'tokenizer_path': '/diskpool/home/xuxz/ms-swift/model/Qwen2.5-0.5B-Instruct',
+[36m(TaskRunner pid=2587616)[0m                       'trust_remote_code': False,
+[36m(TaskRunner pid=2587616)[0m                       'use_remove_padding': False,
+[36m(TaskRunner pid=2587616)[0m                       'use_shm': False},
+[36m(TaskRunner pid=2587616)[0m             'optim': {'lr': 1e-05,
+[36m(TaskRunner pid=2587616)[0m                       'lr_warmup_steps_ratio': 0.0,
+[36m(TaskRunner pid=2587616)[0m                       'min_lr_ratio': None,
+[36m(TaskRunner pid=2587616)[0m                       'total_training_steps': -1,
+[36m(TaskRunner pid=2587616)[0m                       'warmup_style': 'constant',
+[36m(TaskRunner pid=2587616)[0m                       'weight_decay': 0.01},
+[36m(TaskRunner pid=2587616)[0m             'ppo_epochs': 1,
+[36m(TaskRunner pid=2587616)[0m             'ppo_max_token_len_per_gpu': 32768,
+[36m(TaskRunner pid=2587616)[0m             'ppo_micro_batch_size': None,
+[36m(TaskRunner pid=2587616)[0m             'ppo_micro_batch_size_per_gpu': None,
+[36m(TaskRunner pid=2587616)[0m             'ppo_mini_batch_size': 32,
+[36m(TaskRunner pid=2587616)[0m             'rollout_n': 1,
+[36m(TaskRunner pid=2587616)[0m             'shuffle': False,
+[36m(TaskRunner pid=2587616)[0m             'strategy': 'fsdp',
+[36m(TaskRunner pid=2587616)[0m             'ulysses_sequence_parallel_size': 1,
+[36m(TaskRunner pid=2587616)[0m             'use_dynamic_bsz': False},
+[36m(TaskRunner pid=2587616)[0m  'custom_reward_function': {'name': 'compute_score', 'path': None},
+[36m(TaskRunner pid=2587616)[0m  'data': {'custom_cls': {'name': None, 'path': None},
+[36m(TaskRunner pid=2587616)[0m           'filter_overlong_prompts': True,
+[36m(TaskRunner pid=2587616)[0m           'filter_overlong_prompts_workers': 1,
+[36m(TaskRunner pid=2587616)[0m           'image_key': 'images',
+[36m(TaskRunner pid=2587616)[0m           'max_prompt_length': 16384,
+[36m(TaskRunner pid=2587616)[0m           'max_response_length': 1024,
+[36m(TaskRunner pid=2587616)[0m           'prompt_key': 'prompt',
+[36m(TaskRunner pid=2587616)[0m           'return_full_prompt': False,
+[36m(TaskRunner pid=2587616)[0m           'return_raw_chat': True,
+[36m(TaskRunner pid=2587616)[0m           'return_raw_input_ids': False,
+[36m(TaskRunner pid=2587616)[0m           'reward_fn_key': 'data_source',
+[36m(TaskRunner pid=2587616)[0m           'shuffle': True,
+[36m(TaskRunner pid=2587616)[0m           'tokenizer': None,
+[36m(TaskRunner pid=2587616)[0m           'train_batch_size': 4,
+[36m(TaskRunner pid=2587616)[0m           'train_files': '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/parallel_train_data_demo_easy.parquet',
+[36m(TaskRunner pid=2587616)[0m           'truncation': 'error',
+[36m(TaskRunner pid=2587616)[0m           'trust_remote_code': False,
+[36m(TaskRunner pid=2587616)[0m           'use_shm': False,
+[36m(TaskRunner pid=2587616)[0m           'val_batch_size': 128,
+[36m(TaskRunner pid=2587616)[0m           'val_files': '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/verl_train_data/alfworld/test.parquet',
+[36m(TaskRunner pid=2587616)[0m           'video_key': 'videos'},
+[36m(TaskRunner pid=2587616)[0m  'env': {'add_limit_prompt': True,
+[36m(TaskRunner pid=2587616)[0m          'env_name': 'alfworld/AlfredTWEnv',
+[36m(TaskRunner pid=2587616)[0m          'env_path': '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/parallel_train_data_demo_easy.json',
+[36m(TaskRunner pid=2587616)[0m          'history_length': 2,
+[36m(TaskRunner pid=2587616)[0m          'lazy_envs': True,
+[36m(TaskRunner pid=2587616)[0m          'max_steps': 25,
+[36m(TaskRunner pid=2587616)[0m          'num_parallel': 5,
+[36m(TaskRunner pid=2587616)[0m          'resources': None,
+[36m(TaskRunner pid=2587616)[0m          'resources_per_worker': {'num_cpus': 0.5, 'num_gpus': 0},
+[36m(TaskRunner pid=2587616)[0m          'rollout': {'n': 8},
+[36m(TaskRunner pid=2587616)[0m          'search': {'log_requests': False,
+[36m(TaskRunner pid=2587616)[0m                     'search_url': 'http://127.0.0.1:8000/retrieve',
+[36m(TaskRunner pid=2587616)[0m                     'timeout': 60,
+[36m(TaskRunner pid=2587616)[0m                     'topk': 3},
+[36m(TaskRunner pid=2587616)[0m          'seed': 0,
+[36m(TaskRunner pid=2587616)[0m          'sokoban': {'dim_room': [6, 6],
+[36m(TaskRunner pid=2587616)[0m                      'mode': 'tiny_rgb_array',
+[36m(TaskRunner pid=2587616)[0m                      'num_boxes': 1,
+[36m(TaskRunner pid=2587616)[0m                      'search_depth': 30},
+[36m(TaskRunner pid=2587616)[0m          'webshop': {'human_goals': False, 'use_small': True}},
+[36m(TaskRunner pid=2587616)[0m  'ray_init': {'num_cpus': None},
+[36m(TaskRunner pid=2587616)[0m  'reward_model': {'depth_alpha': 0.8,
+[36m(TaskRunner pid=2587616)[0m                   'depth_t_gamma': 0.95,
+[36m(TaskRunner pid=2587616)[0m                   'enable': False,
+[36m(TaskRunner pid=2587616)[0m                   'forward_max_token_len_per_gpu': 32768,
+[36m(TaskRunner pid=2587616)[0m                   'invalid_penalty': 0.95,
+[36m(TaskRunner pid=2587616)[0m                   'launch_reward_fn_async': False,
+[36m(TaskRunner pid=2587616)[0m                   'max_length': None,
+[36m(TaskRunner pid=2587616)[0m                   'micro_batch_size': None,
+[36m(TaskRunner pid=2587616)[0m                   'micro_batch_size_per_gpu': None,
+[36m(TaskRunner pid=2587616)[0m                   'model': {'external_lib': None,
+[36m(TaskRunner pid=2587616)[0m                             'fsdp_config': {'fsdp_size': -1,
+[36m(TaskRunner pid=2587616)[0m                                             'param_offload': False,
+[36m(TaskRunner pid=2587616)[0m                                             'reshard_after_forward': True,
+[36m(TaskRunner pid=2587616)[0m                                             'wrap_policy': {'min_num_params': 0}},
+[36m(TaskRunner pid=2587616)[0m                             'input_tokenizer': '/diskpool/home/xuxz/ms-swift/model/Qwen2.5-0.5B-Instruct',
+[36m(TaskRunner pid=2587616)[0m                             'path': '~/models/FsfairX-LLaMA3-RM-v0.1',
+[36m(TaskRunner pid=2587616)[0m                             'trust_remote_code': False,
+[36m(TaskRunner pid=2587616)[0m                             'use_fused_kernels': False,
+[36m(TaskRunner pid=2587616)[0m                             'use_remove_padding': False,
+[36m(TaskRunner pid=2587616)[0m                             'use_shm': False},
+[36m(TaskRunner pid=2587616)[0m                   'no_action_penalty': 0.5,
+[36m(TaskRunner pid=2587616)[0m                   'parallel_reward': False,
+[36m(TaskRunner pid=2587616)[0m                   'process_reward': False,
+[36m(TaskRunner pid=2587616)[0m                   'reward_manager': 'episode',
+[36m(TaskRunner pid=2587616)[0m                   'sandbox_fusion': {'max_concurrent': 64, 'url': None},
+[36m(TaskRunner pid=2587616)[0m                   'strategy': 'fsdp',
+[36m(TaskRunner pid=2587616)[0m                   'ulysses_sequence_parallel_size': 1,
+[36m(TaskRunner pid=2587616)[0m                   'use_dynamic_bsz': False,
+[36m(TaskRunner pid=2587616)[0m                   'width_omega': 0.95,
+[36m(TaskRunner pid=2587616)[0m                   'width_t_beta': 0.95},
+[36m(TaskRunner pid=2587616)[0m  'trainer': {'balance_batch': True,
+[36m(TaskRunner pid=2587616)[0m              'critic_warmup': 0,
+[36m(TaskRunner pid=2587616)[0m              'default_hdfs_dir': None,
+[36m(TaskRunner pid=2587616)[0m              'default_local_dir': '/diskpool/home/xuxz/Code-for-DPEPO/webshop_checkpoint_para',
+[36m(TaskRunner pid=2587616)[0m              'del_local_ckpt_after_load': False,
+[36m(TaskRunner pid=2587616)[0m              'device': 'cuda',
+[36m(TaskRunner pid=2587616)[0m              'experiment_name': 'grpo_sparse_1.5_coldstart_epoch3',
+[36m(TaskRunner pid=2587616)[0m              'log_val_generations': 0,
+[36m(TaskRunner pid=2587616)[0m              'logger': ['console', 'mlflow'],
+[36m(TaskRunner pid=2587616)[0m              'max_actor_ckpt_to_keep': None,
+[36m(TaskRunner pid=2587616)[0m              'max_critic_ckpt_to_keep': None,
+[36m(TaskRunner pid=2587616)[0m              'n_gpus_per_node': 2,
+[36m(TaskRunner pid=2587616)[0m              'nnodes': 1,
+[36m(TaskRunner pid=2587616)[0m              'project_name': 'parallel_verl_agent_alfworld',
+[36m(TaskRunner pid=2587616)[0m              'ray_wait_register_center_timeout': 300,
+[36m(TaskRunner pid=2587616)[0m              'resume_from_path': None,
+[36m(TaskRunner pid=2587616)[0m              'resume_mode': 'auto',
+[36m(TaskRunner pid=2587616)[0m              'rollout_data_dir': None,
+[36m(TaskRunner pid=2587616)[0m              'save_freq': 3,
+[36m(TaskRunner pid=2587616)[0m              'test_freq': 1,
+[36m(TaskRunner pid=2587616)[0m              'total_epochs': 1,
+[36m(TaskRunner pid=2587616)[0m              'total_training_steps': None,
+[36m(TaskRunner pid=2587616)[0m              'val_before_train': False,
+[36m(TaskRunner pid=2587616)[0m              'validation_data_dir': None}}
+[33m(raylet)[0m [2026-06-06 11:00:06,929 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2964.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2587616)[0m Using dataset class: RLHFDataset
+[36m(TaskRunner pid=2587616)[0m dataset len: 7
+[36m(TaskRunner pid=2587616)[0m Setting TOKENIZERS_PARALLELISM=false for forked processes.
+[36m(TaskRunner pid=2587616)[0m WARNING:2026-06-06 11:00:10,284:Setting TOKENIZERS_PARALLELISM=false for forked processes.
+[36m(TaskRunner pid=2587616)[0m Filtering prompts longer than 16384 tokens (num_proc=1):   0%|          | 0/7 [00:00<?, ? examples/s]
+[36m(TaskRunner pid=2587616)[0m Filtering prompts longer than 16384 tokens (num_proc=1): 100%|██████████| 7/7 [00:00<00:00, 10.05 examples/s]
+[36m(TaskRunner pid=2587616)[0m filter dataset len: 7
+[36m(TaskRunner pid=2587616)[0m Using dataset class: RLHFDataset
+[36m(TaskRunner pid=2587616)[0m Filtering prompts longer than 16384 tokens (num_proc=1): 100%|██████████| 7/7 [00:00<00:00,  8.56 examples/s]
+[36m(TaskRunner pid=2587616)[0m dataset len: 128
+[36m(TaskRunner pid=2587616)[0m Setting TOKENIZERS_PARALLELISM=false for forked processes.
+[36m(TaskRunner pid=2587616)[0m WARNING:2026-06-06 11:00:11,510:Setting TOKENIZERS_PARALLELISM=false for forked processes.
+[36m(TaskRunner pid=2587616)[0m Filtering prompts longer than 16384 tokens (num_proc=1):   0%|          | 0/128 [00:00<?, ? examples/s]
+[36m(TaskRunner pid=2587616)[0m Filtering prompts longer than 16384 tokens (num_proc=1): 100%|██████████| 128/128 [00:00<00:00, 183.74 examples/s]
+[36m(TaskRunner pid=2587616)[0m filter dataset len: 128
+[36m(TaskRunner pid=2587616)[0m WARNING: val_batch_size is deprecated. Validation datasets are sent to inference engines as a whole batch, which will schedule the memory themselves.
+[36m(TaskRunner pid=2587616)[0m [validate_config] All configuration checks passed successfully!
+[36m(TaskRunner pid=2587616)[0m Filtering prompts longer than 16384 tokens (num_proc=1): 100%|██████████| 128/128 [00:00<00:00, 155.36 examples/s]
+[36m(TaskRunner pid=2587616)[0m Size of train dataloader: 1, Size of val dataloader: 1
+[36m(TaskRunner pid=2587616)[0m Total training steps: 1
+[36m(TaskRunner pid=2587616)[0m colocated worker base class <class 'verl.single_controller.base.worker.Worker'>
+[36m(TaskRunner pid=2587616)[0m DeprecationWarning: `ray.state.available_resources_per_node` is a private attribute and access will be removed in a future Ray version.
+[36m(TaskRunner pid=2587616)[0m WARNING:2026-06-06 11:00:13,463:Waiting for register center actor v8YrWR_register_center to be ready. Elapsed time: 0 seconds out of 300 seconds.
+[33m(raylet)[0m [2026-06-06 11:00:16,938 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2964.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-06 11:00:26,948 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2964.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=2592767)[0m Monkey patch _flash_attention_forward in transformers.integrations.flash_attention
+[36m(WorkerDict pid=2592767)[0m You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[36m(WorkerDict pid=2592408)[0m Model config after override: Qwen2Config {
+[36m(WorkerDict pid=2592408)[0m   "architectures": [
+[36m(WorkerDict pid=2592408)[0m     "Qwen2ForCausalLM"
+[36m(WorkerDict pid=2592408)[0m   ],
+[36m(WorkerDict pid=2592408)[0m   "attention_dropout": 0.0,
+[36m(WorkerDict pid=2592408)[0m   "eos_token_id": 151645,
+[36m(WorkerDict pid=2592408)[0m   "hidden_act": "silu",
+[36m(WorkerDict pid=2592408)[0m   "hidden_size": 896,
+[36m(WorkerDict pid=2592408)[0m   "initializer_range": 0.02,
+[36m(WorkerDict pid=2592408)[0m   "intermediate_size": 4864,
+[36m(WorkerDict pid=2592408)[0m   "max_position_embeddings": 32768,
+[36m(WorkerDict pid=2592408)[0m   "max_window_layers": 21,
+[36m(WorkerDict pid=2592408)[0m   "model_type": "qwen2",
+[36m(WorkerDict pid=2592408)[0m   "num_attention_heads": 14,
+[36m(WorkerDict pid=2592408)[0m   "num_hidden_layers": 24,
+[36m(WorkerDict pid=2592408)[0m   "num_key_value_heads": 2,
+[36m(WorkerDict pid=2592408)[0m   "pad_token_id": 151643,
+[36m(WorkerDict pid=2592408)[0m   "rms_norm_eps": 1e-06,
+[36m(WorkerDict pid=2592408)[0m   "rope_scaling": null,
+[36m(WorkerDict pid=2592408)[0m   "rope_theta": 1000000.0,
+[36m(WorkerDict pid=2592408)[0m   "sliding_window": 32768,
+[36m(WorkerDict pid=2592408)[0m   "tie_word_embeddings": true,
+[36m(WorkerDict pid=2592408)[0m   "torch_dtype": "bfloat16",
+[36m(WorkerDict pid=2592408)[0m   "transformers_version": "4.51.1",
+[36m(WorkerDict pid=2592408)[0m   "use_cache": true,
+[36m(WorkerDict pid=2592408)[0m   "use_sliding_window": false,
+[36m(WorkerDict pid=2592408)[0m   "vocab_size": 151936
+[36m(WorkerDict pid=2592408)[0m }
+[36m(WorkerDict pid=2592408)[0m 
+[36m(WorkerDict pid=2592408)[0m Qwen2ForCausalLM contains 494.03M parameters
+[36m(WorkerDict pid=2592408)[0m wrap_policy: functools.partial(<function _or_policy at 0x7ac035bc2980>, policies=[functools.partial(<function transformer_auto_wrap_policy at 0x7ac035bc2840>, transformer_layer_cls={<class 'transformers.models.qwen2.modeling_qwen2.Qwen2DecoderLayer'>})])
+[36m(WorkerDict pid=2592408)[0m NCCL version 2.21.5+cuda12.4
+[36m(WorkerDict pid=2592408)[0m Actor use_remove_padding=True
+[36m(WorkerDict pid=2592408)[0m Actor use_fused_kernels=False
+[36m(WorkerDict pid=2592408)[0m Flash Attention 2.0 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen2ForCausalLM is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `torch_dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", torch_dtype=torch.float16)`
+[36m(WorkerDict pid=2592408)[0m Model config after override: Qwen2Config {
+[36m(WorkerDict pid=2592408)[0m   "architectures": [
+[36m(WorkerDict pid=2592408)[0m     "Qwen2ForCausalLM"
+[36m(WorkerDict pid=2592408)[0m   ],
+[36m(WorkerDict pid=2592408)[0m   "attention_dropout": 0.0,
+[36m(WorkerDict pid=2592408)[0m   "eos_token_id": 151645,
+[36m(WorkerDict pid=2592408)[0m   "hidden_act": "silu",
+[36m(WorkerDict pid=2592408)[0m   "hidden_size": 896,
+[36m(WorkerDict pid=2592408)[0m   "initializer_range": 0.02,
+[36m(WorkerDict pid=2592408)[0m   "intermediate_size": 4864,
+[36m(WorkerDict pid=2592408)[0m   "max_position_embeddings": 32768,
+[36m(WorkerDict pid=2592408)[0m   "max_window_layers": 21,
+[36m(WorkerDict pid=2592408)[0m   "model_type": "qwen2",
+[36m(WorkerDict pid=2592408)[0m   "num_attention_heads": 14,
+[36m(WorkerDict pid=2592408)[0m   "num_hidden_layers": 24,
+[36m(WorkerDict pid=2592408)[0m   "num_key_value_heads": 2,
+[36m(WorkerDict pid=2592408)[0m   "pad_token_id": 151643,
+[36m(WorkerDict pid=2592408)[0m   "rms_norm_eps": 1e-06,
+[36m(WorkerDict pid=2592408)[0m   "rope_scaling": null,
+[36m(WorkerDict pid=2592408)[0m   "rope_theta": 1000000.0,
+[36m(WorkerDict pid=2592408)[0m   "sliding_window": 32768,
+[36m(WorkerDict pid=2592408)[0m   "tie_word_embeddings": true,
+[36m(WorkerDict pid=2592408)[0m   "torch_dtype": "bfloat16",
+[36m(WorkerDict pid=2592408)[0m   "transformers_version": "4.51.1",
+[36m(WorkerDict pid=2592408)[0m   "use_cache": true,
+[36m(WorkerDict pid=2592408)[0m   "use_sliding_window": false,
+[36m(WorkerDict pid=2592408)[0m   "vocab_size": 151936
+[36m(WorkerDict pid=2592408)[0m }
+[36m(WorkerDict pid=2592408)[0m 
+[36m(WorkerDict pid=2592408)[0m Qwen2ForCausalLM contains 494.03M parameters
+[36m(WorkerDict pid=2592408)[0m Total steps: 1, num_warmup_steps: 0
+[36m(WorkerDict pid=2592767)[0m Monkey patch _flash_attention_forward in transformers.integrations.flash_attention[32m [repeated 3x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(WorkerDict pid=2592767)[0m wrap_policy: functools.partial(<function _or_policy at 0x7577e07b6980>, policies=[functools.partial(<function transformer_auto_wrap_policy at 0x7577e07b6840>, transformer_layer_cls={<class 'transformers.models.qwen2.modeling_qwen2.Qwen2DecoderLayer'>})])[32m [repeated 3x across cluster][0m
+[33m(raylet)[0m [2026-06-06 11:00:36,957 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2964.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=2592408)[0m You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[36m(WorkerDict pid=2592767)[0m Flash Attention 2.0 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen2ForCausalLM is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `torch_dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", torch_dtype=torch.float16)`
+[36m(WorkerDict pid=2592408)[0m WARNING 06-06 11:00:44 [arg_utils.py:1658] VLLM_ATTENTION_BACKEND=XFORMERS is not supported by the V1 Engine. Falling back to V0. We recommend to remove VLLM_ATTENTION_BACKEND=XFORMERS from your config in favor of the V1 Engine.
+[36m(WorkerDict pid=2592767)[0m Actor use_remove_padding=True[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=2592767)[0m Actor use_fused_kernels=False[32m [repeated 3x across cluster][0m
+[36m(WorkerDict pid=2592767)[0m Total steps: 1, num_warmup_steps: 0
+[33m(raylet)[0m [2026-06-06 11:00:46,966 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2964.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:   0%|          | 0/35 [00:00<?, ?it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:   3%|▎         | 1/35 [00:00<00:31,  1.08it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:   6%|▌         | 2/35 [00:01<00:29,  1.14it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:   9%|▊         | 3/35 [00:02<00:27,  1.15it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  11%|█▏        | 4/35 [00:03<00:25,  1.23it/s]
+[33m(raylet)[0m [2026-06-06 11:00:56,977 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2964.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  14%|█▍        | 5/35 [00:04<00:25,  1.18it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  17%|█▋        | 6/35 [00:05<00:23,  1.21it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  20%|██        | 7/35 [00:05<00:22,  1.25it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  23%|██▎       | 8/35 [00:06<00:19,  1.37it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  26%|██▌       | 9/35 [00:06<00:17,  1.45it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  29%|██▊       | 10/35 [00:07<00:16,  1.51it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  31%|███▏      | 11/35 [00:08<00:15,  1.53it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  34%|███▍      | 12/35 [00:08<00:14,  1.58it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  37%|███▋      | 13/35 [00:09<00:13,  1.61it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  40%|████      | 14/35 [00:10<00:13,  1.56it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  43%|████▎     | 15/35 [00:10<00:12,  1.58it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  46%|████▌     | 16/35 [00:11<00:11,  1.62it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  49%|████▊     | 17/35 [00:11<00:11,  1.63it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  51%|█████▏    | 18/35 [00:12<00:10,  1.64it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  54%|█████▍    | 19/35 [00:13<00:09,  1.62it/s]
+[33m(raylet)[0m [2026-06-06 11:01:06,987 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2964.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  57%|█████▋    | 20/35 [00:13<00:09,  1.64it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  60%|██████    | 21/35 [00:14<00:08,  1.67it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  63%|██████▎   | 22/35 [00:14<00:07,  1.63it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  66%|██████▌   | 23/35 [00:15<00:07,  1.62it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  69%|██████▊   | 24/35 [00:16<00:07,  1.48it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  71%|███████▏  | 25/35 [00:16<00:06,  1.54it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  74%|███████▍  | 26/35 [00:17<00:05,  1.60it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  77%|███████▋  | 27/35 [00:18<00:04,  1.62it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  80%|████████  | 28/35 [00:18<00:04,  1.62it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  83%|████████▎ | 29/35 [00:19<00:03,  1.65it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  86%|████████▌ | 30/35 [00:19<00:03,  1.65it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  89%|████████▊ | 31/35 [00:20<00:02,  1.65it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  91%|█████████▏| 32/35 [00:21<00:01,  1.66it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  94%|█████████▍| 33/35 [00:21<00:01,  1.53it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes:  97%|█████████▋| 34/35 [00:22<00:00,  1.56it/s]
+[36m(WorkerDict pid=2592408)[0m Capturing CUDA graph shapes: 100%|██████████| 35/35 [00:23<00:00,  1.50it/s]Capturing CUDA graph shapes: 100%|██████████| 35/35 [00:23<00:00,  1.51it/s]
+[33m(raylet)[0m [2026-06-06 11:01:16,998 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2964.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=2592767)[0m kwargs: {'n': 1, 'logprobs': 0, 'max_tokens': 1024, 'detokenize': False, 'temperature': 1.0, 'top_k': -1, 'top_p': 1, 'ignore_eos': False}
+[36m(WorkerDict pid=2592767)[0m WARNING 06-06 11:00:45 [arg_utils.py:1658] VLLM_ATTENTION_BACKEND=XFORMERS is not supported by the V1 Engine. Falling back to V0. We recommend to remove VLLM_ATTENTION_BACKEND=XFORMERS from your config in favor of the V1 Engine.
+[36m(WorkerDict pid=2592767)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:690: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+[36m(WorkerDict pid=2592767)[0m   warnings.warn(
+[33m(raylet)[0m [2026-06-06 11:01:27,008 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2964.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2587616)[0m Using LocalLogger is deprecated. The constructor API will change 
+[36m(TaskRunner pid=2587616)[0m Checkpoint tracker file does not exist: %s /diskpool/home/xuxz/Code-for-DPEPO/webshop_checkpoint_para/latest_checkpointed_iteration.txt
+[36m(TaskRunner pid=2587616)[0m Training from scratch
+[36m(TaskRunner pid=2587616)[0m Training Progress:   0%|          | 0/1 [00:00<?, ?it/s]
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m   0%|          | 0/4 [00:00<?, ?it/s][A100%|██████████| 4/4 [00:00<00:00, 110.17it/s]
+[36m(WorkerDict pid=2592408)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:690: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+[36m(WorkerDict pid=2592408)[0m   warnings.warn(
+[33m(raylet)[0m [2026-06-06 11:01:37,018 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2964.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-06 11:01:47,072 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.44 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m   0%|          | 0/25 [00:00<?, ?it/s][A
+[33m(raylet)[0m [2026-06-06 11:01:57,081 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.06 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m   4%|▍         | 1/25 [00:06<02:43,  6.82s/it][A
+[33m(raylet)[0m [2026-06-06 11:02:07,090 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.06 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m   8%|▊         | 2/25 [00:19<03:55, 10.25s/it][A
+[33m(raylet)[0m [2026-06-06 11:02:17,100 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.06 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m  12%|█▏        | 3/25 [00:27<03:23,  9.23s/it][A
+[33m(raylet)[0m [2026-06-06 11:02:27,110 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.06 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m  16%|█▌        | 4/25 [00:35<03:06,  8.88s/it][A
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m  20%|██        | 5/25 [00:43<02:49,  8.45s/it][A
+[33m(raylet)[0m [2026-06-06 11:02:37,119 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.06 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m  24%|██▍       | 6/25 [00:50<02:30,  7.94s/it][A
+[33m(raylet)[0m [2026-06-06 11:02:47,128 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.06 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m  28%|██▊       | 7/25 [00:58<02:23,  7.96s/it][A
+[33m(raylet)[0m [2026-06-06 11:02:57,137 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.06 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m  32%|███▏      | 8/25 [01:13<02:56, 10.37s/it][A
+[33m(raylet)[0m [2026-06-06 11:03:07,145 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.06 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m  36%|███▌      | 9/25 [01:21<02:33,  9.62s/it][A
+[33m(raylet)[0m [2026-06-06 11:03:17,154 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.06 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m  40%|████      | 10/25 [01:29<02:12,  8.87s/it][A
+[33m(raylet)[0m [2026-06-06 11:03:27,164 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.06 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m  44%|████▍     | 11/25 [01:36<01:56,  8.33s/it][A
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m  48%|████▊     | 12/25 [01:43<01:43,  7.96s/it][A
+[33m(raylet)[0m [2026-06-06 11:03:37,172 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.05 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m  52%|█████▏    | 13/25 [01:51<01:35,  7.99s/it][A
+[33m(raylet)[0m [2026-06-06 11:03:47,181 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.05 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m  56%|█████▌    | 14/25 [01:58<01:25,  7.80s/it][A
+[33m(raylet)[0m [2026-06-06 11:03:57,190 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.05 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m  60%|██████    | 15/25 [02:06<01:18,  7.87s/it][A
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m  64%|██████▍   | 16/25 [02:12<01:05,  7.32s/it][A
+[33m(raylet)[0m [2026-06-06 11:04:07,199 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.05 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-06 11:04:17,208 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.05 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m  68%|██████▊   | 17/25 [02:28<01:18,  9.76s/it][A
+[33m(raylet)[0m [2026-06-06 11:04:27,217 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.05 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m  72%|███████▏  | 18/25 [02:35<01:03,  9.04s/it][A
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m  76%|███████▌  | 19/25 [02:43<00:51,  8.64s/it][A
+[33m(raylet)[0m [2026-06-06 11:04:37,227 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.05 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m  80%|████████  | 20/25 [02:51<00:41,  8.37s/it][A
+[33m(raylet)[0m [2026-06-06 11:04:47,235 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.05 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m  84%|████████▍ | 21/25 [02:59<00:33,  8.28s/it][A
+[33m(raylet)[0m [2026-06-06 11:04:57,243 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.05 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m  88%|████████▊ | 22/25 [03:06<00:24,  8.13s/it][A
+[33m(raylet)[0m [2026-06-06 11:05:07,251 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.05 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m  92%|█████████▏| 23/25 [03:17<00:17,  8.82s/it][A
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m  96%|█████████▌| 24/25 [03:25<00:08,  8.63s/it][A
+[33m(raylet)[0m [2026-06-06 11:05:17,260 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.05 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2587616)[0m 
+[36m(TaskRunner pid=2587616)[0m 100%|██████████| 25/25 [03:33<00:00,  8.42s/it][A100%|██████████| 25/25 [03:33<00:00,  8.54s/it]
+[33m(raylet)[0m [2026-06-06 11:05:27,267 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.05 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-06 11:05:37,275 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.05 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-06 11:05:47,283 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.05 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-06 11:05:57,292 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.05 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2587616)[0m list(reward_extra_infos_dict.keys())=[]
+[36m(WorkerDict pid=2592408)[0m kwargs: {'n': 1, 'logprobs': 0, 'max_tokens': 1024, 'detokenize': False, 'temperature': 1.0, 'top_k': -1, 'top_p': 1, 'ignore_eos': False}
+[33m(raylet)[0m [2026-06-06 11:06:07,301 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.05 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-06 11:06:17,309 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.05 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-06 11:06:27,317 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.05 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-06 11:06:37,327 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.05 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-06 11:06:47,335 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.05 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-06 11:06:57,344 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.05 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-06 11:07:07,352 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.05 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-06 11:07:17,360 E 2579725 2579765] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_10-59-54_485542_2578461 is over 95% full, available space: 2962.05 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2587616)[0m Skipping validation: no gamefile in test batch, returning empty metrics
+[36m(TaskRunner pid=2587616)[0m local_global_step_folder: /diskpool/home/xuxz/Code-for-DPEPO/webshop_checkpoint_para/global_step_1
+[36m(TaskRunner pid=2587616)[0m step:1 - global_seqlen/min:719535.000 - global_seqlen/max:777677.000 - global_seqlen/minmax_diff:58142.000 - global_seqlen/balanced_min:748606.000 - global_seqlen/balanced_max:748606.000 - global_seqlen/mean:748606.000 - actor/entropy_loss:0.585 - training/rollout_probs_diff_max:0.388 - training/rollout_probs_diff_mean:0.004 - training/rollout_probs_diff_std:0.009 - actor/kl_loss:0.014 - actor/kl_coef:0.010 - actor/pg_loss:0.000 - actor/pg_clipfrac:0.000 - actor/ppo_kl:0.012 - actor/pg_clipfrac_lower:0.000 - actor/grad_norm:0.022 - perf/mfu/actor:0.270 - perf/max_memory_allocated_gb:49.072 - perf/max_memory_reserved_gb:63.912 - perf/cpu_memory_used_gb:633.884 - actor/lr:0.000 - training/global_step:1.000 - training/epoch:0.000 - critic/score/mean:0.000 - critic/score/max:0.000 - critic/score/min:0.000 - critic/rewards/mean:0.000 - critic/rewards/max:0.000 - critic/rewards/min:0.000 - critic/advantages/mean:0.000 - critic/advantages/max:0.000 - critic/advantages/min:0.000 - critic/returns/mean:0.000 - critic/returns/max:0.000 - critic/returns/min:0.000 - response_length/mean:195.889 - response_length/max:1024.000 - response_length/min:2.000 - response_length/clip_ratio:0.040 - prompt_length/mean:1675.626 - prompt_length/max:8559.000 - prompt_length/min:402.000 - prompt_length/clip_ratio:0.000 - episode/reward/mean:0.000 - episode/reward/max:0.000 - episode/reward/min:0.000 - episode/length/mean:25.000 - episode/length/max:25.000 - episode/length/min:25.000 - episode/tool_call_count/mean:0.000 - episode/tool_call_count/max:0.000 - episode/tool_call_count/min:0.000 - timing_s/gen:237.558 - timing_s/reward:0.450 - timing_s/old_log_prob:18.545 - timing_s/ref:18.519 - timing_s/adv:0.042 - timing_s/update_actor:73.213 - timing_s/testing:0.807 - timing_s/save_checkpoint:0.288 - timing_s/step:349.751 - timing_per_token_ms/adv:0.000 - timing_per_token_ms/gen:1.516 - timing_per_token_ms/ref:0.012 - timing_per_token_ms/update_actor:0.049 - perf/total_num_tokens:1497212.000 - perf/time_per_step:349.751 - perf/throughput:2140.400
+[36m(TaskRunner pid=2587616)[0m 'Final validation metrics: {}'
+[36m(TaskRunner pid=2587616)[0m Training Progress: 100%|██████████| 1/1 [05:50<00:00, 350.29s/it]Training Progress: 100%|██████████| 1/1 [05:50<00:00, 350.29s/it]

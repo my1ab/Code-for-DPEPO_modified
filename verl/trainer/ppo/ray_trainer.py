@@ -731,14 +731,21 @@ class RayPPOTrainer:
 
 
             if self.lazy_envs:
-                current_step_gamefiles = test_batch.non_tensor_batch['gamefile']
-
-                self.val_envs = self.build_env_func(
-                    gamefiles=current_step_gamefiles,
-                    group_n=self.config.actor_rollout_ref.rollout.val_kwargs.n,
-                    resources_per_worker={'num_cpus': self.config.env.resources_per_worker.num_cpus},
-                    num_parallel=self.config.env.num_parallel,
-                )
+                if 'gamefile' in test_batch.non_tensor_batch:
+                    current_step_gamefiles = test_batch.non_tensor_batch['gamefile']
+                    self.val_envs = self.build_env_func(
+                        gamefiles=current_step_gamefiles,
+                        group_n=self.config.actor_rollout_ref.rollout.val_kwargs.n,
+                        resources_per_worker={'num_cpus': self.config.env.resources_per_worker.num_cpus},
+                        num_parallel=self.config.env.num_parallel,
+                    )
+                else:
+                    current_step_gamefiles = None
+            
+            # if no gamefile, skip env validation (e.g., test.parquet without gamefile field)
+            if self.lazy_envs and current_step_gamefiles is None:
+                print("Skipping validation: no gamefile in test batch, returning empty metrics")
+                return {}
             
             # we only do validation on rule-based rm
             if self.config.reward_model.enable and test_batch[0].non_tensor_batch["reward_model"]["style"] == "model":
@@ -797,81 +804,66 @@ class RayPPOTrainer:
                 )
             
             
-            accuracy = np.sum(total_episode_rewards) / 140 
-        
-        
-        #     print('validation generation end') 
-        #     del test_batch 
-        #     test_batch = test_output_gen_batch
-        #     # Store generated outputs
-        #     output_ids = test_output_gen_batch.batch["responses"] 
-        #     output_texts = [self.tokenizer.decode(ids, skip_special_tokens=True) for ids in output_ids]
-        #     sample_outputs.extend(output_texts)
+            accuracy = np.sum(total_episode_rewards) / len(total_episode_rewards) if len(total_episode_rewards) > 0 else 0.0
 
-        #     # test_batch = test_batch.union(test_output_gen_batch)
+            # Build validation metrics from trajectory collector results
+            sample_scores.extend(total_episode_rewards)
+            sample_outputs.extend([str(l) for l in total_episode_lengths])
 
-        #     # evaluate using reward_function 
-        #     result = self.val_reward_fn(test_batch, return_dict=True)
-        #     reward_tensor = result["reward_tensor"]
-        #     scores = reward_tensor.sum(-1).cpu().tolist()
-        #     sample_scores.extend(scores)
+            for batch in total_batch_list:
+                if hasattr(batch, 'non_tensor_batch') and batch.non_tensor_batch is not None:
+                    ds = batch.non_tensor_batch.get('data_source', ['unknown'])
+                    data_source_lst.extend(ds if isinstance(ds, list) else [ds])
 
-        #     reward_tensor_lst.append(reward_tensor)
-        #     data_source_lst.append(test_batch.non_tensor_batch.get('data_source', ['unknown'] * reward_tensor.shape[0]))
-        #     tool_calling_list.append(test_output_gen_batch.non_tensor_batch['tool_callings'])
-        #     traj_uid_list.append(test_output_gen_batch.non_tensor_batch['traj_uid'])
-        #     # success rate 
-        #     for k in test_batch.non_tensor_batch.keys():
-        #         if 'success_rate' in k:
-        #             if k not in success_rate_dict:
-        #                 success_rate_dict[k] = []
-        #             success_rate_dict[k].append(test_batch.non_tensor_batch[k][0])
-        #             # all success_rate should be the same
-        #             for i in range(1, len(test_batch.non_tensor_batch[k])):
-        #                 assert test_batch.non_tensor_batch[k][0] == test_batch.non_tensor_batch[k][i], f'not all success_rate are the same, 0: {test_batch.non_tensor_batch[k][0]}, {i}: {test_batch.non_tensor_batch[k][i]}'
-        
-        # self._maybe_log_val_generations(inputs=sample_inputs, outputs=sample_outputs, scores=sample_scores)
+                    for k in batch.non_tensor_batch.keys():
+                        if 'success_rate' in k:
+                            if k not in success_rate_dict:
+                                success_rate_dict[k] = []
+                            success_rate_dict[k].extend(batch.non_tensor_batch[k] if isinstance(batch.non_tensor_batch[k], list) else [batch.non_tensor_batch[k]])
 
-        # reward_tensor = torch.cat(reward_tensor_lst, dim=0).sum(-1).cpu()  # (batch_size,)
-        # data_sources = np.concatenate(data_source_lst, axis=0)
-        # tool_callings = np.concatenate(tool_calling_list, axis=0)
-        # traj_uids = np.concatenate(traj_uid_list, axis=0)
-        # success_rate = {k: np.mean(v) for k, v in success_rate_dict.items()}
+            traj_uids = np.array(total_traj_uid) if isinstance(total_traj_uid, list) else np.array(list(total_traj_uid))
+            tool_callings = np.array(totoal_tool_callings) if isinstance(totoal_tool_callings, list) else np.array(list(totoal_tool_callings))
 
-        # # evaluate test_score based on data source
-        # data_source_reward = {}
-        # for i in range(reward_tensor.shape[0]):
-        #     data_source = data_sources[i]
-        #     if data_source not in data_source_reward:
-        #         data_source_reward[data_source] = []
-        #     data_source_reward[data_source].append(reward_tensor[i].item())
+            success_rate = {k: np.mean(v) for k, v in success_rate_dict.items()} if success_rate_dict else {"val/success_rate": accuracy}
 
-        # # evaluate tool call based on data source
-        # # the values in tool_callings represent the tool call count for each trajectory; however, since the batch is expanded by step, we only need to take one value for each unique trajectories.
-        # data_source_tool_calling = {}
-        # unique_traj_uid, unique_idx = np.unique(traj_uids, return_index=True)
-        # unique_data_sources = data_sources[unique_idx]
-        # unique_tool_callings = tool_callings[unique_idx]
+        reward_tensor = torch.tensor(total_episode_rewards).cpu()
 
-        # for i in range(unique_tool_callings.shape[0]):
-        #     data_source = unique_data_sources[i]
-        #     if data_source not in data_source_tool_calling:
-        #         data_source_tool_calling[data_source] = []
-        #     data_source_tool_calling[data_source].append(unique_tool_callings[i].item())
+        data_sources = np.array(data_source_lst) if data_source_lst else np.array(['unknown'] * len(total_episode_rewards))
 
-        # metric_dict = {}
-        # for data_source, rewards in data_source_reward.items():
-        #     metric_dict[f'val/{data_source}/test_score'] = np.mean(rewards)
+        data_source_reward = {}
+        for i in range(len(total_episode_rewards)):
+            ds = data_sources[i] if i < len(data_sources) else 'unknown'
+            if ds not in data_source_reward:
+                data_source_reward[ds] = []
+            data_source_reward[ds].append(reward_tensor[i].item())
 
-        # for data_source, tool_calls in data_source_tool_calling.items():
-        #     metric_dict[f'val/{data_source}/tool_call_count/mean'] = np.mean(tool_calls)
-        #     metric_dict[f'val/{data_source}/tool_call_count/max'] = np.max(tool_calls)
-        #     metric_dict[f'val/{data_source}/tool_call_count/min'] = np.min(tool_calls)
+        data_source_tool_calling = {}
+        if len(traj_uids) > 0 and len(tool_callings) > 0:
+            unique_traj_uid, unique_idx = np.unique(traj_uids, return_index=True)
+            unique_data_sources = data_sources[unique_idx] if len(data_sources) >= len(unique_idx) else data_sources
+            unique_tool_callings = tool_callings[unique_idx] if len(tool_callings) >= len(unique_idx) else tool_callings
 
-        # for k, v in success_rate.items():
-        #     metric_dict[f'val/{k}'] = v
+            for i in range(len(unique_tool_callings)):
+                ds = unique_data_sources[i] if i < len(unique_data_sources) else 'unknown'
+                if ds not in data_source_tool_calling:
+                    data_source_tool_calling[ds] = []
+                data_source_tool_calling[ds].append(unique_tool_callings[i].item())
 
-        # return metric_dict
+        metric_dict = {}
+        for data_source, rewards in data_source_reward.items():
+            metric_dict[f'val/{data_source}/test_score'] = np.mean(rewards)
+
+        for data_source, tool_calls in data_source_tool_calling.items():
+            metric_dict[f'val/{data_source}/tool_call_count/mean'] = np.mean(tool_calls)
+            metric_dict[f'val/{data_source}/tool_call_count/max'] = np.max(tool_calls)
+            metric_dict[f'val/{data_source}/tool_call_count/min'] = np.min(tool_calls)
+
+        for k, v in success_rate.items():
+            metric_dict[f'val/{k}'] = v
+
+        self._maybe_log_val_generations(inputs=sample_inputs, outputs=sample_outputs, scores=sample_scores)
+
+        return metric_dict
 
     def init_workers(self):
         """Initialize distributed training workers using Ray backend.
@@ -979,6 +971,8 @@ class RayPPOTrainer:
             self.critic_wg.save_checkpoint(critic_local_path, critic_remote_path, self.global_steps, max_ckpt_to_keep=max_critic_ckpt_to_keep)
 
         # save dataloader
+        # 创建ckpt文件夹
+        os.makedirs(local_global_step_folder, exist_ok=True)
         dataloader_local_path = os.path.join(local_global_step_folder, "data.pt")
         dataloader_state_dict = self.train_dataloader.state_dict()
         torch.save(dataloader_state_dict, dataloader_local_path)
@@ -1104,7 +1098,6 @@ class RayPPOTrainer:
 
                 if self.lazy_envs:
                     current_step_gamefiles = batch.non_tensor_batch['gamefile']
-                    current_step_gamefiles = [json.loads(elem) for elem in batch.non_tensor_batch['gamefile']]
                     batch.non_tensor_batch['gamefile'] = current_step_gamefiles
 
                     self.envs = self.build_env_func(

@@ -1,0 +1,439 @@
+2026-06-06 14:15:39,220	INFO worker.py:1908 -- Started a local Ray instance. View the dashboard at [1m[32mhttp://127.0.0.1:8265 [39m[22m
+[36m(TaskRunner pid=2952510)[0m {'actor_rollout_ref': {'actor': {'checkpoint': {'contents': ['model',
+[36m(TaskRunner pid=2952510)[0m                                                              'optimizer',
+[36m(TaskRunner pid=2952510)[0m                                                              'extra']},
+[36m(TaskRunner pid=2952510)[0m                                  'clip_ratio': 0.2,
+[36m(TaskRunner pid=2952510)[0m                                  'clip_ratio_c': 3.0,
+[36m(TaskRunner pid=2952510)[0m                                  'clip_ratio_high': 0.2,
+[36m(TaskRunner pid=2952510)[0m                                  'clip_ratio_low': 0.2,
+[36m(TaskRunner pid=2952510)[0m                                  'entropy_coeff': 0.001,
+[36m(TaskRunner pid=2952510)[0m                                  'fsdp_config': {'fsdp_size': -1,
+[36m(TaskRunner pid=2952510)[0m                                                  'offload_policy': False,
+[36m(TaskRunner pid=2952510)[0m                                                  'optimizer_offload': True,
+[36m(TaskRunner pid=2952510)[0m                                                  'param_offload': True,
+[36m(TaskRunner pid=2952510)[0m                                                  'reshard_after_forward': True,
+[36m(TaskRunner pid=2952510)[0m                                                  'wrap_policy': {'min_num_params': 0}},
+[36m(TaskRunner pid=2952510)[0m                                  'grad_clip': 1.0,
+[36m(TaskRunner pid=2952510)[0m                                  'invalid_action_penalty_coef': 0.1,
+[36m(TaskRunner pid=2952510)[0m                                  'kl_loss_coef': 0.01,
+[36m(TaskRunner pid=2952510)[0m                                  'kl_loss_type': 'low_var_kl',
+[36m(TaskRunner pid=2952510)[0m                                  'loss_agg_mode': 'token-mean',
+[36m(TaskRunner pid=2952510)[0m                                  'optim': {'lr': 1e-06,
+[36m(TaskRunner pid=2952510)[0m                                            'lr_warmup_steps': -1,
+[36m(TaskRunner pid=2952510)[0m                                            'lr_warmup_steps_ratio': 0.0,
+[36m(TaskRunner pid=2952510)[0m                                            'min_lr_ratio': 0.0,
+[36m(TaskRunner pid=2952510)[0m                                            'num_cycles': 0.5,
+[36m(TaskRunner pid=2952510)[0m                                            'total_training_steps': -1,
+[36m(TaskRunner pid=2952510)[0m                                            'warmup_style': 'constant',
+[36m(TaskRunner pid=2952510)[0m                                            'weight_decay': 0.01},
+[36m(TaskRunner pid=2952510)[0m                                  'ppo_epochs': 1,
+[36m(TaskRunner pid=2952510)[0m                                  'ppo_max_token_len_per_gpu': 16384,
+[36m(TaskRunner pid=2952510)[0m                                  'ppo_micro_batch_size': None,
+[36m(TaskRunner pid=2952510)[0m                                  'ppo_micro_batch_size_per_gpu': 4,
+[36m(TaskRunner pid=2952510)[0m                                  'ppo_mini_batch_size': 32,
+[36m(TaskRunner pid=2952510)[0m                                  'shuffle': False,
+[36m(TaskRunner pid=2952510)[0m                                  'strategy': 'fsdp',
+[36m(TaskRunner pid=2952510)[0m                                  'ulysses_sequence_parallel_size': 1,
+[36m(TaskRunner pid=2952510)[0m                                  'use_dynamic_bsz': False,
+[36m(TaskRunner pid=2952510)[0m                                  'use_invalid_action_penalty': False,
+[36m(TaskRunner pid=2952510)[0m                                  'use_kl_loss': True,
+[36m(TaskRunner pid=2952510)[0m                                  'use_torch_compile': True},
+[36m(TaskRunner pid=2952510)[0m                        'hybrid_engine': True,
+[36m(TaskRunner pid=2952510)[0m                        'model': {'enable_activation_offload': False,
+[36m(TaskRunner pid=2952510)[0m                                  'enable_gradient_checkpointing': True,
+[36m(TaskRunner pid=2952510)[0m                                  'external_lib': None,
+[36m(TaskRunner pid=2952510)[0m                                  'lora_alpha': 32,
+[36m(TaskRunner pid=2952510)[0m                                  'lora_rank': 32,
+[36m(TaskRunner pid=2952510)[0m                                  'override_config': {},
+[36m(TaskRunner pid=2952510)[0m                                  'path': '/diskpool/home/xuxz/ms-swift/model/Qwen2.5-0.5B-Instruct',
+[36m(TaskRunner pid=2952510)[0m                                  'target_modules': 'all-linear',
+[36m(TaskRunner pid=2952510)[0m                                  'trust_remote_code': False,
+[36m(TaskRunner pid=2952510)[0m                                  'use_fused_kernels': False,
+[36m(TaskRunner pid=2952510)[0m                                  'use_liger': False,
+[36m(TaskRunner pid=2952510)[0m                                  'use_remove_padding': True,
+[36m(TaskRunner pid=2952510)[0m                                  'use_shm': False},
+[36m(TaskRunner pid=2952510)[0m                        'ref': {'fsdp_config': {'param_offload': True,
+[36m(TaskRunner pid=2952510)[0m                                                'reshard_after_forward': True,
+[36m(TaskRunner pid=2952510)[0m                                                'wrap_policy': {'min_num_params': 0}},
+[36m(TaskRunner pid=2952510)[0m                                'log_prob_max_token_len_per_gpu': 16384,
+[36m(TaskRunner pid=2952510)[0m                                'log_prob_micro_batch_size': None,
+[36m(TaskRunner pid=2952510)[0m                                'log_prob_micro_batch_size_per_gpu': 4,
+[36m(TaskRunner pid=2952510)[0m                                'log_prob_use_dynamic_bsz': False,
+[36m(TaskRunner pid=2952510)[0m                                'strategy': 'fsdp',
+[36m(TaskRunner pid=2952510)[0m                                'ulysses_sequence_parallel_size': 1,
+[36m(TaskRunner pid=2952510)[0m                                'use_torch_compile': True},
+[36m(TaskRunner pid=2952510)[0m                        'rollout': {'chat_scheduler': None,
+[36m(TaskRunner pid=2952510)[0m                                    'disable_log_stats': True,
+[36m(TaskRunner pid=2952510)[0m                                    'do_sample': True,
+[36m(TaskRunner pid=2952510)[0m                                    'dtype': 'float16',
+[36m(TaskRunner pid=2952510)[0m                                    'enable_chunked_prefill': False,
+[36m(TaskRunner pid=2952510)[0m                                    'enforce_eager': False,
+[36m(TaskRunner pid=2952510)[0m                                    'engine_kwargs': {'sglang': {'attention_backend': None},
+[36m(TaskRunner pid=2952510)[0m                                                      'vllm': {'swap_space': None}},
+[36m(TaskRunner pid=2952510)[0m                                    'free_cache_engine': False,
+[36m(TaskRunner pid=2952510)[0m                                    'gpu_memory_utilization': 0.6,
+[36m(TaskRunner pid=2952510)[0m                                    'ignore_eos': False,
+[36m(TaskRunner pid=2952510)[0m                                    'layered_summon': False,
+[36m(TaskRunner pid=2952510)[0m                                    'load_format': 'dummy_dtensor',
+[36m(TaskRunner pid=2952510)[0m                                    'log_prob_max_token_len_per_gpu': 16384,
+[36m(TaskRunner pid=2952510)[0m                                    'log_prob_micro_batch_size': None,
+[36m(TaskRunner pid=2952510)[0m                                    'log_prob_micro_batch_size_per_gpu': 4,
+[36m(TaskRunner pid=2952510)[0m                                    'log_prob_use_dynamic_bsz': False,
+[36m(TaskRunner pid=2952510)[0m                                    'max_model_len': None,
+[36m(TaskRunner pid=2952510)[0m                                    'max_num_batched_tokens': 20480,
+[36m(TaskRunner pid=2952510)[0m                                    'max_num_seqs': 1024,
+[36m(TaskRunner pid=2952510)[0m                                    'mode': 'sync',
+[36m(TaskRunner pid=2952510)[0m                                    'multi_turn': {'enable': False,
+[36m(TaskRunner pid=2952510)[0m                                                   'format': 'chatml',
+[36m(TaskRunner pid=2952510)[0m                                                   'max_turns': None,
+[36m(TaskRunner pid=2952510)[0m                                                   'tool_config_path': None},
+[36m(TaskRunner pid=2952510)[0m                                    'n': 1,
+[36m(TaskRunner pid=2952510)[0m                                    'name': 'vllm',
+[36m(TaskRunner pid=2952510)[0m                                    'prompt_length': 16384,
+[36m(TaskRunner pid=2952510)[0m                                    'response_length': 1024,
+[36m(TaskRunner pid=2952510)[0m                                    'temperature': 1.0,
+[36m(TaskRunner pid=2952510)[0m                                    'tensor_model_parallel_size': 1,
+[36m(TaskRunner pid=2952510)[0m                                    'top_k': -1,
+[36m(TaskRunner pid=2952510)[0m                                    'top_p': 1,
+[36m(TaskRunner pid=2952510)[0m                                    'use_fire_sampling': False,
+[36m(TaskRunner pid=2952510)[0m                                    'val_kwargs': {'do_sample': True,
+[36m(TaskRunner pid=2952510)[0m                                                   'n': 1,
+[36m(TaskRunner pid=2952510)[0m                                                   'temperature': 0.4,
+[36m(TaskRunner pid=2952510)[0m                                                   'top_k': -1,
+[36m(TaskRunner pid=2952510)[0m                                                   'top_p': 1.0}}},
+[36m(TaskRunner pid=2952510)[0m  'algorithm': {'adv_estimator': 'grpo',
+[36m(TaskRunner pid=2952510)[0m                'filter_groups': {'enable': False, 'max_num_gen_batches': 10},
+[36m(TaskRunner pid=2952510)[0m                'gamma': 1.0,
+[36m(TaskRunner pid=2952510)[0m                'gigpo': {'enable_similarity': False,
+[36m(TaskRunner pid=2952510)[0m                          'mode': 'mean_norm',
+[36m(TaskRunner pid=2952510)[0m                          'similarity_thresh': 0.95,
+[36m(TaskRunner pid=2952510)[0m                          'step_advantage_w': 1.0},
+[36m(TaskRunner pid=2952510)[0m                'kl_ctrl': {'horizon': 10000,
+[36m(TaskRunner pid=2952510)[0m                            'kl_coef': 0.001,
+[36m(TaskRunner pid=2952510)[0m                            'target_kl': 0.1,
+[36m(TaskRunner pid=2952510)[0m                            'type': 'fixed'},
+[36m(TaskRunner pid=2952510)[0m                'kl_penalty': 'kl',
+[36m(TaskRunner pid=2952510)[0m                'lam': 1.0,
+[36m(TaskRunner pid=2952510)[0m                'norm_adv_by_std_in_grpo': True,
+[36m(TaskRunner pid=2952510)[0m                'pf_ppo': {'reweight_method': 'pow', 'weight_pow': 2.0},
+[36m(TaskRunner pid=2952510)[0m                'use_kl_in_reward': False,
+[36m(TaskRunner pid=2952510)[0m                'use_pf_ppo': False},
+[36m(TaskRunner pid=2952510)[0m  'critic': {'checkpoint': {'contents': []},
+[36m(TaskRunner pid=2952510)[0m             'cliprange_value': 0.5,
+[36m(TaskRunner pid=2952510)[0m             'forward_max_token_len_per_gpu': 32768,
+[36m(TaskRunner pid=2952510)[0m             'forward_micro_batch_size': None,
+[36m(TaskRunner pid=2952510)[0m             'forward_micro_batch_size_per_gpu': None,
+[36m(TaskRunner pid=2952510)[0m             'grad_clip': 1.0,
+[36m(TaskRunner pid=2952510)[0m             'loss_agg_mode': 'token-mean',
+[36m(TaskRunner pid=2952510)[0m             'model': {'enable_activation_offload': False,
+[36m(TaskRunner pid=2952510)[0m                       'enable_gradient_checkpointing': True,
+[36m(TaskRunner pid=2952510)[0m                       'external_lib': None,
+[36m(TaskRunner pid=2952510)[0m                       'fsdp_config': {'fsdp_size': -1,
+[36m(TaskRunner pid=2952510)[0m                                       'offload_policy': False,
+[36m(TaskRunner pid=2952510)[0m                                       'optimizer_offload': False,
+[36m(TaskRunner pid=2952510)[0m                                       'param_offload': False,
+[36m(TaskRunner pid=2952510)[0m                                       'reshard_after_forward': True,
+[36m(TaskRunner pid=2952510)[0m                                       'wrap_policy': {'min_num_params': 0}},
+[36m(TaskRunner pid=2952510)[0m                       'lora_alpha': 16,
+[36m(TaskRunner pid=2952510)[0m                       'lora_rank': 0,
+[36m(TaskRunner pid=2952510)[0m                       'override_config': {},
+[36m(TaskRunner pid=2952510)[0m                       'path': '~/models/deepseek-llm-7b-chat',
+[36m(TaskRunner pid=2952510)[0m                       'target_modules': 'all-linear',
+[36m(TaskRunner pid=2952510)[0m                       'tokenizer_path': '/diskpool/home/xuxz/ms-swift/model/Qwen2.5-0.5B-Instruct',
+[36m(TaskRunner pid=2952510)[0m                       'trust_remote_code': False,
+[36m(TaskRunner pid=2952510)[0m                       'use_remove_padding': False,
+[36m(TaskRunner pid=2952510)[0m                       'use_shm': False},
+[36m(TaskRunner pid=2952510)[0m             'optim': {'lr': 1e-05,
+[36m(TaskRunner pid=2952510)[0m                       'lr_warmup_steps_ratio': 0.0,
+[36m(TaskRunner pid=2952510)[0m                       'min_lr_ratio': None,
+[36m(TaskRunner pid=2952510)[0m                       'total_training_steps': -1,
+[36m(TaskRunner pid=2952510)[0m                       'warmup_style': 'constant',
+[36m(TaskRunner pid=2952510)[0m                       'weight_decay': 0.01},
+[36m(TaskRunner pid=2952510)[0m             'ppo_epochs': 1,
+[36m(TaskRunner pid=2952510)[0m             'ppo_max_token_len_per_gpu': 32768,
+[36m(TaskRunner pid=2952510)[0m             'ppo_micro_batch_size': None,
+[36m(TaskRunner pid=2952510)[0m             'ppo_micro_batch_size_per_gpu': None,
+[36m(TaskRunner pid=2952510)[0m             'ppo_mini_batch_size': 32,
+[36m(TaskRunner pid=2952510)[0m             'rollout_n': 1,
+[36m(TaskRunner pid=2952510)[0m             'shuffle': False,
+[36m(TaskRunner pid=2952510)[0m             'strategy': 'fsdp',
+[36m(TaskRunner pid=2952510)[0m             'ulysses_sequence_parallel_size': 1,
+[36m(TaskRunner pid=2952510)[0m             'use_dynamic_bsz': False},
+[36m(TaskRunner pid=2952510)[0m  'custom_reward_function': {'name': 'compute_score', 'path': None},
+[36m(TaskRunner pid=2952510)[0m  'data': {'custom_cls': {'name': None, 'path': None},
+[36m(TaskRunner pid=2952510)[0m           'filter_overlong_prompts': True,
+[36m(TaskRunner pid=2952510)[0m           'filter_overlong_prompts_workers': 1,
+[36m(TaskRunner pid=2952510)[0m           'image_key': 'images',
+[36m(TaskRunner pid=2952510)[0m           'max_prompt_length': 16384,
+[36m(TaskRunner pid=2952510)[0m           'max_response_length': 1024,
+[36m(TaskRunner pid=2952510)[0m           'prompt_key': 'prompt',
+[36m(TaskRunner pid=2952510)[0m           'return_full_prompt': False,
+[36m(TaskRunner pid=2952510)[0m           'return_raw_chat': True,
+[36m(TaskRunner pid=2952510)[0m           'return_raw_input_ids': False,
+[36m(TaskRunner pid=2952510)[0m           'reward_fn_key': 'data_source',
+[36m(TaskRunner pid=2952510)[0m           'shuffle': True,
+[36m(TaskRunner pid=2952510)[0m           'tokenizer': None,
+[36m(TaskRunner pid=2952510)[0m           'train_batch_size': 4,
+[36m(TaskRunner pid=2952510)[0m           'train_files': '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/dedu_parallel_train_data_500.parquet',
+[36m(TaskRunner pid=2952510)[0m           'truncation': 'error',
+[36m(TaskRunner pid=2952510)[0m           'trust_remote_code': False,
+[36m(TaskRunner pid=2952510)[0m           'use_shm': False,
+[36m(TaskRunner pid=2952510)[0m           'val_batch_size': 128,
+[36m(TaskRunner pid=2952510)[0m           'val_files': '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/test_indomain.parquet',
+[36m(TaskRunner pid=2952510)[0m           'video_key': 'videos'},
+[36m(TaskRunner pid=2952510)[0m  'env': {'add_limit_prompt': True,
+[36m(TaskRunner pid=2952510)[0m          'env_name': 'alfworld/AlfredTWEnv',
+[36m(TaskRunner pid=2952510)[0m          'env_path': '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/dedu_parallel_train_data_500.json',
+[36m(TaskRunner pid=2952510)[0m          'history_length': 2,
+[36m(TaskRunner pid=2952510)[0m          'lazy_envs': True,
+[36m(TaskRunner pid=2952510)[0m          'max_steps': 25,
+[36m(TaskRunner pid=2952510)[0m          'num_parallel': 5,
+[36m(TaskRunner pid=2952510)[0m          'resources': None,
+[36m(TaskRunner pid=2952510)[0m          'resources_per_worker': {'num_cpus': 0.5, 'num_gpus': 0},
+[36m(TaskRunner pid=2952510)[0m          'rollout': {'n': 8},
+[36m(TaskRunner pid=2952510)[0m          'search': {'log_requests': False,
+[36m(TaskRunner pid=2952510)[0m                     'search_url': 'http://127.0.0.1:8000/retrieve',
+[36m(TaskRunner pid=2952510)[0m                     'timeout': 60,
+[36m(TaskRunner pid=2952510)[0m                     'topk': 3},
+[36m(TaskRunner pid=2952510)[0m          'seed': 0,
+[36m(TaskRunner pid=2952510)[0m          'sokoban': {'dim_room': [6, 6],
+[36m(TaskRunner pid=2952510)[0m                      'mode': 'tiny_rgb_array',
+[36m(TaskRunner pid=2952510)[0m                      'num_boxes': 1,
+[36m(TaskRunner pid=2952510)[0m                      'search_depth': 30},
+[36m(TaskRunner pid=2952510)[0m          'webshop': {'human_goals': False, 'use_small': True}},
+[36m(TaskRunner pid=2952510)[0m  'ray_init': {'num_cpus': None},
+[36m(TaskRunner pid=2952510)[0m  'reward_model': {'depth_alpha': 0.8,
+[36m(TaskRunner pid=2952510)[0m                   'depth_t_gamma': 0.95,
+[36m(TaskRunner pid=2952510)[0m                   'enable': False,
+[36m(TaskRunner pid=2952510)[0m                   'forward_max_token_len_per_gpu': 32768,
+[36m(TaskRunner pid=2952510)[0m                   'invalid_penalty': 0.95,
+[36m(TaskRunner pid=2952510)[0m                   'launch_reward_fn_async': False,
+[36m(TaskRunner pid=2952510)[0m                   'max_length': None,
+[36m(TaskRunner pid=2952510)[0m                   'micro_batch_size': None,
+[36m(TaskRunner pid=2952510)[0m                   'micro_batch_size_per_gpu': None,
+[36m(TaskRunner pid=2952510)[0m                   'model': {'external_lib': None,
+[36m(TaskRunner pid=2952510)[0m                             'fsdp_config': {'fsdp_size': -1,
+[36m(TaskRunner pid=2952510)[0m                                             'param_offload': False,
+[36m(TaskRunner pid=2952510)[0m                                             'reshard_after_forward': True,
+[36m(TaskRunner pid=2952510)[0m                                             'wrap_policy': {'min_num_params': 0}},
+[36m(TaskRunner pid=2952510)[0m                             'input_tokenizer': '/diskpool/home/xuxz/ms-swift/model/Qwen2.5-0.5B-Instruct',
+[36m(TaskRunner pid=2952510)[0m                             'path': '~/models/FsfairX-LLaMA3-RM-v0.1',
+[36m(TaskRunner pid=2952510)[0m                             'trust_remote_code': False,
+[36m(TaskRunner pid=2952510)[0m                             'use_fused_kernels': False,
+[36m(TaskRunner pid=2952510)[0m                             'use_remove_padding': False,
+[36m(TaskRunner pid=2952510)[0m                             'use_shm': False},
+[36m(TaskRunner pid=2952510)[0m                   'no_action_penalty': 0.5,
+[36m(TaskRunner pid=2952510)[0m                   'parallel_reward': True,
+[36m(TaskRunner pid=2952510)[0m                   'process_reward': False,
+[36m(TaskRunner pid=2952510)[0m                   'reward_manager': 'episode',
+[36m(TaskRunner pid=2952510)[0m                   'sandbox_fusion': {'max_concurrent': 64, 'url': None},
+[36m(TaskRunner pid=2952510)[0m                   'strategy': 'fsdp',
+[36m(TaskRunner pid=2952510)[0m                   'ulysses_sequence_parallel_size': 1,
+[36m(TaskRunner pid=2952510)[0m                   'use_dynamic_bsz': False,
+[36m(TaskRunner pid=2952510)[0m                   'width_omega': 0.8,
+[36m(TaskRunner pid=2952510)[0m                   'width_t_beta': 0.95},
+[36m(TaskRunner pid=2952510)[0m  'trainer': {'balance_batch': True,
+[36m(TaskRunner pid=2952510)[0m              'critic_warmup': 0,
+[36m(TaskRunner pid=2952510)[0m              'default_hdfs_dir': None,
+[36m(TaskRunner pid=2952510)[0m              'default_local_dir': '/diskpool/home/xuxz/Code-for-DPEPO/webshop_para_full_result',
+[36m(TaskRunner pid=2952510)[0m              'del_local_ckpt_after_load': False,
+[36m(TaskRunner pid=2952510)[0m              'device': 'cuda',
+[36m(TaskRunner pid=2952510)[0m              'experiment_name': 'grpo_1.5b_500_outcome_parallel_reward_lora_1epoch',
+[36m(TaskRunner pid=2952510)[0m              'log_val_generations': 0,
+[36m(TaskRunner pid=2952510)[0m              'logger': ['console', 'mlflow'],
+[36m(TaskRunner pid=2952510)[0m              'max_actor_ckpt_to_keep': None,
+[36m(TaskRunner pid=2952510)[0m              'max_critic_ckpt_to_keep': None,
+[36m(TaskRunner pid=2952510)[0m              'n_gpus_per_node': 2,
+[36m(TaskRunner pid=2952510)[0m              'nnodes': 1,
+[36m(TaskRunner pid=2952510)[0m              'project_name': 'parallel_verl_agent_alfworld',
+[36m(TaskRunner pid=2952510)[0m              'ray_wait_register_center_timeout': 300,
+[36m(TaskRunner pid=2952510)[0m              'resume_from_path': None,
+[36m(TaskRunner pid=2952510)[0m              'resume_mode': 'auto',
+[36m(TaskRunner pid=2952510)[0m              'rollout_data_dir': None,
+[36m(TaskRunner pid=2952510)[0m              'save_freq': 3,
+[36m(TaskRunner pid=2952510)[0m              'test_freq': 1,
+[36m(TaskRunner pid=2952510)[0m              'total_epochs': 1,
+[36m(TaskRunner pid=2952510)[0m              'total_training_steps': None,
+[36m(TaskRunner pid=2952510)[0m              'val_before_train': False,
+[36m(TaskRunner pid=2952510)[0m              'validation_data_dir': None}}
+[33m(raylet)[0m [2026-06-06 14:15:48,195 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2963.89 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2952510)[0m Using dataset class: RLHFDataset
+[36m(TaskRunner pid=2952510)[0m Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 500 examples [00:00, 84135.12 examples/s]
+[36m(TaskRunner pid=2952510)[0m dataset len: 500
+[36m(TaskRunner pid=2952510)[0m Setting TOKENIZERS_PARALLELISM=false for forked processes.
+[36m(TaskRunner pid=2952510)[0m WARNING:2026-06-06 14:15:52,792:Setting TOKENIZERS_PARALLELISM=false for forked processes.
+[36m(TaskRunner pid=2952510)[0m Filtering prompts longer than 16384 tokens (num_proc=1):   0%|          | 0/500 [00:00<?, ? examples/s]
+[36m(TaskRunner pid=2952510)[0m Filtering prompts longer than 16384 tokens (num_proc=1): 100%|██████████| 500/500 [00:00<00:00, 663.05 examples/s]
+[36m(TaskRunner pid=2952510)[0m Filtering prompts longer than 16384 tokens (num_proc=1): 100%|██████████| 500/500 [00:00<00:00, 571.25 examples/s]
+[36m(TaskRunner pid=2952510)[0m filter dataset len: 500
+[36m(TaskRunner pid=2952510)[0m Using dataset class: RLHFDataset
+[36m(TaskRunner pid=2952510)[0m Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 140 examples [00:00, 33483.64 examples/s]
+[36m(TaskRunner pid=2952510)[0m dataset len: 140
+[36m(TaskRunner pid=2952510)[0m Setting TOKENIZERS_PARALLELISM=false for forked processes.
+[36m(TaskRunner pid=2952510)[0m WARNING:2026-06-06 14:15:54,093:Setting TOKENIZERS_PARALLELISM=false for forked processes.
+[36m(TaskRunner pid=2952510)[0m Filtering prompts longer than 16384 tokens (num_proc=1):   0%|          | 0/140 [00:00<?, ? examples/s]
+[36m(TaskRunner pid=2952510)[0m Filtering prompts longer than 16384 tokens (num_proc=1): 100%|██████████| 140/140 [00:00<00:00, 233.11 examples/s]
+[36m(TaskRunner pid=2952510)[0m Filtering prompts longer than 16384 tokens (num_proc=1): 100%|██████████| 140/140 [00:00<00:00, 193.55 examples/s]
+[36m(TaskRunner pid=2952510)[0m DeprecationWarning: `ray.state.available_resources_per_node` is a private attribute and access will be removed in a future Ray version.
+[36m(TaskRunner pid=2952510)[0m filter dataset len: 140
+[36m(TaskRunner pid=2952510)[0m WARNING: val_batch_size is deprecated. Validation datasets are sent to inference engines as a whole batch, which will schedule the memory themselves.
+[36m(TaskRunner pid=2952510)[0m [validate_config] All configuration checks passed successfully!
+[36m(TaskRunner pid=2952510)[0m Size of train dataloader: 125, Size of val dataloader: 2
+[36m(TaskRunner pid=2952510)[0m Total training steps: 125
+[36m(TaskRunner pid=2952510)[0m colocated worker base class <class 'verl.single_controller.base.worker.Worker'>
+[36m(TaskRunner pid=2952510)[0m WARNING:2026-06-06 14:15:55,942:Waiting for register center actor ow9GYV_register_center to be ready. Elapsed time: 0 seconds out of 300 seconds.
+[33m(raylet)[0m [2026-06-06 14:15:58,206 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2963.89 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-06 14:16:08,214 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2963.89 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=2957768)[0m Flash Attention 2.0 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen2ForCausalLM is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `torch_dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", torch_dtype=torch.float16)`
+[36m(WorkerDict pid=2957768)[0m You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[36m(WorkerDict pid=2957408)[0m Model config after override: Qwen2Config {
+[36m(WorkerDict pid=2957408)[0m   "architectures": [
+[36m(WorkerDict pid=2957408)[0m     "Qwen2ForCausalLM"
+[36m(WorkerDict pid=2957408)[0m   ],
+[36m(WorkerDict pid=2957408)[0m   "attention_dropout": 0.0,
+[36m(WorkerDict pid=2957408)[0m   "eos_token_id": 151645,
+[36m(WorkerDict pid=2957408)[0m   "hidden_act": "silu",
+[36m(WorkerDict pid=2957408)[0m   "hidden_size": 896,
+[36m(WorkerDict pid=2957408)[0m   "initializer_range": 0.02,
+[36m(WorkerDict pid=2957408)[0m   "intermediate_size": 4864,
+[36m(WorkerDict pid=2957408)[0m   "max_position_embeddings": 32768,
+[36m(WorkerDict pid=2957408)[0m   "max_window_layers": 21,
+[36m(WorkerDict pid=2957408)[0m   "model_type": "qwen2",
+[36m(WorkerDict pid=2957408)[0m   "num_attention_heads": 14,
+[36m(WorkerDict pid=2957408)[0m   "num_hidden_layers": 24,
+[36m(WorkerDict pid=2957408)[0m   "num_key_value_heads": 2,
+[36m(WorkerDict pid=2957408)[0m   "pad_token_id": 151643,
+[36m(WorkerDict pid=2957408)[0m   "rms_norm_eps": 1e-06,
+[36m(WorkerDict pid=2957408)[0m   "rope_scaling": null,
+[36m(WorkerDict pid=2957408)[0m   "rope_theta": 1000000.0,
+[36m(WorkerDict pid=2957408)[0m   "sliding_window": 32768,
+[36m(WorkerDict pid=2957408)[0m   "tie_word_embeddings": true,
+[36m(WorkerDict pid=2957408)[0m   "torch_dtype": "bfloat16",
+[36m(WorkerDict pid=2957408)[0m   "transformers_version": "4.51.1",
+[36m(WorkerDict pid=2957408)[0m   "use_cache": true,
+[36m(WorkerDict pid=2957408)[0m   "use_sliding_window": false,
+[36m(WorkerDict pid=2957408)[0m   "vocab_size": 151936
+[36m(WorkerDict pid=2957408)[0m }
+[36m(WorkerDict pid=2957408)[0m 
+[36m(WorkerDict pid=2957768)[0m Monkey patch _flash_attention_forward in transformers.integrations.flash_attention
+[36m(WorkerDict pid=2957768)[0m Applying LoRA to actor module
+[36m(WorkerDict pid=2957408)[0m PeftModelForCausalLM contains 511.63M parameters
+[36m(WorkerDict pid=2957408)[0m wrap_policy: functools.partial(<function _or_policy at 0x785b304c2980>, policies=[functools.partial(<function lambda_auto_wrap_policy at 0x785b304c2340>, lambda_fn=<function get_fsdp_wrap_policy.<locals>.lambda_policy_fn at 0x785aec171bc0>), functools.partial(<function transformer_auto_wrap_policy at 0x785b304c2840>, transformer_layer_cls={<class 'transformers.models.qwen2.modeling_qwen2.Qwen2DecoderLayer'>})])
+[36m(WorkerDict pid=2957408)[0m NCCL version 2.21.5+cuda12.4
+[36m(WorkerDict pid=2957408)[0m Total steps: 125, num_warmup_steps: 0
+[36m(WorkerDict pid=2957408)[0m Actor use_remove_padding=True
+[36m(WorkerDict pid=2957408)[0m Actor use_fused_kernels=False
+[33m(raylet)[0m [2026-06-06 14:16:18,224 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2963.89 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=2957768)[0m WARNING 06-06 14:16:20 [config.py:2972] Casting torch.bfloat16 to torch.float16.
+[36m(WorkerDict pid=2957408)[0m Monkey patch _flash_attention_forward in transformers.integrations.flash_attention
+[36m(WorkerDict pid=2957408)[0m Applying LoRA to actor module
+[36m(WorkerDict pid=2957768)[0m wrap_policy: functools.partial(<function _or_policy at 0x78dcdafb6980>, policies=[functools.partial(<function lambda_auto_wrap_policy at 0x78dcdafb6340>, lambda_fn=<function get_fsdp_wrap_policy.<locals>.lambda_policy_fn at 0x78dbf7675800>), functools.partial(<function transformer_auto_wrap_policy at 0x78dcdafb6840>, transformer_layer_cls={<class 'transformers.models.qwen2.modeling_qwen2.Qwen2DecoderLayer'>})])
+[36m(WorkerDict pid=2957408)[0m Flash Attention 2.0 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen2ForCausalLM is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `torch_dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", torch_dtype=torch.float16)`
+[36m(WorkerDict pid=2957408)[0m You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[33m(raylet)[0m [2026-06-06 14:16:28,233 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2963.89 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=2957408)[0m WARNING 06-06 14:16:29 [arg_utils.py:1658] VLLM_ATTENTION_BACKEND=XFORMERS is not supported by the V1 Engine. Falling back to V0. We recommend to remove VLLM_ATTENTION_BACKEND=XFORMERS from your config in favor of the V1 Engine.
+[36m(WorkerDict pid=2957768)[0m Total steps: 125, num_warmup_steps: 0
+[36m(WorkerDict pid=2957768)[0m Actor use_remove_padding=True
+[36m(WorkerDict pid=2957768)[0m Actor use_fused_kernels=False
+[36m(WorkerDict pid=2957408)[0m WARNING 06-06 14:16:20 [config.py:2972] Casting torch.bfloat16 to torch.float16.
+[33m(raylet)[0m [2026-06-06 14:16:38,242 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2963.89 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=2957408)[0m Capturing CUDA graph shapes:   0%|          | 0/35 [00:00<?, ?it/s]
+[36m(WorkerDict pid=2957408)[0m Capturing CUDA graph shapes:   3%|▎         | 1/35 [00:00<00:27,  1.26it/s]
+[36m(WorkerDict pid=2957768)[0m Capturing CUDA graph shapes:   0%|          | 0/35 [00:00<?, ?it/s]
+[36m(WorkerDict pid=2957768)[0m Capturing CUDA graph shapes:  11%|█▏        | 4/35 [00:05<00:40,  1.32s/it][32m [repeated 7x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[33m(raylet)[0m [2026-06-06 14:16:48,251 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2963.89 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=2957408)[0m Capturing CUDA graph shapes:  37%|███▋      | 13/35 [00:11<00:14,  1.51it/s][32m [repeated 16x across cluster][0m
+[36m(WorkerDict pid=2957768)[0m Capturing CUDA graph shapes:  51%|█████▏    | 18/35 [00:16<00:17,  1.04s/it][32m [repeated 12x across cluster][0m
+[33m(raylet)[0m [2026-06-06 14:16:58,259 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2963.89 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=2957408)[0m Capturing CUDA graph shapes:  69%|██████▊   | 24/35 [00:21<00:08,  1.28it/s][32m [repeated 11x across cluster][0m
+[36m(WorkerDict pid=2957408)[0m Capturing CUDA graph shapes:  91%|█████████▏| 32/35 [00:27<00:02,  1.48it/s]
+[36m(WorkerDict pid=2957768)[0m Capturing CUDA graph shapes:  89%|████████▊ | 31/35 [00:26<00:02,  1.55it/s][32m [repeated 15x across cluster][0m
+[33m(raylet)[0m [2026-06-06 14:17:08,269 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2963.89 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=2957408)[0m Capturing CUDA graph shapes: 100%|██████████| 35/35 [00:32<00:00,  1.62s/it]Capturing CUDA graph shapes: 100%|██████████| 35/35 [00:32<00:00,  1.09it/s]
+[36m(WorkerDict pid=2957768)[0m Capturing CUDA graph shapes:  97%|█████████▋| 34/35 [00:28<00:00,  1.57it/s][32m [repeated 5x across cluster][0m
+[36m(WorkerDict pid=2957408)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:690: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+[36m(WorkerDict pid=2957408)[0m   warnings.warn(
+[36m(WorkerDict pid=2957408)[0m kwargs: {'n': 1, 'logprobs': 0, 'max_tokens': 1024, 'detokenize': False, 'temperature': 1.0, 'top_k': -1, 'top_p': 1, 'ignore_eos': False}
+[36m(WorkerDict pid=2957768)[0m WARNING 06-06 14:16:29 [arg_utils.py:1658] VLLM_ATTENTION_BACKEND=XFORMERS is not supported by the V1 Engine. Falling back to V0. We recommend to remove VLLM_ATTENTION_BACKEND=XFORMERS from your config in favor of the V1 Engine.
+[33m(raylet)[0m [2026-06-06 14:17:18,278 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2963.89 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=2957768)[0m Capturing CUDA graph shapes: 100%|██████████| 35/35 [00:31<00:00,  1.57s/it]Capturing CUDA graph shapes: 100%|██████████| 35/35 [00:31<00:00,  1.10it/s]
+[36m(TaskRunner pid=2952510)[0m Training Progress:   0%|          | 0/125 [00:00<?, ?it/s]
+[36m(TaskRunner pid=2952510)[0m Using LocalLogger is deprecated. The constructor API will change 
+[36m(TaskRunner pid=2952510)[0m Checkpoint tracker file does not exist: %s /diskpool/home/xuxz/Code-for-DPEPO/webshop_para_full_result/latest_checkpointed_iteration.txt
+[36m(TaskRunner pid=2952510)[0m Training from scratch
+[36m(TaskRunner pid=2952510)[0m 
+[36m(TaskRunner pid=2952510)[0m   0%|          | 0/4 [00:00<?, ?it/s][A100%|██████████| 4/4 [00:00<00:00, 129.42it/s]
+[36m(WorkerDict pid=2957768)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:690: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+[36m(WorkerDict pid=2957768)[0m   warnings.warn(
+[33m(raylet)[0m [2026-06-06 14:17:28,289 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2963.88 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-06 14:17:38,299 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2962.03 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2952510)[0m 
+[36m(TaskRunner pid=2952510)[0m   0%|          | 0/25 [00:00<?, ?it/s][A
+[33m(raylet)[0m [2026-06-06 14:17:48,309 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2961.22 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2952510)[0m 
+[36m(TaskRunner pid=2952510)[0m   4%|▍         | 1/25 [00:12<04:55, 12.32s/it][A
+[33m(raylet)[0m [2026-06-06 14:17:58,318 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2961.22 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=2957768)[0m WARNING 06-06 14:17:59 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[36m(WorkerDict pid=2957768)[0m kwargs: {'n': 1, 'logprobs': 0, 'max_tokens': 1024, 'detokenize': False, 'temperature': 1.0, 'top_k': -1, 'top_p': 1, 'ignore_eos': False}
+[33m(raylet)[0m [2026-06-06 14:18:08,328 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2961.22 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2952510)[0m 
+[36m(TaskRunner pid=2952510)[0m   8%|▊         | 2/25 [00:26<05:14, 13.69s/it][A
+[36m(WorkerDict pid=2957408)[0m WARNING 06-06 14:18:13 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)[32m [repeated 2x across cluster][0m
+[33m(raylet)[0m [2026-06-06 14:18:18,338 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2961.22 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-06 14:18:28,347 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2961.22 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2952510)[0m 
+[36m(TaskRunner pid=2952510)[0m  12%|█▏        | 3/25 [00:46<06:00, 16.40s/it][A
+[36m(WorkerDict pid=2957768)[0m WARNING 06-06 14:18:32 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)[32m [repeated 2x across cluster][0m
+[33m(raylet)[0m [2026-06-06 14:18:38,356 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2961.22 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2952510)[0m 
+[36m(TaskRunner pid=2952510)[0m  16%|█▌        | 4/25 [00:54<04:35, 13.12s/it][A
+[36m(WorkerDict pid=2957768)[0m WARNING 06-06 14:18:40 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)[32m [repeated 2x across cluster][0m
+[33m(raylet)[0m [2026-06-06 14:18:48,367 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2961.22 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2952510)[0m 
+[36m(TaskRunner pid=2952510)[0m  20%|██        | 5/25 [01:12<04:58, 14.91s/it][A
+[33m(raylet)[0m [2026-06-06 14:18:58,377 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2961.22 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=2957768)[0m WARNING 06-06 14:18:58 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)[32m [repeated 2x across cluster][0m
+[33m(raylet)[0m [2026-06-06 14:19:08,387 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2961.22 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2952510)[0m 
+[36m(TaskRunner pid=2952510)[0m  24%|██▍       | 6/25 [01:25<04:28, 14.12s/it][A
+[36m(WorkerDict pid=2957768)[0m WARNING 06-06 14:19:11 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)[32m [repeated 2x across cluster][0m
+[36m(TaskRunner pid=2952510)[0m 
+[36m(TaskRunner pid=2952510)[0m  28%|██▊       | 7/25 [01:32<03:33, 11.84s/it][A
+[33m(raylet)[0m [2026-06-06 14:19:18,396 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2961.22 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=2957768)[0m WARNING 06-06 14:19:18 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)[32m [repeated 2x across cluster][0m
+[36m(TaskRunner pid=2952510)[0m 
+[36m(TaskRunner pid=2952510)[0m  32%|███▏      | 8/25 [01:38<02:50, 10.06s/it][A
+[36m(WorkerDict pid=2957768)[0m WARNING 06-06 14:19:24 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)[32m [repeated 2x across cluster][0m
+[33m(raylet)[0m [2026-06-06 14:19:28,407 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2961.22 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2952510)[0m 
+[36m(TaskRunner pid=2952510)[0m  36%|███▌      | 9/25 [01:46<02:30,  9.43s/it][A
+[36m(WorkerDict pid=2957768)[0m WARNING 06-06 14:19:33 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)[32m [repeated 2x across cluster][0m
+[33m(raylet)[0m [2026-06-06 14:19:38,416 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2961.22 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-06 14:19:48,425 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2961.22 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-06 14:19:58,435 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2961.22 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2952510)[0m 
+[36m(TaskRunner pid=2952510)[0m  40%|████      | 10/25 [02:22<04:24, 17.62s/it][A
+[33m(raylet)[0m [2026-06-06 14:20:08,444 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2961.22 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=2957768)[0m WARNING 06-06 14:20:08 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)[32m [repeated 2x across cluster][0m
+[33m(raylet)[0m [2026-06-06 14:20:18,453 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2961.22 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-06 14:20:28,462 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2961.22 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-06 14:20:38,471 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2961.22 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2952510)[0m 
+[36m(TaskRunner pid=2952510)[0m  44%|████▍     | 11/25 [02:59<05:28, 23.45s/it][A
+[36m(WorkerDict pid=2957408)[0m WARNING 06-06 14:20:45 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)[32m [repeated 2x across cluster][0m
+[33m(raylet)[0m [2026-06-06 14:20:48,480 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2961.22 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-06 14:20:58,489 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2961.22 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-06 14:21:08,498 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2961.22 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-06 14:21:18,507 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2961.22 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2952510)[0m 
+[36m(TaskRunner pid=2952510)[0m  48%|████▊     | 12/25 [03:36<05:58, 27.55s/it][A
+[36m(WorkerDict pid=2957768)[0m WARNING 06-06 14:21:22 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)[32m [repeated 2x across cluster][0m
+[33m(raylet)[0m [2026-06-06 14:21:28,516 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2961.22 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2952510)[0m 
+[36m(TaskRunner pid=2952510)[0m  52%|█████▏    | 13/25 [03:46<04:28, 22.36s/it][A
+[36m(WorkerDict pid=2957408)[0m WARNING 06-06 14:21:33 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)[32m [repeated 2x across cluster][0m
+[33m(raylet)[0m [2026-06-06 14:21:38,525 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2961.22 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=2952510)[0m 
+[36m(TaskRunner pid=2952510)[0m  56%|█████▌    | 14/25 [03:54<03:18, 18.07s/it][A
+[36m(WorkerDict pid=2957768)[0m WARNING 06-06 14:21:41 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)[32m [repeated 2x across cluster][0m
+[33m(raylet)[0m [2026-06-06 14:21:48,534 E 2944903 2944941] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-06_14-15-35_612490_2943554 is over 95% full, available space: 2961.22 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
