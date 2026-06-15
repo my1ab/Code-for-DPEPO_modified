@@ -1,0 +1,1519 @@
+Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1
+Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+/diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/opentelemetry/util/_importlib_metadata.py:32: DeprecationWarning: SelectableGroups dict interface is deprecated. Use select.
+  return EntryPoints(ep for group_eps in eps.values() for ep in group_eps)
+2026-06-09 00:29:42,306	INFO worker.py:1908 -- Started a local Ray instance. View the dashboard at [1m[32mhttp://127.0.0.1:8265 [39m[22m
+[36m(pid=243671)[0m Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1
+[36m(pid=243671)[0m Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+[36m(pid=243671)[0m Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+[36m(pid=243671)[0m See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[36m(TaskRunner pid=243671)[0m {'actor_rollout_ref': {'actor': {'checkpoint': {'contents': ['model',
+[36m(TaskRunner pid=243671)[0m                                                              'optimizer',
+[36m(TaskRunner pid=243671)[0m                                                              'extra']},
+[36m(TaskRunner pid=243671)[0m                                  'clip_ratio': 0.2,
+[36m(TaskRunner pid=243671)[0m                                  'clip_ratio_c': 3.0,
+[36m(TaskRunner pid=243671)[0m                                  'clip_ratio_high': 0.2,
+[36m(TaskRunner pid=243671)[0m                                  'clip_ratio_low': 0.2,
+[36m(TaskRunner pid=243671)[0m                                  'entropy_coeff': 0.001,
+[36m(TaskRunner pid=243671)[0m                                  'fsdp_config': {'fsdp_size': -1,
+[36m(TaskRunner pid=243671)[0m                                                  'offload_policy': False,
+[36m(TaskRunner pid=243671)[0m                                                  'optimizer_offload': True,
+[36m(TaskRunner pid=243671)[0m                                                  'param_offload': True,
+[36m(TaskRunner pid=243671)[0m                                                  'reshard_after_forward': True,
+[36m(TaskRunner pid=243671)[0m                                                  'wrap_policy': {'min_num_params': 0}},
+[36m(TaskRunner pid=243671)[0m                                  'grad_clip': 1.0,
+[36m(TaskRunner pid=243671)[0m                                  'invalid_action_penalty_coef': 0.1,
+[36m(TaskRunner pid=243671)[0m                                  'kl_loss_coef': 0.01,
+[36m(TaskRunner pid=243671)[0m                                  'kl_loss_type': 'low_var_kl',
+[36m(TaskRunner pid=243671)[0m                                  'loss_agg_mode': 'token-mean',
+[36m(TaskRunner pid=243671)[0m                                  'optim': {'lr': 1e-06,
+[36m(TaskRunner pid=243671)[0m                                            'lr_warmup_steps': -1,
+[36m(TaskRunner pid=243671)[0m                                            'lr_warmup_steps_ratio': 0.0,
+[36m(TaskRunner pid=243671)[0m                                            'min_lr_ratio': 0.0,
+[36m(TaskRunner pid=243671)[0m                                            'num_cycles': 0.5,
+[36m(TaskRunner pid=243671)[0m                                            'total_training_steps': -1,
+[36m(TaskRunner pid=243671)[0m                                            'warmup_style': 'constant',
+[36m(TaskRunner pid=243671)[0m                                            'weight_decay': 0.01},
+[36m(TaskRunner pid=243671)[0m                                  'ppo_epochs': 1,
+[36m(TaskRunner pid=243671)[0m                                  'ppo_max_token_len_per_gpu': 16384,
+[36m(TaskRunner pid=243671)[0m                                  'ppo_micro_batch_size': None,
+[36m(TaskRunner pid=243671)[0m                                  'ppo_micro_batch_size_per_gpu': 4,
+[36m(TaskRunner pid=243671)[0m                                  'ppo_mini_batch_size': 32,
+[36m(TaskRunner pid=243671)[0m                                  'shuffle': False,
+[36m(TaskRunner pid=243671)[0m                                  'strategy': 'fsdp',
+[36m(TaskRunner pid=243671)[0m                                  'ulysses_sequence_parallel_size': 1,
+[36m(TaskRunner pid=243671)[0m                                  'use_dynamic_bsz': False,
+[36m(TaskRunner pid=243671)[0m                                  'use_invalid_action_penalty': False,
+[36m(TaskRunner pid=243671)[0m                                  'use_kl_loss': True,
+[36m(TaskRunner pid=243671)[0m                                  'use_torch_compile': True},
+[36m(TaskRunner pid=243671)[0m                        'hybrid_engine': True,
+[36m(TaskRunner pid=243671)[0m                        'model': {'enable_activation_offload': False,
+[36m(TaskRunner pid=243671)[0m                                  'enable_gradient_checkpointing': True,
+[36m(TaskRunner pid=243671)[0m                                  'external_lib': None,
+[36m(TaskRunner pid=243671)[0m                                  'lora_alpha': 32,
+[36m(TaskRunner pid=243671)[0m                                  'lora_rank': 32,
+[36m(TaskRunner pid=243671)[0m                                  'override_config': {},
+[36m(TaskRunner pid=243671)[0m                                  'path': '/diskpool/home/xuxz/ms-swift/checkpoint/Qwen2.5-1.5B-Instruct-Parallel-Epoch5-hislen8/v0-20260602-201729/checkpoint-8800',
+[36m(TaskRunner pid=243671)[0m                                  'target_modules': 'all-linear',
+[36m(TaskRunner pid=243671)[0m                                  'trust_remote_code': False,
+[36m(TaskRunner pid=243671)[0m                                  'use_fused_kernels': False,
+[36m(TaskRunner pid=243671)[0m                                  'use_liger': False,
+[36m(TaskRunner pid=243671)[0m                                  'use_remove_padding': True,
+[36m(TaskRunner pid=243671)[0m                                  'use_shm': False},
+[36m(TaskRunner pid=243671)[0m                        'ref': {'fsdp_config': {'param_offload': True,
+[36m(TaskRunner pid=243671)[0m                                                'reshard_after_forward': True,
+[36m(TaskRunner pid=243671)[0m                                                'wrap_policy': {'min_num_params': 0}},
+[36m(TaskRunner pid=243671)[0m                                'log_prob_max_token_len_per_gpu': 16384,
+[36m(TaskRunner pid=243671)[0m                                'log_prob_micro_batch_size': None,
+[36m(TaskRunner pid=243671)[0m                                'log_prob_micro_batch_size_per_gpu': 4,
+[36m(TaskRunner pid=243671)[0m                                'log_prob_use_dynamic_bsz': False,
+[36m(TaskRunner pid=243671)[0m                                'strategy': 'fsdp',
+[36m(TaskRunner pid=243671)[0m                                'ulysses_sequence_parallel_size': 1,
+[36m(TaskRunner pid=243671)[0m                                'use_torch_compile': True},
+[36m(TaskRunner pid=243671)[0m                        'rollout': {'chat_scheduler': None,
+[36m(TaskRunner pid=243671)[0m                                    'disable_log_stats': True,
+[36m(TaskRunner pid=243671)[0m                                    'do_sample': True,
+[36m(TaskRunner pid=243671)[0m                                    'dtype': 'float16',
+[36m(TaskRunner pid=243671)[0m                                    'enable_chunked_prefill': False,
+[36m(TaskRunner pid=243671)[0m                                    'enforce_eager': False,
+[36m(TaskRunner pid=243671)[0m                                    'engine_kwargs': {'sglang': {'attention_backend': None},
+[36m(TaskRunner pid=243671)[0m                                                      'vllm': {'swap_space': None}},
+[36m(TaskRunner pid=243671)[0m                                    'free_cache_engine': False,
+[36m(TaskRunner pid=243671)[0m                                    'gpu_memory_utilization': 0.6,
+[36m(TaskRunner pid=243671)[0m                                    'ignore_eos': False,
+[36m(TaskRunner pid=243671)[0m                                    'layered_summon': False,
+[36m(TaskRunner pid=243671)[0m                                    'load_format': 'dummy_dtensor',
+[36m(TaskRunner pid=243671)[0m                                    'log_prob_max_token_len_per_gpu': 16384,
+[36m(TaskRunner pid=243671)[0m                                    'log_prob_micro_batch_size': None,
+[36m(TaskRunner pid=243671)[0m                                    'log_prob_micro_batch_size_per_gpu': 4,
+[36m(TaskRunner pid=243671)[0m                                    'log_prob_use_dynamic_bsz': False,
+[36m(TaskRunner pid=243671)[0m                                    'max_model_len': None,
+[36m(TaskRunner pid=243671)[0m                                    'max_num_batched_tokens': 32768,
+[36m(TaskRunner pid=243671)[0m                                    'max_num_seqs': 1024,
+[36m(TaskRunner pid=243671)[0m                                    'mode': 'sync',
+[36m(TaskRunner pid=243671)[0m                                    'multi_turn': {'enable': False,
+[36m(TaskRunner pid=243671)[0m                                                   'format': 'chatml',
+[36m(TaskRunner pid=243671)[0m                                                   'max_turns': None,
+[36m(TaskRunner pid=243671)[0m                                                   'tool_config_path': None},
+[36m(TaskRunner pid=243671)[0m                                    'n': 1,
+[36m(TaskRunner pid=243671)[0m                                    'name': 'vllm',
+[36m(TaskRunner pid=243671)[0m                                    'prompt_length': 28672,
+[36m(TaskRunner pid=243671)[0m                                    'response_length': 4096,
+[36m(TaskRunner pid=243671)[0m                                    'temperature': 1.0,
+[36m(TaskRunner pid=243671)[0m                                    'tensor_model_parallel_size': 1,
+[36m(TaskRunner pid=243671)[0m                                    'top_k': -1,
+[36m(TaskRunner pid=243671)[0m                                    'top_p': 1,
+[36m(TaskRunner pid=243671)[0m                                    'use_fire_sampling': False,
+[36m(TaskRunner pid=243671)[0m                                    'val_kwargs': {'do_sample': True,
+[36m(TaskRunner pid=243671)[0m                                                   'n': 1,
+[36m(TaskRunner pid=243671)[0m                                                   'temperature': 0.4,
+[36m(TaskRunner pid=243671)[0m                                                   'top_k': -1,
+[36m(TaskRunner pid=243671)[0m                                                   'top_p': 1.0}}},
+[36m(TaskRunner pid=243671)[0m  'algorithm': {'adv_estimator': 'grpo',
+[36m(TaskRunner pid=243671)[0m                'filter_groups': {'enable': False, 'max_num_gen_batches': 10},
+[36m(TaskRunner pid=243671)[0m                'gamma': 1.0,
+[36m(TaskRunner pid=243671)[0m                'gigpo': {'enable_similarity': False,
+[36m(TaskRunner pid=243671)[0m                          'mode': 'mean_norm',
+[36m(TaskRunner pid=243671)[0m                          'similarity_thresh': 0.95,
+[36m(TaskRunner pid=243671)[0m                          'step_advantage_w': 1.0},
+[36m(TaskRunner pid=243671)[0m                'kl_ctrl': {'horizon': 10000,
+[36m(TaskRunner pid=243671)[0m                            'kl_coef': 0.001,
+[36m(TaskRunner pid=243671)[0m                            'target_kl': 0.1,
+[36m(TaskRunner pid=243671)[0m                            'type': 'fixed'},
+[36m(TaskRunner pid=243671)[0m                'kl_penalty': 'kl',
+[36m(TaskRunner pid=243671)[0m                'lam': 1.0,
+[36m(TaskRunner pid=243671)[0m                'norm_adv_by_std_in_grpo': True,
+[36m(TaskRunner pid=243671)[0m                'pf_ppo': {'reweight_method': 'pow', 'weight_pow': 2.0},
+[36m(TaskRunner pid=243671)[0m                'use_kl_in_reward': False,
+[36m(TaskRunner pid=243671)[0m                'use_pf_ppo': False},
+[36m(TaskRunner pid=243671)[0m  'critic': {'checkpoint': {'contents': []},
+[36m(TaskRunner pid=243671)[0m             'cliprange_value': 0.5,
+[36m(TaskRunner pid=243671)[0m             'forward_max_token_len_per_gpu': 32768,
+[36m(TaskRunner pid=243671)[0m             'forward_micro_batch_size': None,
+[36m(TaskRunner pid=243671)[0m             'forward_micro_batch_size_per_gpu': None,
+[36m(TaskRunner pid=243671)[0m             'grad_clip': 1.0,
+[36m(TaskRunner pid=243671)[0m             'loss_agg_mode': 'token-mean',
+[36m(TaskRunner pid=243671)[0m             'model': {'enable_activation_offload': False,
+[36m(TaskRunner pid=243671)[0m                       'enable_gradient_checkpointing': True,
+[36m(TaskRunner pid=243671)[0m                       'external_lib': None,
+[36m(TaskRunner pid=243671)[0m                       'fsdp_config': {'fsdp_size': -1,
+[36m(TaskRunner pid=243671)[0m                                       'offload_policy': False,
+[36m(TaskRunner pid=243671)[0m                                       'optimizer_offload': False,
+[36m(TaskRunner pid=243671)[0m                                       'param_offload': False,
+[36m(TaskRunner pid=243671)[0m                                       'reshard_after_forward': True,
+[36m(TaskRunner pid=243671)[0m                                       'wrap_policy': {'min_num_params': 0}},
+[36m(TaskRunner pid=243671)[0m                       'lora_alpha': 16,
+[36m(TaskRunner pid=243671)[0m                       'lora_rank': 0,
+[36m(TaskRunner pid=243671)[0m                       'override_config': {},
+[36m(TaskRunner pid=243671)[0m                       'path': '~/models/deepseek-llm-7b-chat',
+[36m(TaskRunner pid=243671)[0m                       'target_modules': 'all-linear',
+[36m(TaskRunner pid=243671)[0m                       'tokenizer_path': '/diskpool/home/xuxz/ms-swift/checkpoint/Qwen2.5-1.5B-Instruct-Parallel-Epoch5-hislen8/v0-20260602-201729/checkpoint-8800',
+[36m(TaskRunner pid=243671)[0m                       'trust_remote_code': False,
+[36m(TaskRunner pid=243671)[0m                       'use_remove_padding': False,
+[36m(TaskRunner pid=243671)[0m                       'use_shm': False},
+[36m(TaskRunner pid=243671)[0m             'optim': {'lr': 1e-05,
+[36m(TaskRunner pid=243671)[0m                       'lr_warmup_steps_ratio': 0.0,
+[36m(TaskRunner pid=243671)[0m                       'min_lr_ratio': None,
+[36m(TaskRunner pid=243671)[0m                       'total_training_steps': -1,
+[36m(TaskRunner pid=243671)[0m                       'warmup_style': 'constant',
+[36m(TaskRunner pid=243671)[0m                       'weight_decay': 0.01},
+[36m(TaskRunner pid=243671)[0m             'ppo_epochs': 1,
+[36m(TaskRunner pid=243671)[0m             'ppo_max_token_len_per_gpu': 32768,
+[36m(TaskRunner pid=243671)[0m             'ppo_micro_batch_size': None,
+[36m(TaskRunner pid=243671)[0m             'ppo_micro_batch_size_per_gpu': None,
+[36m(TaskRunner pid=243671)[0m             'ppo_mini_batch_size': 32,
+[36m(TaskRunner pid=243671)[0m             'rollout_n': 1,
+[36m(TaskRunner pid=243671)[0m             'shuffle': False,
+[36m(TaskRunner pid=243671)[0m             'strategy': 'fsdp',
+[36m(TaskRunner pid=243671)[0m             'ulysses_sequence_parallel_size': 1,
+[36m(TaskRunner pid=243671)[0m             'use_dynamic_bsz': False},
+[36m(TaskRunner pid=243671)[0m  'custom_reward_function': {'name': 'compute_score', 'path': None},
+[36m(TaskRunner pid=243671)[0m  'data': {'custom_cls': {'name': None, 'path': None},
+[36m(TaskRunner pid=243671)[0m           'filter_overlong_prompts': True,
+[36m(TaskRunner pid=243671)[0m           'filter_overlong_prompts_workers': 1,
+[36m(TaskRunner pid=243671)[0m           'image_key': 'images',
+[36m(TaskRunner pid=243671)[0m           'max_prompt_length': 28672,
+[36m(TaskRunner pid=243671)[0m           'max_response_length': 4096,
+[36m(TaskRunner pid=243671)[0m           'prompt_key': 'prompt',
+[36m(TaskRunner pid=243671)[0m           'return_full_prompt': False,
+[36m(TaskRunner pid=243671)[0m           'return_raw_chat': True,
+[36m(TaskRunner pid=243671)[0m           'return_raw_input_ids': False,
+[36m(TaskRunner pid=243671)[0m           'reward_fn_key': 'data_source',
+[36m(TaskRunner pid=243671)[0m           'shuffle': True,
+[36m(TaskRunner pid=243671)[0m           'tokenizer': None,
+[36m(TaskRunner pid=243671)[0m           'train_batch_size': 1,
+[36m(TaskRunner pid=243671)[0m           'train_files': '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/verl_train_data/webshop/webshop_train.parquet',
+[36m(TaskRunner pid=243671)[0m           'truncation': 'right',
+[36m(TaskRunner pid=243671)[0m           'trust_remote_code': False,
+[36m(TaskRunner pid=243671)[0m           'use_shm': False,
+[36m(TaskRunner pid=243671)[0m           'val_batch_size': None,
+[36m(TaskRunner pid=243671)[0m           'val_files': '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/verl_train_data/webshop/webshop_test.parquet',
+[36m(TaskRunner pid=243671)[0m           'video_key': 'videos'},
+[36m(TaskRunner pid=243671)[0m  'env': {'add_limit_prompt': True,
+[36m(TaskRunner pid=243671)[0m          'env_name': 'alfworld/AlfredTWEnv',
+[36m(TaskRunner pid=243671)[0m          'env_path': '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/webshop/webshop_train_tasks.json',
+[36m(TaskRunner pid=243671)[0m          'history_length': 8,
+[36m(TaskRunner pid=243671)[0m          'lazy_envs': True,
+[36m(TaskRunner pid=243671)[0m          'max_steps': 20,
+[36m(TaskRunner pid=243671)[0m          'num_parallel': 1,
+[36m(TaskRunner pid=243671)[0m          'resources': None,
+[36m(TaskRunner pid=243671)[0m          'resources_per_worker': {'num_cpus': 0.5, 'num_gpus': 0},
+[36m(TaskRunner pid=243671)[0m          'rollout': {'n': 5},
+[36m(TaskRunner pid=243671)[0m          'search': {'log_requests': False,
+[36m(TaskRunner pid=243671)[0m                     'search_url': 'http://127.0.0.1:8000/retrieve',
+[36m(TaskRunner pid=243671)[0m                     'timeout': 60,
+[36m(TaskRunner pid=243671)[0m                     'topk': 3},
+[36m(TaskRunner pid=243671)[0m          'seed': 0,
+[36m(TaskRunner pid=243671)[0m          'sokoban': {'dim_room': [6, 6],
+[36m(TaskRunner pid=243671)[0m                      'mode': 'tiny_rgb_array',
+[36m(TaskRunner pid=243671)[0m                      'num_boxes': 1,
+[36m(TaskRunner pid=243671)[0m                      'search_depth': 30},
+[36m(TaskRunner pid=243671)[0m          'webshop': {'human_goals': False, 'use_small': True}},
+[36m(TaskRunner pid=243671)[0m  'ray_init': {'num_cpus': None},
+[36m(TaskRunner pid=243671)[0m  'reward_model': {'depth_alpha': 0.8,
+[36m(TaskRunner pid=243671)[0m                   'depth_t_gamma': 0.95,
+[36m(TaskRunner pid=243671)[0m                   'enable': False,
+[36m(TaskRunner pid=243671)[0m                   'forward_max_token_len_per_gpu': 32768,
+[36m(TaskRunner pid=243671)[0m                   'invalid_penalty': 0.95,
+[36m(TaskRunner pid=243671)[0m                   'launch_reward_fn_async': False,
+[36m(TaskRunner pid=243671)[0m                   'max_length': None,
+[36m(TaskRunner pid=243671)[0m                   'micro_batch_size': None,
+[36m(TaskRunner pid=243671)[0m                   'micro_batch_size_per_gpu': None,
+[36m(TaskRunner pid=243671)[0m                   'model': {'external_lib': None,
+[36m(TaskRunner pid=243671)[0m                             'fsdp_config': {'fsdp_size': -1,
+[36m(TaskRunner pid=243671)[0m                                             'param_offload': False,
+[36m(TaskRunner pid=243671)[0m                                             'reshard_after_forward': True,
+[36m(TaskRunner pid=243671)[0m                                             'wrap_policy': {'min_num_params': 0}},
+[36m(TaskRunner pid=243671)[0m                             'input_tokenizer': '/diskpool/home/xuxz/ms-swift/checkpoint/Qwen2.5-1.5B-Instruct-Parallel-Epoch5-hislen8/v0-20260602-201729/checkpoint-8800',
+[36m(TaskRunner pid=243671)[0m                             'path': '~/models/FsfairX-LLaMA3-RM-v0.1',
+[36m(TaskRunner pid=243671)[0m                             'trust_remote_code': False,
+[36m(TaskRunner pid=243671)[0m                             'use_fused_kernels': False,
+[36m(TaskRunner pid=243671)[0m                             'use_remove_padding': False,
+[36m(TaskRunner pid=243671)[0m                             'use_shm': False},
+[36m(TaskRunner pid=243671)[0m                   'no_action_penalty': 0.5,
+[36m(TaskRunner pid=243671)[0m                   'parallel_reward': False,
+[36m(TaskRunner pid=243671)[0m                   'process_reward': False,
+[36m(TaskRunner pid=243671)[0m                   'reward_manager': 'episode',
+[36m(TaskRunner pid=243671)[0m                   'sandbox_fusion': {'max_concurrent': 64, 'url': None},
+[36m(TaskRunner pid=243671)[0m                   'strategy': 'fsdp',
+[36m(TaskRunner pid=243671)[0m                   'ulysses_sequence_parallel_size': 1,
+[36m(TaskRunner pid=243671)[0m                   'use_dynamic_bsz': False,
+[36m(TaskRunner pid=243671)[0m                   'width_omega': 0.95,
+[36m(TaskRunner pid=243671)[0m                   'width_t_beta': 0.95},
+[36m(TaskRunner pid=243671)[0m  'trainer': {'balance_batch': True,
+[36m(TaskRunner pid=243671)[0m              'critic_warmup': 0,
+[36m(TaskRunner pid=243671)[0m              'default_hdfs_dir': None,
+[36m(TaskRunner pid=243671)[0m              'default_local_dir': '/diskpool/home/xuxz/Code-for-DPEPO/webshop_para_full_result',
+[36m(TaskRunner pid=243671)[0m              'del_local_ckpt_after_load': False,
+[36m(TaskRunner pid=243671)[0m              'device': 'cuda',
+[36m(TaskRunner pid=243671)[0m              'experiment_name': 'grpo_1.5b_webshop_parallel',
+[36m(TaskRunner pid=243671)[0m              'log_val_generations': 0,
+[36m(TaskRunner pid=243671)[0m              'logger': ['console', 'mlflow'],
+[36m(TaskRunner pid=243671)[0m              'max_actor_ckpt_to_keep': None,
+[36m(TaskRunner pid=243671)[0m              'max_critic_ckpt_to_keep': None,
+[36m(TaskRunner pid=243671)[0m              'n_gpus_per_node': 1,
+[36m(TaskRunner pid=243671)[0m              'nnodes': 1,
+[36m(TaskRunner pid=243671)[0m              'project_name': 'parallel_verl_agent_webshop',
+[36m(TaskRunner pid=243671)[0m              'ray_wait_register_center_timeout': 300,
+[36m(TaskRunner pid=243671)[0m              'resume_from_path': None,
+[36m(TaskRunner pid=243671)[0m              'resume_mode': 'auto',
+[36m(TaskRunner pid=243671)[0m              'rollout_data_dir': None,
+[36m(TaskRunner pid=243671)[0m              'save_freq': 25,
+[36m(TaskRunner pid=243671)[0m              'test_freq': 1,
+[36m(TaskRunner pid=243671)[0m              'total_epochs': 1,
+[36m(TaskRunner pid=243671)[0m              'total_training_steps': None,
+[36m(TaskRunner pid=243671)[0m              'val_before_train': False,
+[36m(TaskRunner pid=243671)[0m              'validation_data_dir': None}}
+[36m(TaskRunner pid=243671)[0m [DEBUG] Created parallel environments: 1 completed in build_parallel_webshop_envs
+[36m(TaskRunner pid=243671)[0m [DEBUG] lazy_envs = True
+[36m(TaskRunner pid=243671)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/opentelemetry/util/_importlib_metadata.py:32: DeprecationWarning: SelectableGroups dict interface is deprecated. Use select.
+[36m(TaskRunner pid=243671)[0m   return EntryPoints(ep for group_eps in eps.values() for ep in group_eps)
+[33m(raylet)[0m [2026-06-09 00:29:51,284 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+[36m(TaskRunner pid=243671)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+[36m(TaskRunner pid=243671)[0m Using dataset class: RLHFDataset
+[36m(TaskRunner pid=243671)[0m dataset len: 500
+[36m(TaskRunner pid=243671)[0m Setting TOKENIZERS_PARALLELISM=false for forked processes.
+[36m(TaskRunner pid=243671)[0m WARNING:2026-06-09 00:29:54,433:Setting TOKENIZERS_PARALLELISM=false for forked processes.
+[36m(TaskRunner pid=243671)[0m Filtering prompts longer than 28672 tokens (num_proc=1):   0%|          | 0/500 [00:00<?, ? examples/s]
+[36m(TaskRunner pid=243671)[0m Filtering prompts longer than 28672 tokens (num_proc=1): 100%|██████████| 500/500 [00:00<00:00, 653.05 examples/s]
+[36m(TaskRunner pid=243671)[0m Filtering prompts longer than 28672 tokens (num_proc=1): 100%|██████████| 500/500 [00:00<00:00, 562.27 examples/s]
+[36m(TaskRunner pid=243671)[0m filter dataset len: 500
+[36m(TaskRunner pid=243671)[0m Using dataset class: RLHFDataset
+[36m(TaskRunner pid=243671)[0m dataset len: 50
+[36m(TaskRunner pid=243671)[0m Setting TOKENIZERS_PARALLELISM=false for forked processes.
+[36m(TaskRunner pid=243671)[0m WARNING:2026-06-09 00:29:55,754:Setting TOKENIZERS_PARALLELISM=false for forked processes.
+[36m(TaskRunner pid=243671)[0m Filtering prompts longer than 28672 tokens (num_proc=1):   0%|          | 0/50 [00:00<?, ? examples/s]
+[36m(TaskRunner pid=243671)[0m Filtering prompts longer than 28672 tokens (num_proc=1): 100%|██████████| 50/50 [00:00<00:00, 72.13 examples/s]
+[36m(TaskRunner pid=243671)[0m Filtering prompts longer than 28672 tokens (num_proc=1): 100%|██████████| 50/50 [00:00<00:00, 60.19 examples/s]
+[36m(TaskRunner pid=243671)[0m filter dataset len: 50
+[36m(TaskRunner pid=243671)[0m [validate_config] All configuration checks passed successfully!
+[36m(TaskRunner pid=243671)[0m DeprecationWarning: `ray.state.available_resources_per_node` is a private attribute and access will be removed in a future Ray version.
+[36m(TaskRunner pid=243671)[0m Size of train dataloader: 500, Size of val dataloader: 1
+[36m(TaskRunner pid=243671)[0m Total training steps: 500
+[36m(TaskRunner pid=243671)[0m colocated worker base class <class 'verl.single_controller.base.worker.Worker'>
+[36m(TaskRunner pid=243671)[0m WARNING:2026-06-09 00:29:57,737:Waiting for register center actor P8MKfM_register_center to be ready. Elapsed time: 0 seconds out of 300 seconds.
+[33m(raylet)[0m [2026-06-09 00:30:01,293 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-09 00:30:11,301 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=248430)[0m [W609 00:30:20.377085011 socket.cpp:204] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+[36m(WorkerDict pid=248430)[0m Flash Attention 2.0 only supports torch.float16 and torch.bfloat16 dtypes, but the current dype in Qwen2ForCausalLM is torch.float32. You should run training or inference using Automatic Mixed-Precision via the `with torch.autocast(device_type='torch_device'):` decorator, or load the model with the `torch_dtype` argument. Example: `model = AutoModel.from_pretrained("openai/whisper-tiny", attn_implementation="flash_attention_2", torch_dtype=torch.float16)`
+[36m(WorkerDict pid=248430)[0m You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+[36m(WorkerDict pid=248430)[0m Model config after override: Qwen2Config {
+[36m(WorkerDict pid=248430)[0m   "architectures": [
+[36m(WorkerDict pid=248430)[0m     "Qwen2ForCausalLM"
+[36m(WorkerDict pid=248430)[0m   ],
+[36m(WorkerDict pid=248430)[0m   "attention_dropout": 0.0,
+[36m(WorkerDict pid=248430)[0m   "eos_token_id": 151645,
+[36m(WorkerDict pid=248430)[0m   "hidden_act": "silu",
+[36m(WorkerDict pid=248430)[0m   "hidden_size": 1536,
+[36m(WorkerDict pid=248430)[0m   "initializer_range": 0.02,
+[36m(WorkerDict pid=248430)[0m   "intermediate_size": 8960,
+[36m(WorkerDict pid=248430)[0m   "max_position_embeddings": 32768,
+[36m(WorkerDict pid=248430)[0m   "max_window_layers": 21,
+[36m(WorkerDict pid=248430)[0m   "model_type": "qwen2",
+[36m(WorkerDict pid=248430)[0m   "num_attention_heads": 12,
+[36m(WorkerDict pid=248430)[0m   "num_hidden_layers": 28,
+[36m(WorkerDict pid=248430)[0m   "num_key_value_heads": 2,
+[36m(WorkerDict pid=248430)[0m   "pad_token_id": 151643,
+[36m(WorkerDict pid=248430)[0m   "rms_norm_eps": 1e-06,
+[36m(WorkerDict pid=248430)[0m   "rope_scaling": null,
+[36m(WorkerDict pid=248430)[0m   "rope_theta": 1000000.0,
+[36m(WorkerDict pid=248430)[0m   "sliding_window": 32768,
+[36m(WorkerDict pid=248430)[0m   "tie_word_embeddings": true,
+[36m(WorkerDict pid=248430)[0m   "torch_dtype": "bfloat16",
+[36m(WorkerDict pid=248430)[0m   "transformers_version": "4.51.1",
+[36m(WorkerDict pid=248430)[0m   "use_cache": true,
+[36m(WorkerDict pid=248430)[0m   "use_sliding_window": false,
+[36m(WorkerDict pid=248430)[0m   "vocab_size": 151936
+[36m(WorkerDict pid=248430)[0m }
+[36m(WorkerDict pid=248430)[0m 
+[33m(raylet)[0m [2026-06-09 00:30:21,309 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=248430)[0m Monkey patch _flash_attention_forward in transformers.integrations.flash_attention
+[36m(WorkerDict pid=248430)[0m Applying LoRA to actor module
+[36m(WorkerDict pid=248430)[0m PeftModelForCausalLM contains 1.58B parameters
+[36m(WorkerDict pid=248430)[0m wrap_policy: functools.partial(<function _or_policy at 0x71a09f5b8ea0>, policies=[functools.partial(<function lambda_auto_wrap_policy at 0x71a09f5b8860>, lambda_fn=<function get_fsdp_wrap_policy.<locals>.lambda_policy_fn at 0x71a0540d9260>), functools.partial(<function transformer_auto_wrap_policy at 0x71a09f5b8d60>, transformer_layer_cls={<class 'transformers.models.qwen2.modeling_qwen2.Qwen2DecoderLayer'>})])
+[36m(WorkerDict pid=248430)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/torch/distributed/fsdp/_init_utils.py:444: UserWarning: FSDP is switching to use `NO_SHARD` instead of ShardingStrategy.FULL_SHARD since the world size is 1.
+[36m(WorkerDict pid=248430)[0m   warnings.warn(
+[36m(WorkerDict pid=248430)[0m NCCL version 2.21.5+cuda12.4
+[36m(WorkerDict pid=248430)[0m Total steps: 500, num_warmup_steps: 0
+[33m(raylet)[0m [2026-06-09 00:30:31,318 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=248430)[0m Actor use_remove_padding=True
+[36m(WorkerDict pid=248430)[0m Actor use_fused_kernels=False
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:30:34 [registry.py:389] Model architecture Qwen3ForCausalLM is already registered, and will be overwritten by the new model class torchrl.modules.llm.backends._models:Qwen3ForCausalLMFP32.
+[36m(WorkerDict pid=248430)[0m [92m2026-06-09 00:30:34,950 [torchrl][INFO][0m    Registered Qwen3 FP32 model overrides[92m [END][0m
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:30:34 [config.py:2972] Casting torch.bfloat16 to torch.float16.
+[33m(raylet)[0m [2026-06-09 00:30:41,327 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:30:43 [arg_utils.py:1658] VLLM_ATTENTION_BACKEND=XFORMERS is not supported by the V1 Engine. Falling back to V0. We recommend to remove VLLM_ATTENTION_BACKEND=XFORMERS from your config in favor of the V1 Engine.
+[33m(raylet)[0m [2026-06-09 00:30:51,335 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:   0%|          | 0/35 [00:00<?, ?it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:   3%|▎         | 1/35 [00:00<00:26,  1.28it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:   6%|▌         | 2/35 [00:01<00:22,  1.44it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:   9%|▊         | 3/35 [00:02<00:21,  1.47it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  11%|█▏        | 4/35 [00:02<00:20,  1.53it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  14%|█▍        | 5/35 [00:03<00:19,  1.56it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  17%|█▋        | 6/35 [00:03<00:18,  1.58it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  20%|██        | 7/35 [00:04<00:17,  1.59it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  23%|██▎       | 8/35 [00:05<00:16,  1.61it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  26%|██▌       | 9/35 [00:05<00:16,  1.62it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  29%|██▊       | 10/35 [00:06<00:15,  1.59it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  31%|███▏      | 11/35 [00:07<00:15,  1.55it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  34%|███▍      | 12/35 [00:07<00:14,  1.57it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  37%|███▋      | 13/35 [00:08<00:14,  1.55it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  40%|████      | 14/35 [00:08<00:13,  1.57it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  43%|████▎     | 15/35 [00:09<00:12,  1.58it/s]
+[33m(raylet)[0m [2026-06-09 00:31:01,344 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  46%|████▌     | 16/35 [00:10<00:11,  1.60it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  49%|████▊     | 17/35 [00:10<00:11,  1.60it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  51%|█████▏    | 18/35 [00:11<00:10,  1.61it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  54%|█████▍    | 19/35 [00:12<00:09,  1.61it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  57%|█████▋    | 20/35 [00:12<00:09,  1.62it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  60%|██████    | 21/35 [00:13<00:08,  1.61it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  63%|██████▎   | 22/35 [00:13<00:08,  1.61it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  66%|██████▌   | 23/35 [00:14<00:07,  1.61it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  69%|██████▊   | 24/35 [00:15<00:06,  1.62it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  71%|███████▏  | 25/35 [00:15<00:06,  1.62it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  74%|███████▍  | 26/35 [00:16<00:05,  1.62it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  77%|███████▋  | 27/35 [00:17<00:04,  1.63it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  80%|████████  | 28/35 [00:17<00:04,  1.57it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  83%|████████▎ | 29/35 [00:18<00:03,  1.57it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  86%|████████▌ | 30/35 [00:18<00:03,  1.57it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  89%|████████▊ | 31/35 [00:19<00:02,  1.57it/s]
+[33m(raylet)[0m [2026-06-09 00:31:11,353 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  91%|█████████▏| 32/35 [00:20<00:01,  1.59it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  94%|█████████▍| 33/35 [00:20<00:01,  1.60it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes:  97%|█████████▋| 34/35 [00:21<00:00,  1.61it/s]
+[36m(WorkerDict pid=248430)[0m Capturing CUDA graph shapes: 100%|██████████| 35/35 [00:22<00:00,  1.57it/s]Capturing CUDA graph shapes: 100%|██████████| 35/35 [00:22<00:00,  1.58it/s]
+[36m(WorkerDict pid=248430)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:690: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+[36m(WorkerDict pid=248430)[0m   warnings.warn(
+[36m(WorkerDict pid=248430)[0m kwargs: {'n': 1, 'logprobs': 0, 'max_tokens': 4096, 'detokenize': False, 'temperature': 1.0, 'top_k': -1, 'top_p': 1, 'ignore_eos': False}
+[36m(TaskRunner pid=243671)[0m Training Progress:   0%|          | 0/500 [00:00<?, ?it/s]
+[36m(TaskRunner pid=243671)[0m Using LocalLogger is deprecated. The constructor API will change 
+[36m(TaskRunner pid=243671)[0m Checkpoint tracker file does not exist: %s /diskpool/home/xuxz/Code-for-DPEPO/webshop_para_full_result/latest_checkpointed_iteration.txt
+[36m(TaskRunner pid=243671)[0m Training from scratch
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m   0%|          | 0/1 [00:00<?, ?it/s][A100%|██████████| 1/1 [00:00<00:00, 36.35it/s]
+[36m(TaskRunner pid=243671)[0m [DEBUG] ParallelWebShopEnvs initialized with num_parallel=1, group_n=5 in ParallelWebShopEnvs
+[36m(TaskRunner pid=243671)[0m group_n for 865: 5
+[36m(TaskRunner pid=243671)[0m Total unique game files: 1
+[36m(TaskRunner pid=243671)[0m [DEBUG] group_n = 5 in rollout loop, is_train=True
+[33m(raylet)[0m [2026-06-09 00:31:21,360 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(ParallelWebShopWorker pid=250185)[0m [DEBUG] ParallelWebShopWorker initialized with num_parallel=1 in ParallelWebShopWorker
+[36m(pid=250185)[0m Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1
+[36m(pid=250185)[0m Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+[36m(pid=250185)[0m Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+[36m(pid=250185)[0m See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[36m(ParallelWebShopWorker pid=250185)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+[36m(ParallelWebShopWorker pid=250185)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+[36m(ParallelWebShopWorker pid=250185)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+[36m(ParallelWebShopWorker pid=250183)[0m Products loaded.
+[36m(ParallelWebShopWorker pid=250183)[0m Keys cleaned.
+[36m(ParallelWebShopWorker pid=250183)[0m Attributes loaded.
+[36m(ParallelWebShopWorker pid=250183)[0m   0%|          | 0/1000 [00:00<?, ?it/s]100%|██████████| 1000/1000 [00:00<00:00, 139889.40it/s]
+[36m(ParallelWebShopWorker pid=250183)[0m Loaded 6910 goals.
+[36m(ParallelWebShopWorker pid=250183)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/bs4/element.py:784: DeprecationWarning: The 'text' argument to find()-type methods is deprecated. Use 'string' instead.
+[36m(ParallelWebShopWorker pid=250183)[0m   warnings.warn(
+[36m(ParallelWebShopWorker pid=250183)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/gym/envs/registration.py:619: UserWarning: [33mWARN: Env check failed with the following message: You must specify an observation space (cf gym.spaces) cf https://github.com/openai/gym/blob/master/gym/spaces/
+[36m(ParallelWebShopWorker pid=250183)[0m You can set `disable_env_checker=True` to disable this check.[0m
+[36m(ParallelWebShopWorker pid=250183)[0m   logger.warn(
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m   0%|          | 0/20 [00:00<?, ?it/s][A
+[33m(raylet)[0m [2026-06-09 00:31:31,367 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=248430)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/torch/distributed/fsdp/_state_dict_utils.py:773: UserWarning: When using ``NO_SHARD`` for ``ShardingStrategy``, full_state_dict willbe returned.
+[36m(WorkerDict pid=248430)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/torch/distributed/fsdp/_state_dict_utils.py:711: UserWarning: When using ``NO_SHARD`` for ``ShardingStrategy``, full_state_dict willbe returned.
+[36m(pid=250181)[0m Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1[32m [repeated 4x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(pid=250181)[0m Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.[32m [repeated 4x across cluster][0m
+[36m(pid=250181)[0m Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.[32m [repeated 4x across cluster][0m
+[36m(pid=250181)[0m See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=250181)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=250181)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=250181)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type swigvarlink has no __module__ attribute[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=250184)[0m   0%|          | 0/1000 [00:00<?, ?it/s]100%|██████████| 1000/1000 [00:00<00:00, 141675.53it/s][32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=250184)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/bs4/element.py:784: DeprecationWarning: The 'text' argument to find()-type methods is deprecated. Use 'string' instead.[32m [repeated 4x across cluster][0m
+[36m(WorkerDict pid=248430)[0m   warnings.warn([32m [repeated 6x across cluster][0m
+[36m(ParallelWebShopWorker pid=250184)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/gym/envs/registration.py:619: UserWarning: [33mWARN: Env check failed with the following message: You must specify an observation space (cf gym.spaces) cf https://github.com/openai/gym/blob/master/gym/spaces/[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=250184)[0m You can set `disable_env_checker=True` to disable this check.[0m[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=250184)[0m   logger.warn([32m [repeated 4x across cluster][0m
+[33m(raylet)[0m [2026-06-09 00:31:41,373 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m   5%|▌         | 1/20 [00:15<04:47, 15.13s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(ParallelWebShopWorker pid=250181)[0m [DEBUG] ParallelWebShopWorker initialized with num_parallel=1 in ParallelWebShopWorker[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=250184)[0m Products loaded.[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=250184)[0m Keys cleaned.[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=250184)[0m Attributes loaded.[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=250184)[0m Loaded 6910 goals.[32m [repeated 4x across cluster][0m
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:31:46 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:31:51,380 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  10%|█         | 2/20 [00:21<02:59,  9.98s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:31:52 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  15%|█▌        | 3/20 [00:29<02:30,  8.86s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:31:59 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:32:01,387 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  20%|██        | 4/20 [00:37<02:18,  8.64s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:32:08 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:32:11,394 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  25%|██▌       | 5/20 [00:44<02:00,  8.04s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:32:15 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:32:21,402 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-09 00:32:31,409 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-09 00:32:41,417 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  30%|███       | 6/20 [01:20<04:07, 17.70s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [list([]) list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])] and not done yet
+[33m(raylet)[0m [2026-06-09 00:32:51,425 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:32:51 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  35%|███▌      | 7/20 [01:31<03:18, 15.29s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[33m(raylet)[0m [2026-06-09 00:33:01,433 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:33:01 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  40%|████      | 8/20 [01:41<02:44, 13.68s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[33m(raylet)[0m [2026-06-09 00:33:11,442 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:33:12 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[36m(TaskRunner pid=243671)[0m  40%|████      | 8/20 [01:51<02:46, 13.90s/it]
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [True False False False False]] and not done yet
+[36m(TaskRunner pid=243671)[0m Task 0 SUCCESS at turn 9 in environments 0
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [True False False False False]]
+[36m(TaskRunner pid=243671)[0m rewards = [0.6363636363636364 0 0 0 0]
+[36m(TaskRunner pid=243671)[0m All tasks completed at turn 9, exiting rollout loop.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m ============================================================
+[36m(TaskRunner pid=243671)[0m Rollout Summary:
+[36m(TaskRunner pid=243671)[0m Total tasks: 5, Successful tasks: 1, Success rate: 20.00%
+[36m(TaskRunner pid=243671)[0m Average episode length: 9.00 steps
+[36m(TaskRunner pid=243671)[0m Average episode reward: 0.1273
+[36m(TaskRunner pid=243671)[0m ============================================================
+[33m(raylet)[0m [2026-06-09 00:33:21,450 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-09 00:33:31,458 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m list(reward_extra_infos_dict.keys())=[]
+[33m(raylet)[0m [2026-06-09 00:33:41,466 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-09 00:33:51,474 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-09 00:34:01,482 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m   0%|          | 0/50 [00:00<?, ?it/s][A100%|██████████| 50/50 [00:00<00:00, 1456.93it/s]
+[36m(TaskRunner pid=243671)[0m [DEBUG] ParallelWebShopEnvs initialized with num_parallel=1, group_n=1 in ParallelWebShopEnvs
+[36m(TaskRunner pid=243671)[0m group_n for 142: 1
+[36m(TaskRunner pid=243671)[0m group_n for 169: 1
+[36m(TaskRunner pid=243671)[0m group_n for 317: 1
+[36m(TaskRunner pid=243671)[0m group_n for 155: 1
+[36m(TaskRunner pid=243671)[0m group_n for 4: 1
+[36m(TaskRunner pid=243671)[0m group_n for 29: 1
+[36m(TaskRunner pid=243671)[0m group_n for 423: 1
+[36m(TaskRunner pid=243671)[0m group_n for 362: 1
+[36m(TaskRunner pid=243671)[0m group_n for 10: 1
+[36m(TaskRunner pid=243671)[0m group_n for 467: 1
+[36m(TaskRunner pid=243671)[0m group_n for 163: 1
+[36m(TaskRunner pid=243671)[0m group_n for 110: 1
+[36m(TaskRunner pid=243671)[0m group_n for 140: 1
+[36m(TaskRunner pid=243671)[0m group_n for 116: 1
+[36m(TaskRunner pid=243671)[0m group_n for 132: 1
+[36m(TaskRunner pid=243671)[0m group_n for 436: 1
+[36m(TaskRunner pid=243671)[0m group_n for 52: 1
+[36m(TaskRunner pid=243671)[0m group_n for 38: 1
+[36m(TaskRunner pid=243671)[0m group_n for 75: 1
+[36m(TaskRunner pid=243671)[0m group_n for 138: 1
+[36m(TaskRunner pid=243671)[0m group_n for 406: 1
+[36m(TaskRunner pid=243671)[0m group_n for 143: 1
+[36m(TaskRunner pid=243671)[0m group_n for 158: 1
+[36m(TaskRunner pid=243671)[0m group_n for 207: 1
+[36m(TaskRunner pid=243671)[0m group_n for 148: 1
+[36m(TaskRunner pid=243671)[0m group_n for 214: 1
+[36m(TaskRunner pid=243671)[0m group_n for 498: 1
+[36m(TaskRunner pid=243671)[0m group_n for 453: 1
+[36m(TaskRunner pid=243671)[0m group_n for 482: 1
+[36m(TaskRunner pid=243671)[0m group_n for 231: 1
+[36m(TaskRunner pid=243671)[0m group_n for 65: 1
+[36m(TaskRunner pid=243671)[0m group_n for 313: 1
+[36m(TaskRunner pid=243671)[0m group_n for 7: 1
+[36m(TaskRunner pid=243671)[0m group_n for 106: 1
+[36m(TaskRunner pid=243671)[0m group_n for 71: 1
+[36m(TaskRunner pid=243671)[0m group_n for 11: 1
+[36m(TaskRunner pid=243671)[0m group_n for 357: 1
+[36m(TaskRunner pid=243671)[0m group_n for 243: 1
+[36m(TaskRunner pid=243671)[0m group_n for 260: 1
+[36m(TaskRunner pid=243671)[0m group_n for 32: 1
+[36m(TaskRunner pid=243671)[0m group_n for 90: 1
+[36m(TaskRunner pid=243671)[0m group_n for 497: 1
+[36m(TaskRunner pid=243671)[0m group_n for 286: 1
+[36m(TaskRunner pid=243671)[0m group_n for 72: 1
+[36m(TaskRunner pid=243671)[0m group_n for 232: 1
+[36m(TaskRunner pid=243671)[0m group_n for 267: 1
+[36m(TaskRunner pid=243671)[0m group_n for 101: 1
+[36m(TaskRunner pid=243671)[0m group_n for 193: 1
+[36m(TaskRunner pid=243671)[0m group_n for 198: 1
+[36m(TaskRunner pid=243671)[0m group_n for 325: 1
+[36m(TaskRunner pid=243671)[0m Total unique game files: 50
+[36m(TaskRunner pid=243671)[0m test_gen_batch meta info: {'eos_token_id': 151645, 'pad_token_id': 151643, 'recompute_log_prob': False, 'do_sample': True, 'validate': True}
+[36m(TaskRunner pid=243671)[0m [DEBUG] group_n = 1 in rollout loop, is_train=False
+[33m(raylet)[0m [2026-06-09 00:34:11,493 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.73 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(pid=254100)[0m Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1
+[36m(pid=254100)[0m Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+[36m(pid=254100)[0m Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+[36m(pid=254100)[0m See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[36m(ParallelWebShopWorker pid=254100)[0m [DEBUG] ParallelWebShopWorker initialized with num_parallel=1 in ParallelWebShopWorker
+[36m(ParallelWebShopWorker pid=254100)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+[36m(ParallelWebShopWorker pid=254100)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+[36m(ParallelWebShopWorker pid=254100)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+[36m(ParallelWebShopWorker pid=254100)[0m Products loaded.
+[36m(ParallelWebShopWorker pid=254100)[0m Keys cleaned.
+[36m(ParallelWebShopWorker pid=254100)[0m   0%|          | 0/1000 [00:00<?, ?it/s]100%|██████████| 1000/1000 [00:00<00:00, 132874.11it/s]
+[36m(ParallelWebShopWorker pid=254100)[0m Attributes loaded.
+[36m(ParallelWebShopWorker pid=254100)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/bs4/element.py:784: DeprecationWarning: The 'text' argument to find()-type methods is deprecated. Use 'string' instead.
+[36m(ParallelWebShopWorker pid=254100)[0m   warnings.warn(
+[36m(ParallelWebShopWorker pid=254100)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/gym/envs/registration.py:619: UserWarning: [33mWARN: Env check failed with the following message: You must specify an observation space (cf gym.spaces) cf https://github.com/openai/gym/blob/master/gym/spaces/
+[36m(ParallelWebShopWorker pid=254100)[0m You can set `disable_env_checker=True` to disable this check.[0m
+[36m(ParallelWebShopWorker pid=254100)[0m   logger.warn(
+[36m(ParallelWebShopWorker pid=254100)[0m Loaded 6910 goals.
+[36m(ParallelWebShopWorker pid=254095)[0m [DEBUG] ParallelWebShopWorker initialized with num_parallel=1 in ParallelWebShopWorker[32m [repeated 35x across cluster][0m
+[36m(pid=254094)[0m Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1[32m [repeated 35x across cluster][0m
+[36m(pid=254094)[0m Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.[32m [repeated 35x across cluster][0m
+[36m(pid=254094)[0m Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.[32m [repeated 35x across cluster][0m
+[36m(pid=254094)[0m See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.[32m [repeated 35x across cluster][0m
+[36m(ParallelWebShopWorker pid=254136)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute[32m [repeated 27x across cluster][0m
+[36m(ParallelWebShopWorker pid=254136)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute[32m [repeated 27x across cluster][0m
+[36m(ParallelWebShopWorker pid=254136)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type swigvarlink has no __module__ attribute[32m [repeated 27x across cluster][0m
+[36m(ParallelWebShopWorker pid=254097)[0m 100%|██████████| 1000/1000 [00:00<00:00, 115272.47it/s]
+[36m(ParallelWebShopWorker pid=254114)[0m 100%|██████████| 1000/1000 [00:00<00:00, 111752.74it/s]
+[36m(ParallelWebShopWorker pid=254091)[0m 100%|██████████| 1000/1000 [00:00<00:00, 134553.57it/s]
+[36m(ParallelWebShopWorker pid=254098)[0m Products loaded.[32m [repeated 26x across cluster][0m
+[36m(ParallelWebShopWorker pid=254090)[0m Keys cleaned.[32m [repeated 26x across cluster][0m
+[36m(ParallelWebShopWorker pid=254143)[0m 100%|██████████| 1000/1000 [00:00<00:00, 135295.76it/s]
+[36m(ParallelWebShopWorker pid=254128)[0m 100%|██████████| 1000/1000 [00:00<00:00, 133508.53it/s]
+[36m(ParallelWebShopWorker pid=254136)[0m 100%|██████████| 1000/1000 [00:00<00:00, 123769.59it/s]
+[36m(ParallelWebShopWorker pid=254098)[0m 100%|██████████| 1000/1000 [00:00<00:00, 133977.64it/s]
+[33m(raylet)[0m [2026-06-09 00:34:21,502 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(ParallelWebShopWorker pid=254113)[0m   0%|          | 0/1000 [00:00<?, ?it/s]100%|██████████| 1000/1000 [00:00<00:00, 125487.79it/s][32m [repeated 27x across cluster][0m
+[36m(ParallelWebShopWorker pid=254133)[0m Attributes loaded.[32m [repeated 27x across cluster][0m
+[36m(ParallelWebShopWorker pid=254098)[0m Loaded 6910 goals.[32m [repeated 25x across cluster][0m
+[36m(ParallelWebShopWorker pid=254090)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/bs4/element.py:784: DeprecationWarning: The 'text' argument to find()-type methods is deprecated. Use 'string' instead.[32m [repeated 26x across cluster][0m
+[36m(ParallelWebShopWorker pid=254090)[0m   warnings.warn([32m [repeated 26x across cluster][0m
+[36m(ParallelWebShopWorker pid=254090)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/gym/envs/registration.py:619: UserWarning: [33mWARN: Env check failed with the following message: You must specify an observation space (cf gym.spaces) cf https://github.com/openai/gym/blob/master/gym/spaces/[32m [repeated 26x across cluster][0m
+[36m(ParallelWebShopWorker pid=254090)[0m You can set `disable_env_checker=True` to disable this check.[0m[32m [repeated 26x across cluster][0m
+[36m(ParallelWebShopWorker pid=254090)[0m   logger.warn([32m [repeated 26x across cluster][0m
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m   0%|          | 0/20 [00:00<?, ?it/s][A
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:34:24 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[36m(ParallelWebShopWorker pid=254101)[0m [DEBUG] ParallelWebShopWorker initialized with num_parallel=1 in ParallelWebShopWorker[32m [repeated 14x across cluster][0m
+[36m(pid=254101)[0m Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1[32m [repeated 14x across cluster][0m
+[36m(pid=254101)[0m Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.[32m [repeated 14x across cluster][0m
+[36m(pid=254101)[0m Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.[32m [repeated 14x across cluster][0m
+[36m(pid=254101)[0m See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.[32m [repeated 14x across cluster][0m
+[36m(ParallelWebShopWorker pid=254101)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute[32m [repeated 22x across cluster][0m
+[36m(ParallelWebShopWorker pid=254101)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute[32m [repeated 22x across cluster][0m
+[36m(ParallelWebShopWorker pid=254101)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type swigvarlink has no __module__ attribute[32m [repeated 22x across cluster][0m
+[33m(raylet)[0m [2026-06-09 00:34:31,508 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(ParallelWebShopWorker pid=254140)[0m   0%|          | 0/1000 [00:00<?, ?it/s]100%|██████████| 1000/1000 [00:00<00:00, 111740.84it/s][32m [repeated 22x across cluster][0m
+[36m(ParallelWebShopWorker pid=254140)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/bs4/element.py:784: DeprecationWarning: The 'text' argument to find()-type methods is deprecated. Use 'string' instead.[32m [repeated 23x across cluster][0m
+[36m(ParallelWebShopWorker pid=254140)[0m   warnings.warn([32m [repeated 23x across cluster][0m
+[36m(ParallelWebShopWorker pid=254140)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/gym/envs/registration.py:619: UserWarning: [33mWARN: Env check failed with the following message: You must specify an observation space (cf gym.spaces) cf https://github.com/openai/gym/blob/master/gym/spaces/[32m [repeated 23x across cluster][0m
+[36m(ParallelWebShopWorker pid=254140)[0m You can set `disable_env_checker=True` to disable this check.[0m[32m [repeated 23x across cluster][0m
+[36m(ParallelWebShopWorker pid=254140)[0m   logger.warn([32m [repeated 23x across cluster][0m
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m   5%|▌         | 1/20 [00:10<03:12, 10.13s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [list([False]) list([False, False, False]) list([False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False]) list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False]) list([False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False]) list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False, False])
+[36m(TaskRunner pid=243671)[0m  list([False]) list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])] and not done yet
+[36m(ParallelWebShopWorker pid=254140)[0m Products loaded.[32m [repeated 23x across cluster][0m
+[36m(ParallelWebShopWorker pid=254140)[0m Keys cleaned.[32m [repeated 23x across cluster][0m
+[36m(ParallelWebShopWorker pid=254140)[0m Attributes loaded.[32m [repeated 22x across cluster][0m
+[36m(ParallelWebShopWorker pid=254140)[0m Loaded 6910 goals.[32m [repeated 24x across cluster][0m
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:34:34 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:34:41,517 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m   5%|▌         | 1/20 [00:22<07:10, 22.65s/it]
+[36m(TaskRunner pid=243671)[0m dones = [list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False, False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False, False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False]) list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False]) list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False, False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False, False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False]) list([False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False]) list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False]) list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False, False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False]) list([False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False]) list([False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False, False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])] and not done yet
+[36m(TaskRunner pid=243671)[0m Task 0 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 1 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 2 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 3 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 4 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 5 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 6 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 7 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 8 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 9 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 10 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 11 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 12 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 13 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 14 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 15 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 16 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 17 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 18 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 19 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 20 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 21 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 22 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 23 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 24 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 25 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 26 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 27 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 28 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 29 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 30 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 31 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 32 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 33 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 34 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 35 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 36 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 37 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 38 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 39 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 40 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 41 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 42 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 43 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 44 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 45 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 46 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 47 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 48 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 49 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m All tasks completed at turn 2, exiting rollout loop.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m ============================================================
+[36m(TaskRunner pid=243671)[0m Rollout Summary:
+[36m(TaskRunner pid=243671)[0m Total tasks: 50, Successful tasks: 0, Success rate: 0.00%
+[36m(TaskRunner pid=243671)[0m Average episode length: 2.00 steps
+[36m(TaskRunner pid=243671)[0m Average episode reward: 0.0000
+[36m(TaskRunner pid=243671)[0m ============================================================
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m ============================================================
+[36m(TaskRunner pid=243671)[0m Validation Complete Summary:
+[36m(TaskRunner pid=243671)[0m Total validation tasks: 50
+[36m(TaskRunner pid=243671)[0m Successful tasks: 0
+[36m(TaskRunner pid=243671)[0m Success rate: 0.00%
+[36m(TaskRunner pid=243671)[0m Success task indices: []
+[36m(TaskRunner pid=243671)[0m Average episode length: 2.00 steps
+[36m(TaskRunner pid=243671)[0m Average episode reward: 0.0000
+[36m(TaskRunner pid=243671)[0m ============================================================
+[36m(TaskRunner pid=243671)[0m Training Progress:   0%|          | 1/500 [03:26<28:38:15, 206.61s/it]
+[36m(TaskRunner pid=243671)[0m   0%|          | 0/1 [00:00<?, ?it/s][A100%|██████████| 1/1 [00:00<00:00, 57.09it/s]
+[36m(TaskRunner pid=243671)[0m step:1 - global_seqlen/min:155012.000 - global_seqlen/max:155012.000 - global_seqlen/minmax_diff:0.000 - global_seqlen/balanced_min:155012.000 - global_seqlen/balanced_max:155012.000 - global_seqlen/mean:155012.000 - actor/entropy_loss:0.314 - training/rollout_probs_diff_max:0.220 - training/rollout_probs_diff_mean:0.004 - training/rollout_probs_diff_std:0.010 - actor/kl_loss:0.001 - actor/kl_coef:0.010 - actor/pg_loss:0.009 - actor/pg_clipfrac:0.001 - actor/ppo_kl:-0.000 - actor/pg_clipfrac_lower:0.000 - actor/grad_norm:0.098 - perf/mfu/actor:0.398 - perf/max_memory_allocated_gb:55.436 - perf/max_memory_reserved_gb:62.826 - perf/cpu_memory_used_gb:615.587 - actor/lr:0.000 - val/unknown/test_score:0.000 - val/unknown/tool_call_count/mean:0.000 - val/unknown/tool_call_count/max:0.000 - val/unknown/tool_call_count/min:0.000 - val/val/success_rate:0.000 - training/global_step:1.000 - training/epoch:0.000 - critic/score/mean:0.119 - critic/score/max:0.636 - critic/score/min:0.000 - critic/rewards/mean:0.119 - critic/rewards/max:0.636 - critic/rewards/min:0.000 - critic/advantages/mean:-0.075 - critic/advantages/max:2.060 - critic/advantages/min:-0.475 - critic/returns/mean:-0.075 - critic/returns/max:2.060 - critic/returns/min:-0.475 - response_length/mean:583.229 - response_length/max:4096.000 - response_length/min:235.000 - response_length/clip_ratio:0.021 - prompt_length/mean:2646.188 - prompt_length/max:4130.000 - prompt_length/min:1485.000 - prompt_length/clip_ratio:0.000 - episode/reward/mean:0.127 - episode/reward/max:0.636 - episode/reward/min:0.000 - episode/length/mean:9.000 - episode/length/max:9.000 - episode/length/min:9.000 - episode/tool_call_count/mean:0.000 - episode/tool_call_count/max:0.000 - episode/tool_call_count/min:0.000 - timing_s/gen:121.620 - timing_s/reward:0.051 - timing_s/old_log_prob:9.303 - timing_s/ref:7.466 - timing_s/adv:0.003 - timing_s/update_actor:28.037 - timing_s/testing:39.421 - timing_s/step:205.976 - timing_per_token_ms/gen:4.344 - timing_per_token_ms/ref:0.048 - timing_per_token_ms/update_actor:0.181 - timing_per_token_ms/adv:0.000 - perf/total_num_tokens:155012.000 - perf/time_per_step:205.976 - perf/throughput:752.574
+[36m(TaskRunner pid=243671)[0m [DEBUG] ParallelWebShopEnvs initialized with num_parallel=1, group_n=5 in ParallelWebShopEnvs
+[36m(TaskRunner pid=243671)[0m group_n for 6876: 5
+[36m(TaskRunner pid=243671)[0m Total unique game files: 1
+[36m(TaskRunner pid=243671)[0m [DEBUG] group_n = 5 in rollout loop, is_train=True
+[33m(raylet)[0m [2026-06-09 00:34:51,526 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(pid=264620)[0m Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1
+[36m(pid=264620)[0m Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+[36m(pid=264620)[0m Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+[36m(pid=264620)[0m See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[36m(ParallelWebShopWorker pid=264620)[0m [DEBUG] ParallelWebShopWorker initialized with num_parallel=1 in ParallelWebShopWorker
+[36m(ParallelWebShopWorker pid=264620)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+[36m(ParallelWebShopWorker pid=264620)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+[36m(ParallelWebShopWorker pid=264620)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+[36m(ParallelWebShopWorker pid=264620)[0m Products loaded.
+[36m(ParallelWebShopWorker pid=264620)[0m Keys cleaned.
+[36m(ParallelWebShopWorker pid=264620)[0m   0%|          | 0/1000 [00:00<?, ?it/s]100%|██████████| 1000/1000 [00:00<00:00, 138462.43it/s]
+[36m(ParallelWebShopWorker pid=264620)[0m Attributes loaded.
+[36m(ParallelWebShopWorker pid=264620)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/bs4/element.py:784: DeprecationWarning: The 'text' argument to find()-type methods is deprecated. Use 'string' instead.
+[36m(ParallelWebShopWorker pid=264620)[0m   warnings.warn(
+[36m(ParallelWebShopWorker pid=264620)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/gym/envs/registration.py:619: UserWarning: [33mWARN: Env check failed with the following message: You must specify an observation space (cf gym.spaces) cf https://github.com/openai/gym/blob/master/gym/spaces/
+[36m(ParallelWebShopWorker pid=264620)[0m You can set `disable_env_checker=True` to disable this check.[0m
+[36m(ParallelWebShopWorker pid=264620)[0m   logger.warn(
+[36m(ParallelWebShopWorker pid=264620)[0m Loaded 6910 goals.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m   0%|          | 0/20 [00:00<?, ?it/s][A
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:34:57 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:35:01,536 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(pid=264619)[0m Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1[32m [repeated 4x across cluster][0m
+[36m(pid=264619)[0m Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.[32m [repeated 4x across cluster][0m
+[36m(pid=264619)[0m Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.[32m [repeated 4x across cluster][0m
+[36m(pid=264619)[0m See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=264619)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=264619)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=264619)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type swigvarlink has no __module__ attribute[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=264619)[0m   0%|          | 0/1000 [00:00<?, ?it/s]100%|██████████| 1000/1000 [00:00<00:00, 116282.34it/s][32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=264619)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/bs4/element.py:784: DeprecationWarning: The 'text' argument to find()-type methods is deprecated. Use 'string' instead.[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=264619)[0m   warnings.warn([32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=264619)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/gym/envs/registration.py:619: UserWarning: [33mWARN: Env check failed with the following message: You must specify an observation space (cf gym.spaces) cf https://github.com/openai/gym/blob/master/gym/spaces/[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=264619)[0m You can set `disable_env_checker=True` to disable this check.[0m[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=264619)[0m   logger.warn([32m [repeated 4x across cluster][0m
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m   5%|▌         | 1/20 [00:05<01:36,  5.06s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(ParallelWebShopWorker pid=264619)[0m [DEBUG] ParallelWebShopWorker initialized with num_parallel=1 in ParallelWebShopWorker[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=264619)[0m Products loaded.[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=264619)[0m Keys cleaned.[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=264619)[0m Attributes loaded.[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=264619)[0m Loaded 6910 goals.[32m [repeated 4x across cluster][0m
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:35:02 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  10%|█         | 2/20 [00:12<01:59,  6.61s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:35:10 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:35:11,545 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  15%|█▌        | 3/20 [00:20<02:02,  7.23s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:35:18 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:35:21,554 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  20%|██        | 4/20 [00:31<02:18,  8.66s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:35:29 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:35:31,562 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  25%|██▌       | 5/20 [00:41<02:16,  9.13s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:35:39 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:35:41,571 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  30%|███       | 6/20 [00:51<02:12,  9.48s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:35:49 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:35:51,580 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m  30%|███       | 6/20 [01:01<02:22, 10.18s/it]
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [True False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(TaskRunner pid=243671)[0m Task 0 SUCCESS at turn 7 in environments 0
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [True False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]]
+[36m(TaskRunner pid=243671)[0m rewards = [0.8571428571428571 0 0 0 0]
+[36m(TaskRunner pid=243671)[0m All tasks completed at turn 7, exiting rollout loop.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m ============================================================
+[36m(TaskRunner pid=243671)[0m Rollout Summary:
+[36m(TaskRunner pid=243671)[0m Total tasks: 5, Successful tasks: 1, Success rate: 20.00%
+[36m(TaskRunner pid=243671)[0m Average episode length: 7.00 steps
+[36m(TaskRunner pid=243671)[0m Average episode reward: 0.1714
+[36m(TaskRunner pid=243671)[0m ============================================================
+[33m(raylet)[0m [2026-06-09 00:36:01,589 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m list(reward_extra_infos_dict.keys())=[]
+[33m(raylet)[0m [2026-06-09 00:36:11,597 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-09 00:36:21,606 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m   0%|          | 0/50 [00:00<?, ?it/s][A100%|██████████| 50/50 [00:00<00:00, 1166.27it/s]
+[36m(TaskRunner pid=243671)[0m [DEBUG] ParallelWebShopEnvs initialized with num_parallel=1, group_n=1 in ParallelWebShopEnvs
+[36m(TaskRunner pid=243671)[0m group_n for 142: 1
+[36m(TaskRunner pid=243671)[0m group_n for 169: 1
+[36m(TaskRunner pid=243671)[0m group_n for 317: 1
+[36m(TaskRunner pid=243671)[0m group_n for 155: 1
+[36m(TaskRunner pid=243671)[0m group_n for 4: 1
+[36m(TaskRunner pid=243671)[0m group_n for 29: 1
+[36m(TaskRunner pid=243671)[0m group_n for 423: 1
+[36m(TaskRunner pid=243671)[0m group_n for 362: 1
+[36m(TaskRunner pid=243671)[0m group_n for 10: 1
+[36m(TaskRunner pid=243671)[0m group_n for 467: 1
+[36m(TaskRunner pid=243671)[0m group_n for 163: 1
+[36m(TaskRunner pid=243671)[0m group_n for 110: 1
+[36m(TaskRunner pid=243671)[0m group_n for 140: 1
+[36m(TaskRunner pid=243671)[0m group_n for 116: 1
+[36m(TaskRunner pid=243671)[0m group_n for 132: 1
+[36m(TaskRunner pid=243671)[0m group_n for 436: 1
+[36m(TaskRunner pid=243671)[0m group_n for 52: 1
+[36m(TaskRunner pid=243671)[0m group_n for 38: 1
+[36m(TaskRunner pid=243671)[0m group_n for 75: 1
+[36m(TaskRunner pid=243671)[0m group_n for 138: 1
+[36m(TaskRunner pid=243671)[0m group_n for 406: 1
+[36m(TaskRunner pid=243671)[0m group_n for 143: 1
+[36m(TaskRunner pid=243671)[0m group_n for 158: 1
+[36m(TaskRunner pid=243671)[0m group_n for 207: 1
+[36m(TaskRunner pid=243671)[0m group_n for 148: 1
+[36m(TaskRunner pid=243671)[0m group_n for 214: 1
+[36m(TaskRunner pid=243671)[0m group_n for 498: 1
+[36m(TaskRunner pid=243671)[0m group_n for 453: 1
+[36m(TaskRunner pid=243671)[0m group_n for 482: 1
+[36m(TaskRunner pid=243671)[0m group_n for 231: 1
+[36m(TaskRunner pid=243671)[0m group_n for 65: 1
+[36m(TaskRunner pid=243671)[0m group_n for 313: 1
+[36m(TaskRunner pid=243671)[0m group_n for 7: 1
+[36m(TaskRunner pid=243671)[0m group_n for 106: 1
+[36m(TaskRunner pid=243671)[0m group_n for 71: 1
+[36m(TaskRunner pid=243671)[0m group_n for 11: 1
+[36m(TaskRunner pid=243671)[0m group_n for 357: 1
+[36m(TaskRunner pid=243671)[0m group_n for 243: 1
+[36m(TaskRunner pid=243671)[0m group_n for 260: 1
+[36m(TaskRunner pid=243671)[0m group_n for 32: 1
+[36m(TaskRunner pid=243671)[0m group_n for 90: 1
+[36m(TaskRunner pid=243671)[0m group_n for 497: 1
+[36m(TaskRunner pid=243671)[0m group_n for 286: 1
+[36m(TaskRunner pid=243671)[0m group_n for 72: 1
+[36m(TaskRunner pid=243671)[0m group_n for 232: 1
+[36m(TaskRunner pid=243671)[0m group_n for 267: 1
+[36m(TaskRunner pid=243671)[0m group_n for 101: 1
+[36m(TaskRunner pid=243671)[0m group_n for 193: 1
+[36m(TaskRunner pid=243671)[0m group_n for 198: 1
+[36m(TaskRunner pid=243671)[0m group_n for 325: 1
+[36m(TaskRunner pid=243671)[0m Total unique game files: 50
+[36m(TaskRunner pid=243671)[0m test_gen_batch meta info: {'eos_token_id': 151645, 'pad_token_id': 151643, 'recompute_log_prob': False, 'do_sample': True, 'validate': True}
+[36m(TaskRunner pid=243671)[0m [DEBUG] group_n = 1 in rollout loop, is_train=False
+[33m(raylet)[0m [2026-06-09 00:36:31,626 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(pid=267349)[0m Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1
+[36m(pid=267349)[0m Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+[36m(pid=267349)[0m Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+[36m(pid=267349)[0m See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[36m(ParallelWebShopWorker pid=267349)[0m [DEBUG] ParallelWebShopWorker initialized with num_parallel=1 in ParallelWebShopWorker
+[36m(ParallelWebShopWorker pid=267349)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+[36m(ParallelWebShopWorker pid=267349)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+[36m(ParallelWebShopWorker pid=267349)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+[36m(ParallelWebShopWorker pid=267349)[0m Products loaded.
+[36m(ParallelWebShopWorker pid=267349)[0m Keys cleaned.
+[36m(ParallelWebShopWorker pid=267349)[0m   0%|          | 0/1000 [00:00<?, ?it/s]100%|██████████| 1000/1000 [00:00<00:00, 134338.09it/s]
+[36m(ParallelWebShopWorker pid=267349)[0m Attributes loaded.
+[36m(ParallelWebShopWorker pid=267349)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/bs4/element.py:784: DeprecationWarning: The 'text' argument to find()-type methods is deprecated. Use 'string' instead.
+[36m(ParallelWebShopWorker pid=267349)[0m   warnings.warn(
+[36m(ParallelWebShopWorker pid=267349)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/gym/envs/registration.py:619: UserWarning: [33mWARN: Env check failed with the following message: You must specify an observation space (cf gym.spaces) cf https://github.com/openai/gym/blob/master/gym/spaces/
+[36m(ParallelWebShopWorker pid=267349)[0m You can set `disable_env_checker=True` to disable this check.[0m
+[36m(ParallelWebShopWorker pid=267349)[0m   logger.warn(
+[36m(ParallelWebShopWorker pid=267349)[0m Loaded 6910 goals.
+[36m(ParallelWebShopWorker pid=267348)[0m 100%|██████████| 1000/1000 [00:00<00:00, 134200.55it/s]
+[36m(ParallelWebShopWorker pid=267337)[0m 100%|██████████| 1000/1000 [00:00<00:00, 82155.88it/s]
+[36m(pid=267365)[0m Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1[32m [repeated 42x across cluster][0m
+[36m(pid=267365)[0m Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.[32m [repeated 42x across cluster][0m
+[36m(pid=267365)[0m Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.[32m [repeated 42x across cluster][0m
+[36m(pid=267365)[0m See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.[32m [repeated 42x across cluster][0m
+[36m(ParallelWebShopWorker pid=267376)[0m [DEBUG] ParallelWebShopWorker initialized with num_parallel=1 in ParallelWebShopWorker[32m [repeated 44x across cluster][0m
+[33m(raylet)[0m [2026-06-09 00:36:41,635 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(ParallelWebShopWorker pid=267341)[0m 100%|██████████| 1000/1000 [00:00<00:00, 99151.43it/s]
+[36m(ParallelWebShopWorker pid=267371)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute[32m [repeated 41x across cluster][0m
+[36m(ParallelWebShopWorker pid=267371)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute[32m [repeated 41x across cluster][0m
+[36m(ParallelWebShopWorker pid=267371)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type swigvarlink has no __module__ attribute[32m [repeated 41x across cluster][0m
+[36m(ParallelWebShopWorker pid=267345)[0m 100%|██████████| 1000/1000 [00:00<00:00, 125849.26it/s]
+[36m(ParallelWebShopWorker pid=267364)[0m 100%|██████████| 1000/1000 [00:00<00:00, 83367.53it/s]
+[36m(ParallelWebShopWorker pid=267376)[0m Products loaded.[32m [repeated 46x across cluster][0m
+[36m(ParallelWebShopWorker pid=267376)[0m Keys cleaned.[32m [repeated 46x across cluster][0m
+[36m(ParallelWebShopWorker pid=267383)[0m 100%|██████████| 1000/1000 [00:00<00:00, 130867.52it/s]
+[36m(ParallelWebShopWorker pid=267363)[0m 100%|██████████| 1000/1000 [00:00<00:00, 137789.22it/s]
+[36m(ParallelWebShopWorker pid=267363)[0m Attributes loaded.[32m [repeated 39x across cluster][0m
+[36m(ParallelWebShopWorker pid=267357)[0m   0%|          | 0/1000 [00:00<?, ?it/s]100%|██████████| 1000/1000 [00:00<00:00, 139591.44it/s][32m [repeated 40x across cluster][0m
+[36m(ParallelWebShopWorker pid=267363)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/bs4/element.py:784: DeprecationWarning: The 'text' argument to find()-type methods is deprecated. Use 'string' instead.[32m [repeated 39x across cluster][0m
+[36m(ParallelWebShopWorker pid=267363)[0m   warnings.warn([32m [repeated 39x across cluster][0m
+[36m(ParallelWebShopWorker pid=267363)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/gym/envs/registration.py:619: UserWarning: [33mWARN: Env check failed with the following message: You must specify an observation space (cf gym.spaces) cf https://github.com/openai/gym/blob/master/gym/spaces/[32m [repeated 39x across cluster][0m
+[36m(ParallelWebShopWorker pid=267363)[0m You can set `disable_env_checker=True` to disable this check.[0m[32m [repeated 39x across cluster][0m
+[36m(ParallelWebShopWorker pid=267363)[0m   logger.warn([32m [repeated 39x across cluster][0m
+[36m(ParallelWebShopWorker pid=267363)[0m Loaded 6910 goals.[32m [repeated 39x across cluster][0m
+[36m(ParallelWebShopWorker pid=267400)[0m 100%|██████████| 1000/1000 [00:00<00:00, 109801.41it/s]
+[36m(ParallelWebShopWorker pid=267380)[0m 100%|██████████| 1000/1000 [00:00<00:00, 92281.89it/s]
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m   0%|          | 0/20 [00:00<?, ?it/s][A
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:36:45 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[36m(pid=267376)[0m Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1[32m [repeated 7x across cluster][0m
+[36m(pid=267376)[0m Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.[32m [repeated 7x across cluster][0m
+[36m(pid=267376)[0m Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.[32m [repeated 7x across cluster][0m
+[36m(pid=267376)[0m See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.[32m [repeated 7x across cluster][0m
+[33m(raylet)[0m [2026-06-09 00:36:51,643 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(ParallelWebShopWorker pid=267380)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute[32m [repeated 8x across cluster][0m
+[36m(ParallelWebShopWorker pid=267380)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute[32m [repeated 8x across cluster][0m
+[36m(ParallelWebShopWorker pid=267380)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type swigvarlink has no __module__ attribute[32m [repeated 8x across cluster][0m
+[36m(ParallelWebShopWorker pid=267333)[0m   0%|          | 0/1000 [00:00<?, ?it/s]100%|██████████| 1000/1000 [00:00<00:00, 125656.97it/s][32m [repeated 9x across cluster][0m
+[36m(ParallelWebShopWorker pid=267333)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/bs4/element.py:784: DeprecationWarning: The 'text' argument to find()-type methods is deprecated. Use 'string' instead.[32m [repeated 10x across cluster][0m
+[36m(ParallelWebShopWorker pid=267333)[0m   warnings.warn([32m [repeated 10x across cluster][0m
+[36m(ParallelWebShopWorker pid=267333)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/gym/envs/registration.py:619: UserWarning: [33mWARN: Env check failed with the following message: You must specify an observation space (cf gym.spaces) cf https://github.com/openai/gym/blob/master/gym/spaces/[32m [repeated 10x across cluster][0m
+[36m(ParallelWebShopWorker pid=267333)[0m You can set `disable_env_checker=True` to disable this check.[0m[32m [repeated 10x across cluster][0m
+[36m(ParallelWebShopWorker pid=267333)[0m   logger.warn([32m [repeated 10x across cluster][0m
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m   5%|▌         | 1/20 [00:09<03:06,  9.83s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False]) list([False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False]) list([False]) list([False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False]) list([False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False]) list([False]) list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False]) list([False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])] and not done yet
+[36m(ParallelWebShopWorker pid=267380)[0m [DEBUG] ParallelWebShopWorker initialized with num_parallel=1 in ParallelWebShopWorker[32m [repeated 5x across cluster][0m
+[36m(ParallelWebShopWorker pid=267380)[0m Products loaded.[32m [repeated 3x across cluster][0m
+[36m(ParallelWebShopWorker pid=267380)[0m Keys cleaned.[32m [repeated 3x across cluster][0m
+[36m(ParallelWebShopWorker pid=267333)[0m Attributes loaded.[32m [repeated 10x across cluster][0m
+[36m(ParallelWebShopWorker pid=267333)[0m Loaded 6910 goals.[32m [repeated 10x across cluster][0m
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:36:55 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:37:01,651 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m   5%|▌         | 1/20 [00:21<06:48, 21.52s/it]
+[36m(TaskRunner pid=243671)[0m dones = [list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False]) list([False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False, False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False, False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False]) list([False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False]) list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False, False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False, False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False]) list([False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])
+[36m(TaskRunner pid=243671)[0m  list([False, False, False, False, False])] and not done yet
+[36m(TaskRunner pid=243671)[0m Task 0 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 1 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 2 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 3 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 4 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 5 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 6 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 7 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 8 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 9 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 10 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 11 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 12 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 13 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 14 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 15 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 16 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 17 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 18 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 19 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 20 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 21 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 22 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 23 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 24 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 25 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 26 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 27 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 28 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 29 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 30 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 31 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 32 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 33 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 34 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 35 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 36 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 37 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 38 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 39 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 40 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 41 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 42 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 43 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 44 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 45 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 46 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 47 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 48 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m Task 49 exit(all null) at turn 2
+[36m(TaskRunner pid=243671)[0m All tasks completed at turn 2, exiting rollout loop.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m ============================================================
+[36m(TaskRunner pid=243671)[0m Rollout Summary:
+[36m(TaskRunner pid=243671)[0m Total tasks: 50, Successful tasks: 0, Success rate: 0.00%
+[36m(TaskRunner pid=243671)[0m Average episode length: 2.00 steps
+[36m(TaskRunner pid=243671)[0m Average episode reward: 0.0000
+[36m(TaskRunner pid=243671)[0m ============================================================
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m ============================================================
+[36m(TaskRunner pid=243671)[0m Validation Complete Summary:
+[36m(TaskRunner pid=243671)[0m Total validation tasks: 50
+[36m(TaskRunner pid=243671)[0m Successful tasks: 0
+[36m(TaskRunner pid=243671)[0m Success rate: 0.00%
+[36m(TaskRunner pid=243671)[0m Success task indices: []
+[36m(TaskRunner pid=243671)[0m Average episode length: 2.00 steps
+[36m(TaskRunner pid=243671)[0m Average episode reward: 0.0000
+[36m(TaskRunner pid=243671)[0m ============================================================
+[36m(TaskRunner pid=243671)[0m Training Progress:   0%|          | 2/500 [05:46<23:10:22, 167.51s/it]
+[36m(TaskRunner pid=243671)[0m   0%|          | 0/1 [00:00<?, ?it/s][A100%|██████████| 1/1 [00:00<00:00, 75.49it/s]
+[36m(TaskRunner pid=243671)[0m step:2 - global_seqlen/min:103051.000 - global_seqlen/max:103051.000 - global_seqlen/minmax_diff:0.000 - global_seqlen/balanced_min:103051.000 - global_seqlen/balanced_max:103051.000 - global_seqlen/mean:103051.000 - actor/entropy_loss:0.388 - training/rollout_probs_diff_max:0.316 - training/rollout_probs_diff_mean:0.005 - training/rollout_probs_diff_std:0.011 - actor/kl_loss:0.001 - actor/kl_coef:0.010 - actor/pg_loss:0.010 - actor/pg_clipfrac:0.000 - actor/ppo_kl:-0.000 - actor/pg_clipfrac_lower:0.000 - actor/grad_norm:0.076 - perf/mfu/actor:0.396 - perf/max_memory_allocated_gb:55.436 - perf/max_memory_reserved_gb:66.523 - perf/cpu_memory_used_gb:652.340 - actor/lr:0.000 - val/unknown/test_score:0.000 - val/unknown/tool_call_count/mean:0.000 - val/unknown/tool_call_count/max:0.000 - val/unknown/tool_call_count/min:0.000 - val/val/success_rate:0.000 - training/global_step:2.000 - training/epoch:0.000 - critic/score/mean:0.167 - critic/score/max:0.857 - critic/score/min:0.000 - critic/rewards/mean:0.167 - critic/rewards/max:0.857 - critic/rewards/min:0.000 - critic/advantages/mean:0.007 - critic/advantages/max:2.007 - critic/advantages/min:-0.484 - critic/returns/mean:0.007 - critic/returns/max:2.007 - critic/returns/min:-0.484 - response_length/mean:537.083 - response_length/max:1023.000 - response_length/min:212.000 - response_length/clip_ratio:0.000 - prompt_length/mean:2325.444 - prompt_length/max:4068.000 - prompt_length/min:1474.000 - prompt_length/clip_ratio:0.000 - episode/reward/mean:0.171 - episode/reward/max:0.857 - episode/reward/min:0.000 - episode/length/mean:7.000 - episode/length/max:7.000 - episode/length/min:7.000 - episode/tool_call_count/mean:0.000 - episode/tool_call_count/max:0.000 - episode/tool_call_count/min:0.000 - timing_s/gen:72.086 - timing_s/reward:0.032 - timing_s/old_log_prob:6.057 - timing_s/ref:5.289 - timing_s/adv:0.003 - timing_s/update_actor:18.449 - timing_s/testing:37.990 - timing_s/step:139.940 - timing_per_token_ms/gen:3.728 - timing_per_token_ms/ref:0.051 - timing_per_token_ms/update_actor:0.179 - timing_per_token_ms/adv:0.000 - perf/total_num_tokens:103051.000 - perf/time_per_step:139.940 - perf/throughput:736.395
+[36m(TaskRunner pid=243671)[0m [DEBUG] ParallelWebShopEnvs initialized with num_parallel=1, group_n=5 in ParallelWebShopEnvs
+[36m(TaskRunner pid=243671)[0m group_n for 6119: 5
+[36m(TaskRunner pid=243671)[0m Total unique game files: 1
+[36m(TaskRunner pid=243671)[0m [DEBUG] group_n = 5 in rollout loop, is_train=True
+[33m(raylet)[0m [2026-06-09 00:37:11,660 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(pid=277716)[0m Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1
+[36m(pid=277716)[0m Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+[36m(pid=277716)[0m Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+[36m(pid=277716)[0m See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[36m(ParallelWebShopWorker pid=277716)[0m [DEBUG] ParallelWebShopWorker initialized with num_parallel=1 in ParallelWebShopWorker
+[36m(ParallelWebShopWorker pid=277716)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+[36m(ParallelWebShopWorker pid=277716)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+[36m(ParallelWebShopWorker pid=277716)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+[36m(ParallelWebShopWorker pid=277715)[0m Products loaded.
+[36m(ParallelWebShopWorker pid=277715)[0m Keys cleaned.
+[36m(ParallelWebShopWorker pid=277716)[0m   0%|          | 0/1000 [00:00<?, ?it/s]100%|██████████| 1000/1000 [00:00<00:00, 115370.76it/s]
+[36m(ParallelWebShopWorker pid=277715)[0m Attributes loaded.
+[36m(ParallelWebShopWorker pid=277715)[0m Loaded 6910 goals.
+[36m(ParallelWebShopWorker pid=277715)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/bs4/element.py:784: DeprecationWarning: The 'text' argument to find()-type methods is deprecated. Use 'string' instead.
+[36m(ParallelWebShopWorker pid=277715)[0m   warnings.warn(
+[36m(ParallelWebShopWorker pid=277715)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/gym/envs/registration.py:619: UserWarning: [33mWARN: Env check failed with the following message: You must specify an observation space (cf gym.spaces) cf https://github.com/openai/gym/blob/master/gym/spaces/
+[36m(ParallelWebShopWorker pid=277715)[0m You can set `disable_env_checker=True` to disable this check.[0m
+[36m(ParallelWebShopWorker pid=277715)[0m   logger.warn(
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m   0%|          | 0/20 [00:00<?, ?it/s][A
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:37:17 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:37:21,669 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(pid=277717)[0m Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1[32m [repeated 4x across cluster][0m
+[36m(pid=277717)[0m Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.[32m [repeated 4x across cluster][0m
+[36m(pid=277717)[0m Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.[32m [repeated 4x across cluster][0m
+[36m(pid=277717)[0m See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=277718)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=277718)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=277717)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type swigvarlink has no __module__ attribute[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=277718)[0m   0%|          | 0/1000 [00:00<?, ?it/s]100%|██████████| 1000/1000 [00:00<00:00, 120915.13it/s][32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=277718)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/bs4/element.py:784: DeprecationWarning: The 'text' argument to find()-type methods is deprecated. Use 'string' instead.[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=277718)[0m   warnings.warn([32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=277718)[0m /diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/gym/envs/registration.py:619: UserWarning: [33mWARN: Env check failed with the following message: You must specify an observation space (cf gym.spaces) cf https://github.com/openai/gym/blob/master/gym/spaces/[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=277718)[0m You can set `disable_env_checker=True` to disable this check.[0m[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=277718)[0m   logger.warn([32m [repeated 4x across cluster][0m
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m   5%|▌         | 1/20 [00:05<01:47,  5.67s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(ParallelWebShopWorker pid=277718)[0m [DEBUG] ParallelWebShopWorker initialized with num_parallel=1 in ParallelWebShopWorker[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=277718)[0m Products loaded.[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=277718)[0m Keys cleaned.[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=277718)[0m Attributes loaded.[32m [repeated 4x across cluster][0m
+[36m(ParallelWebShopWorker pid=277718)[0m Loaded 6910 goals.[32m [repeated 4x across cluster][0m
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:37:23 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  10%|█         | 2/20 [00:14<02:10,  7.27s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[33m(raylet)[0m [2026-06-09 00:37:31,678 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:37:31 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  15%|█▌        | 3/20 [00:20<02:00,  7.08s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:37:38 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:37:41,687 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  20%|██        | 4/20 [00:27<01:49,  6.87s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:37:45 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:37:51,695 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  25%|██▌       | 5/20 [00:36<01:56,  7.76s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:37:54 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  30%|███       | 6/20 [00:43<01:43,  7.36s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:38:01 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:38:01,704 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  35%|███▌      | 7/20 [00:50<01:36,  7.44s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:38:08 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:38:11,713 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  40%|████      | 8/20 [00:59<01:32,  7.73s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:38:17 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:38:21,721 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  45%|████▌     | 9/20 [01:08<01:29,  8.10s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:38:25 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:38:31,730 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  50%|█████     | 10/20 [01:17<01:25,  8.51s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:38:35 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:38:41,738 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  55%|█████▌    | 11/20 [01:28<01:23,  9.24s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:38:46 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:38:51,747 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  60%|██████    | 12/20 [01:37<01:12,  9.09s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:38:55 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:39:01,756 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  65%|██████▌   | 13/20 [01:47<01:06,  9.47s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:39:05 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:39:11,766 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  70%|███████   | 14/20 [01:56<00:56,  9.35s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:39:14 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:39:21,775 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  75%|███████▌  | 15/20 [02:09<00:52, 10.42s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:39:27 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:39:31,784 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  80%|████████  | 16/20 [02:20<00:42, 10.54s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:39:38 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:39:41,793 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-09 00:39:51,801 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-09 00:40:01,810 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-09 00:40:11,819 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  85%|████████▌ | 17/20 [03:00<00:58, 19.34s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:40:18 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:40:21,827 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  90%|█████████ | 18/20 [03:14<00:35, 17.83s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[33m(raylet)[0m [2026-06-09 00:40:31,836 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:40:32 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m  95%|█████████▌| 19/20 [03:23<00:15, 15.20s/it][A
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(WorkerDict pid=248430)[0m WARNING 06-09 00:40:41 [tokenizer.py:284] No tokenizer found in /simon-stub-path, using base model tokenizer instead. (Exception: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: '/simon-stub-path'.)
+[33m(raylet)[0m [2026-06-09 00:40:41,844 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m 100%|██████████| 20/20 [03:34<00:00, 13.92s/it][A100%|██████████| 20/20 [03:34<00:00, 10.73s/it]
+[36m(TaskRunner pid=243671)[0m dones = [[False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]
+[36m(TaskRunner pid=243671)[0m  [False False False False False]] and not done yet
+[36m(TaskRunner pid=243671)[0m Task 0 out of max turn
+[36m(TaskRunner pid=243671)[0m Task 0 out of max turn
+[36m(TaskRunner pid=243671)[0m Task 0 out of max turn
+[36m(TaskRunner pid=243671)[0m Task 0 out of max turn
+[36m(TaskRunner pid=243671)[0m Task 0 out of max turn
+[36m(TaskRunner pid=243671)[0m 
+[36m(TaskRunner pid=243671)[0m ============================================================
+[36m(TaskRunner pid=243671)[0m Rollout Summary:
+[36m(TaskRunner pid=243671)[0m Total tasks: 5, Successful tasks: 0, Success rate: 0.00%
+[36m(TaskRunner pid=243671)[0m Average episode length: 20.00 steps
+[36m(TaskRunner pid=243671)[0m Average episode reward: 0.0000
+[36m(TaskRunner pid=243671)[0m ============================================================
+[33m(raylet)[0m [2026-06-09 00:40:51,853 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-09 00:41:01,862 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-09 00:41:11,871 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-09 00:41:21,879 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-09 00:41:31,888 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[33m(raylet)[0m [2026-06-09 00:41:41,897 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m list(reward_extra_infos_dict.keys())=[]
+[33m(raylet)[0m [2026-06-09 00:41:51,905 E 236075 236114] (raylet) file_system_monitor.cc:116: /diskpool/tmp/ray/session_2026-06-09_00-29-38_854603_234899 is over 95% full, available space: 2839.72 GB; capacity: 69337.8 GB. Object creation will fail if spilling is required.
+[36m(TaskRunner pid=243671)[0m Training Progress:   0%|          | 2/500 [10:38<44:09:22, 319.20s/it]
+Error executing job with overrides: ['algorithm.adv_estimator=grpo', 'env.env_path=/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/webshop/webshop_train_tasks.json', 'data.train_files=/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/verl_train_data/webshop/webshop_train.parquet', 'data.val_files=/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/verl_train_data/webshop/webshop_test.parquet', 'actor_rollout_ref.model.path=/diskpool/home/xuxz/ms-swift/checkpoint/Qwen2.5-1.5B-Instruct-Parallel-Epoch5-hislen8/v0-20260602-201729/checkpoint-8800', 'trainer.default_local_dir=/diskpool/home/xuxz/Code-for-DPEPO/webshop_para_full_result', 'trainer.experiment_name=grpo_1.5b_webshop_parallel', 'data.train_batch_size=1', 'env.num_parallel=1', 'env.add_limit_prompt=True', 'env.lazy_envs=True', 'env.rollout.n=5', 'env.history_length=8', 'actor_rollout_ref.actor.ppo_mini_batch_size=32', 'actor_rollout_ref.model.lora_rank=32', 'actor_rollout_ref.model.lora_alpha=32', 'actor_rollout_ref.actor.ppo_micro_batch_size_per_gpu=4', 'actor_rollout_ref.rollout.log_prob_micro_batch_size_per_gpu=4', 'actor_rollout_ref.ref.log_prob_micro_batch_size_per_gpu=4', 'actor_rollout_ref.rollout.gpu_memory_utilization=0.6', 'actor_rollout_ref.rollout.val_kwargs.temperature=0.4', 'actor_rollout_ref.rollout.tensor_model_parallel_size=1', 'data.max_prompt_length=28672', 'data.max_response_length=4096', 'actor_rollout_ref.rollout.max_num_batched_tokens=32768', 'data.filter_overlong_prompts=True', 'data.truncation=right', 'data.return_raw_chat=True', 'actor_rollout_ref.actor.optim.lr=1e-6', 'actor_rollout_ref.model.use_remove_padding=True', 'actor_rollout_ref.actor.use_kl_loss=True', 'actor_rollout_ref.actor.kl_loss_coef=0.01', 'actor_rollout_ref.actor.kl_loss_type=low_var_kl', 'actor_rollout_ref.model.enable_gradient_checkpointing=True', 'actor_rollout_ref.actor.fsdp_config.param_offload=True', 'actor_rollout_ref.actor.fsdp_config.optimizer_offload=True', 'actor_rollout_ref.rollout.name=vllm', 'actor_rollout_ref.rollout.dtype=float16', 'actor_rollout_ref.rollout.enable_chunked_prefill=False', 'actor_rollout_ref.rollout.enforce_eager=False', 'actor_rollout_ref.rollout.free_cache_engine=False', 'actor_rollout_ref.rollout.val_kwargs.do_sample=True', 'actor_rollout_ref.ref.fsdp_config.param_offload=True', 'actor_rollout_ref.actor.use_invalid_action_penalty=False', 'algorithm.use_kl_in_reward=False', 'env.seed=0', 'env.max_steps=20', 'env.resources_per_worker.num_cpus=0.5', 'trainer.critic_warmup=0', 'trainer.logger=[console,mlflow]', 'trainer.project_name=parallel_verl_agent_webshop', 'trainer.n_gpus_per_node=1', 'trainer.nnodes=1', 'trainer.save_freq=25', 'trainer.test_freq=1', 'trainer.total_epochs=1', 'trainer.val_before_train=False']
+Traceback (most recent call last):
+  File "/diskpool/home/xuxz/Code-for-DPEPO/verl-webshop/for_webshop/main_ppo_webshop.py", line 36, in main
+    run_ppo(config)
+  File "/diskpool/home/xuxz/Code-for-DPEPO/verl-webshop/for_webshop/main_ppo_webshop.py", line 54, in run_ppo
+    ray.get(runner.run.remote(config))
+  File "/diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/ray/_private/auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/ray/_private/client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/ray/_private/worker.py", line 2849, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/ray/_private/worker.py", line 937, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(OutOfMemoryError): [36mray::TaskRunner.run()[39m (pid=243671, ip=121.48.164.87, actor_id=dfeb1185fd4f2d4b26346a9401000000, repr=<main_ppo_webshop.TaskRunner object at 0x7b38356dc390>)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/diskpool/home/xuxz/Code-for-DPEPO/verl-webshop/for_webshop/main_ppo_webshop.py", line 249, in run
+    trainer.fit()
+  File "/diskpool/home/xuxz/Code-for-DPEPO/verl/trainer/ppo/ray_trainer.py", line 1317, in fit
+    actor_output = self.actor_rollout_wg.update_actor(batch)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/diskpool/home/xuxz/Code-for-DPEPO/verl/single_controller/ray/base.py", line 51, in __call__
+    output = ray.get(output)
+             ^^^^^^^^^^^^^^^
+           ^^^^^^^^^^^^^^^^^^^
+           ^^^^^^^^^^^^^^^^^^^^^
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ray.exceptions.RayTaskError(OutOfMemoryError): [36mray::WorkerDict.actor_rollout_update_actor()[39m (pid=248430, ip=121.48.164.87, actor_id=ec1dd41b41efd99f703f1a8f01000000, repr=<verl.single_controller.ray.base.WorkerDict object at 0x71a05c72d4d0>)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/diskpool/home/xuxz/Code-for-DPEPO/verl/single_controller/ray/base.py", line 645, in func
+    return getattr(self.worker_dict[key], name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/diskpool/home/xuxz/Code-for-DPEPO/verl/single_controller/base/decorator.py", line 534, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/diskpool/home/xuxz/Code-for-DPEPO/verl/workers/fsdp_workers.py", line 608, in update_actor
+    metrics = self.actor.update_policy(data=data)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/diskpool/home/xuxz/Code-for-DPEPO/verl/utils/debug/performance.py", line 80, in f
+    return self.log(decorated_function, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/diskpool/home/xuxz/Code-for-DPEPO/verl/utils/debug/performance.py", line 90, in log
+    output = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/diskpool/home/xuxz/Code-for-DPEPO/verl/workers/actor/dp_actor.py", line 424, in update_policy
+    loss.backward()
+  File "/diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/torch/_tensor.py", line 626, in backward
+    torch.autograd.backward(
+  File "/diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/torch/autograd/__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "/diskpool/home/xuxz/miniconda3/envs/verl_train/lib/python3.11/site-packages/torch/autograd/graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 8.83 GiB. GPU 0 has a total capacity of 44.42 GiB of which 5.82 GiB is free. Including non-PyTorch memory, this process has 38.54 GiB memory in use. Of the allocated memory 60.42 GiB is allocated by PyTorch, with 170.68 MiB allocated in private pools (e.g., CUDA Graphs), and 1.79 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.

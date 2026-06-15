@@ -181,7 +181,8 @@ class WebshopMultiProcessEnv(gym.Env):
         elif split == 'eval':
             self.goal_idxs = range(500, 1500)
         elif split == 'train':
-            self.goal_idxs = range(1500, len(goals))
+            # self.goal_idxs = range(1500, len(goals))
+            self.goal_idxs = range(600, len(goals))
         elif split == 'sft':
             # self.goal_idxs = range(len(goals))
             # self.goal_idxs = range(500, len(goals))

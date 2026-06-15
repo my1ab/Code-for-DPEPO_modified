@@ -17,3 +17,7 @@ from agent_system.environments.env_manager import EnvironmentManagerBase, make_e
 
 from agent_system.environments.env_manager_parallel import build_parallel_alfworld_envs
 from agent_system.environments.env_manager_parallel_sciworld import build_parallel_sciworld_envs
+from agent_system.environments.env_manager_parallel_webshop import (
+    # WebShopEnvironmentManager,
+    build_parallel_webshop_envs,
+)

@@ -43,12 +43,8 @@ fi
 
 echo ""
 echo "=== 先清空所有暂存区，保证干净的状态 ==="
-git reset HEAD -- .  # 取消所有暂存的文件
+git reset HEAD -- .  # 取消所有暂存的文件  但git add可以覆盖这个操作
 git status
-
-echo ""
-echo "=== 正在添加所有已追踪和新文件 ==="
-git add -A  # 添加所有修改、新增和删除的文件，等同于git add -u + git add .
 
 echo ""
 echo "=== 定义需要排除的路径 ==="
@@ -56,7 +52,17 @@ EXCLUDE_PATHS=(
     # "coldstart_test/*/"  # 排除coldstart_test下的所有子文件夹
     # "coldstart_result_webshop/"
     # "coldstart_test_new/model_hislen8_result_v2/"
-
+    # 排除所有模型
+    "1gpu"
+    "1gpu_only_penalty"
+    "1gpu_pro_new"
+    "1gpu_process"
+    "2gpu"
+    "2gpu_only_penalty"
+    "webshop_para_full_result"
+    "webshop_checkpoint_para"
+    "webshop_checkpoint"
+    "data_pipelines"
     "*.pt"
     "*.ckpt"
     "*.safetensors"
@@ -67,14 +73,14 @@ EXCLUDE_PATHS=(
 )
 
 echo ""
-echo "=== 从暂存区排除不需要的路径 ==="
-# 首先处理普通排除路径
+echo "=== 添加所有文件（自动排除 EXCLUDE_PATHS 中的路径）==="
+# 使用 Git pathspec magic（:(exclude) 长格式）在 git add 时直接排除指定路径
+GIT_ADD_ARGS=("-A")
 for path in "${EXCLUDE_PATHS[@]}"; do
-    echo "排除: $path"
-    # 使用递归方式移除整个目录
-    git reset HEAD "$path" 2>/dev/null || true
-    git rm --cached -r "$path" 2>/dev/null || true
+    GIT_ADD_ARGS+=(":(exclude)${path}")
 done
+git add "${GIT_ADD_ARGS[@]}"
+echo "已执行: git add -A 并排除 ${#EXCLUDE_PATHS[@]} 个路径模式"
 
 # 单独处理coldstart_test下的所有子文件夹，确保只保留coldstart_test根目录下的文件
 if [ -d "coldstart_test" ]; then

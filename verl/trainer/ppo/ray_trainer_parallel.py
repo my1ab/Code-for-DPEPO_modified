@@ -702,6 +702,7 @@ class RayPPOTrainerParallel:
             test_batch = DataProto.from_single_dict(test_data)
 
             # repeat test batch
+            # 标记 self.config.actor_rollout_ref.rollout.val_kwargs.n==1 注意group_n设置对齐
             test_batch = test_batch.repeat(repeat_times=self.config.actor_rollout_ref.rollout.val_kwargs.n, interleave=True)
 
             # we only do validation on rule-based rm

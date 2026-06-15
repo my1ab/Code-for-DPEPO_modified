@@ -383,6 +383,7 @@ class ParallelAlfworldWorker:
                 dones.append(done)
                 infos.append(info) 
             else:
+                # 差错处理经过修改
                 oob = f'The {action_index}-th environment is invalid. The maximum number of parallel environments you can explore is {len(self.env_pools)}. Valid indices range from 1 to {len(self.env_pools)}.'
                 
                 dummy_obs = oob 
@@ -406,6 +407,7 @@ class ParallelAlfworldWorker:
         return obs, infos
 
 # Env Manager that manages the Grouped Parallel Workers
+# 替代了原本的environmentmanager
 class ParallelAlfworldEnvs(gym.Env):
     def __init__(self, 
                  game_files,
@@ -657,7 +659,8 @@ def build_parallel_alfworld_envs(gamefiles,
                                  resources_per_worker, 
                                  num_parallel,
                                  env_kwargs={}):
-    
+    # 来自原版的debug print
+    print(f'Here is the num_parallel: {num_parallel}') 
     return ParallelAlfworldEnvs(gamefiles,
                                 group_n, 
                                 resources_per_worker, 

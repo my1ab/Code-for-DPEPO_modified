@@ -62,6 +62,9 @@ class TaskRunner:
         from agent_system.environments import build_parallel_alfworld_envs 
 
         # Just for ALF-World
+        # 两种方式均能读取
+        # 兼容data_pipelines/gamefiles/parallel_train_data_demo_easy.json
+        # 和data_pipelines/gamefiles/dedu_parallel_train_data_500.json
         data = json.load(open(config.env.env_path,'r'))
         if isinstance(data, dict):
             gamefiles = list(data.values())
@@ -72,6 +75,7 @@ class TaskRunner:
         if not lazy_envs:
             parallel_envs = build_parallel_alfworld_envs(
                 gamefiles=gamefiles,
+                # env.rollout.n为copy数量
                 group_n=config.env.rollout.n,
                 resources_per_worker={'num_cpus': config.env.resources_per_worker.num_cpus},
                 num_parallel=config.env.num_parallel,

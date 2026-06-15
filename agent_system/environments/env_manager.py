@@ -599,6 +599,8 @@ class AppWorldEnvironmentManager(EnvironmentManagerBase):
                 postprocess_text_obs.append(obs)
         return postprocess_text_obs
 
+# 根据环境名调用environmentmanager
+# 并行下被class ParallelAlfworldEnvs(gym.Env):取代
 def make_envs(config):
     """
     Create enviroments 

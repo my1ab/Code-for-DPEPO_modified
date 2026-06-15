@@ -795,7 +795,7 @@ class RayPPOTrainer:
             # # unpad
             # test_output_gen_batch = unpad_dataproto(test_output_gen_batch_padded, pad_size=pad_size)
             ################ agent-environment loop ############### 
-            total_batch_list, total_episode_rewards, total_episode_lengths, total_traj_uid, totoal_tool_callings = \
+            total_batch_list, total_episode_rewards, total_episode_lengths, total_traj_uid, totoal_tool_callings, success_flags, status_msgs = \
                 self.traj_collector.multi_turn_loop(
                     gen_batch=test_gen_batch,
                     actor_rollout_wg=self.actor_rollout_wg,

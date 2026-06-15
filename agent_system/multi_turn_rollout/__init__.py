@@ -17,3 +17,4 @@ from .rollout_loop import TrajectoryCollector
 from .utils import adjust_batch 
 from .rollout_loop_parallel import TrajectoryCollectorParallel
 from .rollout_loop_parallel_sciworld import TrajectoryCollectorParallelSciWorld
+# from .rollout_loop_parallel_webshop import TrajectoryCollectorParallelWebShop

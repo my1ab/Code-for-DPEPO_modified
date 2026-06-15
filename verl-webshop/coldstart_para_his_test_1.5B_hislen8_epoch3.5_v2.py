@@ -326,7 +326,7 @@ def get_single_trajectory(env, task_idx, env_idx=0, turns=50, show_turn=False,
     available_actions_parallel = []
     
     for info in info_parallel:
-        
+        # 默认为Find and purchase a product占位符  因为没有goal标签
         if isinstance(info, dict):
             task_descriptions.append(info.get('goal', 'Find and purchase a product'))
             available_actions_parallel.append(info.get('available_actions', []))
