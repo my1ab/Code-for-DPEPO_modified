@@ -1020,16 +1020,16 @@ class TrajectoryCollectorParallelWebShop:
                     # 
                     # 只有训练阶段(group_n>1)才需要把整个组的所有worker都标记为完成，保持所有轨迹长度一致
                     # 验证阶段(group_n=1)只标记当前bs的任务，避免影响其他任务的轨迹收集
-                    # if is_train:
-                    #     n = self.config.env.rollout.n
-                    #     group_idx = bs // n  # 0-based group index
-                    #     # 整个组全部置为1
-                    #     range1 = range(group_idx * n, (group_idx + 1) * n)
-                    #     for g_bs in range1:
-                    #         if not is_done[g_bs]:
-                    #             is_done[g_bs] = True
-                    #             turn_out_range[g_bs] = False
-                    #     print(f'is_done trans to {is_done}')
+                    if is_train:
+                        n = self.config.env.rollout.n
+                        group_idx = bs // n  # 0-based group index
+                        # 整个组全部置为1
+                        range1 = range(group_idx * n, (group_idx + 1) * n)
+                        for g_bs in range1:
+                            if not is_done[g_bs]:
+                                is_done[g_bs] = True
+                                turn_out_range[g_bs] = False
+                        print(f'is_done trans to {is_done}')
                     # else:
                     #     # 验证阶段只标记当前任务，让其他任务自然完成，收集完整的验证轨迹
                     #     is_done[bs] = True
@@ -1040,15 +1040,15 @@ class TrajectoryCollectorParallelWebShop:
                 elif null_count[bs] >= 2:
                     status_msgs[bs] = f"Task {GLOBAL_TASK_COUNTER} exit(all null) at turn {_step + 1}"
                     print(status_msgs[bs])
-                    # if is_train:
-                    #     n = self.config.env.rollout.n
-                    #     group_idx = bs // n  # 0-based group index
-                    #     range1 = range(group_idx * n, (group_idx + 1) * n)
-                    #     for g_bs in range1:
-                    #         if not is_done[g_bs]:
-                    #             is_done[g_bs] = True
-                    #             turn_out_range[g_bs] = False
-                    #     print(f'is_done trans to {is_done}')
+                    if is_train:
+                        n = self.config.env.rollout.n
+                        group_idx = bs // n  # 0-based group index
+                        range1 = range(group_idx * n, (group_idx + 1) * n)
+                        for g_bs in range1:
+                            if not is_done[g_bs]:
+                                is_done[g_bs] = True
+                                turn_out_range[g_bs] = False
+                        print(f'is_done trans to {is_done}')
                     # else:
                     #     # 验证阶段只标记当前任务，让其他任务自然完成，收集完整的验证轨迹
                     #     is_done[bs] = True
@@ -1088,20 +1088,8 @@ class TrajectoryCollectorParallelWebShop:
         print(f"Average episode reward: {np.mean(episode_rewards):.4f}")
         print(f"{'='*60}")
 
-        # 返回成功标记和状态消息，保持与参考文件相同的轨迹信息结构
-        print("="*80)
-        print(f'[DEBUG] show case')
-        # print(f'[DEBUG] total_batch_list = {total_batch_list}')
-        # 将 total_batch_list 写入独立的日志文件，避免大量输出污染控制台
-        import datetime
-        log_dir = "logs/total_batch_list"
-        os.makedirs(log_dir, exist_ok=True)
-        log_filename = os.path.join(log_dir, f"total_batch_list_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.log")
-        with open(log_filename, 'w', encoding='utf-8') as f:
-            f.write(f"total_batch_list content at task {GLOBAL_TASK_COUNTER}:\n")
-            json.dump(total_batch_list, f, ensure_ascii=False, indent=2, default=str)
-        print(f'[DEBUG] total_batch_list has been logged to {log_filename}')
-        print("="*80)
+        
+        
         # process_reward = np.array(process_reward)
         # episode_rewards = np.where(episode_rewards == 0, process_reward, episode_rewards)
         return total_batch_list, episode_rewards, episode_lengths, traj_uid, tool_callings, success_flags, status_msgs
@@ -1128,6 +1116,21 @@ class TrajectoryCollectorParallelWebShop:
                 is_train=is_train,
             )
         
+        # 返回成功标记和状态消息，保持与参考文件相同的轨迹信息结构
+        show_case = 0
+        print("="*80)
+        print(f'[DEBUG] show_case {show_case}')
+        # print(f'[DEBUG] total_batch_list = {total_batch_list}')
+        # 将 total_batch_list 以文本格式写入独立的日志文件（代替 print 到控制台）
+        if show_case:
+            import datetime
+            log_dir = "case/total_batch_list"
+            os.makedirs(log_dir, exist_ok=True)
+            log_filename = os.path.join(log_dir, f"total_batch_list_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.log")
+            with open(log_filename, 'w', encoding='utf-8') as f:
+                f.write(f"[DEBUG] total_batch_list = {total_batch_list}\n")
+            print(f'[DEBUG] total_batch_list has been logged to {log_filename}')
+        print("="*80)
         
         # 当前批次的所有任务处理完成后，递增全局计数器
         global GLOBAL_TASK_COUNTER
