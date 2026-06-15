@@ -49,27 +49,24 @@ git status
 echo ""
 echo "=== 定义需要排除的路径 ==="
 EXCLUDE_PATHS=(
-    # "coldstart_test/*/"  # 排除coldstart_test下的所有子文件夹
-    # "coldstart_result_webshop/"
-    # "coldstart_test_new/model_hislen8_result_v2/"
-    # 排除所有模型
-    "1gpu"
-    "1gpu_only_penalty"
-    "1gpu_pro_new"
-    "1gpu_process"
-    "2gpu"
-    "2gpu_only_penalty"
-    "webshop_para_full_result"
-    "webshop_checkpoint_para"
-    "webshop_checkpoint"
-    "data_pipelines"
-    "*.pt"
-    "*.ckpt"
-    "*.safetensors"
-    "*.tar.gz"
-    "__pycache__/"
-    "*.pyc"
-    "*.pyo"
+    # 排除coldstart_test下的所有子文件夹
+    1gpu
+    1gpu_only_penalty
+    1gpu_pro_new
+    1gpu_process
+    2gpu
+    2gpu_only_penalty
+    webshop_para_full_result
+    webshop_checkpoint_para
+    webshop_checkpoint
+    sample
+    *.pt
+    *.ckpt
+    *.safetensors
+    *.tar.gz
+    __pycache__/
+    *.pyc
+    *.pyo
 )
 
 echo ""
