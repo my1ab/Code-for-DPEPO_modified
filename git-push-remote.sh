@@ -56,10 +56,12 @@ EXCLUDE_PATHS=(
     1gpu_process
     2gpu
     2gpu_only_penalty
+    sample
+    case
+    sample_backup
     webshop_para_full_result
     webshop_checkpoint_para
     webshop_checkpoint
-    sample
     *.pt
     *.ckpt
     *.safetensors

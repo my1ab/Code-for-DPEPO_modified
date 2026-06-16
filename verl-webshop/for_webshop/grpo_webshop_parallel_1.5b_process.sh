@@ -9,9 +9,11 @@
 # ========== 配置选择 - 根据需要修改 ==========
 # export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:False,max_split_size_mb:128
 batchsize=2
+# export CUDA_VISIBLE_DEVICES=2,3
 export CUDA_VISIBLE_DEVICES=2,3
 micro_para=1
-tensor_model_parallel_size=2
+# tensor_model_parallel_size=1
+tensor_model_parallel_size=$batchsize
 # ==========================================
 
 echo "GPU: $CUDA_VISIBLE_DEVICES"
@@ -22,10 +24,10 @@ export PYTHONUNBUFFERED=1
 export VLLM_ATTENTION_BACKEND=FLASH_ATTN
 # export VLLM_ATTENTION_BACKEND=XFORMERS
 
-LOG_FILE="2gpu_only_penalty/2gpu_process_resume1.log"
+LOG_FILE="2gpu_only_penalty/2gpu_process_resume3.log"
 
 rank_alpha=32
-max_steps=40
+max_steps=35
 save_freq=1
 # free_cache=False
 free_cache=True
@@ -51,7 +53,7 @@ nohup python3 -m verl-webshop.for_webshop.main_ppo_webshop \
     actor_rollout_ref.actor.ppo_micro_batch_size_per_gpu=$micro_para \
     actor_rollout_ref.rollout.log_prob_micro_batch_size_per_gpu=$micro_para \
     actor_rollout_ref.ref.log_prob_micro_batch_size_per_gpu=$micro_para \
-    actor_rollout_ref.rollout.gpu_memory_utilization=0.3 \
+    actor_rollout_ref.rollout.gpu_memory_utilization=0.5 \
     actor_rollout_ref.rollout.val_kwargs.temperature=0.4 \
     actor_rollout_ref.rollout.tensor_model_parallel_size=$tensor_model_parallel_size \
     data.max_prompt_length=28672 \
