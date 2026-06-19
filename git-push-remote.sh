@@ -3,6 +3,7 @@
 
 REMOTE_URL="git@github.com:my1ab/Code-for-DPEPO_modified.git"  # SSH方式
 REPO_NAME="Code-for-DPEPO_modified"
+TARGET_BRANCH="main"
 if ! git remote get-url $REPO_NAME &>/dev/null; then
     echo "远程仓库 $REPO_NAME 不存在，正在添加..."
     git remote add $REPO_NAME "$REMOTE_URL"
