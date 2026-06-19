@@ -2,12 +2,13 @@
 
 
 REMOTE_URL="git@github.com:my1ab/Code-for-DPEPO_modified.git"  # SSH方式
-if ! git remote get-url Code-for-DPEPO_modified &>/dev/null; then
-    echo "远程仓库 Code-for-DPEPO_modified 不存在，正在添加..."
-    git remote add Code-for-DPEPO_modified "$REMOTE_URL"
+REPO_NAME="Code-for-DPEPO_modified"
+if ! git remote get-url $REPO_NAME &>/dev/null; then
+    echo "远程仓库 $REPO_NAME 不存在，正在添加..."
+    git remote add $REPO_NAME "$REMOTE_URL"
 else
-    echo "远程仓库 Code-for-DPEPO_modified 已存在，更新URL以包含token认证"
-    git remote set-url Code-for-DPEPO_modified "$REMOTE_URL"
+    echo "远程仓库 $REPO_NAME 已存在，更新URL以包含token认证"
+    git remote set-url $REPO_NAME "$REMOTE_URL"
 fi
 git remote -v
 
@@ -115,13 +116,13 @@ if git diff --cached --quiet; then
     # 即使没有新的提交，也尝试推送当前分支到远端，确保远端仓库同步
     echo ""
     echo "=== 尝试推送当前分支到远端仓库 $TARGET_BRANCH 分支，确保同步 ==="
-    git push Code-for-DPEPO_modified HEAD:$TARGET_BRANCH -f
+    git push $REPO_NAME HEAD:$TARGET_BRANCH -f
 else
     git commit -m "Update project files"
     echo ""
     echo "=== 推送到远端仓库 $TARGET_BRANCH 分支 ==="
     # 格式: git push <远程名> <来源>:<目标> -f
-    git push Code-for-DPEPO_modified HEAD:$TARGET_BRANCH -f
+    git push $REPO_NAME HEAD:$TARGET_BRANCH -f
 fi
 
 
