@@ -117,6 +117,7 @@ def non_tensor_to_list_of_dict(batch: DataProto) -> list[dict]:
 
 # 模块级全局任务计数器，生命周期与程序一致，不受类创建销毁影响
 GLOBAL_TASK_COUNTER = 0
+import datetime
 
 
 class TrajectoryCollectorParallelWebShop:
@@ -753,7 +754,7 @@ class TrajectoryCollectorParallelWebShop:
         # Trajectory collection loop（恢复copy.py原始循环逻辑，仅保留必要的成功判断功能）
         # _step为当前步数
         for _step in tqdm(range(self.config.env.max_steps)):
-            print(f'[DEBUG] running task {GLOBAL_TASK_COUNTER} step {_step}')
+            print(f'[DEBUG] running task {GLOBAL_TASK_COUNTER} step {_step} of total {self.config.env.max_steps}')
             # 逐个元素取反  即is_done真时将active_masks伪
             active_masks = np.logical_not(is_done)
             # 如果所有任务都完成了  即全伪  则提前退出  但之后已经有is_done判断
@@ -1017,44 +1018,41 @@ class TrajectoryCollectorParallelWebShop:
                     print(status_msgs[bs])
                     print(f"dones = {dones}")
                     print(f"np_rewards = {np_rewards}")
-                    # 
+                    is_done[bs] = True
+                    turn_out_range[bs] = False
                     # 只有训练阶段(group_n>1)才需要把整个组的所有worker都标记为完成，保持所有轨迹长度一致
                     # 验证阶段(group_n=1)只标记当前bs的任务，避免影响其他任务的轨迹收集
-                    if is_train:
-                        n = self.config.env.rollout.n
-                        group_idx = bs // n  # 0-based group index
-                        # 整个组全部置为1
-                        range1 = range(group_idx * n, (group_idx + 1) * n)
-                        for g_bs in range1:
-                            if not is_done[g_bs]:
-                                is_done[g_bs] = True
-                                turn_out_range[g_bs] = False
-                        print(f'is_done trans to {is_done}')
-                    # else:
+                    # if is_train:
+                    #     n = self.config.env.rollout.n
+                    #     group_idx = bs // n  # 0-based group index
+                    #     # 整个组全部置为1
+                    #     range1 = range(group_idx * n, (group_idx + 1) * n)
+                    #     for g_bs in range1:
+                    #         if not is_done[g_bs]:
+                    #             is_done[g_bs] = True
+                    #             turn_out_range[g_bs] = False
+                    # # else:
                     #     # 验证阶段只标记当前任务，让其他任务自然完成，收集完整的验证轨迹
                     #     is_done[bs] = True
                     #     turn_out_range[bs] = False
-                    is_done[bs] = True
-                    turn_out_range[bs] = False
                     print(f'[DEBUG] is_done trans to {is_done}')
                 elif null_count[bs] >= 2:
                     status_msgs[bs] = f"Task {GLOBAL_TASK_COUNTER} exit(all null) at turn {_step + 1}"
                     print(status_msgs[bs])
-                    if is_train:
-                        n = self.config.env.rollout.n
-                        group_idx = bs // n  # 0-based group index
-                        range1 = range(group_idx * n, (group_idx + 1) * n)
-                        for g_bs in range1:
-                            if not is_done[g_bs]:
-                                is_done[g_bs] = True
-                                turn_out_range[g_bs] = False
-                        print(f'is_done trans to {is_done}')
+                    is_done[bs] = True
+                    turn_out_range[bs] = False
+                    # if is_train:
+                    #     n = self.config.env.rollout.n
+                    #     group_idx = bs // n  # 0-based group index
+                    #     range1 = range(group_idx * n, (group_idx + 1) * n)
+                    #     for g_bs in range1:
+                    #         if not is_done[g_bs]:
+                    #             is_done[g_bs] = True
+                    #             turn_out_range[g_bs] = False
                     # else:
                     #     # 验证阶段只标记当前任务，让其他任务自然完成，收集完整的验证轨迹
                     #     is_done[bs] = True
                     #     turn_out_range[bs] = False
-                    is_done[bs] = True
-                    turn_out_range[bs] = False
                     print(f'[DEBUG] is_done trans to {is_done}')
             
             # 检查是否所有任务都已完成，无论batch_size是多少，只要全部完成就立即退出
@@ -1117,16 +1115,16 @@ class TrajectoryCollectorParallelWebShop:
             )
         
         # 返回成功标记和状态消息，保持与参考文件相同的轨迹信息结构
-        show_case = 0
+        show_case = 1
         print("="*80)
         print(f'[DEBUG] show_case {show_case}')
         # print(f'[DEBUG] total_batch_list = {total_batch_list}')
         # 将 total_batch_list 以文本格式写入独立的日志文件（代替 print 到控制台）
+        log_time = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
         if show_case:
-            import datetime
-            log_dir = "case/total_batch_list"
+            log_dir = "case"
             os.makedirs(log_dir, exist_ok=True)
-            log_filename = os.path.join(log_dir, f"total_batch_list_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.log")
+            log_filename = os.path.join(log_dir, f"total_batch_list_{log_time}.log")
             with open(log_filename, 'w', encoding='utf-8') as f:
                 f.write(f"[DEBUG] total_batch_list = {total_batch_list}\n")
             print(f'[DEBUG] total_batch_list has been logged to {log_filename}')
@@ -1136,12 +1134,14 @@ class TrajectoryCollectorParallelWebShop:
         global GLOBAL_TASK_COUNTER
         global save_traj
         
-        save_traj=False
+        save_traj=1
+        print(f'[DEBUG] save_traj {save_traj}')
         # 如果全局开关开启，保存当前批次的所有轨迹到新的JSON文件
         if save_traj:
             # 生成唯一的文件名，包含全局任务计数器和时间戳，避免覆盖
             timestamp = int(time.time() * 1000)
-            filename = f"sample/traj_batch_{GLOBAL_TASK_COUNTER}_{timestamp}.json"
+            # filename = f"sample/traj_batch_{GLOBAL_TASK_COUNTER}_{timestamp}.json"
+            filename = f"sample/traj_batch_{GLOBAL_TASK_COUNTER}_{log_time}.json"
             # 辅助函数：递归将所有Tensor和numpy数组转换为Python原生类型，确保JSON可序列化
             def tensor_to_native(obj):
                 if isinstance(obj, torch.Tensor):
@@ -1158,25 +1158,25 @@ class TrajectoryCollectorParallelWebShop:
                     return obj
             
             # 创建保存目录（如果不存在）
-            import os
             save_dir = os.path.dirname(filename)
             if save_dir and not os.path.exists(save_dir):
                 os.makedirs(save_dir, exist_ok=True)
             
             # 准备要保存的数据，包含所有轨迹相关信息，先转换所有非原生类型
+            # total_batch_list, episode_rewards, episode_lengths, traj_uid, tool_callings, success_flags, status_msgs
             save_data = {
                 "batch_idx": GLOBAL_TASK_COUNTER,
                 "total_batch_list": tensor_to_native(total_batch_list),
                 "episode_rewards": tensor_to_native(episode_rewards),
                 "episode_lengths": tensor_to_native(episode_lengths),
-                "traj_uid": traj_uid,
+                "traj_uid": tensor_to_native(traj_uid),
                 "tool_callings": tensor_to_native(tool_callings),
                 "success_flags": tensor_to_native(success_flags),
                 "status_msgs": status_msgs
             }
-            # 写入JSON文件
+            # 写入JSON文件（使用 default=str 兜底，防止深层 ndarray 导致写一半崩溃）
             with open(filename, 'w', encoding='utf-8') as f:
-                json.dump(save_data, f, ensure_ascii=False, indent=4)
+                json.dump(save_data, f, ensure_ascii=False, indent=4, default=str)
             print(f"[保存轨迹] 当前批次轨迹已保存到: {filename}")
         
         GLOBAL_TASK_COUNTER += 1

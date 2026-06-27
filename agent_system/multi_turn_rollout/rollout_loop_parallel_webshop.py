@@ -93,7 +93,7 @@ def extract_think_and_actions(text, num_parallel):
                 actions_dict[env_index] = action
     
     # 打印提取的动作数量，调试null_count统计问题
-    print(f"[DEBUG] [extract_think_and_actions] 提取到动作数量(排除null): {len([v for v in actions_dict.values() if v != 'null'])}, 原始匹配动作列表长度: {len(matches)}, think内容是否存在: {think_content is not None}，num_parallel={num_parallel}")
+    # print(f"[DEBUG] [extract_think_and_actions] 提取到动作数量(排除null): {len([v for v in actions_dict.values() if v != 'null'])}, 原始匹配动作列表长度: {len(matches)}, think内容是否存在: {think_content is not None}，num_parallel={num_parallel}")
     
     return {
         'think': think_content,
@@ -462,7 +462,7 @@ class TrajectoryCollectorParallelWebShop:
     ) -> DataProto:
         """Collect and organize trajectory data, aligned with official rollout_loop_parallel.py."""
         batch_size = len(total_batch_list)
-        print(f'[DEBUG] into gather_rollout_data, batch_size={batch_size}')
+        # print(f'[DEBUG] into gather_rollout_data, batch_size={batch_size}')
         
         # 设置默认值，保持向后兼容性
         # if success_flags is None:
@@ -707,7 +707,7 @@ class TrajectoryCollectorParallelWebShop:
         # 训练阶段使用config.env.rollout.n创建多个重复样本，验证阶段group_n=1节省资源
         group_n = self.config.env.rollout.n if is_train else 1
         # 验证时 [DEBUG] group_n = 1 in rollout loop, is_train=False, batch_size=50
-        print(f'[DEBUG] group_n = {group_n} in rollout loop, is_train={is_train}, batch_size={batch_size}')
+        # print(f'[DEBUG] group_n = {group_n} in rollout loop, is_train={is_train}, batch_size={batch_size}')
         for i in range(batch_size):
             if i % group_n == 0:
                 group_id = 0
@@ -754,7 +754,7 @@ class TrajectoryCollectorParallelWebShop:
         # Trajectory collection loop（恢复copy.py原始循环逻辑，仅保留必要的成功判断功能）
         # _step为当前步数
         for _step in tqdm(range(self.config.env.max_steps)):
-            print(f'[DEBUG] running task {GLOBAL_TASK_COUNTER} step {_step} of total {self.config.env.max_steps}')
+            # print(f'[DEBUG] running task {GLOBAL_TASK_COUNTER} step {_step} of total {self.config.env.max_steps}')
             # 逐个元素取反  即is_done真时将active_masks伪
             active_masks = np.logical_not(is_done)
             # 如果所有任务都完成了  即全伪  则提前退出  但之后已经有is_done判断
@@ -969,8 +969,8 @@ class TrajectoryCollectorParallelWebShop:
                 total_infos[i].append(infos[i])
 
             # 参考coldstart_para_his_test_1.5B_hislen8_epoch3.5_v2.py添加每样本状态判断
-            print(f"[DEBUG] dones = {dones} and not done yet")
-            print(f"[DEBUG] is_done = {is_done}")
+            # print(f"[DEBUG] dones = {dones} and not done yet")
+            # print(f"[DEBUG] is_done = {is_done}")
             # print(f"rewards = {current_rewards}")
             # 内层：逐个处理每个样本的状态 判定+更新
             for bs in range(batch_size):
@@ -1035,7 +1035,7 @@ class TrajectoryCollectorParallelWebShop:
                     #     # 验证阶段只标记当前任务，让其他任务自然完成，收集完整的验证轨迹
                     #     is_done[bs] = True
                     #     turn_out_range[bs] = False
-                    print(f'[DEBUG] is_done trans to {is_done}')
+                    # print(f'[DEBUG] is_done trans to {is_done}')
                 elif null_count[bs] >= 2:
                     status_msgs[bs] = f"Task {GLOBAL_TASK_COUNTER} exit(all null) at turn {_step + 1}"
                     print(status_msgs[bs])
@@ -1053,7 +1053,7 @@ class TrajectoryCollectorParallelWebShop:
                     #     # 验证阶段只标记当前任务，让其他任务自然完成，收集完整的验证轨迹
                     #     is_done[bs] = True
                     #     turn_out_range[bs] = False
-                    print(f'[DEBUG] is_done trans to {is_done}')
+                    # print(f'[DEBUG] is_done trans to {is_done}')
             
             # 检查是否所有任务都已完成，无论batch_size是多少，只要全部完成就立即退出
             if is_done.all():
@@ -1117,7 +1117,7 @@ class TrajectoryCollectorParallelWebShop:
         # 返回成功标记和状态消息，保持与参考文件相同的轨迹信息结构
         show_case = 1
         print("="*80)
-        print(f'[DEBUG] show_case {show_case}')
+        # print(f'[DEBUG] show_case {show_case}')
         # print(f'[DEBUG] total_batch_list = {total_batch_list}')
         # 将 total_batch_list 以文本格式写入独立的日志文件（代替 print 到控制台）
         log_time = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
@@ -1126,8 +1126,8 @@ class TrajectoryCollectorParallelWebShop:
             os.makedirs(log_dir, exist_ok=True)
             log_filename = os.path.join(log_dir, f"total_batch_list_{log_time}.log")
             with open(log_filename, 'w', encoding='utf-8') as f:
-                f.write(f"[DEBUG] total_batch_list = {total_batch_list}\n")
-            print(f'[DEBUG] total_batch_list has been logged to {log_filename}')
+                # f.write(f"[DEBUG] total_batch_list = {total_batch_list}\n")
+            # print(f'[DEBUG] total_batch_list has been logged to {log_filename}')
         print("="*80)
         
         # 当前批次的所有任务处理完成后，递增全局计数器
@@ -1135,7 +1135,7 @@ class TrajectoryCollectorParallelWebShop:
         global save_traj
         
         save_traj=1
-        print(f'[DEBUG] save_traj {save_traj}')
+        # print(f'[DEBUG] save_traj {save_traj}')
         # 如果全局开关开启，保存当前批次的所有轨迹到新的JSON文件
         if save_traj:
             # 生成唯一的文件名，包含全局任务计数器和时间戳，避免覆盖
@@ -1193,7 +1193,7 @@ class TrajectoryCollectorParallelWebShop:
                 status_msgs=status_msgs,
                 world_size=actor_rollout_wg.world_size
             )
-            print(f'[DEBUG] going backward computing')
+            # print(f'[DEBUG] going backward computing')
             return gen_batch_output
         else:
             # 验证阶段使用与参考文件完全相同的成功统计逻辑，不调用gather_rollout_data，避免维度不匹配
