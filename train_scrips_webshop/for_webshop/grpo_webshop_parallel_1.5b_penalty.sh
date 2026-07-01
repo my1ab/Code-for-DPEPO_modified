@@ -9,8 +9,7 @@
 # ========== 配置选择 - 根据需要修改 ==========
 # export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:False,max_split_size_mb:128
 batchsize=2
-# export CUDA_VISIBLE_DEVICES=2,3
-export CUDA_VISIBLE_DEVICES=2,3
+export CUDA_VISIBLE_DEVICES=5,6
 micro_para=1
 # tensor_model_parallel_size=1
 tensor_model_parallel_size=$batchsize
@@ -24,10 +23,11 @@ export PYTHONUNBUFFERED=1
 export VLLM_ATTENTION_BACKEND=FLASH_ATTN
 # export VLLM_ATTENTION_BACKEND=XFORMERS
 
-LOG_FILE="2gpu_only_penalty/2gpu_process_resume3.log"
+LOG_FILE="2gpu_only_penalty_1/2gpu_only_penalty.log"
+ckpt_dir=/diskpool/home/xuxz/Code-for-DPEPO/2gpu_only_penalty_1
 
-rank_alpha=32
-max_steps=35
+rank_alpha=16
+max_steps=30
 save_freq=1
 # free_cache=False
 free_cache=True
@@ -39,7 +39,7 @@ nohup python3 -m verl-webshop.for_webshop.main_ppo_webshop \
     data.train_files=/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/verl_train_data/webshop/webshop_train_excluded.parquet \
     data.val_files=/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/verl_train_data/webshop/webshop_test_excluded.parquet \
     actor_rollout_ref.model.path=/diskpool/home/xuxz/ms-swift/checkpoint/Qwen2.5-1.5B-Instruct-Parallel-Epoch5-hislen8/v0-20260602-201729/checkpoint-8800 \
-    trainer.default_local_dir=/diskpool/home/xuxz/Code-for-DPEPO/2gpu_only_penalty \
+    trainer.default_local_dir=$ckpt_dir \
     trainer.experiment_name='grpo_1.5b_webshop_parallel' \
     data.train_batch_size=$batchsize \
     env.num_parallel=5 \
@@ -105,5 +105,6 @@ nohup python3 -m verl-webshop.for_webshop.main_ppo_webshop \
 
 echo "PID: $!"
 echo "Log: $LOG_FILE"
+echo "Checkpoint dir: $ckpt_dir"
 echo "To monitor: tail -f $LOG_FILE"
 tail -f "$LOG_FILE"
