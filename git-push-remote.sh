@@ -1,7 +1,8 @@
 #!/bin/bash
 
 
-REMOTE_URL="git@github.com:my1ab/Code-for-DPEPO_modified.git"  # SSH方式
+# REMOTE_URL="git@github.com:my1ab/Code-for-DPEPO_modified.git"  # SSH方式
+REMOTE_URL="https://github.com/my1ab/Code-for-DPEPO_modified.git"
 REPO_NAME="Code-for-DPEPO_modified"
 TARGET_BRANCH="main"
 if ! git remote get-url $REPO_NAME &>/dev/null; then
