@@ -75,7 +75,7 @@ EXCLUDE_PATHS=(
 
 echo ""
 echo "=== 添加所有文件（自动排除 EXCLUDE_PATHS 中的路径）==="
-# 使用 Git pathspec magic（:(exclude) 长格式）在 git add 时直接排除指定路径
+# 使用 Git pathspec magic（:(exclude) 长格式）在 git add 时直接排除指定路径  不需要添加后删除
 GIT_ADD_ARGS=("-A")
 for path in "${EXCLUDE_PATHS[@]}"; do
     GIT_ADD_ARGS+=(":(exclude)${path}")

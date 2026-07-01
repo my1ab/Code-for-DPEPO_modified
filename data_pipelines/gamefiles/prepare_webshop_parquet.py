@@ -14,8 +14,7 @@ import os
 import pandas as pd
 
 
-GAMEFILE_DIR = '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/webshop'
-DATA_DIR = '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/verl_train_data/webshop'
+
 TRAIN_SIZE = 500
 TEST_SIZE = 50
 SEED = 42
@@ -28,11 +27,11 @@ GOAL_NUM = 6910  # number of goals when human_goals=False in WebShop envs
 TRAIN_GOAL_START = 600
 TEST_GOAL_END = 500
 
-# Optional: exclude previously solved tasks.
-# SUCCESS_LOG contains linear indices (0-based position in previous training data).
-# They are converted to real goal indices using the same SEED, then excluded.
+# 需要手动编辑路径
+JSON_DIR = '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/webshop'
+PARQUET_DIR = '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/verl_train_data/webshop'
 SUCCESS_LOG = '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/all_success_indices_merged.log'
-# EXCLUDE_SUCCESS = False  # set to True to exclude previously solved tasks
+
 
 
 def read_json(filepath):
@@ -63,8 +62,8 @@ def load_success_linear_indices(log_path, list_len=500):
 # EXCLUDE_SUCCESS=True  # Set to True to exclude previously solved tasks based on SUCCESS_LOG
 EXCLUDE_SUCCESS=False  # Set to True to exclude previously solved tasks based on SUCCESS_LOG
 def main(exclude_success=EXCLUDE_SUCCESS):
-    os.makedirs(GAMEFILE_DIR, exist_ok=True)
-    os.makedirs(DATA_DIR, exist_ok=True)
+    os.makedirs(JSON_DIR, exist_ok=True)
+    os.makedirs(PARQUET_DIR, exist_ok=True)
 
     rng = __import__('numpy').random.RandomState(SEED)
 
@@ -131,26 +130,26 @@ def main(exclude_success=EXCLUDE_SUCCESS):
             }
         })
 
-    # --- Parquet data → DATA_DIR ---
+    # --- Parquet → PARQUET_DIR ---
     df_train = pd.DataFrame(parquet_train_data)
-    train_parquet = os.path.join(DATA_DIR, f'webshop_train{suffix}.parquet')
+    train_parquet = os.path.join(PARQUET_DIR, f'webshop_train{suffix}.parquet')
     df_train.to_parquet(train_parquet, index=False)
     print(f"[Train] Saved {len(parquet_train_data)} samples to {train_parquet}")
 
     df_test = pd.DataFrame(parquet_test_data)
-    test_parquet = os.path.join(DATA_DIR, f'webshop_test{suffix}.parquet')
+    test_parquet = os.path.join(PARQUET_DIR, f'webshop_test{suffix}.parquet')
     df_test.to_parquet(test_parquet, index=False)
     print(f"[Test]  Saved {len(parquet_test_data)} samples to {test_parquet}")
 
-    # --- Task JSON files (index only) → GAMEFILE_DIR ---
+    # --- Task JSON files (index only) → JSON_DIR ---
     train_json = {str(i): seed for i, seed in enumerate(train_idx)}
-    train_json_path = os.path.join(GAMEFILE_DIR, f'webshop_train_tasks{suffix}.json')
+    train_json_path = os.path.join(JSON_DIR, f'webshop_train_tasks{suffix}.json')
     with open(train_json_path, 'w') as f:
         json.dump(train_json, f, indent=4)
     print(f"[Train JSON] Saved {len(train_json)} tasks to {train_json_path}")
 
     test_json = {str(i): seed for i, seed in enumerate(test_idx)}
-    test_json_path = os.path.join(GAMEFILE_DIR, f'webshop_test_tasks{suffix}.json')
+    test_json_path = os.path.join(JSON_DIR, f'webshop_test_tasks{suffix}.json')
     with open(test_json_path, 'w') as f:
         json.dump(test_json, f, indent=4)
     print(f"[Test JSON]  Saved {len(test_json)} tasks to {test_json_path}")
@@ -165,4 +164,4 @@ if __name__ == '__main__':
     main(exclude_success=True)  # First run with exclude setting to generate the excluded version
     print("="*80)
     print("="*80)
-    main(exclude_success=False)  # Run again with opposite exclude setting to generate both versions
+    # main(exclude_success=False)  # Run again with opposite exclude setting to generate both versions
