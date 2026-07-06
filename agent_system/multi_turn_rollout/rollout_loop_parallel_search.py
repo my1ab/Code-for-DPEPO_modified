@@ -41,10 +41,12 @@ import re
 from tqdm import tqdm
 
 import json
+import os
 import time
 
-# 全局变量控制是否保存轨迹
-save_traj = True
+
+# 全局变量控制是否打印[DEBUG]调试信息
+print_debug = True
 
 
 def append_to_json_file(data, filename):
@@ -64,7 +66,7 @@ def append_to_json_file(data, filename):
         json.dump(existing_data, f, ensure_ascii=False, indent=4)
 
 
-def extract_think_and_actions(text, num_parallel=5):
+def extract_think_and_actions(text, num_parallel):
     """
     Extract think content and action dict from model output.
     照搬coldstart_para_his_test文件的健壮逻辑：提前初始化所有num_parallel个环境的action为"null"，只填充合法的动作
@@ -92,37 +94,13 @@ def extract_think_and_actions(text, num_parallel=5):
                 actions_dict[env_index] = action
     
     # 打印提取的动作数量，调试null_count统计问题
-    print(f"[extract_think_and_actions] 提取到动作数量: {len([v for v in actions_dict.values() if v != 'null'])}, 原始匹配动作列表长度: {len(matches)}, think内容是否存在: {think_content is not None}，num_parallel={num_parallel}")
+    if print_debug:
+        print(f"[DEBUG] [extract_think_and_actions] 提取到动作数量(排除null): {len([v for v in actions_dict.values() if v != 'null'])}, 原始匹配动作列表长度: {len(matches)}, think内容是否存在: {think_content is not None}，num_parallel={num_parallel}")
     
     return {
         'think': think_content,
         'actions': actions_dict
     }
-
-# def extract_think_and_actions(text, num_parallel=5):
-#     """
-#     Extract think content and action dict from model output.
-    
-#     Returns:
-#         dict with keys:
-#             - 'think': str or None
-#             - 'actions': dict mapping env_index -> action string
-#     """
-#     think_pattern = r'<think>(.*?)</think>'
-#     think_match = re.search(think_pattern, text, re.DOTALL)
-#     think_content = think_match.group(1).strip() if think_match else None
-
-#     actions_pattern = r'<env_(\d+)>(.*?)</env_\d+>'
-#     actions = re.findall(actions_pattern, text, re.DOTALL)
-#     actions_dict = {}
-#     # 1开始
-#     for index, action in actions:
-#         actions_dict[int(index)] = action.strip()
-
-#     return {
-#         'think': think_content,
-#         'actions': actions_dict
-#     }
 
 
 def non_tensor_to_list_of_dict(batch: DataProto) -> list[dict]:
@@ -141,6 +119,7 @@ def non_tensor_to_list_of_dict(batch: DataProto) -> list[dict]:
 
 # 模块级全局任务计数器，生命周期与程序一致，不受类创建销毁影响
 GLOBAL_TASK_COUNTER = 0
+import datetime
 
 
 class TrajectoryCollectorParallelWebShop:
@@ -220,21 +199,38 @@ class TrajectoryCollectorParallelWebShop:
                 current_observation=obs_prompt,
                 admissible_actions=admissible_actions,
                 # num_parallel=num_parallel,
-                num_parallel=total_envs,
-                total_envs=total_envs,
+                # num_parallel=total_envs,
+                num_parallel=self.config.env.num_parallel,
+                total_envs=self.config.env.num_parallel,
             )
         else:
+            # 构建带有 <observation_i> 标签包装的 initial_observation（供 reason_prompt_para_his 使用）
+            # 与参考文件 coldstart_para_his_test_1.5B_hislen8_epoch3.5_v2.py 保持一致：
+            # initial_observation 需要是多环境格式化块，而不是纯文本 start_obs
+            initial_obs_prompt = ''
+            for idx in range(1, total_envs + 1):
+                admissible_commands = "\n".join(
+                    [f"  - {action}" for action in start_possible_action]
+                )
+                initial_obs_prompt += (
+                    f'<observation_{idx}>\n'
+                    f'The observation and next candidated actions of {idx}-th environment are:\n'
+                    f'Observation:\n{start_obs}\n'
+                    f'Next Possible Actions:\n{admissible_commands}\n'
+                    f'</observation_{idx}>\n'
+                )
+
             # Build current observations prompt for all environments
             obs_prompt = ''
             for idx in range(1, total_envs + 1):
                 # last_observation is a dict with 1-based keys (from env_manager's last_obs_manager)
                 if isinstance(last_observation, dict):
                     obv = last_observation.get(idx, start_obs)
-                # 
                 elif (idx - 1) < len(last_observation):
                     obv = last_observation[idx - 1]
                 else:
                     obv = start_obs
+                    raise ValueError(f"Invalid observation index for environment {idx}. Expected 1-based index, got 1 to {idx}.")
                 if idx in last_possible_actions:
                     poa_list = last_possible_actions[idx]
                 else:
@@ -309,18 +305,20 @@ class TrajectoryCollectorParallelWebShop:
 
             prompt = reason_prompt_para_his.format(
                 task_description=task,
-                initial_observation=start_obs,
+                initial_observation=initial_obs_prompt,
                 history_info=history_info,
                 last_history=last_history,
                 # num_parallel=num_parallel,
-                num_parallel=total_envs,  # 直接使用total_envs，保持与参考文件一致，不再区分num_parallel和total_envs
-                total_envs=total_envs,
+                # num_parallel=total_envs,  # 直接使用total_envs，保持与参考文件一致，不再区分num_parallel和total_envs
+                num_parallel=self.config.env.num_parallel,
+                total_envs=self.config.env.num_parallel,
             )
 
         # 移除额外添加的限制提示，完全对齐参考文件coldstart_para_his_test_1.5B_hislen8_epoch3.5_v2.py，不再追加任何内容
         generation_completion = [
             # {'role': 'system', 'content': system_message_para.format(num_parallel=num_parallel, total_envs=total_envs)},
-            {'role': 'system', 'content': system_message_para.format(num_parallel=total_envs, total_envs=total_envs)},
+            # {'role': 'system', 'content': system_message_para.format(num_parallel=total_envs, total_envs=total_envs)},
+            {'role': 'system', 'content': system_message_para.format(num_parallel=self.config.env.num_parallel, total_envs=self.config.env.num_parallel)},
             {'role': 'user', 'content': prompt}
         ]
 
@@ -347,12 +345,14 @@ class TrajectoryCollectorParallelWebShop:
 
         position_ids = compute_position_id_with_mask(attention_mask)
 
+        # 
         raw_prompt_ids = self.tokenizer.encode(prompt_with_chat_template, add_special_tokens=False)
         if len(raw_prompt_ids) > self.config.data.max_prompt_length:
             if self.config.data.truncation == "left":
                 raw_prompt_ids = raw_prompt_ids[-self.config.data.max_prompt_length:]
             elif self.config.data.truncation == "right":
                 raw_prompt_ids = raw_prompt_ids[:self.config.data.max_prompt_length]
+                
             elif self.config.data.truncation == "middle":
                 left_half = self.config.data.max_prompt_length // 2
                 right_half = self.config.data.max_prompt_length - left_half
@@ -388,10 +388,14 @@ class TrajectoryCollectorParallelWebShop:
         num_parallel: int,
         add_limit_prompt: bool,
         total_envs: int,
-        active_masks: np.ndarray = None,  # 新增：活跃任务掩码，跳过已完成的任务
+        active_masks: np.ndarray = None,
     ) -> DataProto:
         """
         Process a batch of WebShop observation samples.
+        与 coldstart_para_his_test_1.5B_hislen8_epoch3.5_v2.py 完全对齐：
+        - start_obs 不添加 \n\nYour task is to: 后缀
+        - task 使用占位符 'Find and purchase a product'
+        - 任务信息由 initial_observation 中的 observation 文本承载
         """
         data_all_infos = {
             'start_obs': start_obs,
@@ -409,18 +413,9 @@ class TrajectoryCollectorParallelWebShop:
         for batch_idx in range(length):
             save_dict = {}
             for key, value in data_all_infos.items():
-                if key == 'start_obs':
-                    obs_text = value[batch_idx]
-                    # WebShop format: task is embedded in 'Your task is to: ' suffix
-                    if '\n\nYour task is to: ' in obs_text:
-                        start_obv, task = obs_text.split('\n\nYour task is to: ')
-                        save_dict['start_obs'] = start_obv
-                        save_dict['task'] = task
-                    else:
-                        save_dict['start_obs'] = obs_text
-                        save_dict['task'] = obs_text
-                else:
-                    save_dict[key] = value[batch_idx]
+                save_dict[key] = value[batch_idx]
+            # 与 coldstart 一致：task 使用占位符，任务信息由 observation 文本承载
+            save_dict['task'] = 'Find and purchase a product'
             save_list.append(save_dict)
 
         processed_samples = []
@@ -439,7 +434,8 @@ class TrajectoryCollectorParallelWebShop:
                 last_action=entry['last_actions'],
                 last_observation=entry['last_observations'],
                 last_possible_actions=entry['last_possible_actions'],
-                num_parallel=num_parallel,
+                # num_parallel=num_parallel,
+                num_parallel=self.config.env.num_parallel,
                 # num_parallel=total_envs,  
                 add_limit_prompt=add_limit_prompt,
                 total_envs=total_envs,
@@ -455,131 +451,6 @@ class TrajectoryCollectorParallelWebShop:
 
         return new_batch
 
-#    def gather_rollout_data(
-#         self,
-#         total_batch_list: List[List[Dict]],
-#         episode_rewards: np.ndarray,
-#         episode_lengths: np.ndarray,
-#         traj_uid: np.ndarray,
-#         tool_callings: np.ndarray,
-#         success_flags: np.ndarray = None,
-#         status_msgs: List = None,
-#     ) -> DataProto:
-#         """Collect and organize trajectory data."""
-#         batch_size = len(total_batch_list)
-        
-#         # 设置默认值，保持向后兼容性
-#         if success_flags is None:
-#             success_flags = np.zeros(batch_size, dtype=int)
-#         if status_msgs is None:
-#             status_msgs = ["" for _ in range(batch_size)]
-
-#         # 手动padding
-#         effective_batch = []
-#         for bs in range(batch_size):
-#             for data in total_batch_list[bs]:
-#                 assert traj_uid[bs] == data['traj_uid'], "data is not from the same trajectory"
-#                 # 修复：处理新旧两种数据格式，新格式的样本没有active_masks字段，默认保留
-#                 keep_sample = True
-#                 if 'active_masks' in data:
-#                     # 旧格式：检查active_masks
-#                     if not data['active_masks']:
-#                         keep_sample = False
-#                 if keep_sample:
-#                         # 只保留必要的字段，避免传递可能长度不一致的复杂numpy数组
-#                         cleaned_data = {}
-#                         # 复制张量字段
-#                         for key in ['input_ids', 'attention_mask', 'position_ids', 'prompts', 'responses', 'rollout_log_probs']:
-#                             if key in data:
-#                                 cleaned_data[key] = data[key]
-#                         # 复制基本类型字段
-#                         for key in ['index', 'data_source', 'uid', 'traj_uid', 'group_id', 'raw_prompt_ids']:
-#                             if key in data:
-#                                 cleaned_data[key] = data[key]
-#                         # 添加轨迹统计信息
-#                         cleaned_data['episode_rewards'] = episode_rewards[bs]
-#                         cleaned_data['episode_lengths'] = episode_lengths[bs]
-#                         cleaned_data['tool_callings'] = tool_callings[bs]
-#                         cleaned_data['success_flag'] = int(success_flags[bs])
-#                         cleaned_data['status_msg'] = str(status_msgs[bs])
-#                         # 添加active_masks
-#                         if 'active_masks' in data:
-#                             cleaned_data['active_masks'] = data['active_masks']
-#                         else:
-#                             cleaned_data['active_masks'] = True
-#                         effective_batch.append(cleaned_data)
-        
-#         # 添加轨迹长度padding，确保所有样本的input_ids/attention_mask/position_ids/active_masks长度一致
-#         # 解决验证阶段collate_fn时的ValueError: could not broadcast input array错误
-#         if effective_batch:
-#             # 调试打印：输出每个样本的所有字段及其长度，定位哪个字段长度不一致
-#             print(f"[DEBUG] 有效batch样本数量: {len(effective_batch)}")
-#             for i, data in enumerate(effective_batch):
-#                 print(f"[DEBUG] 样本{i}的字段及长度:")
-#                 for key, val in data.items():
-#                     if isinstance(val, list):
-#                         print(f"  {key}: 长度={len(val)}")
-#                     elif isinstance(val, torch.Tensor):
-#                         print(f"  {key}: 张量形状={val.shape}")
-#                     else:
-#                         print(f"  {key}: 类型={type(val)}, 值={val}")
-            
-#             # 收集所有样本的所有列表字段的最大长度
-#             max_len_dict = {}
-#             # 首先找出所有列表字段的最大长度
-#             for data in effective_batch:
-#                 for key, val in data.items():
-#                     if isinstance(val, list):
-#                         current_len = len(val)
-#                         if key not in max_len_dict or current_len > max_len_dict[key]:
-#                             max_len_dict[key] = current_len
-#             print(f"[DEBUG] 所有列表字段的最大长度: {max_len_dict}")
-            
-#             pad_id = self.tokenizer.pad_token_id
-#             # 对所有样本的所有列表字段进行padding
-#             for data in effective_batch:
-#                 for list_key, max_len in max_len_dict.items():
-#                     if list_key in data and isinstance(data[list_key], list):
-#                         current_len = len(data[list_key])
-#                         if current_len < max_len:
-#                             pad_len = max_len - current_len
-#                             print(f"[DEBUG] 对字段{list_key}进行padding，需要补充{pad_len}个元素")
-#                             if list_key == 'raw_prompt_ids':
-#                                 data[list_key] += [pad_id] * pad_len
-#                             elif list_key == 'raw_prompt':
-#                                 data[list_key] += ['<pad>'] * pad_len
-#                             else:
-#                                 # 其他列表字段统一用None填充
-#                                 data[list_key] += [None] * pad_len
-            
-#             # 处理张量类型的字段padding
-#             tensor_max_len = 0
-#             for data in effective_batch:
-#                 if len(data['input_ids']) > tensor_max_len:
-#                     tensor_max_len = len(data['input_ids'])
-#             print(f"[DEBUG] 张量字段的最大序列长度max_len={tensor_max_len}")
-#             for data in effective_batch:
-#                 current_len = len(data['input_ids'])
-#                 if current_len < tensor_max_len:
-#                     pad_len = tensor_max_len - current_len
-#                     print(f"[DEBUG] 对张量字段进行padding，需要补充{pad_len}个token")
-#                     # input_ids/attention_mask/position_ids都是torch.Tensor，必须用torch.cat拼接
-#                     if isinstance(data['input_ids'], torch.Tensor):
-#                         # 张量类型的padding
-#                         data['input_ids'] = torch.cat([data['input_ids'], torch.tensor([pad_id] * pad_len, dtype=data['input_ids'].dtype)])
-#                         data['attention_mask'] = torch.cat([data['attention_mask'], torch.tensor([0] * pad_len, dtype=data['attention_mask'].dtype)])
-#                         data['position_ids'] = torch.cat([data['position_ids'], torch.tensor([0] * pad_len, dtype=data['position_ids'].dtype)])
-#                     else:
-#                         # 列表类型的padding（兼容旧格式）
-#                         data['input_ids'] += [pad_id] * pad_len
-#                         data['attention_mask'] += [0] * pad_len
-#                         data['position_ids'] += [0] * pad_len
-
-#         gen_batch_output = DataProto.from_single_dict(
-#             data=collate_fn(effective_batch)
-#         )
-#         return gen_batch_output
-
     def gather_rollout_data(
         self,
         total_batch_list: List[List[Dict]],
@@ -593,13 +464,14 @@ class TrajectoryCollectorParallelWebShop:
     ) -> DataProto:
         """Collect and organize trajectory data, aligned with official rollout_loop_parallel.py."""
         batch_size = len(total_batch_list)
-        print(f'[DEBUG] into gather_rollout_data, batch_size={batch_size}')
+        if print_debug:
+            print(f'[DEBUG] into gather_rollout_data, batch_size={batch_size}')
         
         # 设置默认值，保持向后兼容性
-        if success_flags is None:
-            success_flags = np.zeros(batch_size, dtype=int)
-        if status_msgs is None:
-            status_msgs = ["" for _ in range(batch_size)]
+        # if success_flags is None:
+        #     success_flags = np.zeros(batch_size, dtype=int)
+        # if status_msgs is None:
+        #     status_msgs = ["" for _ in range(batch_size)]
 
         # 完全和官方rollout_loop_parallel.py保持一致的逻辑
         effective_batch = [] 
@@ -611,50 +483,206 @@ class TrajectoryCollectorParallelWebShop:
                     data['episode_rewards'] = episode_rewards[bs] 
                     data['episode_lengths'] = episode_lengths[bs]
                     data['tool_callings'] = tool_callings[bs]
+                    # webshop特有字段保留
+                    # data['success_flag'] = int(success_flags[bs])
+                    # data['status_msg'] = str(status_msgs[bs])
+                    # if 'active_masks' not in data:
+                    #     data['active_masks'] = True
                     effective_batch.append(data)
-
-        if not effective_batch:
-            # 没有有效样本时返回空DataProto
-            return DataProto.from_single_dict(data={})
-
-        # ------------------------------------------------------------
-        # 使用官方API pad_sequence_to_length 对tensor字段做序列长度对齐
-        # 不同步的response序列长度可能不同，直接stack会失败
-        # ------------------------------------------------------------
-        pad_token_id = self.tokenizer.pad_token_id
-
-        # 收集所有tensor字段名
-        tensor_keys = set()
-        for item in effective_batch:
-            for key, val in item.items():
-                if isinstance(val, torch.Tensor):
-                    tensor_keys.add(key)
-
-        # 对每个tensor字段，找到最大长度并padding
-        for key in tensor_keys:
-            items_with_key = [item for item in effective_batch if key in item and isinstance(item[key], torch.Tensor)]
-            if not items_with_key:
-                continue
-            max_len = max(item[key].shape[-1] for item in items_with_key)
-
-            # 确定左/右pad策略
-            left_pad = (key == 'input_ids')
-
-            for item in items_with_key:
-                t = item[key]
-                if t.shape[-1] >= max_len:
-                    continue
-                # unsqueeze -> [1, seq_len] 满足pad_sequence_to_length的2D接口 -> pad -> squeeze
-                item[key] = verl_F.pad_sequence_to_length(
-                    t.unsqueeze(0),
-                    max_len,
-                    pad_token_id if key in ('input_ids',) else 0,
-                    left_pad=left_pad,
-                ).squeeze(0)
-
+        
+        # 完全和官方一样的padding流程，保留必要的多卡对齐padding
         gen_batch = DataProto.from_single_dict(data=collate_fn(effective_batch))
+        # 和官方代码一致，保留pad_dataproto_to_divisor用于多卡训练的batch对齐
+        # if hasattr(self.config, 'world_size'):
+        # if world_size != None:
+        #     # padded_gen_batch, pad_info = pad_dataproto_to_divisor(gen_batch, self.config.world_size)
+        #     print(f'[DEBUG] world_size={world_size} in gather')
+        #     padded_gen_batch, pad_info = pad_dataproto_to_divisor(gen_batch, world_size)
+        #     # if pad_info > 0:
+        #     #     padded_gen_batch.meta_info['padded_info'] = pad_info
+        #     final_batch = padded_gen_batch
+        # else:
+        #     final_batch = gen_batch
+        
+        # import gc
+        # del total_batch_list, episode_rewards, episode_lengths, traj_uid, tool_callings
+        # del success_flags, status_msgs, effective_batch, gen_batch
+        # gc.collect()
+        # if torch.cuda.is_available():
+            # torch.cuda.empty_cache()
+    
         return gen_batch
 
+    # ===================== Calculate 系列机制（对齐 rollout_loop_parallel.py） =====================
+    def calculate_process_reward(self, total_batch_list):
+        # TODO: Check the boundary situation
+
+        # merge multi step data into a full trajectory
+        group_data = []
+        for trajectory in total_batch_list:
+            save_dict = {}
+            save_dict['gamefile'] = trajectory[0]['gamefile']
+            if 'expert_actions' in trajectory[0]:
+                save_dict['expert_actions'] = trajectory[0]['expert_actions']
+            else:
+                # WebShop may not have expert_actions; fall back to empty list
+                print('[warning]no expert actions for process reward')
+                save_dict['expert_actions'] = []
+
+            save_dict['parallel_action'] = {}
+            save_dict['parallel_obs'] = {}
+            for i in range(self.config.env.num_parallel):
+                save_dict['parallel_action'][i + 1] = []
+                save_dict['parallel_obs'][i + 1] = []
+
+            for step_data in trajectory:
+                action_dict = step_data['action_dict']
+                observation_list = step_data['observation']
+
+                idx = 0
+                for env_idx, action in action_dict.items():
+                    if env_idx in set(range(1, self.config.env.num_parallel + 1)):
+                        cur_action = action
+                        cur_obs = observation_list[idx]
+                        idx += 1
+                        save_dict['parallel_action'][env_idx].append(cur_action.strip(' ').strip('\n').strip('\n\n'))
+                        save_dict['parallel_obs'][env_idx].append(cur_obs)
+
+            group_data.append(save_dict)
+
+        # Calculate the rewards
+        total_process_rewards = []
+
+        for predict in group_data:
+            parallel_actions = predict['parallel_action']
+            expert_action_list = predict['expert_actions']
+
+            parallel_lcs_rewards = []
+            # Iterate each parallel sub-trajectory
+            for env_idx, action_list in parallel_actions.items():
+                reward = self.count_longest_ordered_subsequence(expert_action_list, action_list)
+                parallel_lcs_rewards.append(reward)
+
+            action_reward = max(parallel_lcs_rewards)
+
+            total_process_rewards.append(round(action_reward / len(expert_action_list), 5) if expert_action_list else 0.0)
+
+        return total_process_rewards
+
+    def calculate_penalties(self, history_actions, action_dict):
+        # history_actions: Containing history actions in each env
+        # sample: only the action_dict is useful
+        action_keys = set(action_dict.keys()) & set(range(1, self.config.env.num_parallel + 1))
+        for his_key, value in history_actions.items():
+            history_actions[his_key] = [his_act.strip() for his_act in value]
+        for act_key, value in action_dict.items():
+            action_dict[act_key] = value.strip()
+
+        action_penalty_per_env = []
+        for key in action_keys:
+            env_action = action_dict[key].strip()
+            env_history_actions = history_actions[key]
+
+            # Calculate the Simple Repeat Count
+            COUNT_repeat_penalty = self.calculate_depth_repeat(
+                history_actions=env_history_actions,
+                action=env_action
+            )
+
+            if len(env_history_actions) == 0:
+                last_state_action = (env_action)
+            else:
+                last_state_action = (env_history_actions[-1], env_action)
+
+            # Depth Transition Repeat Count
+            COUNT_depth_transition_penalty = self.calculate_transition_repeat(
+                history_actions=env_history_actions,
+                last_state_action=last_state_action
+            )
+
+            # Width Transition Repeat Count
+            LIST_width_repeat_count = []  # TODO: Add Pooling Operation
+            for w_idx in list(set(action_keys) - set([key])):
+                width_history_actions = history_actions[w_idx] + [action_dict[w_idx]]
+                repeat_count = self.calculate_transition_repeat(
+                    history_actions=width_history_actions,
+                    last_state_action=last_state_action
+                )
+                LIST_width_repeat_count.append(repeat_count)
+
+            COUNT_width_transition_repeat = sum(LIST_width_repeat_count)
+
+            depth_alpha = self.config.reward_model.depth_alpha
+            W_depth_repeat = depth_alpha ** COUNT_repeat_penalty
+
+            depth_t_gamma = self.config.reward_model.depth_t_gamma
+            W_depth_t_repeat = depth_t_gamma ** COUNT_depth_transition_penalty
+
+            width_t_beta = self.config.reward_model.width_t_beta
+            W_width_t_repeat = width_t_beta ** COUNT_width_transition_repeat
+
+            W_list = [W_depth_repeat, W_depth_t_repeat, W_width_t_repeat]
+            pooling_kind_weight = sum(W_list) / len(W_list)
+
+            action_penalty_per_env.append(pooling_kind_weight)
+
+        actions_wo_look = [elem for elem in action_dict.values() if elem != 'look']
+        COUNT_width_repeat = len(actions_wo_look) - len(set(actions_wo_look))
+        width_omega = self.config.reward_model.width_omega
+        W_width_repeat = width_omega ** COUNT_width_repeat
+
+        pooling_w_action = sum(action_penalty_per_env) / len(action_penalty_per_env) if action_penalty_per_env else 0.0
+
+        W = (W_width_repeat + pooling_w_action) / 2
+
+        return round(W, 4)
+
+    def get_state_action_pair(self, action_history):
+        return [(a, b) for a, b in zip(action_history, action_history[1:])]
+
+    def calculate_transition_repeat(self, history_actions, last_state_action):
+        # Transition Repeat
+        full_action_list = history_actions
+
+        state_action_pair_a = self.get_state_action_pair(full_action_list)
+
+        if len(state_action_pair_a) == 0:
+            return 0
+
+        repeat_count = state_action_pair_a.count(last_state_action)
+
+        return repeat_count
+
+    def calculate_depth_repeat(self, history_actions, action):
+        repeat_count = 0
+        for history_action in reversed(history_actions):
+            if action == history_action:
+                repeat_count += 1
+
+        return repeat_count
+
+    def calculate_width_repeat_rate(self, action_dict):
+        num_actions = len(action_dict)
+        num_dedu_actions = len(set(action_dict.values()))
+        return num_actions - num_dedu_actions
+
+    def count_longest_ordered_subsequence(self, ground_truth, prediction):
+        if not ground_truth or not prediction:
+            return 0
+
+        i = 0  # 指向 ground_truth
+        j = 0  # 指向 agent
+
+        matched = 0
+        while i < len(ground_truth) and j < len(prediction):
+            if ground_truth[i] == prediction[j]:
+                matched += 1
+                i += 1   # 只有匹配成功才前进 ground_truth
+            j += 1       # agent 永远前进
+
+        return matched
+
+    # ===================== End of Calculate 系列机制 =====================
 
     def vanilla_multi_turn_loop(
         self,
@@ -682,7 +710,8 @@ class TrajectoryCollectorParallelWebShop:
         # 训练阶段使用config.env.rollout.n创建多个重复样本，验证阶段group_n=1节省资源
         group_n = self.config.env.rollout.n if is_train else 1
         # 验证时 [DEBUG] group_n = 1 in rollout loop, is_train=False, batch_size=50
-        print(f'[DEBUG] group_n = {group_n} in rollout loop, is_train={is_train}, batch_size={batch_size}')
+        if print_debug:
+            print(f'[DEBUG] group_n = {group_n} in rollout loop, is_train={is_train}, batch_size={batch_size}')
         for i in range(batch_size):
             if i % group_n == 0:
                 group_id = 0
@@ -697,9 +726,9 @@ class TrajectoryCollectorParallelWebShop:
         gen_batch.non_tensor_batch['uid'] = uid_batch
         gen_batch.non_tensor_batch['group_id'] = group_ids
 
-        num_parallel = self.config.env.num_parallel
+        # num_parallel = self.config.env.num_parallel
         add_limit_prompt = self.config.env.get('add_limit_prompt', True)
-        total_envs = group_n
+        # total_envs = group_n
 
         # Initial observations from the environment
         non_tensor_batch = non_tensor_to_list_of_dict(gen_batch)
@@ -729,18 +758,19 @@ class TrajectoryCollectorParallelWebShop:
         # Trajectory collection loop（恢复copy.py原始循环逻辑，仅保留必要的成功判断功能）
         # _step为当前步数
         for _step in tqdm(range(self.config.env.max_steps)):
-            # 下面有is_done，所以这里不需要active_masks检查了
+            if print_debug:
+                print(f'[DEBUG] running task {GLOBAL_TASK_COUNTER} step {_step} of total {self.config.env.max_steps}')
             # 逐个元素取反  即is_done真时将active_masks伪
             active_masks = np.logical_not(is_done)
-            # 如果所有任务都完成了  即全伪  则提前退
-            if not active_masks.any():  
-                break
+            # 如果所有任务都完成了  即全伪  则提前退出  但之后已经有is_done判断
+            # if not active_masks.any():  
+                # break
 
             non_tensor_batch = non_tensor_to_list_of_dict(gen_batch)
             history_actions, history_observations = envs.get_history_info_group(non_tensor_batch)
             last_actions, last_observations, last_possible_actions = envs.get_last_actions_info_group(non_tensor_batch)
 
-            # 转换为能处理的格式
+            # 1. Preprocess batch
             batch = self.preprocess_batch(
                 gen_batch=gen_batch,
                 step=_step,
@@ -751,10 +781,12 @@ class TrajectoryCollectorParallelWebShop:
                 last_actions=last_actions,
                 last_observations=last_observations,
                 last_possible_actions=last_possible_actions,
-                num_parallel=num_parallel,
+                # num_parallel=5,
+                num_parallel=self.config.env.num_parallel,
                 add_limit_prompt=add_limit_prompt,
-                total_envs=total_envs,
-                active_masks=active_masks,  # 传入活跃任务掩码，用于跳过已完成的任务
+                # total_envs=5,
+                total_envs=self.config.env.num_parallel,
+                active_masks=active_masks,
             )
 
             # 2. Generate model output
@@ -773,9 +805,56 @@ class TrajectoryCollectorParallelWebShop:
             )
             batch_input.meta_info = gen_batch.meta_info
 
-            batch_input_padded, pad_size = pad_dataproto_to_divisor(batch_input, actor_rollout_wg.world_size)
-            batch_output_padded = actor_rollout_wg.generate_sequences(batch_input_padded)
-            batch_output = unpad_dataproto(batch_output_padded, pad_size=pad_size)
+            # 只对 active（未完成）样本做模型推理，已完成样本跳过以减少计算量
+            active_indices = np.where(active_masks)[0]
+            num_active = len(active_indices)
+            if num_active == batch_size:
+                # 全部 active，走原始路径
+                batch_input_padded, pad_size = pad_dataproto_to_divisor(batch_input, actor_rollout_wg.world_size)
+                batch_output_padded = actor_rollout_wg.generate_sequences(batch_input_padded)
+                batch_output = unpad_dataproto(batch_output_padded, pad_size=pad_size)
+            else:
+                # 只对 active 样本推理，减少 GPU 计算量
+                # batch_input_active = batch_input[active_masks]
+                batch_input_active = batch_input[active_indices]
+                batch_input_active_padded, pad_size_active = pad_dataproto_to_divisor(
+                    batch_input_active, actor_rollout_wg.world_size
+                )
+                batch_output_active_padded = actor_rollout_wg.generate_sequences(
+                    batch_input_active_padded
+                )
+                batch_output_active = unpad_dataproto(
+                    batch_output_active_padded, pad_size=pad_size_active
+                )
+
+                # 将 active 推理结果映射回全 batch
+                from tensordict import TensorDict
+                full_batch = {}
+                for key, tensor in batch_output_active.batch.items():
+                    full_shape = list(tensor.shape)
+                    full_shape[0] = batch_size
+                    # 先用0占位
+                    full_tensor = torch.full(
+                        full_shape, fill_value=0,
+                        dtype=tensor.dtype, device=tensor.device
+                    )
+                    # 两步按key写回 active_indices为activemask判定仍未结束的样本
+                    full_tensor[active_indices] = tensor
+                    full_batch[key] = full_tensor
+
+                full_non_tensor = {}
+                for key, val in batch_output_active.non_tensor_batch.items():
+                    full_val = np.empty(batch_size, dtype=object)
+                    # 逐元素赋值，避免 num_active 维数 >1 时 numpy 广播失败
+                    for j, idx in enumerate(active_indices):
+                        full_val[idx] = val[j]
+                    full_non_tensor[key] = full_val
+
+                batch_output = DataProto(
+                    batch=TensorDict(full_batch, batch_size=(batch_size,)),
+                    non_tensor_batch=full_non_tensor,
+                    meta_info=batch_input.meta_info
+                )
 
             batch.non_tensor_batch['uid'] = uid_batch
             batch.non_tensor_batch['traj_uid'] = traj_uid
@@ -783,6 +862,8 @@ class TrajectoryCollectorParallelWebShop:
 
             batch = batch.union(batch_output)
             batch.non_tensor_batch['gamefile'] = gen_batch.non_tensor_batch['gamefile']
+            if 'expert_actions' in gen_batch.non_tensor_batch:
+                batch.non_tensor_batch['expert_actions'] = gen_batch.non_tensor_batch['expert_actions']
 
             text_actions = self.tokenizer.batch_decode(
                 batch.batch['responses'],
@@ -798,10 +879,34 @@ class TrajectoryCollectorParallelWebShop:
             # 格式化输入
             parallel_actions_dict = to_list_of_dict(batch)
 
+            # 补null动作  避免无效交互
+            for i in range(batch_size):
+               
+                if not active_masks[i]:
+                    action_dict = parallel_actions_dict[i].get('action_dict', {})
+                    for env_idx in action_dict:
+                        action_dict[env_idx] = "null"
+
             # 3. Interact with environments
             # 选用def step_group(self, gourped_samples):
             # 进行动作
             dict_grouped_output = envs.step_group(parallel_actions_dict)
+
+            # 计算平行惩罚
+            # ---------Parallel Penalties (对齐 rollout_loop_parallel.py) ----------- #
+            if hasattr(self.config, 'reward_model') and self.config.reward_model.get('parallel_reward', False):
+                # 重新获取 history_actions（当前步的环境已更新）
+                cur_history_actions, _ = envs.get_history_info_group(non_tensor_batch)
+                for sample, his_acts in zip(dict_grouped_output, cur_history_actions):
+                    action_dict = sample['action_dict']
+                    if action_dict and len(action_dict) != 0:
+                        W = self.calculate_penalties(
+                            history_actions=his_acts,
+                            action_dict=action_dict,
+                        )
+                    else:
+                        W = self.config.reward_model.get('no_action_penalty', 1.0)
+                    sample['penalty_W'] = W
 
             single_dict_grouped_output = collate_fn(dict_grouped_output)
 
@@ -816,11 +921,28 @@ class TrajectoryCollectorParallelWebShop:
             dones = single_dict_grouped_output['dones']
             infos = single_dict_grouped_output['possible_actions']
 
+            # 对 possible_actions 做 2D padding：将所有环境内的可选动作列表补全到相同长度（全局最大长度），
+            # 缺项填充 "null"。这样 possible_actions 保持为 (batch_size, max_len) 的 2D numpy 数组，
+            # 避免不同 step 之间长度变化导致 collate_fn 的 broadcast 错误。(5,12)  (5,)
+            # possible_actions_raw = single_dict_grouped_output['possible_actions']
+            # if len(possible_actions_raw) > 0:
+            #     max_len = max(len(lst) for lst in possible_actions_raw)
+            #     # max_len = 12
+            #     padded_list = []
+            #     for lst in possible_actions_raw:
+            #         current = list(lst)
+            #         if len(current) < max_len:
+            #             current += ["null"] * (max_len - len(current))
+            #         padded_list.append(current)
+            #     single_dict_grouped_output['possible_actions'] = np.array(padded_list, dtype=object)
+            
+
             batch = DataProto.from_single_dict(
                 data=single_dict_grouped_output,
                 meta_info=gen_batch.meta_info
             )
 
+            # 记录稀疏奖励
             episode_rewards[active_masks] += torch_to_numpy(rewards)[active_masks]
             episode_lengths[active_masks] += 1
 
@@ -829,9 +951,14 @@ class TrajectoryCollectorParallelWebShop:
 
             # 移除辅助字段（来自 step_group），这些字段在后续步形状可能变化，会导致 collate_fn 广播失败
             # 且它们对 PPO 训练无意义，只保留训练所需的字段
-            # aux_fields = ['observation', 'dones', 'possible_actions', 'concated_observation', 'task']
-            # aux_fields = ['observation', 'dones', 'possible_actions', 'concated_observation', 'task', 'success_flags', 'status_msgs']
-            aux_fields = [ 'success_flags', 'status_msgs']
+            # 安全可删除的字段分析：
+            #   - 'observation': 被 calculate_process_reward 使用 → 不能删除
+            #   - 'dones': 每步长度固定，但类型可能变化(list of bools vs array)；已提前提取为dones变量用于判断，不再需要 → 安全删除
+            #   - 'possible_actions': 每步长度不同(环境状态变化导致可选动作数变化)，collate时形状不一致 → 安全删除
+            #   - 'concated_observation': 仅在coldstart中使用，本文件未使用 → 安全删除
+            #   - 'task': 固定值，但ppo训练不需要 → 安全删除
+            #   - 'success_flags','status_msgs': 仅在coldstart中使用，本文件未使用 → 安全删除
+            aux_fields = ['dones', 'possible_actions', 'concated_observation', 'task', 'success_flags', 'status_msgs']
             for field in aux_fields:
                 if field in batch.non_tensor_batch:
                     del batch.non_tensor_batch[field]
@@ -839,17 +966,21 @@ class TrajectoryCollectorParallelWebShop:
             batch_list: list[dict] = to_list_of_dict(batch)
 
             for i in range(batch_size):
-                # 添加active_masks字段
+                if not active_masks[i]:
+                    # 已完成的样本不再记录轨迹数据，避免噪声数据影响PPO训练
+                    continue
+                # 未完成则添加batch_list
                 total_batch_list[i].append(batch_list[i])
                 total_infos[i].append(infos[i])
 
             # 参考coldstart_para_his_test_1.5B_hislen8_epoch3.5_v2.py添加每样本状态判断
-            print(f"dones = {dones} and not done yet")
-            print(f'is_done = {is_done}')
+            if print_debug:
+                print(f"[DEBUG] dones = {dones} and not done yet")
+                print(f"[DEBUG] is_done = {is_done}")
             # print(f"rewards = {current_rewards}")
-            # 内层：逐个处理每个样本的状态更新
+            # 内层：逐个处理每个样本的状态 判定+更新
             for bs in range(batch_size):
-                # active_masks伪 已经完成的任务跳过处理
+                # active_masks伪 已经完成的任务跳过判定处理
                 if not active_masks[bs]:
                     continue  
                     
@@ -860,6 +991,7 @@ class TrajectoryCollectorParallelWebShop:
                 else:
                     # step_actions = [current_actions.get(idx, 'null') for idx in range(total_envs)]
                     # 标记 修复：环境的worker编号从1开始，所以idx从1开始取，避免永远取不到action返回null
+                    total_envs = self.config.env.num_parallel
                     step_actions = [current_actions.get(idx+1, 'null') for idx in range(total_envs)]
                     all_invalid = all(a is None or a == 'null' or a == 'None' for a in step_actions)
                 
@@ -889,41 +1021,41 @@ class TrajectoryCollectorParallelWebShop:
                     completed_idx = worker_id_in_task  # 用worker在组内的索引作为环境编号，符合你对环境副本的理解
                     # status_msgs[bs] = f"Task {task_idx} {status} at turn {_step + 1} in environments {completed_idx}"
                     status_msgs[bs] = f"Task {GLOBAL_TASK_COUNTER} sample {bs} {status} at turn {_step + 1}"
-                    print(status_msgs[bs])
-                    print(f"dones = {dones}")
-                    print(f"np_rewards = {np_rewards}")
+                    if print_debug:
+                        print(f'[DEBUG] status_msgs[bs] = {status_msgs[bs]}')
+                        print(f"dones = {dones}")
+                        print(f"np_rewards = {np_rewards}")
+                    is_done[bs] = True
+                    turn_out_range[bs] = False
                     # 只有训练阶段(group_n>1)才需要把整个组的所有worker都标记为完成，保持所有轨迹长度一致
                     # 验证阶段(group_n=1)只标记当前bs的任务，避免影响其他任务的轨迹收集
-                    if is_train and group_n > 1:
-                        # start_bs = bs * group_n
-                        # end_bs = start_bs + group_n
-                        start_bs = 0 if bs <= 4 else 5
-                        end_bs = 4 if bs <= 4 else 9
-                        for g_bs in range(start_bs, end_bs+1):
+                    if is_train:
+                        n = self.config.env.rollout.n
+                        group_idx = bs // n  # 0-based group index
+                        # 整个组全部置为1
+                        range1 = range(group_idx * n, (group_idx + 1) * n)
+                        for g_bs in range1:
                             if not is_done[g_bs]:
                                 is_done[g_bs] = True
                                 turn_out_range[g_bs] = False
-                        print(f'is_done trans to {is_done}')
-                    else:
+                    # else:
                         # 验证阶段只标记当前任务，让其他任务自然完成，收集完整的验证轨迹
                         is_done[bs] = True
                         turn_out_range[bs] = False
+                    if print_debug:
+                        print(f'[DEBUG] is_done trans to {is_done}')
                 elif null_count[bs] >= 2:
-                    # 只有训练阶段(group_n>1)才需要把整个组的所有worker都标记为完成，保持所有轨迹长度一致
-                    # 验证阶段(group_n=1)只标记当前bs的任务，避免影响其他任务的轨迹收集
                     status_msgs[bs] = f"Task {GLOBAL_TASK_COUNTER} exit(all null) at turn {_step + 1}"
-                    print(status_msgs[bs])
-                    if is_train and group_n > 1:
-                        # start_bs = bs * group_n
-                        # end_bs = start_bs + group_n
-                        # for g_bs in range(start_bs, min(end_bs, batch_size)):
-                        #     if not is_done[g_bs]:
-                        #         is_done[g_bs] = True
-                        #         turn_out_range[g_bs] = False
-                        # is_done[bs] = True
-                        start_bs = 0 if bs <= 4 else 5
-                        end_bs = 4 if bs <= 4 else 9
-                        for g_bs in range(start_bs, end_bs+1):
+                    if print_debug:
+                        print(f'[DEBUG] status_msgs[bs] = {status_msgs[bs]}')
+                    is_done[bs] = True
+                    turn_out_range[bs] = False
+                    # 要求单条轨迹结束时
+                    if is_train:
+                        n = self.config.env.rollout.n
+                        group_idx = bs // n  # 0-based group index
+                        range1 = range(group_idx * n, (group_idx + 1) * n)
+                        for g_bs in range1:
                             if not is_done[g_bs]:
                                 is_done[g_bs] = True
                                 turn_out_range[g_bs] = False
@@ -931,25 +1063,28 @@ class TrajectoryCollectorParallelWebShop:
                         # 验证阶段只标记当前任务，让其他任务自然完成，收集完整的验证轨迹
                         is_done[bs] = True
                         turn_out_range[bs] = False
+                    if print_debug:
+                        print(f'[DEBUG] is_done trans to {is_done}')
             
             # 检查是否所有任务都已完成，无论batch_size是多少，只要全部完成就立即退出
             if is_done.all():
                 print(f"All tasks completed at turn {_step + 1}, exiting rollout loop.")
                 break
-        
-        # # ------------------ Calculation Process Reward ---------------------
-        # if self.config.reward_model.process_reward:
-        #     process_reward = self.calculate_process_reward(
-        #         total_batch_list=total_batch_list,
-        #     ) 
-        #     # We only apply `process reward` when the trajectory fails 
-        #     process_reward = np.array(process_reward) 
-        #     episode_rewards = np.where(episode_rewards == 0, process_reward, episode_rewards)
+        # ------------------ Calculation Process Reward (对齐 rollout_loop_parallel.py) ---------------------
+        # reward_model和process_reward true时计算
+        if hasattr(self.config, 'reward_model') and self.config.reward_model.get('process_reward', False):
+            process_reward = self.calculate_process_reward(
+                total_batch_list=total_batch_list,
+            )
+            # We only apply `process reward` when the trajectory fails
+            process_reward = np.array(process_reward)
+            # 仅当环境奖励为 0 时才用 process_reward 替代
+            episode_rewards = np.where(episode_rewards == 0, process_reward, episode_rewards)
 
         # batch循环结束后处理仍在进行中的任务（超过配置的最大步数限制）
         for bs in range(batch_size):
             if turn_out_range[bs]:
-                status_msgs[bs] = f"Task {GLOBAL_TASK_COUNTER} all out of max turn"
+                status_msgs[bs] = f"Task {GLOBAL_TASK_COUNTER} sample {bs} out of max turn"
                 print(status_msgs[bs])
         
         # 添加成功判断和统计功能，参考coldstart_para_his_test_1.5B_hislen8_epoch3.5_v2.py
@@ -962,7 +1097,10 @@ class TrajectoryCollectorParallelWebShop:
         print(f"Average episode reward: {np.mean(episode_rewards):.4f}")
         print(f"{'='*60}")
 
-        # 返回成功标记和状态消息，保持与参考文件相同的轨迹信息结构
+        
+        
+        # process_reward = np.array(process_reward)
+        # episode_rewards = np.where(episode_rewards == 0, process_reward, episode_rewards)
         return total_batch_list, episode_rewards, episode_lengths, traj_uid, tool_callings, success_flags, status_msgs
 
     # 新增多轮训练函数，与 rollout_loop_parallel.py 接口一致，但使用 WebShop 特定的 prompting 和历史构建
@@ -986,20 +1124,37 @@ class TrajectoryCollectorParallelWebShop:
                 envs=envs,
                 is_train=is_train,
             )
+        
+        global GLOBAL_TASK_COUNTER
+        # 返回成功标记和状态消息，保持与参考文件相同的轨迹信息结构
+        show_case = 1
+        save_traj=1
+        # 分别保存到case sample文件夹
         print("="*80)
-        print(f'total_batch_list = {total_batch_list}')
+        if print_debug:
+            print(f'[DEBUG] show_case {show_case} save_traj {save_traj}')
+        # print(f'[DEBUG] total_batch_list = {total_batch_list}')
+        # 将 total_batch_list 以文本格式写入独立的日志文件（代替 print 到控制台）
+        log_time = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
+        if show_case:
+            log_dir = "case"
+            os.makedirs(log_dir, exist_ok=True)
+            log_filename = os.path.join(log_dir, f"total_batch_list_{log_time}.log")
+            with open(log_filename, 'w', encoding='utf-8') as f:
+                f.write(f"[DEBUG] total_batch_list = {total_batch_list}\n")
+            print(f'[保存轨迹] total_batch_list has been logged to {log_filename}')
         print("="*80)
         
         # 当前批次的所有任务处理完成后，递增全局计数器
-        global GLOBAL_TASK_COUNTER
-        global save_traj
         
-        save_traj=False
+        
+        
         # 如果全局开关开启，保存当前批次的所有轨迹到新的JSON文件
         if save_traj:
             # 生成唯一的文件名，包含全局任务计数器和时间戳，避免覆盖
             timestamp = int(time.time() * 1000)
-            filename = f"sample/traj_batch_{GLOBAL_TASK_COUNTER}_{timestamp}.json"
+            # filename = f"sample/traj_batch_{GLOBAL_TASK_COUNTER}_{timestamp}.json"
+            filename = f"sample/traj_batch_{GLOBAL_TASK_COUNTER}_{log_time}.json"
             # 辅助函数：递归将所有Tensor和numpy数组转换为Python原生类型，确保JSON可序列化
             def tensor_to_native(obj):
                 if isinstance(obj, torch.Tensor):
@@ -1016,25 +1171,25 @@ class TrajectoryCollectorParallelWebShop:
                     return obj
             
             # 创建保存目录（如果不存在）
-            import os
             save_dir = os.path.dirname(filename)
             if save_dir and not os.path.exists(save_dir):
                 os.makedirs(save_dir, exist_ok=True)
             
             # 准备要保存的数据，包含所有轨迹相关信息，先转换所有非原生类型
+            # total_batch_list, episode_rewards, episode_lengths, traj_uid, tool_callings, success_flags, status_msgs
             save_data = {
                 "batch_idx": GLOBAL_TASK_COUNTER,
                 "total_batch_list": tensor_to_native(total_batch_list),
                 "episode_rewards": tensor_to_native(episode_rewards),
                 "episode_lengths": tensor_to_native(episode_lengths),
-                "traj_uid": traj_uid,
+                "traj_uid": tensor_to_native(traj_uid),
                 "tool_callings": tensor_to_native(tool_callings),
                 "success_flags": tensor_to_native(success_flags),
                 "status_msgs": status_msgs
             }
-            # 写入JSON文件
+            # 写入JSON文件（使用 default=str 兜底，防止深层 ndarray 导致写一半崩溃）
             with open(filename, 'w', encoding='utf-8') as f:
-                json.dump(save_data, f, ensure_ascii=False, indent=4)
+                json.dump(save_data, f, ensure_ascii=False, indent=4, default=str)
             print(f"[保存轨迹] 当前批次轨迹已保存到: {filename}")
         
         GLOBAL_TASK_COUNTER += 1
@@ -1051,7 +1206,8 @@ class TrajectoryCollectorParallelWebShop:
                 status_msgs=status_msgs,
                 world_size=actor_rollout_wg.world_size
             )
-            print(f'[DEBUG] going backward')
+            if print_debug:
+                print(f'[DEBUG] going backward computing')
             return gen_batch_output
         else:
             # 验证阶段使用与参考文件完全相同的成功统计逻辑，不调用gather_rollout_data，避免维度不匹配
@@ -1071,3 +1227,6 @@ class TrajectoryCollectorParallelWebShop:
             
             # 返回完整的轨迹信息，与参考文件格式保持一致
             return total_batch_list, episode_rewards, episode_lengths, traj_uid, tool_callings, success_flags, status_msgs
+
+            # loss 计算真正依赖的字段只有 responses、attention_mask、input_ids、rewards/episode_rewards、uid/group_id。其他字段（observation、action_dict、gamefile 等）都是辅助性的，不参与梯度计算。
+

@@ -70,6 +70,7 @@ EXCLUDE_PATHS=(
     webshop_checkpoint
     case
     sample
+    file_sft_search
     *.pt
     *.ckpt
     *.safetensors
