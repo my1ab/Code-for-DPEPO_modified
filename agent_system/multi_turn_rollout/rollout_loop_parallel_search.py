@@ -13,14 +13,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""
-WebShop-specific parallel rollout loop.
 
-Key differences from rollout_loop_parallel.py (ALFWorld):
-  1. Uses webshop-specific prompts (prompts_webshop.py) with search/click actions
-  2. WebShop actions: search[...] and click[...] (not textworld commands)
-  3. Observations include 'available_actions' dict with 'has_search_bar' and 'clickables'
-  4. Task extraction from [SEP] format (not "Your task is to:" pattern)
+"""
+Search-specific parallel rollout loop.
+
+Adapted from rollout_loop_parallel_webshop.py for Search-R1 task.
+Key differences from WebShop:
+  1. Uses search-specific prompts (prompts_search.py) with <search>/<answer> actions
+  2. Search actions: <search>query</search> and <answer>answer</answer>
+  3. Observations are search result text (no 'available_actions' dict)
+  4. Task (question) is passed directly, not extracted from [SEP] format
+
+Modification Summary (对齐 coldstart_search_local.py 的 Search 字段交互方式):
+  - Import: .prompts_webshop → .prompts_search (SYSTEM_PROMPT_SEARCH_PARA, USER_PROMPT_NO_HIS_PARA, USER_PROMPT_HIS_PARA)
+  - 类名: TrajectoryCollectorParallelWebShop → TrajectoryCollectorParallelSearch
+  - step==0: reason_prompt_para + "Next Possible Actions" → USER_PROMPT_NO_HIS_PARA + 纯 <observation_i> 包装
+  - step>0:  reason_prompt_para_his + "Next Possible Actions" → USER_PROMPT_HIS_PARA, 去掉所有 "Next Possible Actions"
+  - System prompt: system_message_para → SYSTEM_PROMPT_SEARCH_PARA
+  - task 字段: 占位符 'Find and purchase a product' → 直接用 start_obs (即 question)
+  - Observation 格式: 含 "admissible_commands" 描述 → 纯 <observation_i>\n{obs}\n</observation_i>
+  - action extraction 保留: extract_think_and_actions 提取 <env_i> 标签, search_projection 解析内层 <search>/<answer>
 """
 
 import torch
@@ -36,7 +48,7 @@ from agent_system.environments import EnvironmentManagerBase
 from typing import List, Dict, Optional
 from verl.protocol import pad_dataproto_to_divisor, unpad_dataproto
 from verl.utils.torch_functional import pad_sequence_to_length
-from .prompts_webshop import system_message_para, reason_prompt_para, reason_prompt_para_his
+from .prompts_search import SYSTEM_PROMPT_SEARCH_PARA, USER_PROMPT_NO_HIS_PARA, USER_PROMPT_HIS_PARA
 import re
 from tqdm import tqdm
 
@@ -122,11 +134,11 @@ GLOBAL_TASK_COUNTER = 0
 import datetime
 
 
-class TrajectoryCollectorParallelWebShop:
+class TrajectoryCollectorParallelSearch:
     """
-    Trajectory collector for WebShop parallel environment training.
+    Trajectory collector for Search parallel environment training.
     
-    Handles prompt construction with webshop-specific templates,
+    Handles prompt construction with search-specific templates,
     history management, and multi-step environment interaction.
     """
 
@@ -137,17 +149,11 @@ class TrajectoryCollectorParallelWebShop:
 
     def format_available_actions(self, available_actions):
         """
-        Format WebShop available_actions dict into a readable string.
-        
-        available_actions format:
-            {'has_search_bar': bool, 'clickables': [str, ...]}
+        Format search available actions into a readable string.
+        Search env does not have structured available_actions like WebShop;
+        this is kept for interface compatibility.
         """
-        actions = []
-        if available_actions.get("has_search_bar"):
-            actions.append("search[<your query>]")
-        for txt in available_actions.get("clickables", []):
-            actions.append(f"click[{txt}]")
-        return actions
+        return ['<search>query</search>', '<answer>answer</answer>']
 
     def preprocess_single_sample(
         self,
@@ -169,84 +175,46 @@ class TrajectoryCollectorParallelWebShop:
         total_envs=5,
     ):
         """
-        Process a single WebShop sample into model input format.
+        Process a single Search sample into model input format.
         
-        Uses webshop-specific prompt templates from prompts_webshop.py.
-        - step==0: uses reason_prompt_para (initial prompt with observation)
-        - step>0:  uses reason_prompt_para_his (with history context)
+        Uses search-specific prompt templates from prompts_search.py (coldstart_search_local.py style).
+        - step==0: uses USER_PROMPT_NO_HIS_PARA (initial prompt with observation, no "Next Possible Actions")
+        - step>0:  uses USER_PROMPT_HIS_PARA (with history context, no "Next Possible Actions")
         """
         if step == 0:
-            # Initial step: build current observation prompt
+            # Initial step: build current observation prompt (search-style, no "Next Possible Actions")
             obs_prompt = ''
             for idx in range(1, total_envs + 1):
-                admissible_commands = "\n".join(
-                    [f"  - {action}" for action in start_possible_action]
-                )
                 obs_prompt += (
-                    f'<observation_{idx}>\n'
-                    f'The observation and next candidated actions of {idx}-th environment are:\n'
-                    f'Observation:\n{start_obs}\n'
-                    f'Next Possible Actions:\n{admissible_commands}\n'
-                    f'</observation_{idx}>\n'
+                    f'<observation_{idx}>\n{start_obs}\n</observation_{idx}>\n'
                 )
-            admissible_actions = "\n".join(
-                [f"  - {action}" for env_actions in start_possible_action for action in env_actions]
-            )
 
-            # 
-            prompt = reason_prompt_para.format(
-                task_description=task,
-                current_observation=obs_prompt,
-                admissible_actions=admissible_actions,
-                # num_parallel=num_parallel,
-                # num_parallel=total_envs,
-                num_parallel=self.config.env.num_parallel,
+            prompt = USER_PROMPT_NO_HIS_PARA.format(
+                question=task,
+                observations=obs_prompt,
                 total_envs=self.config.env.num_parallel,
+                num_parallel=self.config.env.num_parallel,
             )
         else:
-            # 构建带有 <observation_i> 标签包装的 initial_observation（供 reason_prompt_para_his 使用）
-            # 与参考文件 coldstart_para_his_test_1.5B_hislen8_epoch3.5_v2.py 保持一致：
-            # initial_observation 需要是多环境格式化块，而不是纯文本 start_obs
+            # 构建带有 <observation_i> 标签包装的 initial_observation（对齐coldstart_search_local.py风格）
+            # Search环境没有"Next Possible Actions"，observations直接是搜索结果文本
             initial_obs_prompt = ''
             for idx in range(1, total_envs + 1):
-                admissible_commands = "\n".join(
-                    [f"  - {action}" for action in start_possible_action]
-                )
                 initial_obs_prompt += (
-                    f'<observation_{idx}>\n'
-                    f'The observation and next candidated actions of {idx}-th environment are:\n'
-                    f'Observation:\n{start_obs}\n'
-                    f'Next Possible Actions:\n{admissible_commands}\n'
-                    f'</observation_{idx}>\n'
+                    f'<observation_{idx}>\n{start_obs}\n</observation_{idx}>\n'
                 )
 
-            # Build current observations prompt for all environments
+            # Build current observations prompt for all environments (search-style, no "Next Possible Actions")
             obs_prompt = ''
             for idx in range(1, total_envs + 1):
-                # last_observation is a dict with 1-based keys (from env_manager's last_obs_manager)
                 if isinstance(last_observation, dict):
                     obv = last_observation.get(idx, start_obs)
                 elif (idx - 1) < len(last_observation):
                     obv = last_observation[idx - 1]
                 else:
                     obv = start_obs
-                    raise ValueError(f"Invalid observation index for environment {idx}. Expected 1-based index, got 1 to {idx}.")
-                if idx in last_possible_actions:
-                    poa_list = last_possible_actions[idx]
-                else:
-                    poa_list = last_possible_actions.get(idx - 1, start_possible_action) if isinstance(last_possible_actions, dict) else start_possible_action
-
-                if isinstance(poa_list, list):
-                    poa_str = "\n".join([f"  - {a}" for a in poa_list])
-                else:
-                    poa_str = str(poa_list)
-
                 obs_prompt += (
-                    f'<observation_{idx}>\n'
-                    f'The observation and next candidated actions of {idx}-th environment are:\n'
-                    f'Observation:\n{obv}\n'
-                    f'Next Possible Actions:\n{poa_str}\n'
-                    f'</observation_{idx}>\n'
+                    f'<observation_{idx}>\n{obv}\n</observation_{idx}>\n'
                 )
 
             # Build history info for all environments
@@ -284,7 +252,7 @@ class TrajectoryCollectorParallelWebShop:
                         history_partial_lines.append(f"In Environment {env_idx}\n" + "\n".join(env_history))  # env_idx已经是1-based，直接使用
                 history_info = history_start + "\n\n".join(history_partial_lines)
 
-            # Build last step info
+            # Build last step info (search-style: no "Next Possible Actions")
             last_history_lines = []
             for env_idx in range(total_envs):
                 action = last_action.get(env_idx + 1, "null") if isinstance(last_action, dict) else (
@@ -293,32 +261,23 @@ class TrajectoryCollectorParallelWebShop:
                 obv = last_observation[env_idx] if isinstance(last_observation, list) and env_idx < len(last_observation) else (
                     last_observation.get(env_idx, start_obs) if isinstance(last_observation, dict) else start_obs
                 )
-                poa = last_possible_actions.get(env_idx + 1, []) if isinstance(last_possible_actions, dict) else (
-                    last_possible_actions[env_idx] if env_idx < len(last_possible_actions) else []
-                )
                 env_history_lines = [f"Action {step}: {action}"]
                 env_history_lines.append(f"Observation {step}: {obv}")
-                if poa:
-                    env_history_lines.append(f"Next Possible Actions: {', '.join(poa)}")
                 last_history_lines.append(f"In Environment {env_idx + 1}\n" + "\n".join(env_history_lines))
             last_history = "\n\n".join(last_history_lines)
 
-            prompt = reason_prompt_para_his.format(
+            prompt = USER_PROMPT_HIS_PARA.format(
                 task_description=task,
                 initial_observation=initial_obs_prompt,
                 history_info=history_info,
                 last_history=last_history,
-                # num_parallel=num_parallel,
-                # num_parallel=total_envs,  # 直接使用total_envs，保持与参考文件一致，不再区分num_parallel和total_envs
                 num_parallel=self.config.env.num_parallel,
                 total_envs=self.config.env.num_parallel,
             )
 
-        # 移除额外添加的限制提示，完全对齐参考文件coldstart_para_his_test_1.5B_hislen8_epoch3.5_v2.py，不再追加任何内容
+        # 使用search专用的system prompt，对齐coldstart_search_local.py
         generation_completion = [
-            # {'role': 'system', 'content': system_message_para.format(num_parallel=num_parallel, total_envs=total_envs)},
-            # {'role': 'system', 'content': system_message_para.format(num_parallel=total_envs, total_envs=total_envs)},
-            {'role': 'system', 'content': system_message_para.format(num_parallel=self.config.env.num_parallel, total_envs=self.config.env.num_parallel)},
+            {'role': 'system', 'content': SYSTEM_PROMPT_SEARCH_PARA.format(num_parallel=self.config.env.num_parallel, total_envs=self.config.env.num_parallel)},
             {'role': 'user', 'content': prompt}
         ]
 
@@ -391,11 +350,11 @@ class TrajectoryCollectorParallelWebShop:
         active_masks: np.ndarray = None,
     ) -> DataProto:
         """
-        Process a batch of WebShop observation samples.
-        与 coldstart_para_his_test_1.5B_hislen8_epoch3.5_v2.py 完全对齐：
-        - start_obs 不添加 \n\nYour task is to: 后缀
-        - task 使用占位符 'Find and purchase a product'
-        - 任务信息由 initial_observation 中的 observation 文本承载
+        Process a batch of Search observation samples.
+        对齐 coldstart_search_local.py 的交互方式：
+        - start_obs 本身即为question（search env reset返回的obs_list即为question）
+        - task 直接使用 start_obs（question），无需占位符
+        - 无 "Next Possible Actions" 信息
         """
         data_all_infos = {
             'start_obs': start_obs,
@@ -414,9 +373,11 @@ class TrajectoryCollectorParallelWebShop:
             save_dict = {}
             for key, value in data_all_infos.items():
                 save_dict[key] = value[batch_idx]
-            # 与 coldstart 一致：task 使用占位符，任务信息由 observation 文本承载
-            save_dict['task'] = 'Find and purchase a product'
             save_list.append(save_dict)
+
+        # Search：start_obs即为question，直接用作task（对齐coldstart_search_local.py）
+        for entry in save_list:
+            entry['task'] = entry['start_obs'] if isinstance(entry['start_obs'], str) else str(entry['start_obs'])
 
         processed_samples = []
 
@@ -692,10 +653,10 @@ class TrajectoryCollectorParallelWebShop:
         is_train: bool = True,
     ) -> DataProto:
         """
-        Collect trajectories through parallel WebShop agent-environment loop.
+        Collect trajectories through parallel Search agent-environment loop.
         
-        Parameters match rollout_loop_parallel.py interface but use webshop-specific
-        prompting and history construction.
+        Parameters match rollout_loop_parallel.py interface but use search-specific
+        prompting and history construction (对齐coldstart_search_local.py交互方式).
         """
         # 声明使用模块级全局变量
         global GLOBAL_TASK_COUNTER
@@ -1103,7 +1064,7 @@ class TrajectoryCollectorParallelWebShop:
         # episode_rewards = np.where(episode_rewards == 0, process_reward, episode_rewards)
         return total_batch_list, episode_rewards, episode_lengths, traj_uid, tool_callings, success_flags, status_msgs
 
-    # 新增多轮训练函数，与 rollout_loop_parallel.py 接口一致，但使用 WebShop 特定的 prompting 和历史构建
+    # 新增多轮训练函数，与 rollout_loop_parallel.py 接口一致，但使用 Search 特定的 prompting 和历史构建（对齐coldstart_search_local.py）
     def multi_turn_loop(
         self,
         gen_batch: DataProto,
