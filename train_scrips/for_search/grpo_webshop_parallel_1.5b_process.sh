@@ -80,7 +80,7 @@ nohup python3 -m verl-webshop.for_webshop.main_ppo_webshop \
     actor_rollout_ref.ref.fsdp_config.param_offload=True \
     actor_rollout_ref.actor.use_invalid_action_penalty=False \
     actor_rollout_ref.actor.invalid_action_penalty_coef=0.1 \
-    reward_model.process_reward=false \
+    reward_model.process_reward=true \
     reward_model.parallel_reward=true \
     reward_model.no_action_penalty=0.5 \
     reward_model.depth_alpha=0.8 \

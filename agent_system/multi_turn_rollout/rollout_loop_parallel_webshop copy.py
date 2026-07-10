@@ -43,15 +43,10 @@ from tqdm import tqdm
 import json
 import os
 import time
-import datetime
 
 
 # 全局变量控制是否打印[DEBUG]调试信息
 print_debug = True
-# 模块级全局任务计数器，生命周期与程序一致，不受类创建销毁影响
-GLOBAL_TASK_COUNTER = 0
-# 全局保存轨迹开关，由配置 self.config.get('save_traj', False) 控制，默认关闭
-save_traj = False
 
 
 def append_to_json_file(data, filename):
@@ -120,6 +115,11 @@ def non_tensor_to_list_of_dict(batch: DataProto) -> list[dict]:
             save_dict[key] = val[bs]
         total_data_list.append(save_dict)
     return total_data_list
+
+
+# 模块级全局任务计数器，生命周期与程序一致，不受类创建销毁影响
+GLOBAL_TASK_COUNTER = 0
+import datetime
 
 
 class TrajectoryCollectorParallelWebShop:
@@ -467,6 +467,11 @@ class TrajectoryCollectorParallelWebShop:
         if print_debug:
             print(f'[DEBUG] into gather_rollout_data, batch_size={batch_size}')
         
+        # 设置默认值，保持向后兼容性
+        # if success_flags is None:
+        #     success_flags = np.zeros(batch_size, dtype=int)
+        # if status_msgs is None:
+        #     status_msgs = ["" for _ in range(batch_size)]
 
         # 完全和官方rollout_loop_parallel.py保持一致的逻辑
         effective_batch = [] 
@@ -487,6 +492,24 @@ class TrajectoryCollectorParallelWebShop:
         
         # 完全和官方一样的padding流程，保留必要的多卡对齐padding
         gen_batch = DataProto.from_single_dict(data=collate_fn(effective_batch))
+        # 和官方代码一致，保留pad_dataproto_to_divisor用于多卡训练的batch对齐
+        # if hasattr(self.config, 'world_size'):
+        # if world_size != None:
+        #     # padded_gen_batch, pad_info = pad_dataproto_to_divisor(gen_batch, self.config.world_size)
+        #     print(f'[DEBUG] world_size={world_size} in gather')
+        #     padded_gen_batch, pad_info = pad_dataproto_to_divisor(gen_batch, world_size)
+        #     # if pad_info > 0:
+        #     #     padded_gen_batch.meta_info['padded_info'] = pad_info
+        #     final_batch = padded_gen_batch
+        # else:
+        #     final_batch = gen_batch
+        
+        # import gc
+        # del total_batch_list, episode_rewards, episode_lengths, traj_uid, tool_callings
+        # del success_flags, status_msgs, effective_batch, gen_batch
+        # gc.collect()
+        # if torch.cuda.is_available():
+            # torch.cuda.empty_cache()
     
         return gen_batch
 
@@ -735,10 +758,8 @@ class TrajectoryCollectorParallelWebShop:
         # Trajectory collection loop（恢复copy.py原始循环逻辑，仅保留必要的成功判断功能）
         # _step为当前步数
         for _step in tqdm(range(self.config.env.max_steps)):
-            # if print_debug:
-                # print(f'[DEBUG] running task {GLOBAL_TASK_COUNTER} step {_step} of total {self.config.env.max_steps}')
-            print(f'[INFO] running task {GLOBAL_TASK_COUNTER} step {_step} of total {self.config.env.max_steps}')
-
+            if print_debug:
+                print(f'[DEBUG] running task {GLOBAL_TASK_COUNTER} step {_step} of total {self.config.env.max_steps}')
             # 逐个元素取反  即is_done真时将active_masks伪
             active_masks = np.logical_not(is_done)
             # 如果所有任务都完成了  即全伪  则提前退出  但之后已经有is_done判断
@@ -871,7 +892,7 @@ class TrajectoryCollectorParallelWebShop:
             # 进行动作
             dict_grouped_output = envs.step_group(parallel_actions_dict)
 
-            # 计算平行惩罚 
+            # 计算平行惩罚
             # ---------Parallel Penalties (对齐 rollout_loop_parallel.py) ----------- #
             if hasattr(self.config, 'reward_model') and self.config.reward_model.get('parallel_reward', False):
                 # 重新获取 history_actions（当前步的环境已更新）
@@ -899,6 +920,22 @@ class TrajectoryCollectorParallelWebShop:
             # single_dict_grouped_output = collate_fn(dict_grouped_output)
             dones = single_dict_grouped_output['dones']
             infos = single_dict_grouped_output['possible_actions']
+
+            # 对 possible_actions 做 2D padding：将所有环境内的可选动作列表补全到相同长度（全局最大长度），
+            # 缺项填充 "null"。这样 possible_actions 保持为 (batch_size, max_len) 的 2D numpy 数组，
+            # 避免不同 step 之间长度变化导致 collate_fn 的 broadcast 错误。(5,12)  (5,)
+            # possible_actions_raw = single_dict_grouped_output['possible_actions']
+            # if len(possible_actions_raw) > 0:
+            #     max_len = max(len(lst) for lst in possible_actions_raw)
+            #     # max_len = 12
+            #     padded_list = []
+            #     for lst in possible_actions_raw:
+            #         current = list(lst)
+            #         if len(current) < max_len:
+            #             current += ["null"] * (max_len - len(current))
+            #         padded_list.append(current)
+            #     single_dict_grouped_output['possible_actions'] = np.array(padded_list, dtype=object)
+            
 
             batch = DataProto.from_single_dict(
                 data=single_dict_grouped_output,
@@ -995,15 +1032,13 @@ class TrajectoryCollectorParallelWebShop:
                     if is_train:
                         n = self.config.env.rollout.n
                         group_idx = bs // n  # 0-based group index
-                        # 整个组全部置为完成
+                        # 整个组全部置为1
                         range1 = range(group_idx * n, (group_idx + 1) * n)
                         for g_bs in range1:
                             if not is_done[g_bs]:
                                 is_done[g_bs] = True
                                 turn_out_range[g_bs] = False
-                        is_done[bs] = True
-                        turn_out_range[bs] = False
-                    else:
+                    # else:
                         # 验证阶段只标记当前任务，让其他任务自然完成，收集完整的验证轨迹
                         is_done[bs] = True
                         turn_out_range[bs] = False
@@ -1038,7 +1073,6 @@ class TrajectoryCollectorParallelWebShop:
         # ------------------ Calculation Process Reward (对齐 rollout_loop_parallel.py) ---------------------
         # reward_model和process_reward true时计算
         if hasattr(self.config, 'reward_model') and self.config.reward_model.get('process_reward', False):
-            # 使用expert_actions计算process_reward
             process_reward = self.calculate_process_reward(
                 total_batch_list=total_batch_list,
             )
@@ -1092,30 +1126,42 @@ class TrajectoryCollectorParallelWebShop:
             )
         
         global GLOBAL_TASK_COUNTER
-        global save_traj
-        
-        # 从配置读取保存开关（默认关闭），整合了原有的show_case和save_traj两个功能
-        # save_traj = self.config.get('save_traj', False)
-        
+        # 返回成功标记和状态消息，保持与参考文件相同的轨迹信息结构
+        # show_case = 1
+        # save_traj=1
+        # 分别保存到case sample文件夹
         print("="*80)
+        if print_debug:
+            print(f'[DEBUG] show_case {show_case} save_traj {save_traj}')
+        # print(f'[DEBUG] total_batch_list = {total_batch_list}')
+        # 将 total_batch_list 以文本格式写入独立的日志文件（代替 print 到控制台）
         log_time = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
+        if show_case:
+            log_dir = "case"
+            os.makedirs(log_dir, exist_ok=True)
+            log_filename = os.path.join(log_dir, f"total_batch_list_{log_time}.log")
+            with open(log_filename, 'w', encoding='utf-8') as f:
+                f.write(f"[DEBUG] total_batch_list = {total_batch_list}\n")
+            print(f'[保存轨迹] total_batch_list has been logged to {log_filename}')
+        print("="*80)
         
-        # 如果全局开关开启，同时保存JSON轨迹文件和人类可读的文本日志（整合原show_case功能）
+        # 当前批次的所有任务处理完成后，递增全局计数器
+        
+        
+        
+        # 如果全局开关开启，保存当前批次的所有轨迹到新的JSON文件
         if save_traj:
-            # === 保存目录 ===
-            save_dir = "sample"
-            os.makedirs(save_dir, exist_ok=True)
-            
-            # === 1. 保存结构化JSON轨迹（原save_traj功能） ===
-            filename_json = os.path.join(save_dir, f"traj_batch_{GLOBAL_TASK_COUNTER}_{log_time}.json")
-            
+            # 生成唯一的文件名，包含全局任务计数器和时间戳，避免覆盖
+            timestamp = int(time.time() * 1000)
+            # filename = f"sample/traj_batch_{GLOBAL_TASK_COUNTER}_{timestamp}.json"
+            filename = f"sample/traj_batch_{GLOBAL_TASK_COUNTER}_{log_time}.json"
             # 辅助函数：递归将所有Tensor和numpy数组转换为Python原生类型，确保JSON可序列化
             def tensor_to_native(obj):
                 if isinstance(obj, torch.Tensor):
                     return obj.tolist()
                 elif isinstance(obj, np.ndarray):
                     return obj.tolist()
-                elif isinstance(obj, np.generic):
+                elif isinstance(obj, np.generic):  # 处理numpy的标量类型，如np.int64、np.float64等
                     return obj.item()
                 elif isinstance(obj, dict):
                     return {k: tensor_to_native(v) for k, v in obj.items()}
@@ -1124,6 +1170,13 @@ class TrajectoryCollectorParallelWebShop:
                 else:
                     return obj
             
+            # 创建保存目录（如果不存在）
+            save_dir = os.path.dirname(filename)
+            if save_dir and not os.path.exists(save_dir):
+                os.makedirs(save_dir, exist_ok=True)
+            
+            # 准备要保存的数据，包含所有轨迹相关信息，先转换所有非原生类型
+            # total_batch_list, episode_rewards, episode_lengths, traj_uid, tool_callings, success_flags, status_msgs
             save_data = {
                 "batch_idx": GLOBAL_TASK_COUNTER,
                 "total_batch_list": tensor_to_native(total_batch_list),
@@ -1134,28 +1187,10 @@ class TrajectoryCollectorParallelWebShop:
                 "success_flags": tensor_to_native(success_flags),
                 "status_msgs": status_msgs
             }
-            with open(filename_json, 'w', encoding='utf-8') as f:
+            # 写入JSON文件（使用 default=str 兜底，防止深层 ndarray 导致写一半崩溃）
+            with open(filename, 'w', encoding='utf-8') as f:
                 json.dump(save_data, f, ensure_ascii=False, indent=4, default=str)
-            print(f"[保存轨迹] JSON轨迹已保存到: {filename_json}")
-            
-            # === 2. 保存人类可读的文本日志（整合原show_case功能） ===
-            filename_log = os.path.join(save_dir, f"traj_batch_{GLOBAL_TASK_COUNTER}_{log_time}.log")
-            with open(filename_log, 'w', encoding='utf-8') as f:
-                f.write("=" * 80 + "\n")
-                f.write(f"Batch Index: {GLOBAL_TASK_COUNTER}\n")
-                f.write(f"Timestamp: {log_time}\n")
-                f.write(f"Episode Rewards: {tensor_to_native(episode_rewards)}\n")
-                f.write(f"Episode Lengths: {tensor_to_native(episode_lengths)}\n")
-                f.write(f"Success Flags: {tensor_to_native(success_flags)}\n")
-                f.write(f"Status Messages:\n")
-                for msg in status_msgs:
-                    f.write(f"  - {msg}\n")
-                f.write(f"Trajectory UIDs: {tensor_to_native(traj_uid)}\n")
-                f.write("=" * 80 + "\n")
-                f.write(f"\n[DEBUG] total_batch_list = {total_batch_list}\n")
-            print(f"[保存轨迹] 文本日志已保存到: {filename_log}")
-        
-        print("="*80)
+            print(f"[保存轨迹] 当前批次轨迹已保存到: {filename}")
         
         GLOBAL_TASK_COUNTER += 1
 

@@ -3,13 +3,13 @@
 # =============================================================================
 # 训练入口: verl-webshop/for_webshop/main_ppo_webshop.py
 # Hydra 配置: verl-webshop/for_webshop/config/ppo_trainer_webshop.yaml
-# 冲突设置以 verl-webshop/for_webshop/grpo_webshop_parallel_1gpu.sh 为准
 # =============================================================================
 
 # ========== 配置选择 - 根据需要修改 ==========
 # export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:False,max_split_size_mb:128
 batchsize=2
-export CUDA_VISIBLE_DEVICES=5,7
+# export CUDA_VISIBLE_DEVICES=5,7
+export CUDA_VISIBLE_DEVICES=4,6
 micro_para=1
 # tensor_model_parallel_size=1
 tensor_model_parallel_size=$batchsize

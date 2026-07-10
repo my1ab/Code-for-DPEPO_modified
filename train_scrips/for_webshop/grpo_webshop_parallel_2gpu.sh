@@ -1,8 +1,8 @@
 # =============================================================================
 # WebShop GRPO 并行训练启动脚本 - 修复版
 # =============================================================================
-# 训练入口: verl-webshop/for_webshop/main_ppo_webshop.py
-# Hydra 配置: verl-webshop/for_webshop/config/ppo_trainer_webshop.yaml
+# 训练入口: train_scrips/for_webshop/main_ppo_webshop.py
+# Hydra 配置: train_scrips/for_webshop/config/ppo_trainer_webshop.yaml
 #
 # 使用说明:
 #   单卡: batchsize=1, CUDA_VISIBLE_DEVICES=0, micro_para=4
@@ -44,7 +44,7 @@ max_steps=10
 # ray stop --force > /dev/null 2>&1
 # sleep 2
 
-nohup python3 -m verl-webshop.for_webshop.main_ppo_webshop \
+nohup python3 train_scrips/for_webshop/main_ppo_webshop.py \
     algorithm.adv_estimator=grpo \
     env.env_path=/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/webshop/webshop_train_tasks_excluded.json \
     data.train_files=/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/verl_train_data/webshop/webshop_train_excluded.parquet \

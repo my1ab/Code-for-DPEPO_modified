@@ -43,15 +43,10 @@ from tqdm import tqdm
 import json
 import os
 import time
-import datetime
 
 
 # 全局变量控制是否打印[DEBUG]调试信息
 print_debug = True
-# 模块级全局任务计数器，生命周期与程序一致，不受类创建销毁影响
-GLOBAL_TASK_COUNTER = 0
-# 全局保存轨迹开关，由配置 self.config.get('save_traj', False) 控制，默认关闭
-save_traj = False
 
 
 def append_to_json_file(data, filename):
@@ -120,6 +115,13 @@ def non_tensor_to_list_of_dict(batch: DataProto) -> list[dict]:
             save_dict[key] = val[bs]
         total_data_list.append(save_dict)
     return total_data_list
+
+
+# 模块级全局任务计数器，生命周期与程序一致，不受类创建销毁影响
+GLOBAL_TASK_COUNTER = 0
+# 全局保存轨迹开关，由配置 self.config.get('save_traj', False) 控制，默认关闭
+save_traj = False
+import datetime
 
 
 class TrajectoryCollectorParallelWebShop:
@@ -503,7 +505,7 @@ class TrajectoryCollectorParallelWebShop:
                 save_dict['expert_actions'] = trajectory[0]['expert_actions']
             else:
                 # WebShop may not have expert_actions; fall back to empty list
-                print('[warning]no expert actions for process reward')
+                print('[WARNING] no expert actions for process reward')
                 save_dict['expert_actions'] = []
 
             save_dict['parallel_action'] = {}
@@ -680,6 +682,7 @@ class TrajectoryCollectorParallelWebShop:
         if is_train:
             gen_batch = gen_batch.repeat(repeat_times=self.config.env.rollout.n, interleave=True)
         batch_size = len(gen_batch.batch)
+        print(f'[INFO] Starting rollout: batch_size={batch_size}, group_n={group_n}, is_train={is_train}')
 
         # ---------- ID Preparation ----------
         group_ids = []
@@ -735,8 +738,6 @@ class TrajectoryCollectorParallelWebShop:
         # Trajectory collection loop（恢复copy.py原始循环逻辑，仅保留必要的成功判断功能）
         # _step为当前步数
         for _step in tqdm(range(self.config.env.max_steps)):
-            # if print_debug:
-                # print(f'[DEBUG] running task {GLOBAL_TASK_COUNTER} step {_step} of total {self.config.env.max_steps}')
             print(f'[INFO] running task {GLOBAL_TASK_COUNTER} step {_step} of total {self.config.env.max_steps}')
 
             # 逐个元素取反  即is_done真时将active_masks伪
@@ -787,6 +788,8 @@ class TrajectoryCollectorParallelWebShop:
             # 只对 active（未完成）样本做模型推理，已完成样本跳过以减少计算量
             active_indices = np.where(active_masks)[0]
             num_active = len(active_indices)
+            if print_debug:
+                print(f'[INFO] Step {_step}: active samples={num_active}/{batch_size}')
             if num_active == batch_size:
                 # 全部 active，走原始路径
                 batch_input_padded, pad_size = pad_dataproto_to_divisor(batch_input, actor_rollout_wg.world_size)
@@ -1033,7 +1036,7 @@ class TrajectoryCollectorParallelWebShop:
             
             # 检查是否所有任务都已完成，无论batch_size是多少，只要全部完成就立即退出
             if is_done.all():
-                print(f"All tasks completed at turn {_step + 1}, exiting rollout loop.")
+                print(f"[INFO] All tasks completed at turn {_step + 1}, exiting rollout loop.")
                 break
         # ------------------ Calculation Process Reward (对齐 rollout_loop_parallel.py) ---------------------
         # reward_model和process_reward true时计算
@@ -1051,16 +1054,16 @@ class TrajectoryCollectorParallelWebShop:
         for bs in range(batch_size):
             if turn_out_range[bs]:
                 status_msgs[bs] = f"Task {GLOBAL_TASK_COUNTER} sample {bs} out of max turn"
-                print(status_msgs[bs])
+                print(f"[INFO] {status_msgs[bs]}")
         
         # 添加成功判断和统计功能，参考coldstart_para_his_test_1.5B_hislen8_epoch3.5_v2.py
         success_count = np.sum(success_flags)
         success_rate = success_count / batch_size if batch_size > 0 else 0
         print(f"\n{'='*60}")
-        print(f"Rollout Summary:")
-        print(f"Total tasks: {batch_size // group_n}, Successful tasks: {success_count}, Success rate: {success_rate:.2%}")
-        print(f"Average episode length: {np.mean(episode_lengths):.2f} steps")
-        print(f"Average episode reward: {np.mean(episode_rewards):.4f}")
+        print(f"[INFO] Rollout Summary:")
+        print(f"[INFO]   Total tasks: {batch_size // group_n}, Successful tasks: {success_count}, Success rate: {success_rate:.2%}")
+        print(f"[INFO]   Average episode length: {np.mean(episode_lengths):.2f} steps")
+        print(f"[INFO]   Average episode reward: {np.mean(episode_rewards):.4f}")
         print(f"{'='*60}")
 
         
@@ -1091,8 +1094,7 @@ class TrajectoryCollectorParallelWebShop:
                 is_train=is_train,
             )
         
-        global GLOBAL_TASK_COUNTER
-        global save_traj
+        global GLOBAL_TASK_COUNTER, save_traj
         
         # 从配置读取保存开关（默认关闭），整合了原有的show_case和save_traj两个功能
         # save_traj = self.config.get('save_traj', False)
@@ -1181,13 +1183,13 @@ class TrajectoryCollectorParallelWebShop:
             success_task_indices = [i for i, flag in enumerate(success_flags) if flag == 1]
             
             print(f"\n{'='*60}")
-            print(f"Validation Complete Summary:")
-            print(f"Total validation tasks: {len(success_flags)}")
-            print(f"Successful tasks: {success_count}")
-            print(f"Success rate: {success_rate:.2%}")
-            print(f"Success task indices: {success_task_indices}")
-            print(f"Average episode length: {np.mean(episode_lengths):.2f} steps")
-            print(f"Average episode reward: {np.mean(episode_rewards):.4f}")
+            print(f"[INFO] Validation Complete Summary:")
+            print(f"[INFO]   Total validation tasks: {len(success_flags)}")
+            print(f"[INFO]   Successful tasks: {success_count}")
+            print(f"[INFO]   Success rate: {success_rate:.2%}")
+            print(f"[INFO]   Success task indices: {success_task_indices}")
+            print(f"[INFO]   Average episode length: {np.mean(episode_lengths):.2f} steps")
+            print(f"[INFO]   Average episode reward: {np.mean(episode_rewards):.4f}")
             print(f"{'='*60}")
             
             # 返回完整的轨迹信息，与参考文件格式保持一致

@@ -1,8 +1,8 @@
 # =============================================================================
 # WebShop GRPO 并行训练启动脚本 (从 alfworld process 脚本修改)
 # =============================================================================
-# 训练入口: verl-webshop/for_webshop/main_ppo_webshop.py
-# Hydra 配置: verl-webshop/for_webshop/config/ppo_trainer_webshop.yaml
+# 训练入口: train_scrips/for_webshop/main_ppo_webshop.py
+# Hydra 配置: train_scrips/for_webshop/config/ppo_trainer_webshop.yaml
 # 冲突设置以 verl-webshop/for_webshop/grpo_webshop_parallel_1gpu.sh 为准
 # =============================================================================
 
@@ -33,7 +33,7 @@ save_freq=1
 free_cache=True
 
 
-nohup python3 -m verl-webshop.for_webshop.main_ppo_webshop \
+nohup python3 train_scrips/for_webshop/main_ppo_webshop.py \
     algorithm.adv_estimator=grpo \
     env.env_path=/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/webshop/webshop_train_tasks_excluded.json \
     data.train_files=/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/verl_train_data/webshop/webshop_train_excluded.parquet \

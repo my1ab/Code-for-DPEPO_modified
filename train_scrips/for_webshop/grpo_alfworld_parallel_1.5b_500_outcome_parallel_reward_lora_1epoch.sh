@@ -5,7 +5,7 @@ export VLLM_ATTENTION_BACKEND=XFORMERS
 export TMPDIR=/diskpool/tmp 
 
 # The Process Reward Option is set to True
-nohup python3 -m verl.trainer.main_ppo_alfworld \
+nohup python3 train_scrips/for_webshop/main_ppo_webshop.py \
     algorithm.adv_estimator=grpo \
     data.val_batch_size=128 \
     trainer.resume_mode=auto \
