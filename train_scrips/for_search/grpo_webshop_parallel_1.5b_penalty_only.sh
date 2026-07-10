@@ -9,7 +9,7 @@
 # ========== 配置选择 - 根据需要修改 ==========
 # export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:False,max_split_size_mb:128
 batchsize=2
-export CUDA_VISIBLE_DEVICES=5,6
+export CUDA_VISIBLE_DEVICES=5,7
 micro_para=1
 # tensor_model_parallel_size=1
 tensor_model_parallel_size=$batchsize
