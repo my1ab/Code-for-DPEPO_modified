@@ -30,7 +30,7 @@ TEST_GOAL_END = 500
 # 需要手动编辑路径
 JSON_DIR = '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/webshop'
 PARQUET_DIR = '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/verl_train_data/webshop'
-SUCCESS_LOG = '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/all_success_indices_merged.log'
+SUCCESS_LOG = '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/success_indices_merged_webshop.txt'
 
 
 
@@ -38,7 +38,7 @@ def read_json(filepath):
     return json.load(open(filepath, 'r'))
 
 
-def load_success_linear_indices(log_path, list_len=500):
+def load_success_logical_indices(log_path, list_len=500):
     """Parse the success log and return a set of 0-based linear indices.
 
     Args:
@@ -88,7 +88,7 @@ def main(exclude_success=EXCLUDE_SUCCESS):
 
     # Step 2: remove entries at positions listed in success_linear_indices
     if exclude_success:
-        success_linear_indices = load_success_linear_indices(SUCCESS_LOG)
+        success_linear_indices = load_success_logical_indices(SUCCESS_LOG)
         train_candidates_excluded = [g for i, g in enumerate(train_candidates) if i not in success_linear_indices]
         print(f"[Exclude] Removed {len(success_linear_indices)} positions, remaining: {len(train_candidates_excluded)}")
     else:

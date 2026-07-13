@@ -29,7 +29,6 @@ def read_json(file_path):
     return json.load(open(file_path,'r'))
 
 
-
 def get_env_name(game_file):
     return game_file.split('json_2.1.1/train/')[-1].replace('/game.tw-pddl','') 
 

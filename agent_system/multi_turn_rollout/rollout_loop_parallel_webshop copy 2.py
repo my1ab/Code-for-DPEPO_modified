@@ -682,13 +682,13 @@ class TrajectoryCollectorParallelWebShop:
         if is_train:
             gen_batch = gen_batch.repeat(repeat_times=self.config.env.rollout.n, interleave=True)
         batch_size = len(gen_batch.batch)
-        print(f'[INFO] Starting rollout: batch_size={batch_size}, group_n={group_n}, is_train={is_train}')
 
         # ---------- ID Preparation ----------
         group_ids = []
         uid_batch = []
         # 训练阶段使用config.env.rollout.n创建多个重复样本，验证阶段group_n=1节省资源
         group_n = self.config.env.rollout.n if is_train else 1
+        print(f'[INFO] Starting rollout: batch_size={batch_size}, group_n={group_n}, is_train={is_train}')
         # 验证时 [DEBUG] group_n = 1 in rollout loop, is_train=False, batch_size=50
         if print_debug:
             print(f'[DEBUG] group_n = {group_n} in rollout loop, is_train={is_train}, batch_size={batch_size}')

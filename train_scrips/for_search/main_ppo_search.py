@@ -12,10 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """
-WebShop PPO/GRPO training entry point with parallel environments.
+Search PPO/GRPO training entry point with parallel environments (Search-R1).
 
 Usage:
-    python3 -m verl-webshop.for_webshop.main_ppo_webshop \\
+    python3 train_scrips/for_search/main_ppo_search.py \\
         algorithm.adv_estimator=grpo \\
         data.train_files=... \\
         ...
@@ -77,35 +77,74 @@ class TaskRunner:
             use_shm=config.actor_rollout_ref.model.get("use_shm", False),
         )
 
-        from agent_system.environments import build_parallel_webshop_envs
+        from agent_system.environments import build_parallel_search_envs
 
-        # Load gamefiles from env_path JSON
-        data = json.load(open(config.env.env_path, "r"))
-        if isinstance(data, dict):
-            gamefiles = list(data.values())
-        else:
-            gamefiles = [item["gamefile"] for item in data]
+        # ===== [Search 相对于 WebShop 的修改] =====
+        # gamefiles 从训练 parquet 的 gamefile 列读取（int physical_idx，与 JSON 一致）。
+        # 需要 SOURCE_PARQUET 通过 iloc 将 int 解析为 question 字符串。
+        # lazy/非 lazy 使用同一份数据源，统一传递 parquet_path。
+        # ==========================================
+        import pandas as pd
+        train_df = pd.read_parquet(config.data.train_files)
+        gamefiles = train_df['gamefile'].tolist()
 
+        # ===== [Search 相对于 WebShop 的修改] =====
+        # Search 环境需要从 config.env.search.* 提取 search_url/topk/timeout/log_requests/max_turns
+        # 作为 env_kwargs 传入 build_parallel_search_envs，用于 Env.build_env() 中构造 SearchEnv。
+        # ==========================================
+        search_env_config = {}
+        if hasattr(config.env, 'search'):
+            if hasattr(config.env.search, 'search_url'):
+                search_env_config['search_url'] = config.env.search.search_url
+            if hasattr(config.env.search, 'topk'):
+                search_env_config['topk'] = config.env.search.topk
+            if hasattr(config.env.search, 'timeout'):
+                search_env_config['timeout'] = config.env.search.timeout
+            if hasattr(config.env.search, 'log_requests'):
+                search_env_config['log_requests'] = config.env.search.log_requests
+            if hasattr(config.env.search, 'max_turns'):
+                search_env_config['max_turns'] = config.env.search.max_turns
+
+        # SOURCE_PARQUET: 通过 physical_idx(int) → iloc → question 字符串
+        SOURCE_PARQUET = os.path.expanduser('~/data/searchR1_processed_direct/train.parquet')
+
+        # ===== [Search 相对于 WebShop 的修改] =====
+        # lazy/非 lazy 统一：gamefiles 均为 int，env_kwargs 均含 parquet_path。
+        # ==========================================
         lazy_envs = config.env.get("lazy_envs", False)
-        # 一次性创建环境
-        # lazy_envs = False
         if not lazy_envs:
-            parallel_envs = build_parallel_webshop_envs(
+            parallel_envs = build_parallel_search_envs(
                 gamefiles=gamefiles,
                 group_n=config.env.rollout.n,
                 resources_per_worker={
                     "num_cpus": config.env.resources_per_worker.num_cpus
                 },
                 num_parallel=config.env.num_parallel,
-                # num_parallel=1,
+                env_kwargs={
+                    'parquet_path': SOURCE_PARQUET,
+                    **search_env_config,
+                },
             )
             envs, val_envs = parallel_envs, None
             build_env_func = None
         else:
-            build_env_func = build_parallel_webshop_envs
+            def _build_search_envs(gamefiles, group_n, resources_per_worker, num_parallel):
+                return build_parallel_search_envs(
+                    gamefiles=gamefiles,
+                    group_n=group_n,
+                    resources_per_worker=resources_per_worker,
+                    num_parallel=num_parallel,
+                    env_kwargs={
+                        'parquet_path': SOURCE_PARQUET,
+                        **search_env_config,
+                    },
+                )
+            build_env_func = _build_search_envs
             envs, val_envs = None, None
-        print(f"[INFO] Created parallel environments: {config.env.num_parallel} completed in build_parallel_webshop_envs")
+        print(f"[INFO] Created parallel environments: {config.env.num_parallel} completed in build_parallel_search_envs")
         print(f"[INFO] lazy_envs = {lazy_envs}")
+        print(f"[INFO] search_env_config = {search_env_config}")
+        print(f"[INFO] gamefiles loaded from parquet: {len(gamefiles)} tasks, type={type(gamefiles[0]) if gamefiles else 'N/A'}")
 
         # Instantiate tokenizer
         from verl.utils import hf_processor, hf_tokenizer
@@ -213,10 +252,10 @@ class TaskRunner:
             config.actor_rollout_ref.rollout.n == 1
         ), "In verl, actor_rollout_ref.rollout.n>1 is for GRPO. In verl+env, we keep n=1, and achieve GRPO by env.rollout.n"
 
-        # from agent_system.multi_turn_rollout import TrajectoryCollectorParallelWebShop
-        from agent_system.multi_turn_rollout.rollout_loop_parallel_webshop import TrajectoryCollectorParallelWebShop
+        # from agent_system.multi_turn_rollout import TrajectoryCollectorParallelSearch
+        from agent_system.multi_turn_rollout.rollout_loop_parallel_search import TrajectoryCollectorParallelSearch
 
-        traj_collector = TrajectoryCollectorParallelWebShop(
+        traj_collector = TrajectoryCollectorParallelSearch(
             config=config, tokenizer=tokenizer, processor=processor
         )
 

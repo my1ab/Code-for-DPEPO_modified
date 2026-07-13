@@ -21,3 +21,6 @@ from agent_system.environments.env_manager_parallel_webshop import (
     # WebShopEnvironmentManager,
     build_parallel_webshop_envs,
 )
+from agent_system.environments.env_manager_parallel_search import (
+    build_parallel_search_envs,
+)

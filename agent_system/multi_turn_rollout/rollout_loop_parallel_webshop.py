@@ -503,7 +503,7 @@ class TrajectoryCollectorParallelWebShop:
                 save_dict['expert_actions'] = trajectory[0]['expert_actions']
             else:
                 # WebShop may not have expert_actions; fall back to empty list
-                print('[warning]no expert actions for process reward')
+                print('[WARNING] no expert actions for process reward')
                 save_dict['expert_actions'] = []
 
             save_dict['parallel_action'] = {}
@@ -686,6 +686,7 @@ class TrajectoryCollectorParallelWebShop:
         uid_batch = []
         # 训练阶段使用config.env.rollout.n创建多个重复样本，验证阶段group_n=1节省资源
         group_n = self.config.env.rollout.n if is_train else 1
+        print(f'[INFO] Starting rollout: batch_size={batch_size}, group_n(self.config.env.rollout.n)={group_n}, is_train={is_train}')
         # 验证时 [DEBUG] group_n = 1 in rollout loop, is_train=False, batch_size=50
         if print_debug:
             print(f'[DEBUG] group_n = {group_n} in rollout loop, is_train={is_train}, batch_size={batch_size}')
@@ -787,6 +788,8 @@ class TrajectoryCollectorParallelWebShop:
             # 只对 active（未完成）样本做模型推理，已完成样本跳过以减少计算量
             active_indices = np.where(active_masks)[0]
             num_active = len(active_indices)
+            if print_debug:
+                print(f'[INFO] Step {_step}: active samples={num_active}/{batch_size}')
             if num_active == batch_size:
                 # 全部 active，走原始路径
                 batch_input_padded, pad_size = pad_dataproto_to_divisor(batch_input, actor_rollout_wg.world_size)
@@ -1033,7 +1036,9 @@ class TrajectoryCollectorParallelWebShop:
             
             # 检查是否所有任务都已完成，无论batch_size是多少，只要全部完成就立即退出
             if is_done.all():
-                print(f"All tasks completed at turn {_step + 1}, exiting rollout loop.")
+                num_groups = batch_size // group_n
+                task_indices = list(range(num_groups))
+                print(f"[INFO] [Task {GLOBAL_TASK_COUNTER}] Task {task_indices} completed at turn {_step + 1}, exiting rollout loop.")
                 break
         # ------------------ Calculation Process Reward (对齐 rollout_loop_parallel.py) ---------------------
         # reward_model和process_reward true时计算
@@ -1051,16 +1056,21 @@ class TrajectoryCollectorParallelWebShop:
         for bs in range(batch_size):
             if turn_out_range[bs]:
                 status_msgs[bs] = f"Task {GLOBAL_TASK_COUNTER} sample {bs} out of max turn"
-                print(status_msgs[bs])
+                print(f"[INFO] {status_msgs[bs]}")
         
-        # 添加成功判断和统计功能，参考coldstart_para_his_test_1.5B_hislen8_epoch3.5_v2.py
-        success_count = np.sum(success_flags)
-        success_rate = success_count / batch_size if batch_size > 0 else 0
+        # 添加成功判断和统计功能，改为组成功率统计：每组(group_n个worker)中任一worker成功则该组成功
+        num_groups = batch_size // group_n
+        group_success = np.zeros(num_groups, dtype=int)
+        for g in range(num_groups):
+            group_indices = list(range(g * group_n, (g + 1) * group_n))
+            group_success[g] = 1 if np.any(success_flags[group_indices] == 1) else 0
+        group_success_count = np.sum(group_success)
+        group_success_rate = group_success_count / num_groups if num_groups > 0 else 0
         print(f"\n{'='*60}")
-        print(f"Rollout Summary:")
-        print(f"Total tasks: {batch_size // group_n}, Successful tasks: {success_count}, Success rate: {success_rate:.2%}")
-        print(f"Average episode length: {np.mean(episode_lengths):.2f} steps")
-        print(f"Average episode reward: {np.mean(episode_rewards):.4f}")
+        print(f"[INFO] Rollout Summary:")
+        print(f"[INFO]   Total tasks: {num_groups}, Successful groups: {group_success_count}, Group success rate: {group_success_rate:.2%}")
+        print(f"[INFO]   Average episode length: {np.mean(episode_lengths):.2f} steps")
+        print(f"[INFO]   Average episode reward: {np.mean(episode_rewards):.4f}")
         print(f"{'='*60}")
 
         
@@ -1175,19 +1185,25 @@ class TrajectoryCollectorParallelWebShop:
                 print(f'[DEBUG] going backward computing')
             return gen_batch_output
         else:
-            # 验证阶段使用与参考文件完全相同的成功统计逻辑，不调用gather_rollout_data，避免维度不匹配
-            success_count = np.sum(success_flags)
-            success_rate = success_count / len(success_flags) if len(success_flags) > 0 else 0
-            success_task_indices = [i for i, flag in enumerate(success_flags) if flag == 1]
+            # 验证阶段使用组成功率统计逻辑（验证时group_n=1，等价于逐样本统计，但保持代码一致）
+            val_group_n = self.config.env.rollout.n if is_train else 1
+            num_groups = len(success_flags) // val_group_n
+            group_success = np.zeros(num_groups, dtype=int)
+            for g in range(num_groups):
+                group_indices = list(range(g * val_group_n, (g + 1) * val_group_n))
+                group_success[g] = 1 if np.any(success_flags[group_indices] == 1) else 0
+            group_success_count = np.sum(group_success)
+            group_success_rate = group_success_count / num_groups if num_groups > 0 else 0
+            success_task_indices = [g for g, flag in enumerate(group_success) if flag == 1]
             
             print(f"\n{'='*60}")
-            print(f"Validation Complete Summary:")
-            print(f"Total validation tasks: {len(success_flags)}")
-            print(f"Successful tasks: {success_count}")
-            print(f"Success rate: {success_rate:.2%}")
-            print(f"Success task indices: {success_task_indices}")
-            print(f"Average episode length: {np.mean(episode_lengths):.2f} steps")
-            print(f"Average episode reward: {np.mean(episode_rewards):.4f}")
+            print(f"[INFO] Validation Complete Summary:")
+            print(f"[INFO]   Total validation tasks: {num_groups}")
+            print(f"[INFO]   Successful groups: {group_success_count}")
+            print(f"[INFO]   Group success rate: {group_success_rate:.2%}")
+            print(f"[INFO]   Success group indices: {success_task_indices}")
+            print(f"[INFO]   Average episode length: {np.mean(episode_lengths):.2f} steps")
+            print(f"[INFO]   Average episode reward: {np.mean(episode_rewards):.4f}")
             print(f"{'='*60}")
             
             # 返回完整的轨迹信息，与参考文件格式保持一致

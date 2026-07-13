@@ -1,0 +1,99 @@
+Test ParallelSearchEnvs — 20260714_000126
+n=3, group_n=5, num_parallel=5
+Parquet: /diskpool/home/xuxz/data/searchR1_processed_direct/train.parquet
+JSON:    /diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/search/search_train_tasks_excluded.json
+Physical indices: [115817, 165646, 113430]
+====================================================================================================
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+Task [0]  logical_id=0  physical_idx=115817  data_source=hotpotqa
+  question:     Michael Anderson and Derek Estlin Purvis are both what?
+  ground_truth: film director
+────────────────────────────────────────────────────────────────────────────────────────────────────
+  └─ group_id=0, worker_idx=0
+       start_obs:           Michael Anderson and Derek Estlin Purvis are both what?
+       admissible_commands: ['<search>query</search>', '<answer>answer</answer>']
+       physical_idx:        115817
+       logical_id:          0
+  └─ group_id=1, worker_idx=1
+       start_obs:           Michael Anderson and Derek Estlin Purvis are both what?
+       admissible_commands: ['<search>query</search>', '<answer>answer</answer>']
+       physical_idx:        115817
+       logical_id:          0
+  └─ group_id=2, worker_idx=2
+       start_obs:           Michael Anderson and Derek Estlin Purvis are both what?
+       admissible_commands: ['<search>query</search>', '<answer>answer</answer>']
+       physical_idx:        115817
+       logical_id:          0
+  └─ group_id=3, worker_idx=3
+       start_obs:           Michael Anderson and Derek Estlin Purvis are both what?
+       admissible_commands: ['<search>query</search>', '<answer>answer</answer>']
+       physical_idx:        115817
+       logical_id:          0
+  └─ group_id=4, worker_idx=4
+       start_obs:           Michael Anderson and Derek Estlin Purvis are both what?
+       admissible_commands: ['<search>query</search>', '<answer>answer</answer>']
+       physical_idx:        115817
+       logical_id:          0
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+Task [1]  logical_id=1  physical_idx=165646  data_source=hotpotqa
+  question:     Are Mary Carillo and Mariaan de Swardt both tennis players?
+  ground_truth: yes
+────────────────────────────────────────────────────────────────────────────────────────────────────
+  └─ group_id=0, worker_idx=5
+       start_obs:           Are Mary Carillo and Mariaan de Swardt both tennis players?
+       admissible_commands: ['<search>query</search>', '<answer>answer</answer>']
+       physical_idx:        165646
+       logical_id:          1
+  └─ group_id=1, worker_idx=6
+       start_obs:           Are Mary Carillo and Mariaan de Swardt both tennis players?
+       admissible_commands: ['<search>query</search>', '<answer>answer</answer>']
+       physical_idx:        165646
+       logical_id:          1
+  └─ group_id=2, worker_idx=7
+       start_obs:           Are Mary Carillo and Mariaan de Swardt both tennis players?
+       admissible_commands: ['<search>query</search>', '<answer>answer</answer>']
+       physical_idx:        165646
+       logical_id:          1
+  └─ group_id=3, worker_idx=8
+       start_obs:           Are Mary Carillo and Mariaan de Swardt both tennis players?
+       admissible_commands: ['<search>query</search>', '<answer>answer</answer>']
+       physical_idx:        165646
+       logical_id:          1
+  └─ group_id=4, worker_idx=9
+       start_obs:           Are Mary Carillo and Mariaan de Swardt both tennis players?
+       admissible_commands: ['<search>query</search>', '<answer>answer</answer>']
+       physical_idx:        165646
+       logical_id:          1
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+Task [2]  logical_id=2  physical_idx=113430  data_source=hotpotqa
+  question:     What type of profession does Charles Maigne and Stanley Kwan have in common?
+  ground_truth: director
+────────────────────────────────────────────────────────────────────────────────────────────────────
+  └─ group_id=0, worker_idx=10
+       start_obs:           What type of profession does Charles Maigne and Stanley Kwan have in common?
+       admissible_commands: ['<search>query</search>', '<answer>answer</answer>']
+       physical_idx:        113430
+       logical_id:          2
+  └─ group_id=1, worker_idx=11
+       start_obs:           What type of profession does Charles Maigne and Stanley Kwan have in common?
+       admissible_commands: ['<search>query</search>', '<answer>answer</answer>']
+       physical_idx:        113430
+       logical_id:          2
+  └─ group_id=2, worker_idx=12
+       start_obs:           What type of profession does Charles Maigne and Stanley Kwan have in common?
+       admissible_commands: ['<search>query</search>', '<answer>answer</answer>']
+       physical_idx:        113430
+       logical_id:          2
+  └─ group_id=3, worker_idx=13
+       start_obs:           What type of profession does Charles Maigne and Stanley Kwan have in common?
+       admissible_commands: ['<search>query</search>', '<answer>answer</answer>']
+       physical_idx:        113430
+       logical_id:          2
+  └─ group_id=4, worker_idx=14
+       start_obs:           What type of profession does Charles Maigne and Stanley Kwan have in common?
+       admissible_commands: ['<search>query</search>', '<answer>answer</answer>']
+       physical_idx:        113430
+       logical_id:          2

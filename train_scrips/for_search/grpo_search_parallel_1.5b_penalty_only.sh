@@ -1,10 +1,5 @@
 # =============================================================================
 # WebShop GRPO 并行训练启动脚本 (从 alfworld process 脚本修改)
-# =============================================================================
-# 训练入口: train_scrips/for_webshop/main_ppo_webshop.py
-# Hydra 配置: train_scrips/for_webshop/config/ppo_trainer_webshop.yaml
-# 冲突设置以 verl-webshop/for_webshop/grpo_webshop_parallel_1gpu.sh 为准
-# =============================================================================
 
 # ========== 配置选择 - 根据需要修改 ==========
 # export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:False,max_split_size_mb:128
@@ -23,7 +18,7 @@ export PYTHONUNBUFFERED=1
 export VLLM_ATTENTION_BACKEND=FLASH_ATTN
 # export VLLM_ATTENTION_BACKEND=XFORMERS
 
-ckpt_dir=/diskpool/home/xuxz/Code-for-DPEPO/1gpu_webshop
+ckpt_dir=/diskpool/home/xuxz/Code-for-DPEPO/1gpu_search
 LOG_FILE="$ckpt_dir/1gpu_only_penalty.log"
 
 
@@ -34,14 +29,14 @@ save_freq=1
 free_cache=True
 
 
-nohup python3 train_scrips/for_webshop/main_ppo_webshop.py \
+nohup python3 train_scrips/for_search/main_ppo_search.py \
     algorithm.adv_estimator=grpo \
-    env.env_path=/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/webshop/webshop_train_tasks_excluded.json \
-    data.train_files=/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/verl_train_data/webshop/webshop_train_excluded.parquet \
-    data.val_files=/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/verl_train_data/webshop/webshop_test_excluded.parquet \
+    env.env_path=/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/search/search_train_tasks_excluded.json \
+    data.train_files=/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/verl_train_data/search/search_train_excluded.parquet \
+    data.val_files=/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/verl_train_data/search/search_test.parquet \
     actor_rollout_ref.model.path=/diskpool/home/xuxz/ms-swift/checkpoint/Qwen2.5-1.5B-Instruct-Parallel-Epoch5-hislen8/v0-20260602-201729/checkpoint-8800 \
     trainer.default_local_dir=$ckpt_dir \
-    trainer.experiment_name='grpo_1.5b_webshop_parallel' \
+    trainer.experiment_name='grpo_1.5b_search_parallel' \
     data.train_batch_size=$batchsize \
     env.num_parallel=5 \
     env.add_limit_prompt=True \
@@ -94,7 +89,7 @@ nohup python3 train_scrips/for_webshop/main_ppo_webshop.py \
     env.resources_per_worker.num_cpus=0.5 \
     trainer.critic_warmup=0 \
     trainer.logger=['console','mlflow'] \
-    trainer.project_name='parallel_verl_agent_webshop' \
+    trainer.project_name='parallel_verl_agent_search' \
     trainer.n_gpus_per_node=$batchsize \
     trainer.nnodes=1 \
     trainer.save_freq=$save_freq \

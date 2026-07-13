@@ -1,15 +1,15 @@
 # =============================================================================
 # WebShop GRPO 并行训练启动脚本 (从 alfworld process 脚本修改)
 # =============================================================================
-# 训练入口: verl-webshop/for_webshop/main_ppo_webshop.py
-# Hydra 配置: verl-webshop/for_webshop/config/ppo_trainer_webshop.yaml
+# 训练入口: train_scrips/for_webshop/main_ppo_webshop.py
+# Hydra 配置: train_scrips/for_webshop/config/ppo_trainer_webshop.yaml
+# 冲突设置以 verl-webshop/for_webshop/grpo_webshop_parallel_1gpu.sh 为准
 # =============================================================================
 
 # ========== 配置选择 - 根据需要修改 ==========
 # export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:False,max_split_size_mb:128
 batchsize=2
-# export CUDA_VISIBLE_DEVICES=5,7
-export CUDA_VISIBLE_DEVICES=4,6
+export CUDA_VISIBLE_DEVICES=5,6
 micro_para=1
 # tensor_model_parallel_size=1
 tensor_model_parallel_size=$batchsize
@@ -33,7 +33,7 @@ save_freq=1
 free_cache=True
 
 
-nohup python3 -m verl-webshop.for_webshop.main_ppo_webshop \
+nohup python3 train_scrips/for_webshop/main_ppo_webshop.py \
     algorithm.adv_estimator=grpo \
     env.env_path=/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/webshop/webshop_train_tasks_excluded.json \
     data.train_files=/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/verl_train_data/webshop/webshop_train_excluded.parquet \
@@ -86,8 +86,7 @@ nohup python3 -m verl-webshop.for_webshop.main_ppo_webshop \
     reward_model.depth_alpha=0.8 \
     reward_model.depth_t_gamma=0.95 \
     reward_model.width_t_beta=0.95 \
-    reward_model.width_omega=0.95 \
-    reward_model.invalid_penalty=0.95 \
+    reward_model.width_omega=0.80 \
     algorithm.use_kl_in_reward=False \
     env.seed=0 \
     env.max_steps=$max_steps \
