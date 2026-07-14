@@ -89,23 +89,21 @@ EXCLUDE_PATHS=(
     2gpu
     2gpu_only_penalty
     2gpu_only_penalty_1
-    sample
-    sample copy
-    case
+    "sample"
+    "sample copy"
+    "case"
     sample_backup
     webshop_para_full_result
     webshop_checkpoint_para
     webshop_checkpoint
-    case
-    sample
     file_sft_search
-    *.pt
-    *.ckpt
-    *.safetensors
-    *.tar.gz
-    __pycache__/
-    *.pyc
-    *.pyo
+    "*.pt"
+    "*.ckpt"
+    "*.safetensors"
+    "*.tar.gz"
+    "__pycache__/"
+    "*.pyc"
+    "*.pyo"
 )
 
 echo ""

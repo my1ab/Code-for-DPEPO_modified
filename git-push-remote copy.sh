@@ -1,13 +1,19 @@
 #!/bin/bash
 
 
-REMOTE_URL="git@github.com:my1ab/Code-for-DPEPO_modified.git"  # SSH方式
-if ! git remote get-url Code-for-DPEPO_modified &>/dev/null; then
-    echo "远程仓库 Code-for-DPEPO_modified 不存在，正在添加..."
-    git remote add Code-for-DPEPO_modified "$REMOTE_URL"
+# REMOTE_URL="git@github.com:my1ab/Code-for-DPEPO_modified.git"  # SSH方式
+# my1ab
+# 
+# REMOTE_URL="https://github.com/my1ab/Code-for-DPEPO_modified.git"
+REMOTE_URL="git@github.com:my1ab/Code-for-DPEPO_modified.git"
+REPO_NAME="Code-for-DPEPO_modified"
+TARGET_BRANCH="main"
+if ! git remote get-url $REPO_NAME &>/dev/null; then
+    echo "远程仓库 $REPO_NAME 不存在，正在添加..."
+    git remote add $REPO_NAME "$REMOTE_URL"
 else
-    echo "远程仓库 Code-for-DPEPO_modified 已存在，更新URL以包含token认证"
-    git remote set-url Code-for-DPEPO_modified "$REMOTE_URL"
+    echo "远程仓库 $REPO_NAME 已存在，更新URL以包含token认证"
+    git remote set-url $REPO_NAME "$REMOTE_URL"
 fi
 git remote -v
 
@@ -49,33 +55,34 @@ git status
 echo ""
 echo "=== 定义需要排除的路径 ==="
 EXCLUDE_PATHS=(
-    # "coldstart_test/*/"  # 排除coldstart_test下的所有子文件夹
-    # "coldstart_result_webshop/"
-    # "coldstart_test_new/model_hislen8_result_v2/"
-    # 排除所有模型
-    "1gpu"
-    "1gpu_only_penalty"
-    "1gpu_pro_new"
-    "1gpu_process"
-    "2gpu"
-    "2gpu_only_penalty"
-    "webshop_para_full_result"
-    "webshop_checkpoint_para"
-    "webshop_checkpoint"
-    "data_pipelines"
-    "sample"
-    "*.pt"
-    "*.ckpt"
-    "*.safetensors"
-    "*.tar.gz"
-    "__pycache__/"
-    "*.pyc"
-    "*.pyo"
+    # 排除coldstart_test下的所有子文件夹
+    1gpu_search
+    1gpu_webshop
+    2gpu
+    2gpu_only_penalty
+    2gpu_only_penalty_1
+    sample
+    sample copy
+    case
+    sample_backup
+    webshop_para_full_result
+    webshop_checkpoint_para
+    webshop_checkpoint
+    case
+    sample
+    file_sft_search
+    *.pt
+    *.ckpt
+    *.safetensors
+    *.tar.gz
+    __pycache__/
+    *.pyc
+    *.pyo
 )
 
 echo ""
 echo "=== 添加所有文件（自动排除 EXCLUDE_PATHS 中的路径）==="
-# 使用 Git pathspec magic（:(exclude) 长格式）在 git add 时直接排除指定路径
+# 使用 Git pathspec magic（:(exclude) 长格式）在 git add 时直接排除指定路径  不需要添加后删除
 GIT_ADD_ARGS=("-A")
 for path in "${EXCLUDE_PATHS[@]}"; do
     GIT_ADD_ARGS+=(":(exclude)${path}")
@@ -117,13 +124,13 @@ if git diff --cached --quiet; then
     # 即使没有新的提交，也尝试推送当前分支到远端，确保远端仓库同步
     echo ""
     echo "=== 尝试推送当前分支到远端仓库 $TARGET_BRANCH 分支，确保同步 ==="
-    git push Code-for-DPEPO_modified HEAD:$TARGET_BRANCH -f
+    git push $REPO_NAME HEAD:$TARGET_BRANCH -f
 else
     git commit -m "Update project files"
     echo ""
     echo "=== 推送到远端仓库 $TARGET_BRANCH 分支 ==="
     # 格式: git push <远程名> <来源>:<目标> -f
-    git push Code-for-DPEPO_modified HEAD:$TARGET_BRANCH -f
+    git push $REPO_NAME HEAD:$TARGET_BRANCH -f
 fi
 
 
