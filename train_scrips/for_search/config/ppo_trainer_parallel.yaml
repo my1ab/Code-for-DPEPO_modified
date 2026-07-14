@@ -310,7 +310,7 @@ env:
     n: -1 # the group number of envs (for GRPO and GiGPO). -1 means disable env grouping.
   search:
     log_requests: false
-    search_url: "http://127.0.0.1:8000/retrieve" # also support multiple urls: ["http://127.0.0.1:8000/retrieve", "http://127.0.0.1:8001/retrieve"]
+    search_url: "http://127.0.0.1:8010/retrieve" # also support multiple urls: ["http://127.0.0.1:8010/retrieve", "http://127.0.0.1:8001/retrieve"]
     topk: 3
     timeout: 60
   sokoban:

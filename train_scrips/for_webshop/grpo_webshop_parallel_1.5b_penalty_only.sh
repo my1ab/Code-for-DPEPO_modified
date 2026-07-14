@@ -6,10 +6,23 @@
 # 冲突设置以 verl-webshop/for_webshop/grpo_webshop_parallel_1gpu.sh 为准
 # =============================================================================
 
-# ========== 配置选择 - 根据需要修改 ==========
+# =============================================================================
+# [路径配置] 迁移到其他用户/机器时，只需修改下面这两个变量
+# =============================================================================
+export DPEPO_USER_HOME=/diskpool/home/xuxz
+export DPEPO_PROJECT_NAME=Code-for-DPEPO
+# =============================================================================
+# 注意：设置此环境变量后，依赖它的 .py 文件（env_manager_*.py, coldstart_*.py, prepare_*.py 等）会自动读取。
+# 以下 shell 变量均派生自 DPEPO_USER_HOME 和 DPEPO_PROJECT_NAME，无需逐个修改。
+# =============================================================================
+_CODE_BASE=${DPEPO_USER_HOME}/${DPEPO_PROJECT_NAME}
+_TMP_DIR=${DPEPO_USER_HOME}/tmp
+_MODEL_ROOT=${DPEPO_USER_HOME}/ms-swift
+
+# ========== 训练超参数 - 根据需要修改 ==========
 # export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:False,max_split_size_mb:128
-batchsize=1
-export CUDA_VISIBLE_DEVICES=4
+batchsize=2
+export CUDA_VISIBLE_DEVICES=5,6
 micro_para=1
 # tensor_model_parallel_size=1
 tensor_model_parallel_size=$batchsize
@@ -17,14 +30,14 @@ tensor_model_parallel_size=$batchsize
 
 echo "GPU: $CUDA_VISIBLE_DEVICES"
 echo "Number of GPUs: $batchsize"
-export TMPDIR=/diskpool/home/xuxz/tmp
+export TMPDIR=$_TMP_DIR
 export PYTHONUNBUFFERED=1
 # 选择 attention backend: FLASH_ATTN 或 XFORMERS
 export VLLM_ATTENTION_BACKEND=FLASH_ATTN
 # export VLLM_ATTENTION_BACKEND=XFORMERS
 
-ckpt_dir=/diskpool/home/xuxz/Code-for-DPEPO/1gpu_webshop
-LOG_FILE="$ckpt_dir/1gpu_only_penalty.log"
+ckpt_dir=${_CODE_BASE}/2gpu_webshop
+LOG_FILE="$ckpt_dir/2gpu_only_penalty.log"
 
 
 rank_alpha=16
@@ -32,14 +45,17 @@ max_steps=30
 save_freq=1
 # free_cache=False
 free_cache=True
+# 自定义选项
+custom_print_debug=true
+custom_save_traj=false
 
 
 nohup python3 train_scrips/for_webshop/main_ppo_webshop.py \
     algorithm.adv_estimator=grpo \
-    env.env_path=/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/webshop/webshop_train_tasks_excluded.json \
-    data.train_files=/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/verl_train_data/webshop/webshop_train_excluded.parquet \
-    data.val_files=/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/verl_train_data/webshop/webshop_test_excluded.parquet \
-    actor_rollout_ref.model.path=/diskpool/home/xuxz/ms-swift/checkpoint/Qwen2.5-1.5B-Instruct-Parallel-Epoch5-hislen8/v0-20260602-201729/checkpoint-8800 \
+    env.env_path=${_CODE_BASE}/data_pipelines/gamefiles/webshop/webshop_train_tasks_excluded.json \
+    data.train_files=${_CODE_BASE}/data_pipelines/verl_train_data/webshop/webshop_train_excluded.parquet \
+    data.val_files=${_CODE_BASE}/data_pipelines/verl_train_data/webshop/webshop_test_excluded.parquet \
+    actor_rollout_ref.model.path=${_MODEL_ROOT}/checkpoint/Qwen2.5-1.5B-Instruct-Parallel-Epoch5-hislen8/v0-20260602-201729/checkpoint-8800 \
     trainer.default_local_dir=$ckpt_dir \
     trainer.experiment_name='grpo_1.5b_webshop_parallel' \
     data.train_batch_size=$batchsize \
@@ -98,6 +114,8 @@ nohup python3 train_scrips/for_webshop/main_ppo_webshop.py \
     trainer.n_gpus_per_node=$batchsize \
     trainer.nnodes=1 \
     trainer.save_freq=$save_freq \
+    custom.print_debug=$custom_print_debug \
+    custom.save_traj=$custom_save_traj \
     trainer.test_freq=500 \
     trainer.total_epochs=1 \
     trainer.val_before_train=False \

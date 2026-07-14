@@ -13,6 +13,11 @@ import json
 import os
 import pandas as pd
 
+# ===== 路径集中配置（迁移时只需设环境变量 DPEPO_USER_HOME / DPEPO_PROJECT_NAME） =====
+_DPEPO_USER_HOME = os.environ.get('DPEPO_USER_HOME', '/diskpool/home/xuxz')
+_DPEPO_PROJECT_NAME = os.environ.get('DPEPO_PROJECT_NAME', 'Code-for-DPEPO')
+_DPEPO_CODE_BASE = os.path.join(_DPEPO_USER_HOME, _DPEPO_PROJECT_NAME)
+# =================================================================================
 
 
 TRAIN_SIZE = 500
@@ -27,10 +32,10 @@ GOAL_NUM = 6910  # number of goals when human_goals=False in WebShop envs
 TRAIN_GOAL_START = 600
 TEST_GOAL_END = 500
 
-# 需要手动编辑路径
-JSON_DIR = '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/webshop'
-PARQUET_DIR = '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/verl_train_data/webshop'
-SUCCESS_LOG = '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/success_indices_merged_webshop.txt'
+# 路径设置（自动根据 _DPEPO_CODE_BASE 拼接）
+JSON_DIR = os.path.join(_DPEPO_CODE_BASE, 'data_pipelines', 'gamefiles', 'webshop')
+PARQUET_DIR = os.path.join(_DPEPO_CODE_BASE, 'data_pipelines', 'verl_train_data', 'webshop')
+SUCCESS_LOG = os.path.join(_DPEPO_CODE_BASE, 'data_pipelines', 'gamefiles', 'success_indices_merged_webshop.txt')
 
 
 

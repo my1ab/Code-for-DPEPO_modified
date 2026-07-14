@@ -48,6 +48,34 @@ else
 fi
 
 echo ""
+echo "=== 检查本地是否有未推送且含大文件的提交，如有则回退 ==="
+# 获取远端最后的提交
+REMOTE_REF="${REPO_NAME}/${TARGET_BRANCH}"
+REMOTE_COMMIT=$(git rev-parse "$REMOTE_REF" 2>/dev/null || echo "")
+if [ -n "$REMOTE_COMMIT" ]; then
+    # 检查本地 HEAD 与远端之间的提交中是否有超过 100MB 的文件
+    BAD_LARGE=$(git diff --name-only "$REMOTE_COMMIT"..HEAD 2>/dev/null | while read f; do
+        # 检查每个提交中该文件的大小
+        size=$(git cat-file -s "HEAD:$f" 2>/dev/null || echo 0)
+        if [ "$size" -gt 104857600 ] 2>/dev/null; then
+            echo "$f"
+        fi
+    done)
+    if [ -n "$BAD_LARGE" ]; then
+        echo "⚠️  检测到未推送的提交中包含超过 100MB 的大文件，正在回退到远端最后的提交..."
+        echo "受影响的文件："
+        echo "$BAD_LARGE" | head -10
+        # 软回退到远端最后的提交，保留工作区文件不变
+        git reset --soft "$REMOTE_COMMIT"
+        echo "已回退到 $REMOTE_COMMIT"
+    else
+        echo "✅ 未推送的提交中没有大文件"
+    fi
+else
+    echo "未找到远端提交，跳过大文件检查"
+fi
+
+echo ""
 echo "=== 先清空所有暂存区，保证干净的状态 ==="
 git reset HEAD -- .  # 取消所有暂存的文件  但git add可以覆盖这个操作
 git status
@@ -56,13 +84,13 @@ echo ""
 echo "=== 定义需要排除的路径 ==="
 EXCLUDE_PATHS=(
     # 排除coldstart_test下的所有子文件夹
-    1gpu
-    1gpu_only_penalty
-    1gpu_pro_new
-    1gpu_process
+    1gpu_search
+    1gpu_webshop
     2gpu
     2gpu_only_penalty
+    2gpu_only_penalty_1
     sample
+    sample copy
     case
     sample_backup
     webshop_para_full_result
@@ -81,6 +109,24 @@ EXCLUDE_PATHS=(
 )
 
 echo ""
+echo "=== 从 Git 索引中移除 EXCLUDE_PATHS 中已跟踪的文件 ==="
+# git add :(exclude) 只能阻止新文件被添加，不会移除已跟踪的文件
+# 必须先用 git rm --cached 把已跟踪的排除路径从索引中删掉
+for path in "${EXCLUDE_PATHS[@]}"; do
+    # 跳过通配符模式，只处理具体路径
+    case "$path" in
+        *' '*)
+            echo "  尝试移除已跟踪的: $path"
+            git rm --cached -r "$path" 2>/dev/null || true
+            ;;
+        *)
+            echo "  尝试移除已跟踪的: $path"
+            git rm --cached -r "$path" 2>/dev/null || true
+            ;;
+    esac
+done
+
+echo ""
 echo "=== 添加所有文件（自动排除 EXCLUDE_PATHS 中的路径）==="
 # 使用 Git pathspec magic（:(exclude) 长格式）在 git add 时直接排除指定路径  不需要添加后删除
 GIT_ADD_ARGS=("-A")
@@ -89,6 +135,30 @@ for path in "${EXCLUDE_PATHS[@]}"; do
 done
 git add "${GIT_ADD_ARGS[@]}"
 echo "已执行: git add -A 并排除 ${#EXCLUDE_PATHS[@]} 个路径模式"
+
+echo ""
+echo "=== 验证暂存区中是否还有超过 100MB 的大文件 ==="
+# 检查暂存区中是否有超过 GitHub 100MB 限制的文件
+LARGE_FILES=$(git diff --cached --name-only | while read f; do
+    if [ -f "$f" ]; then
+        size=$(stat -c%s "$f" 2>/dev/null || stat -f%z "$f" 2>/dev/null || echo 0)
+        if [ "$size" -gt 104857600 ] 2>/dev/null; then
+            printf "%.1f MB\t%s\n" "$(echo "scale=1; $size/1048576" | bc)" "$f"
+        fi
+    fi
+done)
+if [ -n "$LARGE_FILES" ]; then
+    echo "⚠️  暂存区中仍有超过 100MB 的文件："
+    echo "$LARGE_FILES"
+    echo "正在移除这些文件..."
+    echo "$LARGE_FILES" | while read line; do
+        fname=$(echo "$line" | cut -f2)
+        git rm --cached "$fname" 2>/dev/null || true
+    done
+    echo "已移除大文件"
+else
+    echo "✅ 暂存区中没有超过 100MB 的文件"
+fi
 
 # 单独处理coldstart_test下的所有子文件夹，确保只保留coldstart_test根目录下的文件
 if [ -d "coldstart_test" ]; then

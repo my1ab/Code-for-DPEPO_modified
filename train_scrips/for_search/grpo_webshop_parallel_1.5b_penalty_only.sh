@@ -31,6 +31,9 @@ max_steps=30
 save_freq=1
 # free_cache=False
 free_cache=True
+# 自定义选项
+custom_print_debug=true
+custom_save_traj=false
 
 
 nohup python3 train_scrips/for_webshop/main_ppo_webshop.py \
@@ -97,6 +100,8 @@ nohup python3 train_scrips/for_webshop/main_ppo_webshop.py \
     trainer.n_gpus_per_node=$batchsize \
     trainer.nnodes=1 \
     trainer.save_freq=$save_freq \
+    +custom.print_debug=$custom_print_debug \
+    +custom.save_traj=$custom_save_traj \
     trainer.test_freq=500 \
     trainer.total_epochs=1 \
     trainer.val_before_train=False \

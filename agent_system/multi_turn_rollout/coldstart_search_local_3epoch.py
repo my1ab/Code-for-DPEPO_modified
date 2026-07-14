@@ -44,8 +44,8 @@ local_tokenizer = None
 MAX_CONTEXT_LENGTH = 32768    # 本地模型最大上下文长度 (仅本地模式生效)
 BASE_MODEL_PATH = '/diskpool/home/xuxz/ms-swift/model/Qwen2.5-1.5B-Instruct'  # 本地模型路径 (仅本地模式生效)
 # SEARCH_URL = 'http://127.0.0.1:8000/retrieve'  # 检索服务器地址
-# 自定义端口
-PORT=8010
+# 自定义端口（优先读环境变量 SEARCH_PORT，否则默认 8010）
+PORT = int(os.environ.get('SEARCH_PORT', '8010'))
 SEARCH_URL = f'http://127.0.0.1:{PORT}/retrieve'
 SEARCH_TOPK = 3               # 每次搜索返回的 top-k 文档数
 SEARCH_TIMEOUT = 60           # 搜索请求超时时间 (秒)

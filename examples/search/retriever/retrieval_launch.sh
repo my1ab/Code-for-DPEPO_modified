@@ -1,3 +1,11 @@
+# =============================================================================
+# [集中配置] 检索服务器端口 — Python 代码通过 SEARCH_URL 环境变量读取
+# 修改此处端口后，所有训练脚本自动生效
+# =============================================================================
+export SEARCH_PORT=8010
+export SEARCH_URL="http://127.0.0.1:${SEARCH_PORT}/retrieve"
+# =============================================================================
+
 save_path=$HOME/data/searchR1
 
 index_file=$save_path/e5_Flat.index
@@ -12,4 +20,4 @@ python examples/search/retriever/retrieval_server.py \
   --retriever_name $retriever_name \
   --retriever_model $retriever_path \
   --faiss_gpu \
-  --port 8000 \
+  --port 8010 \

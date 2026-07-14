@@ -1,8 +1,15 @@
 # ---------------
 ## -----Import Lines
+import os
+# ===== 路径集中配置（迁移时只需设置 DPEPO_USER_HOME / DPEPO_PROJECT_NAME） =====
+_DPEPO_USER_HOME = os.environ.get('DPEPO_USER_HOME', '/diskpool/home/xuxz')
+_DPEPO_PROJECT_NAME = os.environ.get('DPEPO_PROJECT_NAME', 'Code-for-DPEPO')
+_DPEPO_PROJECT_ROOT = os.path.join(_DPEPO_USER_HOME, _DPEPO_PROJECT_NAME)
+_DPEPO_CACHE_ROOT = os.path.join(_DPEPO_USER_HOME, '.cache')
+# =======================================================================
+
 # standard libraries
 import re
-import os
 import json
 import yaml
 import tempfile 
@@ -368,25 +375,57 @@ class ParallelSearchEnvs(gym.Env):
         # parquet row indices (int), and the question/ground_truth are loaded
         # from the parquet file. This mirrors WebShop's int→goal resolution.
         self._df = None
-        self._gt_map = {}  # gamefile (int) → ground_truth
+        self._gt_map = {}  # gamefile (int) -> ground_truth
+        # ── 历史 Bug 说明 (已通过重新生成 parquet 修复) ─────────────────────
+        # 旧版 prepare_search_parquet.py 曾将 question 字符串写入 gamefile 列,
+        # 导致 game_file 为 str -> gt=None -> ground_truth 回退为 question 字符串
+        # -> compute_score 中 ground_truth["target"] 报 TypeError -> reward 恒为 0。
+        # 根治方式: 重新运行 prepare_search_parquet.py, 确保 gamefile = int physical_idx。
+        # 以下 str 兼容代码已注释保留, 仅作历史参考, 不再执行。
+        # ──────────────────────────────────────────────────────────────────
+        # self._question_to_gt = {}  # question string -> ground_truth dict
         parquet_path = env_kwargs.get('parquet_path', None)
         if parquet_path is not None:
             import pandas as pd
             self._df = pd.read_parquet(parquet_path)
             print(f"[ParallelSearchEnvs] Loaded parquet: {parquet_path} ({len(self._df)} rows)")
+            # ── 以下为 str gamefile 兼容代码, 已注释 (不再需要) ──
+            # # Pre-build question -> ground_truth lookup for lazy mode (str gamefile)
+            # for idx in range(len(self._df)):
+            #     ek = self._df.iloc[idx]['env_kwargs']
+            #     if isinstance(ek, str):
+            #         import json as _json
+            #         ek = _json.loads(ek)
+            #     question = ek.get('question', '')
+            #     gt = ek.get('ground_truth', None)
+            #     if question and gt is not None:
+            #         self._question_to_gt[question] = gt
+            # print(f"[ParallelSearchEnvs] Built question->ground_truth lookup: {len(self._question_to_gt)} entries")
+            # ──────────────────────────────────────────────────────────────────
         
         # Create Ray remote actors instead of processes 
         env_worker = ray.remote(**resources_per_worker)(ParallelSearchWorker)
         self.workers = [] 
         self.workers_dict = {} 
         for game_file in tqdm(game_files): 
-            # 类型探测: 如果 game_file 是字符串(question text)，直接使用，跳过 parquet iloc
-            # 这在 lazy 模式下发生，此时 batch.non_tensor_batch['gamefile'] 已经是 question 字符串
-            if isinstance(game_file, str):
-                question = game_file
-                gt = None
-            # Resolve int→question text if parquet is available
-            elif self._df is not None:
+            # ── 以下为 str gamefile 兼容分支, 已注释 (不再需要) ──
+            # # 类型探测: 如果 game_file 是字符串(question text)，直接使用，跳过 parquet iloc
+            # # 这在 lazy 模式下发生，此时 batch.non_tensor_batch['gamefile'] 已经是 question 字符串
+            # # 分支兼容game_file为str与int的情况
+            # if isinstance(game_file, str):
+            #     question = game_file
+            #     # Bug 修复: 正常情况下 gamefile 应为 int (physical_idx),
+            #     # 但当 parquet 由旧版脚本生成时 gamefile 是 question 字符串。
+            #     # 原代码 gt=None -> ground_truth 回退为 question 字符串 ->
+            #     # compute_score 中 ground_truth["target"] 报 TypeError ->
+            #     # reward 恒为 0。现在从预建查找表取回正确的 ground_truth dict。
+            #     gt = self._question_to_gt.get(question, None)
+            #     if gt is None:
+            #         print(f"[WARNING] ground_truth not found for question: {question[:80]}")
+            # # Resolve int->question text if parquet is available
+            # ──────────────────────────────────────────────────────────────────
+            # 正常路径: gamefile 为 int (physical_idx), 通过 source parquet iloc 解析
+            if self._df is not None:
                 row = self._df.iloc[game_file]
                 ek = row['env_kwargs']
                 if isinstance(ek, str):
@@ -660,7 +699,7 @@ def test_parallel_search_envs(n=3, group_n=5):
 
     # ---------- 路径配置 ----------
     parquet_path = os.path.expanduser('~/data/searchR1_processed_direct/train.parquet')
-    json_path = '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/search/search_train_tasks_excluded.json'
+    json_path = os.path.join(_DPEPO_PROJECT_ROOT, 'data_pipelines', 'gamefiles', 'search', 'search_train_tasks_excluded.json')
     # log_dir = os.path.join(os.path.dirname(__file__), 'case')
     log_dir = os.path.dirname(__file__)
     os.makedirs(log_dir, exist_ok=True)
@@ -772,4 +811,4 @@ def test_parallel_search_envs(n=3, group_n=5):
 
 
 if __name__ == '__main__':
-    test_parallel_search_envs(n=3, group_n=5) 
+    test_parallel_search_envs(n=3, group_n=5)

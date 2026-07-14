@@ -30,6 +30,10 @@ import ray
 from verl.trainer.ppo.ray_trainer import RayPPOTrainer
 from verl.trainer.ppo.reward import load_reward_manager
 
+# ===== 路径集中配置 =====
+_DPEPO_USER_HOME = os.environ.get('DPEPO_USER_HOME', '/diskpool/home/xuxz')
+# ======================
+
 
 # @hydra.main(config_path="config", config_name="ppo_trainer_webshop", version_base=None)
 @hydra.main(config_path="config", config_name="ppo_trainer_parallel", version_base=None)
@@ -80,8 +84,9 @@ class TaskRunner:
         from agent_system.environments import build_parallel_search_envs
 
         # ===== [Search 相对于 WebShop 的修改] =====
-        # gamefiles 从训练 parquet 的 gamefile 列读取（int physical_idx，与 JSON 一致）。
-        # 需要 SOURCE_PARQUET 通过 iloc 将 int 解析为 question 字符串。
+        # gamefiles 从训练 parquet 的 gamefile 列读取, 类型为 int physical_idx (与 JSON 一致)。
+        # 需通过 SOURCE_PARQUET 的 iloc[int] 解析为 question 字符串 + ground_truth dict。
+        # lazy/非 lazy 使用同一份数据源，统一传递 parquet_path。
         # lazy/非 lazy 使用同一份数据源，统一传递 parquet_path。
         # ==========================================
         import pandas as pd
@@ -106,10 +111,11 @@ class TaskRunner:
                 search_env_config['max_turns'] = config.env.search.max_turns
 
         # SOURCE_PARQUET: 通过 physical_idx(int) → iloc → question 字符串
-        SOURCE_PARQUET = os.path.expanduser('~/data/searchR1_processed_direct/train.parquet')
+        SOURCE_PARQUET = os.path.join(_DPEPO_USER_HOME, 'data', 'searchR1_processed_direct', 'train.parquet')
 
         # ===== [Search 相对于 WebShop 的修改] =====
-        # lazy/非 lazy 统一：gamefiles 均为 int，env_kwargs 均含 parquet_path。
+        # lazy/非 lazy 统一: env_kwargs 均含 parquet_path, ParallelSearchEnvs 内部
+        # 通过 iloc[int] 从 source parquet 解析 question + ground_truth。
         # ==========================================
         lazy_envs = config.env.get("lazy_envs", False)
         if not lazy_envs:

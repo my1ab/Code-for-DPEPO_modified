@@ -25,13 +25,19 @@ import pandas as pd
 # 配置参数
 # ============================================================
 
-# Search 原始数据路径 (同 coldstart_search_local_3epoch.py)
-SEARCH_DATA_DIR = os.path.expanduser('~/data/searchR1_processed_direct')
+# ===== 路径集中配置（迁移时只需设环境变量 DPEPO_USER_HOME / DPEPO_PROJECT_NAME） =====
+_DPEPO_USER_HOME = os.environ.get('DPEPO_USER_HOME', '/diskpool/home/xuxz')
+_DPEPO_PROJECT_NAME = os.environ.get('DPEPO_PROJECT_NAME', 'Code-for-DPEPO')
+_DPEPO_CODE_BASE = os.path.join(_DPEPO_USER_HOME, _DPEPO_PROJECT_NAME)
+# =================================================================================
 
-# 输出路径
-JSON_DIR = '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/search'
-PARQUET_DIR = '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/verl_train_data/search'
-EXCLUDE_LIST = '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/success_indices_merged_500_search.txt'
+# Search 原始数据路径（位于 ${USER_HOME}/data/searchR1_processed_direct）
+SEARCH_DATA_DIR = os.path.join(_DPEPO_USER_HOME, 'data', 'searchR1_processed_direct')
+
+# 输出路径（自动根据 _DPEPO_CODE_BASE 拼接）
+JSON_DIR = os.path.join(_DPEPO_CODE_BASE, 'data_pipelines', 'gamefiles', 'search')
+PARQUET_DIR = os.path.join(_DPEPO_CODE_BASE, 'data_pipelines', 'verl_train_data', 'search')
+EXCLUDE_LIST = os.path.join(_DPEPO_CODE_BASE, 'data_pipelines', 'gamefiles', 'success_indices_merged_500_search.txt')
 
 # 采样参数
 TRAIN_SIZE = 500          # 训练集 size

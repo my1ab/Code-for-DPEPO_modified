@@ -7,20 +7,24 @@ from os.path import dirname, abspath, join
 BASE_DIR = dirname(abspath(__file__))
 DEBUG_PROD_SIZE = None  # set to `None` to disable
 
-# /home/dpepo/Code-for-DPEPO-main/verl-agent/agent_system/environments/env_package/webshop/webshop/web_agent_site/utils.py
+# ===== 路径集中配置（迁移时只需改这里或设环境变量 DPEPO_USER_HOME） =====
+_DPEPO_USER_HOME = os.environ.get('DPEPO_USER_HOME', '/diskpool/home/xuxz')
+_DPEPO_DATA_ROOT = os.path.join(_DPEPO_USER_HOME, 'data')
+# =================================================================
+
 # 默认数据集位置 冷启动时可修改
 # 执行时由verl-agent/examples/data_preprocess/prepare.py生成parquet
-DEFAULT_ATTR_PATH = '/diskpool/home/xuxz/data/items_ins_v2_1000.json'
-DEFAULT_FILE_PATH = '/diskpool/home/xuxz/data/items_shuffle_1000.json'
-DEFAULT_REVIEW_PATH = '/diskpool/home/xuxz/data/reviews.json'
+DEFAULT_ATTR_PATH = os.path.join(_DPEPO_DATA_ROOT, 'items_ins_v2_1000.json')
+DEFAULT_FILE_PATH = os.path.join(_DPEPO_DATA_ROOT, 'items_shuffle_1000.json')
+DEFAULT_REVIEW_PATH = os.path.join(_DPEPO_DATA_ROOT, 'reviews.json')
 
-FEAT_CONV = '/diskpool/home/xuxz/data/feat_conv.pt'
-FEAT_IDS = '/diskpool/home/xuxz/data/feat_ids.pt'
+FEAT_CONV = os.path.join(_DPEPO_DATA_ROOT, 'feat_conv.pt')
+FEAT_IDS = os.path.join(_DPEPO_DATA_ROOT, 'feat_ids.pt')
 
-HUMAN_ATTR_PATH = '/diskpool/home/xuxz/data/items_human_ins.json'
-# HUMAN_ATTR_PATH = '/diskpool/home/xuxz/data/splited/items_human_ins_cleaned_split.json'
-# HUMAN_ATTR_PATH = '/diskpool/home/xuxz/data/splited/items_human_ins_cleaned_split_1500_max.json'
-# HUMAN_ATTR_PATH = '/diskpool/home/xuxz/data/splited/items_human_ins_cleaned_split_sample_1012.json'
+HUMAN_ATTR_PATH = os.path.join(_DPEPO_DATA_ROOT, 'items_human_ins.json')
+# HUMAN_ATTR_PATH = os.path.join(_DPEPO_DATA_ROOT, 'splited/items_human_ins_cleaned_split.json')
+# HUMAN_ATTR_PATH = os.path.join(_DPEPO_DATA_ROOT, 'splited/items_human_ins_cleaned_split_1500_max.json')
+# HUMAN_ATTR_PATH = os.path.join(_DPEPO_DATA_ROOT, 'splited/items_human_ins_cleaned_split_sample_1012.json')
 
 def random_idx(cum_weights):
     """Generate random index by sampling uniformly from sum of all weights, then

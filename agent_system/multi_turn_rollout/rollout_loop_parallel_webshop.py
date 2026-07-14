@@ -46,12 +46,8 @@ import time
 import datetime
 
 
-# 全局变量控制是否打印[DEBUG]调试信息
-print_debug = True
 # 模块级全局任务计数器，生命周期与程序一致，不受类创建销毁影响
 GLOBAL_TASK_COUNTER = 0
-# 全局保存轨迹开关，由配置 self.config.get('save_traj', False) 控制，默认关闭
-save_traj = False
 
 
 def append_to_json_file(data, filename):
@@ -71,7 +67,7 @@ def append_to_json_file(data, filename):
         json.dump(existing_data, f, ensure_ascii=False, indent=4)
 
 
-def extract_think_and_actions(text, num_parallel):
+def extract_think_and_actions(text, num_parallel, print_debug=True):
     """
     Extract think content and action dict from model output.
     照搬coldstart_para_his_test文件的健壮逻辑：提前初始化所有num_parallel个环境的action为"null"，只填充合法的动作
@@ -134,6 +130,13 @@ class TrajectoryCollectorParallelWebShop:
         self.config = config
         self.tokenizer = tokenizer
         self.processor = processor
+        # 从 config.custom 读取调试和保存开关，支持 shell 脚本传入覆盖
+        if hasattr(config, 'custom'):
+            self.print_debug = config.custom.get('print_debug', True)
+            self.save_traj = config.custom.get('save_traj', False)
+        else:
+            self.print_debug = True
+            self.save_traj = False
 
     def format_available_actions(self, available_actions):
         """
@@ -464,7 +467,7 @@ class TrajectoryCollectorParallelWebShop:
     ) -> DataProto:
         """Collect and organize trajectory data, aligned with official rollout_loop_parallel.py."""
         batch_size = len(total_batch_list)
-        if print_debug:
+        if self.print_debug:
             print(f'[DEBUG] into gather_rollout_data, batch_size={batch_size}')
         
 
@@ -491,6 +494,7 @@ class TrajectoryCollectorParallelWebShop:
         return gen_batch
 
     # ===================== Calculate 系列机制（对齐 rollout_loop_parallel.py） =====================
+    # 过程reward弃用
     def calculate_process_reward(self, total_batch_list):
         # TODO: Check the boundary situation
 
@@ -546,6 +550,7 @@ class TrajectoryCollectorParallelWebShop:
 
         return total_process_rewards
 
+    # 重复惩罚
     def calculate_penalties(self, history_actions, action_dict):
         # history_actions: Containing history actions in each env
         # sample: only the action_dict is useful
@@ -688,7 +693,7 @@ class TrajectoryCollectorParallelWebShop:
         group_n = self.config.env.rollout.n if is_train else 1
         print(f'[INFO] Starting rollout: batch_size={batch_size}, group_n(self.config.env.rollout.n)={group_n}, is_train={is_train}')
         # 验证时 [DEBUG] group_n = 1 in rollout loop, is_train=False, batch_size=50
-        if print_debug:
+        if self.print_debug:
             print(f'[DEBUG] group_n = {group_n} in rollout loop, is_train={is_train}, batch_size={batch_size}')
         for i in range(batch_size):
             if i % group_n == 0:
@@ -788,7 +793,7 @@ class TrajectoryCollectorParallelWebShop:
             # 只对 active（未完成）样本做模型推理，已完成样本跳过以减少计算量
             active_indices = np.where(active_masks)[0]
             num_active = len(active_indices)
-            if print_debug:
+            if self.print_debug:
                 print(f'[INFO] Step {_step}: active samples={num_active}/{batch_size}')
             if num_active == batch_size:
                 # 全部 active，走原始路径
@@ -855,7 +860,7 @@ class TrajectoryCollectorParallelWebShop:
             batch.non_tensor_batch['action'] = text_actions
             # 提取动作
             batch.non_tensor_batch['action_dict'] = [
-                extract_think_and_actions(elem, num_parallel=self.config.env.num_parallel)['actions'] for elem in text_actions
+                extract_think_and_actions(elem, num_parallel=self.config.env.num_parallel, print_debug=self.print_debug)['actions'] for elem in text_actions
             ]
 
             # 格式化输入
@@ -940,7 +945,7 @@ class TrajectoryCollectorParallelWebShop:
                 total_infos[i].append(infos[i])
 
             # 参考coldstart_para_his_test_1.5B_hislen8_epoch3.5_v2.py添加每样本状态判断
-            if print_debug:
+            if self.print_debug:
                 print(f"[DEBUG] dones = {dones} and not done yet")
                 print(f"[DEBUG] is_done = {is_done}")
             # print(f"rewards = {current_rewards}")
@@ -987,7 +992,7 @@ class TrajectoryCollectorParallelWebShop:
                     completed_idx = worker_id_in_task  # 用worker在组内的索引作为环境编号，符合你对环境副本的理解
                     # status_msgs[bs] = f"Task {task_idx} {status} at turn {_step + 1} in environments {completed_idx}"
                     status_msgs[bs] = f"Task {GLOBAL_TASK_COUNTER} sample {bs} {status} at turn {_step + 1}"
-                    if print_debug:
+                    if self.print_debug:
                         print(f'[DEBUG] status_msgs[bs] = {status_msgs[bs]}')
                         print(f"dones = {dones}")
                         print(f"np_rewards = {np_rewards}")
@@ -1010,11 +1015,11 @@ class TrajectoryCollectorParallelWebShop:
                         # 验证阶段只标记当前任务，让其他任务自然完成，收集完整的验证轨迹
                         is_done[bs] = True
                         turn_out_range[bs] = False
-                    if print_debug:
+                    if self.print_debug:
                         print(f'[DEBUG] is_done trans to {is_done}')
                 elif null_count[bs] >= 2:
                     status_msgs[bs] = f"Task {GLOBAL_TASK_COUNTER} exit(all null) at turn {_step + 1}"
-                    if print_debug:
+                    if self.print_debug:
                         print(f'[DEBUG] status_msgs[bs] = {status_msgs[bs]}')
                     is_done[bs] = True
                     turn_out_range[bs] = False
@@ -1031,7 +1036,7 @@ class TrajectoryCollectorParallelWebShop:
                         # 验证阶段只标记当前任务，让其他任务自然完成，收集完整的验证轨迹
                         is_done[bs] = True
                         turn_out_range[bs] = False
-                    if print_debug:
+                    if self.print_debug:
                         print(f'[DEBUG] is_done trans to {is_done}')
             
             # 检查是否所有任务都已完成，无论batch_size是多少，只要全部完成就立即退出
@@ -1102,16 +1107,12 @@ class TrajectoryCollectorParallelWebShop:
             )
         
         global GLOBAL_TASK_COUNTER
-        global save_traj
-        
-        # 从配置读取保存开关（默认关闭），整合了原有的show_case和save_traj两个功能
-        # save_traj = self.config.get('save_traj', False)
         
         print("="*80)
         log_time = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
         
         # 如果全局开关开启，同时保存JSON轨迹文件和人类可读的文本日志（整合原show_case功能）
-        if save_traj:
+        if self.save_traj:
             # === 保存目录 ===
             save_dir = "sample"
             os.makedirs(save_dir, exist_ok=True)
@@ -1181,7 +1182,7 @@ class TrajectoryCollectorParallelWebShop:
                 status_msgs=status_msgs,
                 world_size=actor_rollout_wg.world_size
             )
-            if print_debug:
+            if self.print_debug:
                 print(f'[DEBUG] going backward computing')
             return gen_batch_output
         else:

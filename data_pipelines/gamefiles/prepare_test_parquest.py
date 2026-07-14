@@ -1,7 +1,15 @@
 import json
+import os
 import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
+
+# ===== 路径集中配置 =====
+_DPEPO_USER_HOME = os.environ.get('DPEPO_USER_HOME', '/diskpool/home/xuxz')
+_DPEPO_PROJECT_NAME = os.environ.get('DPEPO_PROJECT_NAME', 'Code-for-DPEPO')
+_DPEPO_CODE_BASE = os.path.join(_DPEPO_USER_HOME, _DPEPO_PROJECT_NAME)
+_GAMEFILES_DIR = os.path.join(_DPEPO_CODE_BASE, 'data_pipelines', 'gamefiles')
+# ======================
 
 
 def read_json(filepath):
@@ -9,8 +17,7 @@ def read_json(filepath):
 
 
 def main():
-    # filepath = 'gamefiles_eval.json'
-    filepath = '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/alfworld/gamefiles_eval.json'
+    filepath = os.path.join(_GAMEFILES_DIR, 'alfworld', 'gamefiles_eval.json')
     total_train_data = read_json(filepath=filepath)
     
     gamefiles = list(total_train_data.values())
@@ -34,15 +41,14 @@ def main():
     df = pd.DataFrame(current_data)
 
     # df.to_parquet('../verl_train_data/test_indomain.parquet', index=False)
-    df.to_parquet('/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/test_indomain.parquet', index=False)
+    df.to_parquet(os.path.join(_GAMEFILES_DIR, 'test_indomain.parquet'), index=False)
 
     game_files = {}
     for idx, elem in enumerate(current_data):
         gamefile = elem['gamefile']
         game_files[str(idx)] = gamefile
 
-    # with open('../gamefiles/dedu_parallel_train_data_500.json', 'w') as f:
-    with open('/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/test_indomain.json', 'w') as f:
+    with open(os.path.join(_GAMEFILES_DIR, 'test_indomain.json'), 'w') as f:
         json.dump(game_files, f, indent=4)
 
 

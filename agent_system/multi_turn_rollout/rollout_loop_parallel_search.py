@@ -57,9 +57,6 @@ import os
 import time
 
 
-# 全局变量控制是否打印[DEBUG]调试信息
-print_debug = True
-
 
 def append_to_json_file(data, filename):
     """Append a dict to a JSON file."""
@@ -78,7 +75,7 @@ def append_to_json_file(data, filename):
         json.dump(existing_data, f, ensure_ascii=False, indent=4)
 
 
-def extract_think_and_actions(text, num_parallel):
+def extract_think_and_actions(text, num_parallel, print_debug=True):
     """
     Extract think content and action dict from model output.
     照搬coldstart_para_his_test文件的健壮逻辑：提前初始化所有num_parallel个环境的action为"null"，只填充合法的动作
@@ -146,6 +143,13 @@ class TrajectoryCollectorParallelSearch:
         self.config = config
         self.tokenizer = tokenizer
         self.processor = processor
+        # 从 config.custom 读取调试和保存开关，支持 shell 脚本传入覆盖
+        if hasattr(config, 'custom'):
+            self.print_debug = config.custom.get('print_debug', True)
+            self.save_traj = config.custom.get('save_traj', False)
+        else:
+            self.print_debug = True
+            self.save_traj = False
 
     def format_available_actions(self, available_actions):
         """
@@ -425,7 +429,7 @@ class TrajectoryCollectorParallelSearch:
     ) -> DataProto:
         """Collect and organize trajectory data, aligned with official rollout_loop_parallel.py."""
         batch_size = len(total_batch_list)
-        if print_debug:
+        if self.print_debug:
             print(f'[DEBUG] into gather_rollout_data, batch_size={batch_size}')
         
         # 设置默认值，保持向后兼容性
@@ -671,7 +675,7 @@ class TrajectoryCollectorParallelSearch:
         # 训练阶段使用config.env.rollout.n创建多个重复样本，验证阶段group_n=1节省资源
         group_n = self.config.env.rollout.n if is_train else 1
         # 验证时 [DEBUG] group_n = 1 in rollout loop, is_train=False, batch_size=50
-        if print_debug:
+        if self.print_debug:
             print(f'[DEBUG] group_n = {group_n} in rollout loop, is_train={is_train}, batch_size={batch_size}')
         for i in range(batch_size):
             if i % group_n == 0:
@@ -719,7 +723,7 @@ class TrajectoryCollectorParallelSearch:
         # Trajectory collection loop（恢复copy.py原始循环逻辑，仅保留必要的成功判断功能）
         # _step为当前步数
         for _step in tqdm(range(self.config.env.max_steps)):
-            if print_debug:
+            if self.print_debug:
                 print(f'[DEBUG] running task {GLOBAL_TASK_COUNTER} step {_step} of total {self.config.env.max_steps}')
             # 逐个元素取反  即is_done真时将active_masks伪
             active_masks = np.logical_not(is_done)
@@ -834,7 +838,7 @@ class TrajectoryCollectorParallelSearch:
             batch.non_tensor_batch['action'] = text_actions
             # 提取动作
             batch.non_tensor_batch['action_dict'] = [
-                extract_think_and_actions(elem, num_parallel=self.config.env.num_parallel)['actions'] for elem in text_actions
+                extract_think_and_actions(elem, num_parallel=self.config.env.num_parallel, print_debug=self.print_debug)['actions'] for elem in text_actions
             ]
 
             # 格式化输入
@@ -935,7 +939,7 @@ class TrajectoryCollectorParallelSearch:
                 total_infos[i].append(infos[i])
 
             # 参考coldstart_para_his_test_1.5B_hislen8_epoch3.5_v2.py添加每样本状态判断
-            if print_debug:
+            if self.print_debug:
                 print(f"[DEBUG] dones = {dones} and not done yet")
                 print(f"[DEBUG] is_done = {is_done}")
             # print(f"rewards = {current_rewards}")
@@ -982,7 +986,7 @@ class TrajectoryCollectorParallelSearch:
                     completed_idx = worker_id_in_task  # 用worker在组内的索引作为环境编号，符合你对环境副本的理解
                     # status_msgs[bs] = f"Task {task_idx} {status} at turn {_step + 1} in environments {completed_idx}"
                     status_msgs[bs] = f"Task {GLOBAL_TASK_COUNTER} sample {bs} {status} at turn {_step + 1}"
-                    if print_debug:
+                    if self.print_debug:
                         print(f'[DEBUG] status_msgs[bs] = {status_msgs[bs]}')
                         print(f"dones = {dones}")
                         print(f"np_rewards = {np_rewards}")
@@ -1003,11 +1007,11 @@ class TrajectoryCollectorParallelSearch:
                         # 验证阶段只标记当前任务，让其他任务自然完成，收集完整的验证轨迹
                         is_done[bs] = True
                         turn_out_range[bs] = False
-                    if print_debug:
+                    if self.print_debug:
                         print(f'[DEBUG] is_done trans to {is_done}')
                 elif null_count[bs] >= 2:
                     status_msgs[bs] = f"Task {GLOBAL_TASK_COUNTER} exit(all null) at turn {_step + 1}"
-                    if print_debug:
+                    if self.print_debug:
                         print(f'[DEBUG] status_msgs[bs] = {status_msgs[bs]}')
                     is_done[bs] = True
                     turn_out_range[bs] = False
@@ -1024,7 +1028,7 @@ class TrajectoryCollectorParallelSearch:
                         # 验证阶段只标记当前任务，让其他任务自然完成，收集完整的验证轨迹
                         is_done[bs] = True
                         turn_out_range[bs] = False
-                    if print_debug:
+                    if self.print_debug:
                         print(f'[DEBUG] is_done trans to {is_done}')
             
             # 检查是否所有任务都已完成，无论batch_size是多少，只要全部完成就立即退出
@@ -1089,11 +1093,10 @@ class TrajectoryCollectorParallelSearch:
         global GLOBAL_TASK_COUNTER
         # 返回成功标记和状态消息，保持与参考文件相同的轨迹信息结构
         show_case = 1
-        save_traj=1
         # 分别保存到case sample文件夹
         print("="*80)
-        if print_debug:
-            print(f'[DEBUG] show_case {show_case} save_traj {save_traj}')
+        if self.print_debug:
+            print(f'[DEBUG] show_case {show_case} save_traj {self.save_traj}')
         # print(f'[DEBUG] total_batch_list = {total_batch_list}')
         # 将 total_batch_list 以文本格式写入独立的日志文件（代替 print 到控制台）
         log_time = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
@@ -1111,11 +1114,11 @@ class TrajectoryCollectorParallelSearch:
         
         
         # 如果全局开关开启，保存当前批次的所有轨迹到新的JSON文件
-        if save_traj:
+        if self.save_traj:
             # 生成唯一的文件名，包含全局任务计数器和时间戳，避免覆盖
             timestamp = int(time.time() * 1000)
             # filename = f"sample/traj_batch_{GLOBAL_TASK_COUNTER}_{timestamp}.json"
-            filename = f"sample/traj_batch_{GLOBAL_TASK_COUNTER}_{log_time}.json"
+            filename = f"sample/traj_task_{GLOBAL_TASK_COUNTER}_{log_time}.json"
             # 辅助函数：递归将所有Tensor和numpy数组转换为Python原生类型，确保JSON可序列化
             def tensor_to_native(obj):
                 if isinstance(obj, torch.Tensor):
@@ -1136,11 +1139,26 @@ class TrajectoryCollectorParallelSearch:
             if save_dir and not os.path.exists(save_dir):
                 os.makedirs(save_dir, exist_ok=True)
             
-            # 准备要保存的数据，包含所有轨迹相关信息，先转换所有非原生类型
+            # 需要在保存前去除的长向量键（这些字段数据量大但对轨迹分析无意义）
+            _LONG_VEC_KEYS = {
+                'prompts', 'responses', 'input_ids',
+                'rollout_log_probs', 'attention_mask', 'position_ids',
+            }
+            def strip_long_vectors(batch_list):
+                """递归去除 total_batch_list 中每条记录的长向量字段"""
+                for group in batch_list:
+                    for item in group:
+                        for key in list(item.keys()):
+                            if key in _LONG_VEC_KEYS:
+                                del item[key]
+                return batch_list
+
+            # 准备要保存的数据，包含所有轨迹相关信息，先转换所有非原生类型，再去除长向量
             # total_batch_list, episode_rewards, episode_lengths, traj_uid, tool_callings, success_flags, status_msgs
+            _cleaned_batch_list = strip_long_vectors(tensor_to_native(total_batch_list))
             save_data = {
                 "batch_idx": GLOBAL_TASK_COUNTER,
-                "total_batch_list": tensor_to_native(total_batch_list),
+                "total_batch_list": _cleaned_batch_list,
                 "episode_rewards": tensor_to_native(episode_rewards),
                 "episode_lengths": tensor_to_native(episode_lengths),
                 "traj_uid": tensor_to_native(traj_uid),
@@ -1167,7 +1185,7 @@ class TrajectoryCollectorParallelSearch:
                 status_msgs=status_msgs,
                 world_size=actor_rollout_wg.world_size
             )
-            if print_debug:
+            if self.print_debug:
                 print(f'[DEBUG] going backward computing')
             return gen_batch_output
         else:

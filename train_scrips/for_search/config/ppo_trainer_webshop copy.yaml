@@ -330,7 +330,7 @@ env:
     n: 8
   search:
     log_requests: false
-    search_url: "http://127.0.0.1:8000/retrieve"
+    search_url: "http://127.0.0.1:8010/retrieve"
     topk: 3
     timeout: 60
   sokoban:

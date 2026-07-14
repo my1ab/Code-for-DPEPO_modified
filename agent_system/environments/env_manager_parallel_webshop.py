@@ -1,8 +1,14 @@
 # ---------------
 ## -----Import Lines
+import os  # 必须在路径配置之前导入
+
+# ===== 路径集中配置（迁移时只需设置 DPEPO_USER_HOME） =====
+_DPEPO_USER_HOME = os.environ.get('DPEPO_USER_HOME', '/diskpool/home/xuxz')
+_DPEPO_DATA_ROOT = os.path.join(_DPEPO_USER_HOME, 'data')
+# ==============================================================
+
 # standard libraries
 import re
-import os
 import json
 import yaml
 import tempfile 
@@ -88,8 +94,8 @@ class Env:
             # 'file_path': '/data/home/zhangjs/disk/project/verl-agent/agent_system/environments/env_package/webshop/webshop/data/items_shuffle_1000.json',
             # 'attr_path': '/data/home/zhangjs/disk/project/verl-agent/agent_system/environments/env_package/webshop/webshop/data/items_ins_v2_1000.json'
             # 标记 修改路径
-            'file_path': '/diskpool/home/xuxz/data/items_shuffle_1000.json',
-            'attr_path': '/diskpool/home/xuxz/data/items_ins_v2_1000.json'  
+            'file_path': os.path.join(_DPEPO_DATA_ROOT, 'items_shuffle_1000.json'),
+            'attr_path': os.path.join(_DPEPO_DATA_ROOT, 'items_ins_v2_1000.json')  
         } 
         env, obs, infos = self.build_env(
             gamefile=game_file,

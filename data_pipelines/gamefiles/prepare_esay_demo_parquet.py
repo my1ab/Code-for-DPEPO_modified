@@ -5,7 +5,16 @@
 """
 
 import json
+import os
 import pandas as pd
+
+# ===== 路径集中配置（迁移时只需设环境变量 DPEPO_USER_HOME） =====
+_DPEPO_USER_HOME = os.environ.get('DPEPO_USER_HOME', '/diskpool/home/xuxz')
+_DPEPO_PROJECT_NAME = os.environ.get('DPEPO_PROJECT_NAME', 'Code-for-DPEPO')
+_DPEPO_CODE_BASE = os.path.join(_DPEPO_USER_HOME, _DPEPO_PROJECT_NAME)
+_DPEPO_CACHE_ROOT = os.path.join(_DPEPO_USER_HOME, '.cache')
+_GAMEFILES_DIR = os.path.join(_DPEPO_CODE_BASE, 'data_pipelines', 'gamefiles')
+# =============================================================
 
 
 def read_json(filepath):
@@ -13,15 +22,17 @@ def read_json(filepath):
 
 
 def main():
+    _ALFWORLD_BASE = os.path.join(_DPEPO_CACHE_ROOT, 'alfworld', 'json_2.1.1', 'train')
+
     # ALFWorld 训练集游戏文件路径列表
     gamefiles = [
-        "/diskpool/home/xuxz/.cache/alfworld/json_2.1.1/train/look_at_obj_in_light-Book-None-DeskLamp-320/trial_T20190909_152445_177541/game.tw-pddl",
-        "/diskpool/home/xuxz/.cache/alfworld/json_2.1.1/train/pick_clean_then_place_in_recep-Bowl-None-DiningTable-23/trial_T20190907_221735_616141/game.tw-pddl",
-        "/diskpool/home/xuxz/.cache/alfworld/json_2.1.1/train/pick_two_obj_and_place-Pen-None-GarbageCan-321/trial_T20190907_201828_429337/game.tw-pddl",
-        "/diskpool/home/xuxz/.cache/alfworld/json_2.1.1/train/pick_two_obj_and_place-Pen-None-GarbageCan-321/trial_T20190907_201720_953919/game.tw-pddl",
-        "/diskpool/home/xuxz/.cache/alfworld/json_2.1.1/train/look_at_obj_in_light-Mug-None-DeskLamp-301/trial_T20190908_155916_103990/game.tw-pddl",
-        "/diskpool/home/xuxz/.cache/alfworld/json_2.1.1/train/pick_and_place_simple-Candle-None-Toilet-429/trial_T20190908_052248_516834/game.tw-pddl",
-        "/diskpool/home/xuxz/.cache/alfworld/json_2.1.1/train/pick_cool_then_place_in_recep-Bread-None-CounterTop-11/trial_T20190907_185214_077230/game.tw-pddl",
+        os.path.join(_ALFWORLD_BASE, "look_at_obj_in_light-Book-None-DeskLamp-320/trial_T20190909_152445_177541/game.tw-pddl"),
+        os.path.join(_ALFWORLD_BASE, "pick_clean_then_place_in_recep-Bowl-None-DiningTable-23/trial_T20190907_221735_616141/game.tw-pddl"),
+        os.path.join(_ALFWORLD_BASE, "pick_two_obj_and_place-Pen-None-GarbageCan-321/trial_T20190907_201828_429337/game.tw-pddl"),
+        os.path.join(_ALFWORLD_BASE, "pick_two_obj_and_place-Pen-None-GarbageCan-321/trial_T20190907_201720_953919/game.tw-pddl"),
+        os.path.join(_ALFWORLD_BASE, "look_at_obj_in_light-Mug-None-DeskLamp-301/trial_T20190908_155916_103990/game.tw-pddl"),
+        os.path.join(_ALFWORLD_BASE, "pick_and_place_simple-Candle-None-Toilet-429/trial_T20190908_052248_516834/game.tw-pddl"),
+        os.path.join(_ALFWORLD_BASE, "pick_cool_then_place_in_recep-Bread-None-CounterTop-11/trial_T20190907_185214_077230/game.tw-pddl"),
     ]
 
     # 构建训练数据列表
@@ -42,12 +53,11 @@ def main():
 
     # 转换为 DataFrame 并保存为 Parquet
     df = pd.DataFrame(parquet_train_data)
-    # df.to_parquet('../verl_train_data/parallel_train_data_demo_easy.parquet', index=False)
-    df.to_parquet('/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/parallel_train_data_demo_easy.parquet', index=False)
+    df.to_parquet(os.path.join(_GAMEFILES_DIR, 'parallel_train_data_demo_easy.parquet'), index=False)
     print(f"已生成 parquet 文件，共 {len(df)} 条数据")
 
     # 同时保存为同名 JSON 文件
-    json_path = '/diskpool/home/xuxz/Code-for-DPEPO/data_pipelines/gamefiles/parallel_train_data_demo_easy.json'
+    json_path = os.path.join(_GAMEFILES_DIR, 'parallel_train_data_demo_easy.json')
     df.to_json(json_path, orient='records', force_ascii=False, indent=2)
     print(f"已生成 json 文件: {json_path}")
 

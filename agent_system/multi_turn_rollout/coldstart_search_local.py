@@ -43,7 +43,7 @@ local_tokenizer = None
 # ── 仅在函数内部使用的全局常量 ────────────────────────
 MAX_CONTEXT_LENGTH = 32768    # 本地模型最大上下文长度 (仅本地模式生效)
 BASE_MODEL_PATH = '/diskpool/home/xuxz/ms-swift/model/Qwen2.5-1.5B-Instruct'  # 本地模型路径 (仅本地模式生效)
-SEARCH_URL = 'http://127.0.0.1:8000/retrieve'  # 检索服务器地址
+SEARCH_URL = os.environ.get('SEARCH_URL', 'http://127.0.0.1:8010/retrieve')  # 检索服务器地址（优先读环境变量）
 SEARCH_TOPK = 3               # 每次搜索返回的 top-k 文档数
 SEARCH_TIMEOUT = 60           # 搜索请求超时时间 (秒)
 SEARCH_LOG_REQUESTS = False   # 是否记录搜索请求日志
