@@ -107,4 +107,4 @@ nohup python3 train_scrips/for_webshop/main_ppo_webshop.py \
 echo "PID: $!"
 echo "Log: $LOG_FILE"
 echo "To monitor: tail -f $LOG_FILE"
-tail -f "$LOG_FILE"
+tail -F "$LOG_FILE"

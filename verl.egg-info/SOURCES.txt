@@ -160,7 +160,9 @@ setup.py
 ./verl/utils/vllm_utils.py
 ./verl/utils/checkpoint/__init__.py
 ./verl/utils/checkpoint/checkpoint_manager.py
+./verl/utils/checkpoint/fsdp_checkpoint_manager copy.py
 ./verl/utils/checkpoint/fsdp_checkpoint_manager.py
+./verl/utils/checkpoint/fsdp_checkpoint_manager_original.py
 ./verl/utils/checkpoint/megatron_checkpoint_manager.py
 ./verl/utils/dataset/__init__.py
 ./verl/utils/dataset/multiturn_sft_dataset.py
@@ -204,7 +206,10 @@ setup.py
 ./verl/utils/reward_score/sandbox_fusion/utils.py
 ./verl/version/version
 ./verl/workers/__init__.py
+./verl/workers/fsdp_workers copy.py
 ./verl/workers/fsdp_workers.py
+./verl/workers/fsdp_workers_original.py
+./verl/workers/fsdp_workers同步解决死锁.py
 ./verl/workers/megatron_workers.py
 ./verl/workers/actor/__init__.py
 ./verl/workers/actor/base.py
@@ -411,7 +416,9 @@ verl/utils/ulysses.py
 verl/utils/vllm_utils.py
 verl/utils/checkpoint/__init__.py
 verl/utils/checkpoint/checkpoint_manager.py
+verl/utils/checkpoint/fsdp_checkpoint_manager copy.py
 verl/utils/checkpoint/fsdp_checkpoint_manager.py
+verl/utils/checkpoint/fsdp_checkpoint_manager_original.py
 verl/utils/checkpoint/megatron_checkpoint_manager.py
 verl/utils/dataset/__init__.py
 verl/utils/dataset/multiturn_sft_dataset.py
@@ -455,7 +462,10 @@ verl/utils/reward_score/sandbox_fusion/__init__.py
 verl/utils/reward_score/sandbox_fusion/utils.py
 verl/version/version
 verl/workers/__init__.py
+verl/workers/fsdp_workers copy.py
 verl/workers/fsdp_workers.py
+verl/workers/fsdp_workers_original.py
+verl/workers/fsdp_workers同步解决死锁.py
 verl/workers/megatron_workers.py
 verl/workers/actor/__init__.py
 verl/workers/actor/base.py

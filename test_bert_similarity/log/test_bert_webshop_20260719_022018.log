@@ -1,0 +1,717 @@
+INFO 07-19 02:20:21 [__init__.py:216] Automatically detected platform cuda.
+test started
+======================================================================
+BERT 嵌入模型相似度测试
+模型: BAAI/bge-base-en-v1.5
+本地目录: /diskpool/home/xuxz/Code-for-DPEPO/test_bert_similarity/models/bge-base-en-v1.5
+======================================================================
+
+[1/2] 确保模型已下载到本地 ...
+  本地已有模型缓存: /diskpool/home/xuxz/Code-for-DPEPO/test_bert_similarity/models/bge-base-en-v1.5
+
+[2/2] 正在加载本地模型: /diskpool/home/xuxz/Code-for-DPEPO/test_bert_similarity/models/bge-base-en-v1.5 ...
+INFO 07-19 02:20:23 [utils.py:233] non-default args: {'runner': 'pooling', 'trust_remote_code': True, 'gpu_memory_utilization': 0.1, 'disable_log_stats': True, 'model': '/diskpool/home/xuxz/Code-for-DPEPO/test_bert_similarity/models/bge-base-en-v1.5'}
+The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+INFO 07-19 02:20:23 [config.py:841] Found sentence-transformers tokenize configuration.
+INFO 07-19 02:20:23 [model.py:547] Resolved architecture: BertModel
+INFO 07-19 02:20:23 [config.py:739] Found sentence-transformers modules configuration.
+INFO 07-19 02:20:23 [config.py:759] Found pooling configuration.
+`torch_dtype` is deprecated! Use `dtype` instead!
+INFO 07-19 02:20:23 [model.py:1730] Downcasting torch.float32 to torch.float16.
+INFO 07-19 02:20:23 [model.py:1510] Using max model len 512
+INFO 07-19 02:20:23 [arg_utils.py:1575] (Disabling) chunked prefill by default
+INFO 07-19 02:20:23 [arg_utils.py:1578] (Disabling) prefix caching by default
+INFO 07-19 02:20:23 [__init__.py:440] Only "last" pooling supports chunked prefill and prefix caching; disabling both.
+[1;36m(EngineCore_DP0 pid=969617)[0;0m INFO 07-19 02:20:24 [core.py:644] Waiting for init message from front-end.
+[1;36m(EngineCore_DP0 pid=969617)[0;0m INFO 07-19 02:20:24 [core.py:77] Initializing a V1 LLM engine (v0.11.0) with config: model='/diskpool/home/xuxz/Code-for-DPEPO/test_bert_similarity/models/bge-base-en-v1.5', speculative_config=None, tokenizer='/diskpool/home/xuxz/Code-for-DPEPO/test_bert_similarity/models/bge-base-en-v1.5', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.float16, max_seq_len=512, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser=''), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None), seed=0, served_model_name=/diskpool/home/xuxz/Code-for-DPEPO/test_bert_similarity/models/bge-base-en-v1.5, enable_prefix_caching=False, chunked_prefill_enabled=False, pooler_config=PoolerConfig(pooling_type='CLS', normalize=True, dimensions=None, enable_chunked_processing=None, max_embed_len=None, activation=None, logit_bias=None, softmax=None, step_tag_id=None, returned_token_ids=None), compilation_config={"level":3,"debug_dump_path":"","cache_dir":"","backend":"","custom_ops":[],"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output","vllm.mamba_mixer2","vllm.mamba_mixer","vllm.short_conv","vllm.linear_attention","vllm.plamo2_mamba_mixer","vllm.gdn_attention","vllm.sparse_attn_indexer"],"use_inductor":true,"compile_sizes":[],"inductor_compile_config":{"enable_auto_functionalized_v2":false},"inductor_passes":{},"cudagraph_mode":1,"use_cudagraph":true,"cudagraph_num_of_warmups":1,"cudagraph_capture_sizes":[512,504,496,488,480,472,464,456,448,440,432,424,416,408,400,392,384,376,368,360,352,344,336,328,320,312,304,296,288,280,272,264,256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"cudagraph_copy_inputs":false,"full_cuda_graph":false,"use_inductor_graph_partition":false,"pass_config":{},"max_capture_size":512,"local_cache_dir":null}
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[1;36m(EngineCore_DP0 pid=969617)[0;0m INFO 07-19 02:20:26 [parallel_state.py:1208] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0, EP rank 0
+[1;36m(EngineCore_DP0 pid=969617)[0;0m WARNING 07-19 02:20:26 [topk_topp_sampler.py:66] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+[1;36m(EngineCore_DP0 pid=969617)[0;0m INFO 07-19 02:20:27 [gpu_model_runner.py:2602] Starting to load model /diskpool/home/xuxz/Code-for-DPEPO/test_bert_similarity/models/bge-base-en-v1.5...
+[1;36m(EngineCore_DP0 pid=969617)[0;0m INFO 07-19 02:20:27 [gpu_model_runner.py:2634] Loading model from scratch...
+[1;36m(EngineCore_DP0 pid=969617)[0;0m INFO 07-19 02:20:27 [cuda.py:366] Using Flash Attention backend on V1 engine.
+[1;36m(EngineCore_DP0 pid=969617)[0;0m Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+[1;36m(EngineCore_DP0 pid=969617)[0;0m Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00, 143.62it/s]
+[1;36m(EngineCore_DP0 pid=969617)[0;0m 
+[1;36m(EngineCore_DP0 pid=969617)[0;0m INFO 07-19 02:20:27 [default_loader.py:267] Loading weights took 0.41 seconds
+[1;36m(EngineCore_DP0 pid=969617)[0;0m INFO 07-19 02:20:28 [gpu_model_runner.py:2653] Model loading took 0.2091 GiB and 0.600317 seconds
+[1;36m(EngineCore_DP0 pid=969617)[0;0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/67 [00:00<?, ?it/s][1;36m(EngineCore_DP0 pid=969617)[0;0m INFO 07-19 02:20:30 [backends.py:548] Using cache directory: /diskpool/home/xuxz/.cache/vllm/torch_compile_cache/633cdb8411/rank_0_0/backbone for vLLM's torch.compile
+[1;36m(EngineCore_DP0 pid=969617)[0;0m INFO 07-19 02:20:30 [backends.py:559] Dynamo bytecode transform time: 1.61 s
+[1;36m(EngineCore_DP0 pid=969617)[0;0m INFO 07-19 02:20:30 [backends.py:164] Directly load the compiled graph(s) for dynamic shape from the cache, took 0.453 s
+[1;36m(EngineCore_DP0 pid=969617)[0;0m INFO 07-19 02:20:31 [monitor.py:34] torch.compile takes 1.61 s in total
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   1%|▏         | 1/67 [00:02<03:02,  2.77s/it]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   6%|▌         | 4/67 [00:02<00:34,  1.81it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  10%|█         | 7/67 [00:02<00:16,  3.61it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  15%|█▍        | 10/67 [00:03<00:09,  5.76it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  19%|█▉        | 13/67 [00:03<00:06,  8.27it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  24%|██▍       | 16/67 [00:03<00:04, 10.99it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  28%|██▊       | 19/67 [00:03<00:03, 13.71it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  33%|███▎      | 22/67 [00:03<00:02, 16.10it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  37%|███▋      | 25/67 [00:03<00:02, 18.00it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  42%|████▏     | 28/67 [00:03<00:01, 20.08it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  46%|████▋     | 31/67 [00:03<00:01, 21.91it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  51%|█████     | 34/67 [00:04<00:01, 23.38it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  55%|█████▌    | 37/67 [00:04<00:01, 24.67it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  60%|█████▉    | 40/67 [00:04<00:01, 25.63it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  64%|██████▍   | 43/67 [00:04<00:00, 26.36it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  69%|██████▊   | 46/67 [00:04<00:00, 26.94it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  73%|███████▎  | 49/67 [00:04<00:00, 27.30it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  78%|███████▊  | 52/67 [00:04<00:00, 27.72it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  82%|████████▏ | 55/67 [00:04<00:00, 27.87it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  87%|████████▋ | 58/67 [00:04<00:00, 28.00it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  91%|█████████ | 61/67 [00:04<00:00, 28.10it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  96%|█████████▌| 64/67 [00:05<00:00, 28.16it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 67/67 [00:05<00:00, 25.39it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 67/67 [00:05<00:00, 12.85it/s]
+[1;36m(EngineCore_DP0 pid=969617)[0;0m INFO 07-19 02:20:33 [gpu_model_runner.py:3480] Graph capturing finished in 6 secs, took 0.21 GiB
+[1;36m(EngineCore_DP0 pid=969617)[0;0m INFO 07-19 02:20:34 [core.py:210] init engine (profile, create kv cache, warmup model) took 5.80 seconds
+[1;36m(EngineCore_DP0 pid=969617)[0;0m INFO 07-19 02:20:34 [core.py:121] Disabling chunked prefill for model without KVCache
+[1;36m(EngineCore_DP0 pid=969617)[0;0m INFO 07-19 02:20:34 [__init__.py:440] Only "last" pooling supports chunked prefill and prefix caching; disabling both.
+INFO 07-19 02:20:34 [llm.py:306] Supported_tasks: ['encode', 'embed']
+模型加载完成!
+
+======================================================================
+测试 1: 使用 LLM.score 计算文本对相似度
+======================================================================
+
+  文本A: Machine learning is a branch of artificial intelligence
+  文本B: Deep learning is a subset of machine learning
+  相似度: 0.804625
+
+  文本A: The weather is beautiful today
+  文本B: The weather is beautiful today
+  相似度: 1.000000
+
+  文本A: Cats are adorable animals
+  文本B: Dogs are man's best friend
+  相似度: 0.597602
+
+  文本A: Python is a popular programming language
+  文本B: Java is also a programming language
+  相似度: 0.777386
+
+  文本A: I like eating apples
+  文本B: I like eating apples
+  相似度: 1.000000
+
+  共计算 5 对文本的相似度
+
+======================================================================
+测试 2: 使用 LLM.embed + 手动余弦相似度
+======================================================================
+
+  文本A: Machine learning is a branch of artificial intelligence
+  文本B: Deep learning is a subset of machine learning
+  余弦相似度: 0.804625
+
+  文本A: The weather is beautiful today
+  文本B: The weather is beautiful today
+  余弦相似度: 1.000000
+
+  文本A: Cats are adorable animals
+  文本B: Dogs are man's best friend
+  余弦相似度: 0.597602
+
+  文本A: Python is a popular programming language
+  文本B: Java is also a programming language
+  余弦相似度: 0.777386
+
+  文本A: I like eating apples
+  文本B: I like eating apples
+  余弦相似度: 1.000000
+
+  共计算 5 对文本的相似度
+
+======================================================================
+测试 3: 批量嵌入并构建相似度矩阵
+======================================================================
+  已生成 6 个嵌入向量，维度: 768
+
+  相似度矩阵 (6x6):
+            T0     T1     T2     T3     T4     T5   
+  T0   1.000  0.689  0.660  0.741  0.380  0.510
+  T1   0.689  1.000  0.699  0.695  0.394  0.547
+  T2   0.660  0.699  1.000  0.659  0.465  0.495
+  T3   0.741  0.695  0.659  1.000  0.344  0.516
+  T4   0.380  0.394  0.465  0.344  1.000  0.562
+  T5   0.510  0.547  0.495  0.516  0.562  1.000
+
+  文本标签:
+  T0: Artificial intelligence is transforming the world
+  T1: Machine learning enables computers to learn from data
+  T2: Deep learning has achieved great success in image recognition
+  T3: Natural language processing is an important area of AI
+  T4: The lunch today was delicious
+  T5: I love programming in Python
+
+  最相似的文本对（排除自身）:
+    T0 ↔ T3: 0.740896
+    "Artificial intelligence is transforming the world"
+    "Natural language processing is an important area of AI"
+
+  最不相似的文本对:
+    T3 ↔ T4: 0.343941
+    "Natural language processing is an important area of AI"
+    "The lunch today was delicious"
+
+======================================================================
+测试 4: WebShop 动作相似度验证（方案 B+E: click精确 + search词集匹配+嵌入兜底）
+  search 阈值: 0.975  |  click: 精确匹配(lower)  |  词集匹配: 优先
+======================================================================
+
+  #   动作A                          动作B                              相似度    阈值    期望  判定  类别
+  ----------------------------------------------------------------------------------------------------
+  0   search[men's dress shirt short sleeve classic fit cotton spandex] search[men's dress shirt short sleeve classic fit cotton spandex]  1.0000     Y     Y  OK  完全相同
+  1   click[Buy Now]               click[Buy Now]                1.0000     Y     Y  OK  完全相同
+  2   click[back to search]        click[back to search]         1.0000     Y     Y  OK  完全相同
+  3   click[back to search]        click[Back to Search]         1.0000     Y     Y  OK  大小写-click导航
+  4   click[buy now]               click[Buy Now]                1.0000     Y     Y  OK  大小写-click购买
+  5   click[Description]           click[description]            1.0000     Y     Y  OK  大小写-click描述
+  6   click[Next >]                click[next >]                 1.0000     Y     Y  OK  大小写-click翻页
+  7   search[Van Heusen men's classic fit short sleeve dress shirt] search[van heusen men's classic fit short sleeve dress shirt]  1.0000     Y     Y  OK  大小写-品牌名
+  8   search[Haggar men's classic fit short sleeve dress shirt] search[haggar men's classic fit short sleeve dress shirt]  1.0000     Y     Y  OK  大小写-品牌名
+  9   search[3X-large]             search[3x-large]              1.0000     Y     Y  OK  大小写-尺码
+  10  search[men's dress shirt short sleeve classic fit cotton spandex] search[men's classic fit dress shirt short sleeve cotton spandex]  1.0000     Y     Y  OK  词序-重排
+  11  search[men's dress shirt short sleeve classic fit cotton spandex] search[men's dress shirt cotton spandex short sleeve classic fit]  1.0000     Y     Y  OK  词序-重排
+  12  search[men's dress shirt short sleeve classic fit cotton spandex] search[classic fit short sleeve dress shirt men's cotton spandex]  1.0000     Y     Y  OK  词序-完全打乱
+  13  search[brown heather shirt xx-large needle sleeve classic fit women] search[heather brown classic fit needle sleeve xx-large women shirt]  1.0000     Y     Y  OK  词序-完全打乱
+  14  search[yellow henley shirt men's large] search[henley yellow shirt large men's]  1.0000     Y     Y  OK  词序-短查询
+  15  search[men's short sleeve dress shirt] search[men's short sleeve button down dress shirt]  0.0000     N     N  OK  不同-增加限定词button down
+  16  search[men's short sleeve dress shirt stretch cotton classic fit] search[men's short sleeve dress shirt stretch cotton classic fit x-large]  0.0000     N     N  OK  不同-添加尺码x-large
+  17  search[men's dress shirt short sleeve classic fit cotton spandex] search[men's dress shirt short sleeve classic fit cotton spandex machine wash]  0.0000     N     N  OK  不同-添加属性machine wash
+  18  search[men's dress shirt short sleeve classic fit cotton spandex] search[men's dress shirt long sleeve classic fit cotton spandex]  0.0000     N     N  OK  不同-短袖vs长袖
+  19  search[men's dress shirt short sleeve classic fit] search[women's dress shirt short sleeve classic fit]  0.0000     N     N  OK  不同-男装vs女装
+  20  search[men's dress shirt short sleeve classic fit] search[men's dress shirt short sleeve slim fit]  0.0000     N     N  OK  不同-classic vs slim fit
+  21  search[needle sleeve dress shirt classic fit men] search[needle sleeve dress shirt classic fit women]  0.0000     N     N  OK  不同-男vs女
+  22  search[yellow henley shirt men's large] search[blue henley shirt men's large]  0.0000     N     N  OK  不同-颜色
+  23  search[white table lamp living room under 40] search[white table lamp bedroom under 40]  0.0000     N     N  OK  不同-客厅vs卧室
+  24  search[body lotion sensitive skin paraben free] search[face cream sensitive skin paraben free]  0.0000     N     N  OK  不同-身体乳vs面霜
+  25  click[Buy Now]               click[back to search]         0.0000     N     N  OK  不同-click导航
+  26  click[Buy Now]               click[Description]            0.0000     N     N  OK  不同-click导航
+  27  click[Buy Now]               click[Features]               0.0000     N     N  OK  不同-click导航
+  28  click[Buy Now]               click[Reviews]                0.0000     N     N  OK  不同-click导航
+  29  click[Next >]                click[< Prev]                 0.0000     N     N  OK  不同-click翻页方向
+  30  click[back to search]        click[Description]            0.0000     N     N  OK  不同-click导航
+  31  click[B07F2G93BJ]            click[B09QQP3356]             0.0000     N     N  OK  不同-ASIN
+  32  click[B07F2G93BJ]            click[B07FKGQKZ1]             0.0000     N     N  OK  不同-ASIN
+  33  click[small]                 click[medium]                 0.0000     N     N  OK  不同-尺码
+  34  click[large]                 click[xx-large]               0.0000     N     N  OK  不同-尺码
+  35  click[black]                 click[blue]                   0.0000     N     N  OK  不同-颜色
+  36  click[heather grey]          click[black]                  0.0000     N     N  OK  不同-颜色
+  37  search[men's dress shirt short sleeve classic fit] click[Buy Now]                0.0000     N     N  OK  跨类型-search vs click
+  38  search[men's dress shirt short sleeve classic fit] click[back to search]         0.0000     N     N  OK  跨类型-search vs click
+  39  search[yellow henley shirt men's large] click[B07F2G93BJ]             0.0000     N     N  OK  跨类型-search vs ASIN
+  40  search[brown heather classic fit shirt women xx-large needle sleeve] search[women brown heather classic fit shirt xx-large needle sleeve]  1.0000     Y     Y  OK  词序-9token重排
+  41  search[Van Heusen men's classic fit short sleeve dress shirt stretch] search[van heusen men's classic fit stretch short sleeve dress shirt]  0.0000     N     Y  XX  词序-含品牌名重排
+  42  search[men's classic fit cotton spandex short sleeve button down] search[cotton spandex men's classic fit short sleeve button down]  1.0000     Y     Y  OK  词序-buttondown重排
+  43  search[needle sleeve classic fit dress shirt youth small pink] search[youth classic fit dress shirt pink small needle sleeve]  1.0000     Y     Y  OK  词序-needle sleeve重排
+  44  search[Calvin Klein men's short sleeve dress shirt cotton spandex] search[calvin klein men's short sleeve dress shirt cotton spandex]  1.0000     Y     Y  OK  大小写-Calvin Klein
+  45  search[Haggar classic fit short sleeve dress shirt cotton spandex] search[haggar classic fit short sleeve dress shirt cotton spandex]  1.0000     Y     Y  OK  大小写-Haggar
+  46  search[Geoffrey Beene men's short sleeve dress shirt stretch] search[geoffrey beene men's short sleeve dress shirt stretch]  1.0000     Y     Y  OK  大小写-Geoffrey Beene
+  47  search[mattress]             search[mattress]              1.0000     Y     Y  OK  短查询-完全相同
+  48  search[keywords]             search[keywords]              1.0000     Y     Y  OK  短查询-占位符相同
+  49  search[mattress]             search[double sided mattress]  0.0000     N     N  OK  短查询-不同产品
+  50  search[keywords]             search[mattress]              0.0000     N     N  OK  短查询-占位符vs实际
+  51  search[B07FKGQKZ1]           search[B07FKGQKZ1]            1.0000     Y     Y  OK  异常-ASIN搜索相同
+  52  search[B07FKGQKZ1]           search[B09CQ45ZRB]            0.0000     N     N  OK  异常-ASIN搜索不同
+  53  search[back to search]       click[back to search]         0.0000     N     N  OK  跨类型-同文本search vs click
+  54  search[men's short sleeve dress shirt cotton spandex] search[men's short sleeve henley cotton]  0.0000     N     N  OK  不同-dress shirt vs henley
+  55  search[men's short sleeve dress shirt cotton spandex] search[women's long sleeve sweater polyester]  0.0000     N     N  OK  不同-dress shirt vs sweater
+  56  search[men's dress shirt cotton spandex classic fit short sleeve 3xl] search[men's dress shirt cotton spandex classic fit short sleeve x-large]  0.0000     N     N  OK  不同-search尺码3xl vs x-large
+  57  null                         null                          1.0000     Y     Y  OK  null完全相同
+  58  null                         search[men's dress shirt short sleeve classic fit]  0.0000     N     N  OK  null vs 有效搜索
+  59  null                         click[Buy Now]                0.0000     N     N  OK  null vs 有效点击
+  60  search[haggar men's classic fit short sleeve dress shirt cotton spandex black x-large] search[haggar men's classic fit short sleeve dress shirt cotton spandex x-large black]  1.0000     Y     Y  OK  词序-12token尺码换序
+  61  search[men's classic fit short sleeve dress shirt black x-large cotton spandex machine wash] search[men's classic fit short sleeve dress shirt cotton spandex black x-large machine wash]  1.0000     Y     Y  OK  词序-12token属性换序
+  62  search[men's classic fit short sleeve dress shirt black x-large cotton spandex machine wash] search[men's classic fit short sleeve dress shirt cotton spandex black x-large machine wash]  1.0000     Y     Y  OK  词序-13token超长重排
+  63  search[van heusen men's classic fit short sleeve dress shirt 3xl tall black] search[van heusen men's classic fit short sleeve dress shirt black 3xl tall]  1.0000     Y     Y  OK  词序-11token品牌+尺码换序
+  64  search[van heusen classic fit short sleeve dress shirt cotton spandex] search[van heusen dress shirt cotton spandex short sleeve classic fit]  1.0000     Y     Y  OK  词序-10token品牌重排
+  65  search[calvin klein men's short sleeve dress shirt classic fit stretch] search[calvin klein men's short sleeve dress shirt stretch classic fit]  1.0000     Y     Y  OK  词序-10token品牌+属性换序
+  66  search[men's dress shirt classic fit cotton spandex short sleeve 3x] search[men's short sleeve dress shirt classic fit cotton spandex 3x]  1.0000     Y     Y  OK  词序-10token尺码换序
+  67  search[haggar men's classic fit short sleeve dress shirt cotton spandex] search[haggar men's short sleeve dress shirt classic fit cotton spandex]  1.0000     Y     Y  OK  词序-9tokenHaggar重排
+  68  search[geoffrey beene dress shirt cotton spandex short sleeve] search[geoffrey beene short sleeve dress shirt cotton spandex]  1.0000     Y     Y  OK  词序-9tokenGeoffrey重排
+  69  search[men's dress shirt short sleeve black x-large] search[men's short sleeve dress shirt x-large black]  1.0000     Y     Y  OK  词序-8token颜色尺码换序
+  70  search[polyester heather classic fit small women cranberry] search[polyester heather cranberry classic fit women small]  1.0000     Y     Y  OK  词序-8token颜色换序
+  71  search[cotton spandex dress shirt men's] search[men's dress shirt cotton spandex]  1.0000     Y     Y  OK  词序-7token短重排
+  72  search[cotton spandex men's dress shirt] search[men's dress shirt cotton spandex]  1.0000     Y     Y  OK  词序-6token短重排
+  73  search[orbit green pants women x-small] search[orbit green women pants x-small]  1.0000     Y     Y  OK  词序-5token超短重排
+  74  search[silver men t-shirt xx-large] search[xx-large t-shirt silver men]  1.0000     Y     Y  OK  词序-4token极短重排
+  75  search[classic fit short sleeve dress shirts men cotton spandex] search[classic fit short sleeve dress shirt men cotton spandex]  0.0351     Y     Y  OK  单复数-复数shirts vs shirt
+  76  search[polyester heather classic fit small women cranberry] search[polyester heather classic fit small women navy]  0.0000     N     N  OK  不同-颜色cranberry vs navy
+  77  search[haggar men's short sleeve classic fit dress shirt 6x] search[haggar men's short sleeve classic fit dress shirt 3x]  0.0000     N     N  OK  不同-尺码6x vs 3x
+  78  search[toddler shirt navy heather classic fit 4t] search[women shirt 4t heather navy classic fit]  0.0000     N     N  OK  不同-toddler vs women
+  79  search[Gildan men's classic fit shirt purple heather] search[men's heather shirt purple classic fit x-small]  0.0000     N     N  OK  不同-Gildan vs 无品牌
+  80  search[nylon spandex activewear women black] search[nylon spandex activewear pants black]  0.0000     N     N  OK  不同-women vs pants
+  81  search[men's dress shirt classic fit short sleeve white cotton spandex] search[men's short sleeve dress shirt cotton poly spandex classic fit]  0.0000     N     N  OK  不同-white vs poly
+  82  search[wood frame bed charcoal twin] search[charcoal twin wood bed frame]  1.0000     Y     Y  OK  词序-家具5token重排
+  83  search[box spring twin wood charcoal] search[charcoal twin box spring wood]  1.0000     Y     Y  OK  词序-boxspring5token重排
+  84  search[twin charcoal wood platform bed] search[charcoal twin wood platform bed]  1.0000     Y     Y  OK  词序-platform5token重排
+  85  search[furniture set taupe rectangular under 70] search[rectangular furniture set taupe under 70]  1.0000     Y     Y  OK  词序-家具set6token重排
+  86  search[walnut sofa table easy clean solid wood] search[easy clean solid wood sofa table walnut]  1.0000     Y     Y  OK  词序-sofatable7token重排
+  87  search[men's loafers slip resistant rubber outsole] search[slip resistant men's loafers rubber outsole]  1.0000     Y     Y  OK  词序-loafers6token重排
+  88  search[pumps womens black rubber sole closed toe] search[womens black pumps closed toe rubber sole]  1.0000     Y     Y  OK  词序-pumps7token重排
+  89  search[men's boots moisture wicking size 12] search[men's boots size 12 moisture wicking]  1.0000     Y     Y  OK  词序-boots6token重排
+  90  search[dark chocolate keto milk non gmo] search[non gmo keto milk dark chocolate]  1.0000     Y     Y  OK  词序-keto6token重排
+  91  search[gluten free honey cinnamon protein] search[honey cinnamon protein gluten free]  1.0000     Y     Y  OK  词序-protein5token重排
+  92  search[charcoal dust jeans straight leg men's] search[charcoal dust men's jeans straight leg]  1.0000     Y     Y  OK  词序-jeans6token重排
+  93  search[machine wash hoodie white medium women] search[women hoodie white medium machine wash]  1.0000     Y     Y  OK  词序-hoodie6token重排
+  94  search[height adjustable office chair black under 130] search[height adjustable office chair navy under 130]  0.0000     N     N  OK  不同-办公椅black vs navy
+  95  search[height adjustable office chair black under 130] search[office chair height adjustable grey under 130]  0.0000     N     N  OK  不同-办公椅black vs grey
+  96  search[decorative mirror narrow bronze] search[accent bronze narrow mirror]  0.0000     N     N  OK  不同-镜子decorative vs accent
+  97  search[twin woodbed frame charcoal] search[twin woodbed spring charcoal]  0.0000     N     N  OK  不同-woodbed frame vs spring
+  98  search[storage platform bed charcoal twin wood] search[solid wood twin platform bed charcoal]  0.0000     N     N  OK  不同-platform storage vs solid
+  99  search[wood frame bed charcoal twin] search[men's dress shirt short sleeve classic fit cotton spandex]  0.0000     N     N  OK  不同-床架 vs 衬衫
+  100 search[men's loafers slip resistant rubber outsole] search[height adjustable office chair black under 130]  0.0000     N     N  OK  不同-乐福鞋 vs 办公椅
+  101 search[dark chocolate keto milk non gmo] search[charcoal dust jeans straight leg men's]  0.0000     N     N  OK  不同-巧克力 vs 牛仔裤
+  102 search[twin wood bed frame charcoal] search[twin wood bed spring charcoal]  0.0000     N     N  OK  不同-家具frame vs spring
+  103 search[twin platform bed frame charcoal solid wood] search[twin platform bed frame charcoal metal]  0.0000     N     N  OK  不同-家具wood vs metal
+  104 search[wood platform bed frame charcoal twin] search[wood platform bed frame charcoal full]  0.0000     N     N  OK  不同-家具twin vs full
+  105 search[twin wood bed frame charcoal] search[twin wood bed frame walnut]  0.0000     N     N  OK  不同-家具charcoal vs walnut
+  106 search[storage platform bed charcoal twin wood] search[standard platform bed charcoal twin wood]  0.0000     N     N  OK  不同-家具storage vs standard
+  107 search[nightstand solid wood charcoal 2 drawer] search[2 drawer charcoal solid wood nightstand]  1.0000     Y     Y  OK  词序-家具nightstand重排
+  108 search[dresser white 6 drawer solid wood modern] search[modern white solid wood dresser 6 drawer]  1.0000     Y     Y  OK  词序-家具dresser重排
+  109 search[bookshelf 5 shelf walnut engineered wood] search[walnut engineered wood bookshelf 5 shelf]  1.0000     Y     Y  OK  词序-家具bookshelf重排
+  110 search[glass shade pendant kitchen island living room] search[glass shade chandelier kitchen island living room]  0.0000     N     N  OK  不同-灯具pendant vs chandelier
+  111 search[glass shade pendant light kitchen island] search[metal shade pendant light kitchen island]  0.0000     N     N  OK  不同-灯具glass vs metal
+  112 search[white table lamp living room under 40] search[black table lamp living room under 40]  0.0000     N     N  OK  不同-灯具white vs black
+  113 search[white table lamp living room under 40] search[white table lamp bedroom under 40]  0.0000     N     N  OK  不同-灯具客厅vs卧室
+  114 search[glass shade pendant kitchen island living room] search[kitchen island pendant glass shade living room]  1.0000     Y     Y  OK  词序-灯具pendant重排
+  115 search[semi flush mount chandelier easy clean under 80] search[easy clean semi flush mount chandelier under 80]  1.0000     Y     Y  OK  词序-灯具chandelier重排
+  116 search[round area rug black gray 3x5 under 70] search[rectangular area rug black gray 3x5 under 70]  0.0000     N     N  OK  不同-家居round vs rectangular
+  117 search[round area rug black gray 3x5 under 70] search[round area rug beige 3x5 under 70]  0.0000     N     N  OK  不同-家居black gray vs beige
+  118 search[charcoal grey curtain 52 wide 45 long machine washable] search[white curtain 52 wide 45 long machine washable]  0.0000     N     N  OK  不同-家居charcoal vs white
+  119 search[24 inch square decorative pillow double sided] search[24 inch lumbar decorative pillow double sided]  0.0000     N     N  OK  不同-家居square vs lumbar
+  120 search[ready hang wall art modern living room 24x36] search[ready hang wall art traditional living room 24x36]  0.0000     N     N  OK  不同-家居modern vs traditional
+  121 search[round area rug black gray 3x5 under 70] search[black gray round area rug 3x5 under 70]  1.0000     Y     Y  OK  词序-家居rug重排
+  122 search[charcoal grey curtain 52 wide 45 long machine washable] search[machine washable charcoal grey curtain 52 wide 45 long]  1.0000     Y     Y  OK  词序-家居curtain重排
+  123 search[men's boots moisture wicking size 12] search[men's boots moisture wicking size 10]  0.0000     N     N  OK  不同-鞋类size 12 vs 10
+  124 search[men's loafers slip resistant rubber sole black] search[men's loafers slip resistant rubber sole brown]  0.0000     N     N  OK  不同-鞋类black vs brown
+  125 search[men's slip resistant rubber sole loafers black] search[men's slip resistant rubber sole oxfords black]  0.0000     N     N  OK  不同-鞋类loafers vs oxfords
+  126 search[men's loafers slip resistant rubber outsole] search[men's loafers slip resistant leather outsole]  0.0000     N     N  OK  不同-鞋类rubber vs leather
+  127 search[men's loafers slip resistant rubber outsole black] search[women's loafers slip resistant rubber outsole black]  0.0000     N     N  OK  不同-鞋类men vs women
+  128 search[pumps womens black rubber sole closed toe size 7] search[womens black pumps closed toe rubber sole size 7]  1.0000     Y     Y  OK  词序-鞋类pumps重排
+  129 search[men's boots moisture wicking size 12 waterproof] search[waterproof men's boots size 12 moisture wicking]  1.0000     Y     Y  OK  词序-鞋类boots重排
+  130 search[dark chocolate keto milk non gmo protein bar] search[milk chocolate keto milk non gmo protein bar]  0.0000     N     N  OK  不同-食品dark vs milk chocolate
+  131 search[gluten free honey cinnamon protein bar 12 pack] search[gluten free honey cinnamon protein shake 12 pack]  0.0000     N     N  OK  不同-食品bar vs shake
+  132 search[wasabi peas gluten free non gmo 4 oz] search[wasabi peas organic gluten free 4 oz]  0.0000     N     N  OK  不同-食品non gmo vs organic
+  133 search[gluten free honey cinnamon protein bar] search[gluten free stevia cinnamon protein bar]  0.0000     N     N  OK  不同-食品honey vs stevia
+  134 search[keto almond butter protein bar gluten free] search[keto peanut butter protein bar gluten free]  0.0000     N     N  OK  不同-食品almond vs peanut
+  135 search[gluten free honey cinnamon protein bar 12 pack] search[honey cinnamon protein bar gluten free 12 pack]  1.0000     Y     Y  OK  词序-食品protein重排
+  136 search[wasabi peas gluten free non gmo 4 oz] search[non gmo gluten free wasabi peas 4 oz]  1.0000     Y     Y  OK  词序-食品wasabi重排
+  137 search[body lotion sensitive skin paraben free 4.2 oz] search[face cream sensitive skin paraben free 4.2 oz]  0.0000     N     N  OK  不同-个护lotion vs cream
+  138 search[cerave body cream sensitive skin 4.2 ounce] search[cetaphil body cream sensitive skin 4.2 ounce]  0.0000     N     N  OK  不同-个护CeraVe vs Cetaphil
+  139 search[body lotion moisturizing sensitive skin paraben free] search[body lotion anti-aging sensitive skin paraben free]  0.0000     N     N  OK  不同-个护moisturizing vs anti-aging
+  140 search[cerave body cream sensitive skin 4.2 ounce] search[cerave body cream sensitive skin 8 ounce]  0.0000     N     N  OK  不同-个护4.2oz vs 8oz
+  141 search[body lotion sensitive skin paraben free fragrance free] search[body lotion normal skin paraben free fragrance free]  0.0000     N     N  OK  不同-个护sensitive vs normal
+  142 search[cerave body cream sensitive skin 4.2 ounce fragrance free] search[fragrance free cerave body cream 4.2 ounce sensitive skin]  1.0000     Y     Y  OK  词序-个护cerave重排
+  143 search[body lotion sensitive skin paraben free fragrance free] search[paraben free fragrance free body lotion sensitive skin]  1.0000     Y     Y  OK  词序-个护lotion重排
+  144 search[iphone wireless charger quick release hands free orbiter] search[iphone usb cable quick release hands free orbiter]  0.0000     N     N  OK  不同-电子charger vs cable
+  145 search[iphone wireless charger quick release hands free dash] search[android wireless charger quick release hands free dash]  0.0000     N     N  OK  不同-电子iphone vs android
+  146 search[wireless charging pad fast charge black qi compatible] search[wireless charging pad fast charge white qi compatible]  0.0000     N     N  OK  不同-电子black vs white
+  147 search[wireless charging pad fast charge qi compatible 15w] search[wireless charging pad standard charge qi compatible 5w]  0.0000     N     N  OK  不同-电子fast vs standard
+  148 search[tempered glass screen protector iphone 14 pro max] search[silicone case iphone 14 pro max drop protection]  0.0000     N     N  OK  不同-电子protector vs case
+  149 search[tempered glass screen protector iphone 14 pro max] search[iphone 14 pro max tempered glass screen protector]  1.0000     Y     Y  OK  词序-电子screenprotector重排
+  150 search[wireless charging pad fast charge qi compatible black] search[black qi compatible fast charge wireless charging pad]  1.0000     Y     Y  OK  词序-电子charger重排
+  151 search[quick release hands free iphone wireless charging orbiter dash] search[iphone wireless charging orbiter dash quick release hands free]  1.0000     Y     Y  OK  词序-电子orbiter重排
+  152 search[men's polyester spandex jogger pants xx-large drawstring black] search[men's polyester spandex jogger pants xx-large drawstring gray]  0.0000     N     N  OK  不同-裤装black vs gray
+  153 search[men's polyester spandex jogger pants xx-large drawstring] search[men's polyester spandex jogger pants medium drawstring]  0.0000     N     N  OK  不同-裤装xx-large vs medium
+  154 search[men's polyester spandex jogger pants xx-large drawstring] search[men's polyester spandex chino pants xx-large drawstring]  0.0000     N     N  OK  不同-裤装jogger vs chino
+  155 search[men's athletic shorts drawstring elastic waist gym] search[men's athletic shorts elastic waistband gym]  0.0000     N     N  OK  不同-裤装drawstring vs elastic
+  156 search[men's moisture wicking shorts elastic waistband polyester] search[women's moisture wicking shorts elastic waistband polyester]  0.0000     N     N  OK  不同-裤装men vs women
+  157 search[men's polyester spandex jogger pants xx-large drawstring black] search[black men's polyester spandex jogger pants drawstring xx-large]  1.0000     Y     Y  OK  词序-裤装jogger重排
+  158 search[orbit green women pants x-small elastic waist] search[women pants orbit green x-small elastic waist]  1.0000     Y     Y  OK  词序-裤装orbit重排
+  159 search[Hanes men's classic fit t-shirt purple heather x-small] search[Hanes men's classic fit t-shirt navy heather x-small]  0.0000     N     N  OK  不同-上衣purple vs navy
+  160 search[Hanes men's classic fit t-shirt purple heather x-small] search[Hanes men's classic fit t-shirt purple heather xx-large]  0.0000     N     N  OK  不同-上衣x-small vs xx-large
+  161 search[Hanes men's classic fit t-shirt purple heather x-small] search[Gildan men's classic fit t-shirt purple heather x-small]  0.0000     N     N  OK  不同-上衣Hanes vs Gildan
+  162 search[men's classic fit t-shirt purple heather cotton x-small] search[men's classic fit polo purple heather cotton x-small]  0.0000     N     N  OK  不同-上衣tshirt vs polo
+  163 search[men's classic fit t-shirt purple heather cotton x-small] search[men's classic fit t-shirt purple heather polyester x-small]  0.2218     Y     N  XX  不同-上衣cotton vs polyester
+  164 search[Hanes men's classic fit t-shirt purple heather x-small cotton] search[cotton Hanes men's purple heather classic fit t-shirt x-small]  1.0000     Y     Y  OK  词序-上衣tshirt重排
+  165 search[women hoodie white medium machine wash fleece lined] search[fleece lined women hoodie white medium machine wash]  1.0000     Y     Y  OK  词序-上衣hoodie重排
+  166 search[men's dress shirt cotton spandex classic fit short sleeve] search[men's dress shirts cotton spandex classic fit short sleeve]  0.0000     N     Y  XX  单复数-shirt vs shirts
+  167 search[men's running shoe breathable mesh size 10] search[men's running shoes breathable mesh size 10]  0.5136     Y     Y  OK  单复数-shoe vs shoes
+  168 search[women's yoga pant high waist stretch black] search[women's yoga pants high waist stretch black]  0.0000     N     Y  XX  单复数-pant vs pants
+  169 search[men's athletic sock moisture wicking cotton 6 pack] search[men's athletic socks moisture wicking cotton 6 pack]  0.6257     Y     Y  OK  单复数-sock vs socks
+  170 search[charcoal grey curtain 52 wide 45 long blackout] search[charcoal grey curtains 52 wide 45 long blackout]  0.0000     N     Y  XX  单复数-curtain vs curtains
+  171 search[decorative throw pillow 18x18 machine washable] search[decorative throw pillows 18x18 machine washable]  0.0000     N     Y  XX  单复数-pillow vs pillows
+  172 search[wireless charging pad] search[wireless charging pad fast charge]  0.0000     N     N  OK  不同-短查询增加fast charge
+  173 search[glass screen protector] search[glass screen protector tempered]  0.0000     N     N  OK  不同-短查询增加tempered
+  174 search[body lotion sensitive] search[body lotion sensitive fragrance free]  0.0000     N     N  OK  不同-短查询增加fragrance
+  175 search[protein bar gluten free] search[protein bar gluten free 12 pack]  0.0000     N     N  OK  不同-短查询增加12 pack
+  176 search[men's dress shirt cotton spandex classic fit short sleeve] search[men's dress shirt stretch cotton classic fit short sleeve]  0.0000     N     Y  XX  同义-cotton spandex=stretch
+  177 search[arrow classic fit short sleeve dress shirt cotton spandex] search[arrow classic fit short sleeve dress shirt stretch cotton]  0.0000     N     Y  XX  同义-cotton spandex=stretch cotton
+  178 search[Van Heusen men's classic fit short sleeve dress shirt cotton spandex] search[Van Heusen men's classic fit short sleeve dress shirt stretch]  0.0000     N     Y  XX  同义-品牌+cotton spandex=stretch
+  179 search[men's short sleeve button down shirt 3xl tall black cotton spandex] search[men's short sleeve button down shirt 3xl tall black stretch cotton]  0.0000     N     Y  XX  同义-带尺码cotton spandex=stretch
+  180 search[men's button down shirt cotton spandex classic fit short sleeve] search[men's button down shirt stretch cotton classic fit short sleeve]  0.0000     N     Y  XX  同义-button down cotton spandex=stretch
+  181 click[Buy Now]               click[buy now]                1.0000     Y     Y  OK  同义-购买按钮
+  182 click[Back to Search]        click[back to search]         1.0000     Y     Y  OK  同义-返回搜索
+  183 search[ceiling light semi flush mount easy clean] search[semi flush mount ceiling light easy clean]  1.0000     Y     Y  OK  同义-灯具ceiling light重排
+  184 search[sofa bed]             search[sleeper sofa]          0.0000     N     Y  XX  同义-短查询sofa bed=sleeper sofa
+  185 search[area rug]             search[floor rug]             0.0000     N     Y  XX  同义-短查询area rug=floor rug
+  186 search[sofa bed sleeper charcoal memory foam] search[couch bed sleeper charcoal memory foam]  0.0000     N     Y  XX  同义-sofa=couch
+  187 search[wireless charger fast charge qi compatible 15w] search[wireless charging pad fast charge qi compatible 15w]  0.0000     N     Y  XX  同义-charger=charging pad
+  188 search[men's sneakers breathable mesh running size 10] search[men's athletic shoes breathable mesh running size 10]  0.0000     N     Y  XX  同义-sneakers=athletic shoes
+  189 search[face moisturizer sensitive skin fragrance free 4 oz] search[face lotion sensitive skin fragrance free 4 oz]  0.0000     N     Y  XX  同义-moisturizer=lotion
+  190 search[kitchen rug non slip washable 3x5] search[kitchen mat non slip washable 3x5]  0.0000     N     Y  XX  同义-kitchen rug=mat
+  191 search[down comforter queen size all season machine washable] search[down duvet queen size all season machine washable]  0.0000     N     Y  XX  同义-comforter=duvet
+  192 search[men's dress shirt classic fit short sleeve white cotton spandex] search[men's dress shirt classic fit short sleeve stretch cotton coral]  0.0000     N     N  OK  不同-同义替换+颜色white vs coral
+  193 search[men's short sleeve dress shirt] search[men's short sleeve oxford shirt]  0.0000     N     N  OK  不同-dress shirt vs oxford shirt
+  194 search[desk lamp]            search[table lamp]            0.0000     N     N  OK  不同-desk lamp vs table lamp
+  195 search[protein bar gluten free chocolate 12 pack] search[energy bar gluten free chocolate 12 pack]  0.0000     N     N  OK  不同-protein bar vs energy bar
+
+  阈值判定正确率: 177/196 = 90.3%
+
+  阈值判定错误（19 对）:
+    [漏检] search[Van Heusen men's classic fit short sleeve dress shirt stretch] vs search[van heusen men's classic fit stretch short sleeve dress shirt] sim=0.0000 [词序-含品牌名重排]
+    [误检] search[men's classic fit t-shirt purple heather cotton x-small] vs search[men's classic fit t-shirt purple heather polyester x-small] sim=0.2218 [不同-上衣cotton vs polyester]
+    [漏检] search[men's dress shirt cotton spandex classic fit short sleeve] vs search[men's dress shirts cotton spandex classic fit short sleeve] sim=0.0000 [单复数-shirt vs shirts]
+    [漏检] search[women's yoga pant high waist stretch black] vs search[women's yoga pants high waist stretch black] sim=0.0000 [单复数-pant vs pants]
+    [漏检] search[charcoal grey curtain 52 wide 45 long blackout] vs search[charcoal grey curtains 52 wide 45 long blackout] sim=0.0000 [单复数-curtain vs curtains]
+    [漏检] search[decorative throw pillow 18x18 machine washable] vs search[decorative throw pillows 18x18 machine washable] sim=0.0000 [单复数-pillow vs pillows]
+    [漏检] search[men's dress shirt cotton spandex classic fit short sleeve] vs search[men's dress shirt stretch cotton classic fit short sleeve] sim=0.0000 [同义-cotton spandex=stretch]
+    [漏检] search[arrow classic fit short sleeve dress shirt cotton spandex] vs search[arrow classic fit short sleeve dress shirt stretch cotton] sim=0.0000 [同义-cotton spandex=stretch cotton]
+    [漏检] search[Van Heusen men's classic fit short sleeve dress shirt cotton spandex] vs search[Van Heusen men's classic fit short sleeve dress shirt stretch] sim=0.0000 [同义-品牌+cotton spandex=stretch]
+    [漏检] search[men's short sleeve button down shirt 3xl tall black cotton spandex] vs search[men's short sleeve button down shirt 3xl tall black stretch cotton] sim=0.0000 [同义-带尺码cotton spandex=stretch]
+    [漏检] search[men's button down shirt cotton spandex classic fit short sleeve] vs search[men's button down shirt stretch cotton classic fit short sleeve] sim=0.0000 [同义-button down cotton spandex=stretch]
+    [漏检] search[sofa bed]             vs search[sleeper sofa]         sim=0.0000 [同义-短查询sofa bed=sleeper sofa]
+    [漏检] search[area rug]             vs search[floor rug]            sim=0.0000 [同义-短查询area rug=floor rug]
+    [漏检] search[sofa bed sleeper charcoal memory foam] vs search[couch bed sleeper charcoal memory foam] sim=0.0000 [同义-sofa=couch]
+    [漏检] search[wireless charger fast charge qi compatible 15w] vs search[wireless charging pad fast charge qi compatible 15w] sim=0.0000 [同义-charger=charging pad]
+    [漏检] search[men's sneakers breathable mesh running size 10] vs search[men's athletic shoes breathable mesh running size 10] sim=0.0000 [同义-sneakers=athletic shoes]
+    [漏检] search[face moisturizer sensitive skin fragrance free 4 oz] vs search[face lotion sensitive skin fragrance free 4 oz] sim=0.0000 [同义-moisturizer=lotion]
+    [漏检] search[kitchen rug non slip washable 3x5] vs search[kitchen mat non slip washable 3x5] sim=0.0000 [同义-kitchen rug=mat]
+    [漏检] search[down comforter queen size all season machine washable] vs search[down duvet queen size all season machine washable] sim=0.0000 [同义-comforter=duvet]
+
+  各类别相似度范围:
+  类别                       数量      最小      最大      平均  分布
+  -----------------------------------------------------------------
+  null vs 有效搜索              1  0.0000  0.0000  0.0000  
+  null vs 有效点击              1  0.0000  0.0000  0.0000  
+  null完全相同                  1  1.0000  1.0000  1.0000  ####################
+  不同-ASIN                   2  0.0000  0.0000  0.0000  
+  不同-Gildan vs 无品牌          1  0.0000  0.0000  0.0000  
+  不同-classic vs slim fit    1  0.0000  0.0000  0.0000  
+  不同-click导航                5  0.0000  0.0000  0.0000  
+  不同-click翻页方向              1  0.0000  0.0000  0.0000  
+  不同-desk lamp vs table lamp    1  0.0000  0.0000  0.0000  
+  不同-dress shirt vs henley    1  0.0000  0.0000  0.0000  
+  不同-dress shirt vs oxford shirt    1  0.0000  0.0000  0.0000  
+  不同-dress shirt vs sweater    1  0.0000  0.0000  0.0000  
+  不同-platform storage vs solid    1  0.0000  0.0000  0.0000  
+  不同-protein bar vs energy bar    1  0.0000  0.0000  0.0000  
+  不同-search尺码3xl vs x-large    1  0.0000  0.0000  0.0000  
+  不同-toddler vs women       1  0.0000  0.0000  0.0000  
+  不同-white vs poly          1  0.0000  0.0000  0.0000  
+  不同-women vs pants         1  0.0000  0.0000  0.0000  
+  不同-woodbed frame vs spring    1  0.0000  0.0000  0.0000  
+  不同-上衣Hanes vs Gildan      1  0.0000  0.0000  0.0000  
+  不同-上衣cotton vs polyester    1  0.2218  0.2218  0.2218  ####
+  不同-上衣purple vs navy       1  0.0000  0.0000  0.0000  
+  不同-上衣tshirt vs polo       1  0.0000  0.0000  0.0000  
+  不同-上衣x-small vs xx-large    1  0.0000  0.0000  0.0000  
+  不同-个护4.2oz vs 8oz         1  0.0000  0.0000  0.0000  
+  不同-个护CeraVe vs Cetaphil    1  0.0000  0.0000  0.0000  
+  不同-个护lotion vs cream      1  0.0000  0.0000  0.0000  
+  不同-个护moisturizing vs anti-aging    1  0.0000  0.0000  0.0000  
+  不同-个护sensitive vs normal    1  0.0000  0.0000  0.0000  
+  不同-乐福鞋 vs 办公椅             1  0.0000  0.0000  0.0000  
+  不同-办公椅black vs grey       1  0.0000  0.0000  0.0000  
+  不同-办公椅black vs navy       1  0.0000  0.0000  0.0000  
+  不同-同义替换+颜色white vs coral    1  0.0000  0.0000  0.0000  
+  不同-增加限定词button down       1  0.0000  0.0000  0.0000  
+  不同-客厅vs卧室                 1  0.0000  0.0000  0.0000  
+  不同-家具charcoal vs walnut    1  0.0000  0.0000  0.0000  
+  不同-家具frame vs spring      1  0.0000  0.0000  0.0000  
+  不同-家具storage vs standard    1  0.0000  0.0000  0.0000  
+  不同-家具twin vs full         1  0.0000  0.0000  0.0000  
+  不同-家具wood vs metal        1  0.0000  0.0000  0.0000  
+  不同-家居black gray vs beige    1  0.0000  0.0000  0.0000  
+  不同-家居charcoal vs white    1  0.0000  0.0000  0.0000  
+  不同-家居modern vs traditional    1  0.0000  0.0000  0.0000  
+  不同-家居round vs rectangular    1  0.0000  0.0000  0.0000  
+  不同-家居square vs lumbar     1  0.0000  0.0000  0.0000  
+  不同-尺码                     2  0.0000  0.0000  0.0000  
+  不同-尺码6x vs 3x             1  0.0000  0.0000  0.0000  
+  不同-巧克力 vs 牛仔裤             1  0.0000  0.0000  0.0000  
+  不同-床架 vs 衬衫               1  0.0000  0.0000  0.0000  
+  不同-添加尺码x-large            1  0.0000  0.0000  0.0000  
+  不同-添加属性machine wash       1  0.0000  0.0000  0.0000  
+  不同-灯具glass vs metal       1  0.0000  0.0000  0.0000  
+  不同-灯具pendant vs chandelier    1  0.0000  0.0000  0.0000  
+  不同-灯具white vs black       1  0.0000  0.0000  0.0000  
+  不同-灯具客厅vs卧室               1  0.0000  0.0000  0.0000  
+  不同-电子black vs white       1  0.0000  0.0000  0.0000  
+  不同-电子charger vs cable     1  0.0000  0.0000  0.0000  
+  不同-电子fast vs standard     1  0.0000  0.0000  0.0000  
+  不同-电子iphone vs android    1  0.0000  0.0000  0.0000  
+  不同-电子protector vs case    1  0.0000  0.0000  0.0000  
+  不同-男vs女                   1  0.0000  0.0000  0.0000  
+  不同-男装vs女装                 1  0.0000  0.0000  0.0000  
+  不同-短查询增加12 pack           1  0.0000  0.0000  0.0000  
+  不同-短查询增加fast charge       1  0.0000  0.0000  0.0000  
+  不同-短查询增加fragrance         1  0.0000  0.0000  0.0000  
+  不同-短查询增加tempered          1  0.0000  0.0000  0.0000  
+  不同-短袖vs长袖                 1  0.0000  0.0000  0.0000  
+  不同-裤装black vs gray        1  0.0000  0.0000  0.0000  
+  不同-裤装drawstring vs elastic    1  0.0000  0.0000  0.0000  
+  不同-裤装jogger vs chino      1  0.0000  0.0000  0.0000  
+  不同-裤装men vs women         1  0.0000  0.0000  0.0000  
+  不同-裤装xx-large vs medium    1  0.0000  0.0000  0.0000  
+  不同-身体乳vs面霜                1  0.0000  0.0000  0.0000  
+  不同-镜子decorative vs accent    1  0.0000  0.0000  0.0000  
+  不同-鞋类black vs brown       1  0.0000  0.0000  0.0000  
+  不同-鞋类loafers vs oxfords    1  0.0000  0.0000  0.0000  
+  不同-鞋类men vs women         1  0.0000  0.0000  0.0000  
+  不同-鞋类rubber vs leather    1  0.0000  0.0000  0.0000  
+  不同-鞋类size 12 vs 10        1  0.0000  0.0000  0.0000  
+  不同-颜色                     3  0.0000  0.0000  0.0000  
+  不同-颜色cranberry vs navy    1  0.0000  0.0000  0.0000  
+  不同-食品almond vs peanut     1  0.0000  0.0000  0.0000  
+  不同-食品bar vs shake         1  0.0000  0.0000  0.0000  
+  不同-食品dark vs milk chocolate    1  0.0000  0.0000  0.0000  
+  不同-食品honey vs stevia      1  0.0000  0.0000  0.0000  
+  不同-食品non gmo vs organic    1  0.0000  0.0000  0.0000  
+  单复数-curtain vs curtains    1  0.0000  0.0000  0.0000  
+  单复数-pant vs pants         1  0.0000  0.0000  0.0000  
+  单复数-pillow vs pillows     1  0.0000  0.0000  0.0000  
+  单复数-shirt vs shirts       1  0.0000  0.0000  0.0000  
+  单复数-shoe vs shoes         1  0.5136  0.5136  0.5136  ##########
+  单复数-sock vs socks         1  0.6257  0.6257  0.6257  ############
+  单复数-复数shirts vs shirt     1  0.0351  0.0351  0.0351  
+  同义-button down cotton spandex=stretch    1  0.0000  0.0000  0.0000  
+  同义-charger=charging pad    1  0.0000  0.0000  0.0000  
+  同义-comforter=duvet        1  0.0000  0.0000  0.0000  
+  同义-cotton spandex=stretch    1  0.0000  0.0000  0.0000  
+  同义-cotton spandex=stretch cotton    1  0.0000  0.0000  0.0000  
+  同义-kitchen rug=mat        1  0.0000  0.0000  0.0000  
+  同义-moisturizer=lotion     1  0.0000  0.0000  0.0000  
+  同义-sneakers=athletic shoes    1  0.0000  0.0000  0.0000  
+  同义-sofa=couch             1  0.0000  0.0000  0.0000  
+  同义-品牌+cotton spandex=stretch    1  0.0000  0.0000  0.0000  
+  同义-带尺码cotton spandex=stretch    1  0.0000  0.0000  0.0000  
+  同义-灯具ceiling light重排      1  1.0000  1.0000  1.0000  ####################
+  同义-短查询area rug=floor rug    1  0.0000  0.0000  0.0000  
+  同义-短查询sofa bed=sleeper sofa    1  0.0000  0.0000  0.0000  
+  同义-购买按钮                   1  1.0000  1.0000  1.0000  ####################
+  同义-返回搜索                   1  1.0000  1.0000  1.0000  ####################
+  大小写-Calvin Klein          1  1.0000  1.0000  1.0000  ####################
+  大小写-Geoffrey Beene        1  1.0000  1.0000  1.0000  ####################
+  大小写-Haggar                1  1.0000  1.0000  1.0000  ####################
+  大小写-click导航               1  1.0000  1.0000  1.0000  ####################
+  大小写-click描述               1  1.0000  1.0000  1.0000  ####################
+  大小写-click翻页               1  1.0000  1.0000  1.0000  ####################
+  大小写-click购买               1  1.0000  1.0000  1.0000  ####################
+  大小写-品牌名                   2  1.0000  1.0000  1.0000  ####################
+  大小写-尺码                    1  1.0000  1.0000  1.0000  ####################
+  完全相同                      3  1.0000  1.0000  1.0000  ####################
+  异常-ASIN搜索不同               1  0.0000  0.0000  0.0000  
+  异常-ASIN搜索相同               1  1.0000  1.0000  1.0000  ####################
+  短查询-不同产品                  1  0.0000  0.0000  0.0000  
+  短查询-占位符vs实际               1  0.0000  0.0000  0.0000  
+  短查询-占位符相同                 1  1.0000  1.0000  1.0000  ####################
+  短查询-完全相同                  1  1.0000  1.0000  1.0000  ####################
+  词序-10token品牌+属性换序         1  1.0000  1.0000  1.0000  ####################
+  词序-10token品牌重排            1  1.0000  1.0000  1.0000  ####################
+  词序-10token尺码换序            1  1.0000  1.0000  1.0000  ####################
+  词序-11token品牌+尺码换序         1  1.0000  1.0000  1.0000  ####################
+  词序-12token尺码换序            1  1.0000  1.0000  1.0000  ####################
+  词序-12token属性换序            1  1.0000  1.0000  1.0000  ####################
+  词序-13token超长重排            1  1.0000  1.0000  1.0000  ####################
+  词序-4token极短重排             1  1.0000  1.0000  1.0000  ####################
+  词序-5token超短重排             1  1.0000  1.0000  1.0000  ####################
+  词序-6token短重排              1  1.0000  1.0000  1.0000  ####################
+  词序-7token短重排              1  1.0000  1.0000  1.0000  ####################
+  词序-8token颜色尺码换序           1  1.0000  1.0000  1.0000  ####################
+  词序-8token颜色换序             1  1.0000  1.0000  1.0000  ####################
+  词序-9tokenGeoffrey重排       1  1.0000  1.0000  1.0000  ####################
+  词序-9tokenHaggar重排         1  1.0000  1.0000  1.0000  ####################
+  词序-9token重排               1  1.0000  1.0000  1.0000  ####################
+  词序-boots6token重排          1  1.0000  1.0000  1.0000  ####################
+  词序-boxspring5token重排      1  1.0000  1.0000  1.0000  ####################
+  词序-buttondown重排           1  1.0000  1.0000  1.0000  ####################
+  词序-hoodie6token重排         1  1.0000  1.0000  1.0000  ####################
+  词序-jeans6token重排          1  1.0000  1.0000  1.0000  ####################
+  词序-keto6token重排           1  1.0000  1.0000  1.0000  ####################
+  词序-loafers6token重排        1  1.0000  1.0000  1.0000  ####################
+  词序-needle sleeve重排        1  1.0000  1.0000  1.0000  ####################
+  词序-platform5token重排       1  1.0000  1.0000  1.0000  ####################
+  词序-protein5token重排        1  1.0000  1.0000  1.0000  ####################
+  词序-pumps7token重排          1  1.0000  1.0000  1.0000  ####################
+  词序-sofatable7token重排      1  1.0000  1.0000  1.0000  ####################
+  词序-上衣hoodie重排             1  1.0000  1.0000  1.0000  ####################
+  词序-上衣tshirt重排             1  1.0000  1.0000  1.0000  ####################
+  词序-个护cerave重排             1  1.0000  1.0000  1.0000  ####################
+  词序-个护lotion重排             1  1.0000  1.0000  1.0000  ####################
+  词序-含品牌名重排                 1  0.0000  0.0000  0.0000  
+  词序-完全打乱                   2  1.0000  1.0000  1.0000  ####################
+  词序-家具5token重排             1  1.0000  1.0000  1.0000  ####################
+  词序-家具bookshelf重排          1  1.0000  1.0000  1.0000  ####################
+  词序-家具dresser重排            1  1.0000  1.0000  1.0000  ####################
+  词序-家具nightstand重排         1  1.0000  1.0000  1.0000  ####################
+  词序-家具set6token重排          1  1.0000  1.0000  1.0000  ####################
+  词序-家居curtain重排            1  1.0000  1.0000  1.0000  ####################
+  词序-家居rug重排                1  1.0000  1.0000  1.0000  ####################
+  词序-灯具chandelier重排         1  1.0000  1.0000  1.0000  ####################
+  词序-灯具pendant重排            1  1.0000  1.0000  1.0000  ####################
+  词序-电子charger重排            1  1.0000  1.0000  1.0000  ####################
+  词序-电子orbiter重排            1  1.0000  1.0000  1.0000  ####################
+  词序-电子screenprotector重排    1  1.0000  1.0000  1.0000  ####################
+  词序-短查询                    1  1.0000  1.0000  1.0000  ####################
+  词序-裤装jogger重排             1  1.0000  1.0000  1.0000  ####################
+  词序-裤装orbit重排              1  1.0000  1.0000  1.0000  ####################
+  词序-重排                     2  1.0000  1.0000  1.0000  ####################
+  词序-鞋类boots重排              1  1.0000  1.0000  1.0000  ####################
+  词序-鞋类pumps重排              1  1.0000  1.0000  1.0000  ####################
+  词序-食品protein重排            1  1.0000  1.0000  1.0000  ####################
+  词序-食品wasabi重排             1  1.0000  1.0000  1.0000  ####################
+  跨类型-search vs ASIN        1  0.0000  0.0000  0.0000  
+  跨类型-search vs click       2  0.0000  0.0000  0.0000  
+  跨类型-同文本search vs click    1  0.0000  0.0000  0.0000  
+
+  阈值分析 (当前=0.975):
+    应判重复的最低相似度: 0.0000
+    不应判重复的最高相似度: 0.2218
+    分离间隙: -0.2218
+    ⚠ 分离间隙为负，存在重叠区域，阈值无法完美区分
+      重叠区间: [0.2218, 0.0000]
+
+======================================================================
+测试 5: WebShop 动作相似度矩阵
+======================================================================
+  已生成 66 个嵌入向量，维度: 768
+
+  相似度矩阵 (66x66):
+                W0    W1    W2    W3    W4    W5    W6    W7    W8    W9    W10   W11   W12   W13   W14   W15   W16   W17   W18   W19   W20   W21   W22   W23   W24   W25   W26   W27   W28   W29   W30   W31   W32   W33   W34   W35   W36   W37   W38   W39   W40   W41   W42   W43   W44   W45   W46   W47   W48   W49   W50   W51   W52   W53   W54   W55   W56   W57   W58   W59   W60   W61   W62   W63   W64   W65 
+  W0 search[men's  1.000  0.996  0.968  0.965  0.794  0.790  0.864  0.882  0.919  0.920  0.927  0.875  0.936  0.882  0.936  0.943  0.744  0.730  0.732  0.759  0.602  0.610  0.615  0.614  0.643  0.643  0.534  0.545  0.695  0.694  0.612  0.646  0.571  0.590  0.667  0.563  0.590  0.550  0.550  0.566  0.566  0.476  0.508  0.558  0.485  0.437  0.607  0.610  0.592  0.599  0.592  0.585  0.602  0.572  0.572  0.561  0.527  0.532  0.557  0.567  0.736  0.743  0.802  0.820  0.655  0.648
+  W1 search[men's  0.996  1.000  0.965  0.960  0.802  0.796  0.866  0.886  0.922  0.923  0.924  0.871  0.936  0.883  0.935  0.942  0.749  0.736  0.736  0.761  0.609  0.615  0.616  0.615  0.648  0.649  0.543  0.553  0.702  0.701  0.613  0.644  0.572  0.590  0.676  0.572  0.601  0.556  0.556  0.578  0.578  0.483  0.514  0.558  0.493  0.444  0.613  0.615  0.594  0.603  0.597  0.588  0.607  0.579  0.578  0.565  0.538  0.543  0.562  0.574  0.739  0.745  0.814  0.831  0.660  0.652
+  W2 search[men's  0.968  0.965  1.000  0.931  0.803  0.807  0.834  0.850  0.902  0.905  0.893  0.839  0.895  0.842  0.936  0.944  0.755  0.740  0.713  0.737  0.589  0.599  0.602  0.601  0.633  0.632  0.525  0.535  0.680  0.679  0.604  0.639  0.564  0.581  0.653  0.562  0.594  0.546  0.546  0.562  0.562  0.480  0.482  0.536  0.484  0.433  0.595  0.598  0.585  0.596  0.584  0.574  0.595  0.567  0.565  0.550  0.509  0.515  0.554  0.564  0.752  0.757  0.786  0.803  0.639  0.637
+  W3 search[women  0.965  0.960  0.931  1.000  0.752  0.748  0.825  0.842  0.885  0.887  0.916  0.866  0.908  0.855  0.889  0.906  0.701  0.682  0.775  0.804  0.595  0.608  0.607  0.604  0.603  0.606  0.531  0.541  0.649  0.657  0.605  0.643  0.565  0.581  0.658  0.555  0.567  0.543  0.543  0.557  0.557  0.472  0.506  0.549  0.479  0.433  0.604  0.609  0.604  0.602  0.579  0.574  0.599  0.575  0.572  0.572  0.534  0.540  0.545  0.554  0.708  0.717  0.782  0.800  0.610  0.600
+  W4 search[yello  0.794  0.802  0.803  0.752  1.000  0.935  0.749  0.778  0.784  0.785  0.731  0.712  0.797  0.780  0.816  0.800  0.819  0.809  0.656  0.684  0.628  0.626  0.615  0.621  0.653  0.654  0.540  0.552  0.706  0.696  0.567  0.601  0.579  0.592  0.704  0.637  0.632  0.608  0.608  0.608  0.608  0.527  0.536  0.588  0.516  0.465  0.620  0.639  0.600  0.605  0.613  0.605  0.571  0.556  0.567  0.534  0.544  0.552  0.553  0.570  0.720  0.736  0.759  0.779  0.669  0.667
+  W5 search[blue   0.790  0.796  0.807  0.748  0.935  1.000  0.753  0.783  0.782  0.781  0.728  0.716  0.788  0.776  0.820  0.801  0.822  0.809  0.650  0.686  0.637  0.636  0.619  0.622  0.654  0.657  0.578  0.584  0.719  0.709  0.572  0.608  0.578  0.596  0.702  0.667  0.652  0.604  0.604  0.612  0.612  0.506  0.521  0.580  0.506  0.474  0.631  0.637  0.619  0.618  0.626  0.615  0.587  0.565  0.572  0.544  0.543  0.550  0.565  0.580  0.712  0.728  0.752  0.772  0.662  0.665
+  W6 search[Van H  0.864  0.866  0.834  0.825  0.749  0.753  1.000  0.987  0.822  0.821  0.812  0.864  0.816  0.861  0.796  0.798  0.712  0.696  0.675  0.682  0.581  0.588  0.607  0.599  0.628  0.629  0.526  0.539  0.668  0.671  0.625  0.636  0.551  0.587  0.654  0.551  0.580  0.552  0.552  0.566  0.566  0.484  0.530  0.561  0.490  0.465  0.586  0.592  0.558  0.561  0.568  0.564  0.604  0.591  0.593  0.562  0.519  0.522  0.516  0.524  0.647  0.658  0.759  0.761  0.642  0.636
+  W7 search[van h  0.882  0.886  0.850  0.842  0.778  0.783  0.987  1.000  0.845  0.842  0.825  0.863  0.837  0.866  0.817  0.813  0.735  0.715  0.689  0.697  0.602  0.604  0.620  0.615  0.645  0.647  0.542  0.553  0.687  0.687  0.624  0.633  0.561  0.593  0.672  0.571  0.595  0.563  0.563  0.572  0.572  0.485  0.524  0.561  0.497  0.467  0.603  0.608  0.582  0.585  0.582  0.578  0.605  0.597  0.591  0.562  0.525  0.531  0.535  0.546  0.659  0.671  0.787  0.787  0.659  0.651
+  W8 search[hagga  0.919  0.922  0.902  0.885  0.784  0.782  0.822  0.845  1.000  0.999  0.867  0.824  0.872  0.821  0.885  0.877  0.746  0.733  0.708  0.738  0.602  0.605  0.602  0.599  0.644  0.648  0.514  0.526  0.713  0.703  0.612  0.600  0.547  0.556  0.649  0.550  0.590  0.540  0.540  0.548  0.548  0.459  0.492  0.538  0.479  0.460  0.605  0.602  0.571  0.576  0.627  0.618  0.558  0.539  0.537  0.528  0.527  0.535  0.540  0.550  0.771  0.776  0.828  0.846  0.653  0.650
+  W9 search[hagga  0.920  0.923  0.905  0.887  0.785  0.781  0.821  0.842  0.999  1.000  0.867  0.820  0.870  0.816  0.886  0.881  0.744  0.733  0.709  0.737  0.601  0.605  0.602  0.598  0.644  0.647  0.515  0.527  0.711  0.702  0.610  0.600  0.547  0.557  0.648  0.550  0.588  0.538  0.538  0.547  0.547  0.459  0.489  0.538  0.477  0.460  0.606  0.603  0.570  0.576  0.625  0.616  0.561  0.541  0.540  0.531  0.530  0.537  0.541  0.551  0.778  0.782  0.825  0.842  0.648  0.646
+  W10 search[arrow  0.927  0.924  0.893  0.916  0.731  0.728  0.812  0.825  0.867  0.867  1.000  0.949  0.881  0.838  0.863  0.874  0.671  0.657  0.717  0.757  0.577  0.588  0.599  0.594  0.588  0.591  0.483  0.494  0.655  0.660  0.598  0.629  0.529  0.553  0.607  0.513  0.542  0.518  0.518  0.546  0.546  0.471  0.513  0.546  0.470  0.435  0.580  0.584  0.569  0.566  0.578  0.576  0.554  0.534  0.523  0.520  0.514  0.518  0.517  0.526  0.676  0.686  0.756  0.775  0.609  0.588
+  W11 search[arrow  0.875  0.871  0.839  0.866  0.712  0.716  0.864  0.863  0.824  0.820  0.949  1.000  0.836  0.885  0.800  0.801  0.660  0.640  0.705  0.728  0.560  0.567  0.591  0.586  0.575  0.578  0.492  0.505  0.649  0.658  0.609  0.623  0.518  0.544  0.621  0.515  0.538  0.536  0.536  0.564  0.564  0.487  0.534  0.562  0.476  0.453  0.564  0.576  0.553  0.550  0.576  0.578  0.562  0.547  0.541  0.542  0.513  0.516  0.510  0.520  0.617  0.632  0.755  0.761  0.614  0.593
+  W12 search[men's  0.936  0.936  0.895  0.908  0.797  0.788  0.816  0.837  0.872  0.870  0.881  0.836  1.000  0.949  0.875  0.865  0.743  0.726  0.716  0.750  0.590  0.600  0.606  0.608  0.616  0.619  0.526  0.534  0.690  0.691  0.572  0.616  0.573  0.589  0.665  0.557  0.582  0.553  0.553  0.587  0.587  0.498  0.543  0.576  0.496  0.448  0.595  0.597  0.574  0.578  0.582  0.572  0.584  0.569  0.556  0.540  0.528  0.534  0.556  0.567  0.690  0.701  0.803  0.824  0.640  0.635
+  W13 search[men's  0.882  0.883  0.842  0.855  0.780  0.776  0.861  0.866  0.821  0.816  0.838  0.885  0.949  1.000  0.808  0.797  0.726  0.705  0.706  0.730  0.576  0.582  0.598  0.600  0.608  0.609  0.538  0.547  0.686  0.692  0.594  0.623  0.564  0.585  0.674  0.555  0.582  0.568  0.568  0.605  0.605  0.514  0.562  0.587  0.507  0.459  0.578  0.587  0.563  0.565  0.579  0.573  0.589  0.575  0.569  0.553  0.528  0.532  0.550  0.562  0.638  0.655  0.801  0.811  0.648  0.641
+  W14 search[cotto  0.936  0.935  0.936  0.889  0.816  0.820  0.796  0.817  0.885  0.886  0.863  0.800  0.875  0.808  1.000  0.983  0.786  0.783  0.674  0.712  0.614  0.617  0.616  0.617  0.664  0.665  0.541  0.554  0.708  0.701  0.607  0.644  0.573  0.584  0.704  0.612  0.635  0.592  0.592  0.602  0.602  0.515  0.520  0.573  0.515  0.461  0.614  0.622  0.612  0.621  0.623  0.610  0.596  0.562  0.571  0.562  0.545  0.551  0.571  0.581  0.771  0.774  0.791  0.812  0.672  0.670
+  W15 search[men's  0.943  0.942  0.944  0.906  0.800  0.801  0.798  0.813  0.877  0.881  0.874  0.801  0.865  0.797  0.983  1.000  0.767  0.764  0.692  0.724  0.618  0.625  0.620  0.622  0.661  0.661  0.537  0.550  0.696  0.694  0.614  0.654  0.573  0.592  0.694  0.602  0.621  0.578  0.578  0.585  0.585  0.506  0.510  0.566  0.510  0.445  0.622  0.624  0.618  0.625  0.616  0.605  0.606  0.571  0.580  0.571  0.548  0.553  0.585  0.595  0.780  0.780  0.772  0.794  0.671  0.665
+  W16 search[silve  0.744  0.749  0.755  0.701  0.819  0.822  0.712  0.735  0.746  0.744  0.671  0.660  0.743  0.726  0.786  0.767  1.000  0.979  0.632  0.636  0.612  0.613  0.591  0.597  0.626  0.627  0.521  0.542  0.701  0.697  0.557  0.563  0.618  0.616  0.683  0.632  0.637  0.598  0.598  0.583  0.583  0.520  0.536  0.593  0.523  0.461  0.607  0.604  0.603  0.592  0.613  0.610  0.568  0.556  0.587  0.575  0.516  0.519  0.520  0.533  0.732  0.745  0.764  0.770  0.660  0.642
+  W17 search[xx-la  0.730  0.736  0.740  0.682  0.809  0.809  0.696  0.715  0.733  0.733  0.657  0.640  0.726  0.705  0.783  0.764  0.979  1.000  0.611  0.620  0.611  0.610  0.589  0.593  0.619  0.619  0.529  0.549  0.707  0.700  0.543  0.547  0.603  0.602  0.682  0.654  0.657  0.609  0.609  0.597  0.597  0.537  0.542  0.598  0.538  0.473  0.608  0.608  0.592  0.588  0.607  0.603  0.562  0.553  0.587  0.580  0.520  0.522  0.506  0.517  0.729  0.738  0.745  0.757  0.649  0.631
+  W18 search[polye  0.732  0.736  0.713  0.775  0.656  0.650  0.675  0.689  0.708  0.709  0.717  0.705  0.716  0.706  0.674  0.692  0.632  0.611  1.000  0.873  0.635  0.646  0.635  0.636  0.578  0.580  0.592  0.603  0.638  0.647  0.600  0.606  0.563  0.569  0.641  0.533  0.536  0.526  0.526  0.524  0.524  0.455  0.511  0.528  0.463  0.464  0.652  0.657  0.595  0.567  0.583  0.578  0.632  0.624  0.592  0.608  0.567  0.574  0.543  0.550  0.679  0.678  0.770  0.766  0.588  0.575
+  W19 search[polye  0.759  0.761  0.737  0.804  0.684  0.686  0.682  0.697  0.738  0.737  0.757  0.728  0.750  0.730  0.712  0.724  0.636  0.620  0.873  1.000  0.614  0.620  0.597  0.600  0.588  0.591  0.528  0.532  0.642  0.642  0.599  0.672  0.548  0.552  0.623  0.547  0.536  0.521  0.521  0.526  0.526  0.457  0.515  0.524  0.450  0.434  0.622  0.617  0.561  0.541  0.609  0.599  0.581  0.553  0.528  0.533  0.514  0.519  0.509  0.516  0.701  0.701  0.788  0.821  0.598  0.601
+  W20 search[wood   0.602  0.609  0.589  0.595  0.628  0.637  0.581  0.602  0.602  0.601  0.577  0.560  0.590  0.576  0.614  0.618  0.612  0.611  0.635  0.614  1.000  0.974  0.905  0.912  0.605  0.606  0.593  0.612  0.741  0.746  0.626  0.593  0.659  0.660  0.776  0.620  0.611  0.606  0.606  0.590  0.590  0.538  0.529  0.564  0.517  0.517  0.980  0.946  0.693  0.658  0.684  0.682  0.579  0.565  0.536  0.537  0.596  0.600  0.530  0.532  0.608  0.613  0.616  0.623  0.593  0.562
+  W21 search[charc  0.610  0.615  0.599  0.608  0.626  0.636  0.588  0.604  0.605  0.605  0.588  0.567  0.600  0.582  0.617  0.625  0.613  0.610  0.646  0.620  0.974  1.000  0.902  0.910  0.588  0.588  0.574  0.594  0.731  0.738  0.622  0.595  0.679  0.677  0.738  0.602  0.596  0.592  0.592  0.580  0.580  0.537  0.529  0.557  0.513  0.517  0.988  0.933  0.700  0.659  0.678  0.678  0.579  0.566  0.536  0.535  0.582  0.582  0.532  0.532  0.591  0.597  0.611  0.616  0.585  0.548
+  W22 search[box s  0.615  0.616  0.602  0.607  0.615  0.619  0.607  0.620  0.602  0.602  0.599  0.591  0.606  0.598  0.616  0.620  0.591  0.589  0.635  0.597  0.905  0.902  1.000  0.987  0.600  0.601  0.598  0.619  0.733  0.737  0.612  0.587  0.667  0.663  0.732  0.621  0.614  0.602  0.602  0.609  0.609  0.559  0.564  0.590  0.517  0.531  0.923  0.953  0.679  0.648  0.661  0.656  0.603  0.592  0.549  0.543  0.593  0.596  0.518  0.520  0.585  0.593  0.593  0.601  0.574  0.548
+  W23 search[charc  0.614  0.615  0.601  0.604  0.621  0.622  0.599  0.615  0.599  0.598  0.594  0.586  0.608  0.600  0.617  0.622  0.597  0.593  0.636  0.600  0.912  0.910  0.987  1.000  0.604  0.605  0.596  0.617  0.734  0.738  0.610  0.585  0.665  0.661  0.743  0.624  0.618  0.600  0.600  0.605  0.605  0.557  0.552  0.580  0.517  0.525  0.925  0.951  0.687  0.654  0.666  0.661  0.598  0.589  0.544  0.536  0.593  0.595  0.527  0.528  0.590  0.597  0.596  0.605  0.578  0.551
+  W24 search[men's  0.643  0.648  0.633  0.603  0.653  0.654  0.628  0.645  0.644  0.644  0.588  0.575  0.616  0.608  0.664  0.661  0.626  0.619  0.578  0.588  0.605  0.588  0.600  0.604  1.000  0.996  0.513  0.535  0.709  0.699  0.639  0.648  0.584  0.598  0.656  0.597  0.583  0.571  0.571  0.576  0.576  0.501  0.495  0.543  0.502  0.445  0.591  0.594  0.603  0.587  0.614  0.601  0.576  0.573  0.565  0.510  0.558  0.562  0.571  0.581  0.671  0.669  0.625  0.641  0.731  0.738
+  W25 search[slip   0.643  0.649  0.632  0.606  0.654  0.657  0.629  0.647  0.648  0.647  0.591  0.578  0.619  0.609  0.665  0.661  0.627  0.619  0.580  0.591  0.606  0.588  0.601  0.605  0.996  1.000  0.513  0.535  0.713  0.702  0.639  0.648  0.586  0.599  0.664  0.604  0.590  0.578  0.578  0.584  0.584  0.504  0.499  0.545  0.506  0.453  0.590  0.596  0.603  0.590  0.614  0.601  0.576  0.577  0.570  0.515  0.560  0.564  0.575  0.585  0.671  0.670  0.632  0.646  0.730  0.735
+  W26 search[dark   0.534  0.543  0.525  0.531  0.540  0.578  0.526  0.542  0.514  0.515  0.483  0.492  0.526  0.538  0.541  0.537  0.521  0.529  0.592  0.528  0.593  0.574  0.598  0.596  0.513  0.513  1.000  0.984  0.550  0.554  0.522  0.507  0.468  0.502  0.599  0.574  0.594  0.517  0.517  0.540  0.540  0.456  0.457  0.480  0.457  0.439  0.598  0.610  0.552  0.549  0.486  0.483  0.631  0.630  0.614  0.629  0.635  0.634  0.500  0.503  0.543  0.541  0.564  0.556  0.500  0.498
+  W27 search[non g  0.545  0.553  0.535  0.541  0.552  0.584  0.539  0.553  0.526  0.527  0.494  0.505  0.534  0.547  0.554  0.550  0.542  0.549  0.603  0.532  0.612  0.594  0.619  0.617  0.535  0.535  0.984  1.000  0.560  0.562  0.534  0.514  0.477  0.507  0.618  0.582  0.602  0.519  0.519  0.551  0.551  0.460  0.469  0.492  0.458  0.452  0.618  0.631  0.567  0.565  0.498  0.496  0.637  0.630  0.620  0.636  0.652  0.652  0.514  0.519  0.560  0.558  0.562  0.557  0.509  0.509
+  W28 search[charc  0.695  0.702  0.680  0.649  0.706  0.719  0.668  0.687  0.713  0.711  0.655  0.649  0.690  0.686  0.708  0.696  0.701  0.707  0.638  0.642  0.741  0.731  0.733  0.734  0.709  0.713  0.550  0.560  1.000  0.989  0.614  0.596  0.587  0.596  0.696  0.628  0.629  0.608  0.608  0.596  0.596  0.512  0.510  0.579  0.514  0.513  0.738  0.743  0.569  0.563  0.659  0.642  0.571  0.559  0.537  0.518  0.572  0.575  0.524  0.531  0.723  0.726  0.719  0.721  0.724  0.696
+  W29 search[charc  0.694  0.701  0.679  0.657  0.696  0.709  0.671  0.687  0.703  0.702  0.660  0.658  0.691  0.692  0.701  0.694  0.697  0.700  0.647  0.642  0.746  0.738  0.737  0.738  0.699  0.702  0.554  0.562  0.989  1.000  0.618  0.598  0.600  0.610  0.703  0.630  0.633  0.615  0.615  0.607  0.607  0.530  0.527  0.591  0.528  0.512  0.743  0.749  0.581  0.577  0.663  0.646  0.583  0.566  0.547  0.532  0.583  0.585  0.525  0.535  0.720  0.723  0.716  0.715  0.712  0.682
+  W30 search[heigh  0.612  0.613  0.604  0.605  0.567  0.572  0.625  0.624  0.612  0.610  0.598  0.609  0.572  0.594  0.607  0.614  0.557  0.543  0.600  0.599  0.626  0.622  0.612  0.610  0.639  0.639  0.522  0.534  0.614  0.618  1.000  0.925  0.576  0.622  0.607  0.527  0.528  0.531  0.531  0.537  0.537  0.482  0.500  0.519  0.465  0.472  0.607  0.595  0.602  0.595  0.672  0.665  0.552  0.519  0.528  0.508  0.490  0.487  0.507  0.501  0.593  0.595  0.589  0.592  0.593  0.591
+  W31 search[heigh  0.646  0.644  0.639  0.643  0.601  0.608  0.636  0.633  0.600  0.600  0.629  0.623  0.616  0.623  0.644  0.654  0.563  0.547  0.606  0.672  0.593  0.595  0.587  0.585  0.648  0.648  0.507  0.514  0.596  0.598  0.925  1.000  0.567  0.604  0.601  0.513  0.515  0.520  0.520  0.520  0.520  0.471  0.491  0.524  0.442  0.430  0.578  0.569  0.585  0.571  0.622  0.608  0.574  0.539  0.545  0.521  0.502  0.500  0.509  0.502  0.574  0.578  0.588  0.628  0.592  0.599
+  W32 search[decor  0.571  0.572  0.564  0.565  0.579  0.578  0.551  0.561  0.547  0.547  0.529  0.518  0.573  0.564  0.573  0.573  0.618  0.603  0.563  0.548  0.659  0.679  0.667  0.665  0.584  0.586  0.468  0.477  0.587  0.600  0.576  0.567  1.000  0.946  0.591  0.576  0.549  0.534  0.534  0.558  0.558  0.525  0.543  0.536  0.468  0.456  0.663  0.643  0.720  0.706  0.636  0.637  0.578  0.571  0.579  0.517  0.508  0.511  0.537  0.542  0.513  0.527  0.545  0.546  0.544  0.529
+  W33 search[accen  0.590  0.590  0.581  0.581  0.592  0.596  0.587  0.593  0.556  0.557  0.553  0.544  0.589  0.585  0.584  0.592  0.616  0.602  0.569  0.552  0.660  0.677  0.663  0.661  0.598  0.599  0.502  0.507  0.596  0.610  0.622  0.604  0.946  1.000  0.599  0.586  0.572  0.573  0.573  0.603  0.603  0.564  0.582  0.570  0.519  0.485  0.659  0.637  0.722  0.716  0.636  0.633  0.607  0.611  0.623  0.564  0.517  0.519  0.565  0.573  0.528  0.542  0.560  0.560  0.557  0.540
+  W34 search[mattr  0.667  0.676  0.653  0.658  0.704  0.702  0.654  0.672  0.649  0.648  0.607  0.621  0.665  0.674  0.704  0.694  0.683  0.682  0.641  0.623  0.776  0.738  0.732  0.743  0.656  0.664  0.599  0.618  0.696  0.703  0.607  0.601  0.591  0.599  1.000  0.723  0.687  0.626  0.626  0.661  0.661  0.548  0.549  0.623  0.519  0.557  0.744  0.779  0.648  0.651  0.668  0.654  0.623  0.594  0.598  0.604  0.596  0.603  0.586  0.594  0.651  0.658  0.696  0.697  0.637  0.627
+  W35 search[keywo  0.563  0.572  0.562  0.555  0.637  0.667  0.551  0.571  0.550  0.550  0.513  0.515  0.557  0.555  0.612  0.602  0.632  0.654  0.533  0.547  0.620  0.602  0.621  0.624  0.597  0.604  0.574  0.582  0.628  0.630  0.527  0.513  0.576  0.586  0.723  1.000  0.779  0.650  0.650  0.735  0.735  0.646  0.623  0.643  0.587  0.580  0.614  0.643  0.608  0.618  0.608  0.600  0.563  0.568  0.575  0.556  0.544  0.548  0.542  0.549  0.595  0.598  0.607  0.603  0.593  0.582
+  W36 search[B07FK  0.590  0.601  0.594  0.567  0.632  0.652  0.580  0.595  0.590  0.588  0.542  0.538  0.582  0.582  0.635  0.621  0.637  0.657  0.536  0.536  0.611  0.596  0.614  0.618  0.583  0.590  0.594  0.602  0.629  0.633  0.528  0.515  0.549  0.572  0.687  0.779  1.000  0.657  0.657  0.701  0.701  0.652  0.628  0.656  0.762  0.598  0.605  0.618  0.600  0.616  0.591  0.579  0.562  0.566  0.560  0.557  0.581  0.582  0.551  0.561  0.601  0.601  0.624  0.623  0.590  0.585
+  W37 click[Buy No  0.550  0.556  0.546  0.543  0.608  0.604  0.552  0.563  0.540  0.538  0.518  0.536  0.553  0.568  0.592  0.578  0.598  0.609  0.526  0.521  0.606  0.592  0.602  0.600  0.571  0.578  0.517  0.519  0.608  0.615  0.531  0.520  0.534  0.573  0.626  0.650  0.657  1.000  1.000  0.783  0.783  0.825  0.792  0.790  0.779  0.542  0.598  0.615  0.585  0.583  0.547  0.538  0.538  0.556  0.558  0.553  0.530  0.537  0.518  0.525  0.564  0.562  0.588  0.578  0.585  0.560
+  W38 click[buy no  0.550  0.556  0.546  0.543  0.608  0.604  0.552  0.563  0.540  0.538  0.518  0.536  0.553  0.568  0.592  0.578  0.598  0.609  0.526  0.521  0.606  0.592  0.602  0.600  0.571  0.578  0.517  0.519  0.608  0.615  0.531  0.520  0.534  0.573  0.626  0.650  0.657  1.000  1.000  0.783  0.783  0.825  0.792  0.790  0.779  0.542  0.598  0.615  0.585  0.583  0.547  0.538  0.538  0.556  0.558  0.553  0.530  0.537  0.518  0.525  0.564  0.562  0.588  0.578  0.585  0.560
+  W39 click[back t  0.566  0.578  0.562  0.557  0.608  0.612  0.566  0.572  0.548  0.547  0.546  0.564  0.587  0.605  0.602  0.585  0.583  0.597  0.524  0.526  0.590  0.580  0.609  0.605  0.576  0.584  0.540  0.551  0.596  0.607  0.537  0.520  0.558  0.603  0.661  0.735  0.701  0.783  0.783  1.000  1.000  0.862  0.831  0.788  0.736  0.618  0.588  0.612  0.574  0.592  0.557  0.548  0.530  0.544  0.545  0.542  0.533  0.538  0.513  0.524  0.552  0.553  0.585  0.586  0.555  0.540
+  W40 click[Back t  0.566  0.578  0.562  0.557  0.608  0.612  0.566  0.572  0.548  0.547  0.546  0.564  0.587  0.605  0.602  0.585  0.583  0.597  0.524  0.526  0.590  0.580  0.609  0.605  0.576  0.584  0.540  0.551  0.596  0.607  0.537  0.520  0.558  0.603  0.661  0.735  0.701  0.783  0.783  1.000  1.000  0.862  0.831  0.788  0.736  0.618  0.588  0.612  0.574  0.592  0.557  0.548  0.530  0.544  0.545  0.542  0.533  0.538  0.513  0.524  0.552  0.553  0.585  0.586  0.555  0.540
+  W41 click[Descri  0.476  0.483  0.480  0.472  0.527  0.506  0.484  0.485  0.459  0.459  0.471  0.487  0.498  0.514  0.515  0.506  0.520  0.537  0.455  0.457  0.538  0.537  0.559  0.557  0.501  0.504  0.456  0.460  0.512  0.530  0.482  0.471  0.525  0.564  0.548  0.646  0.652  0.825  0.825  0.862  0.862  1.000  0.895  0.861  0.834  0.582  0.535  0.551  0.506  0.504  0.477  0.472  0.470  0.487  0.481  0.472  0.474  0.475  0.447  0.454  0.477  0.479  0.510  0.503  0.491  0.467
+  W42 click[small]  0.508  0.514  0.482  0.506  0.536  0.521  0.530  0.524  0.492  0.489  0.513  0.534  0.543  0.562  0.520  0.510  0.536  0.542  0.511  0.515  0.529  0.529  0.564  0.552  0.495  0.499  0.457  0.469  0.510  0.527  0.500  0.491  0.543  0.582  0.549  0.623  0.628  0.792  0.792  0.831  0.831  0.895  1.000  0.864  0.757  0.608  0.531  0.546  0.523  0.521  0.495  0.490  0.472  0.497  0.503  0.489  0.472  0.474  0.450  0.456  0.465  0.466  0.544  0.545  0.517  0.488
+  W43 click[medium  0.558  0.558  0.536  0.549  0.588  0.580  0.561  0.561  0.538  0.538  0.546  0.562  0.576  0.587  0.573  0.566  0.593  0.598  0.528  0.524  0.564  0.557  0.590  0.580  0.543  0.545  0.480  0.492  0.579  0.591  0.519  0.524  0.536  0.570  0.623  0.643  0.656  0.790  0.790  0.788  0.788  0.861  0.864  1.000  0.761  0.559  0.567  0.587  0.528  0.516  0.534  0.527  0.493  0.500  0.504  0.501  0.484  0.490  0.459  0.461  0.540  0.548  0.573  0.573  0.559  0.542
+  W44 click[B07F2G  0.485  0.493  0.484  0.479  0.516  0.506  0.490  0.497  0.479  0.477  0.470  0.476  0.496  0.507  0.515  0.510  0.523  0.538  0.463  0.450  0.517  0.513  0.517  0.517  0.502  0.506  0.457  0.458  0.514  0.528  0.465  0.442  0.468  0.519  0.519  0.587  0.762  0.779  0.779  0.736  0.736  0.834  0.757  0.761  1.000  0.549  0.511  0.509  0.503  0.513  0.482  0.476  0.469  0.479  0.467  0.470  0.491  0.494  0.458  0.466  0.487  0.488  0.515  0.508  0.517  0.496
+  W45 null          0.437  0.444  0.433  0.433  0.465  0.474  0.465  0.467  0.460  0.460  0.435  0.453  0.448  0.459  0.461  0.445  0.461  0.473  0.464  0.434  0.517  0.517  0.531  0.525  0.445  0.453  0.439  0.452  0.513  0.512  0.472  0.430  0.456  0.485  0.557  0.580  0.598  0.542  0.542  0.618  0.618  0.582  0.608  0.559  0.549  1.000  0.515  0.530  0.481  0.490  0.498  0.483  0.466  0.476  0.435  0.423  0.477  0.476  0.392  0.394  0.460  0.450  0.496  0.499  0.436  0.444
+  W46 search[twin   0.607  0.613  0.595  0.604  0.620  0.631  0.586  0.603  0.605  0.606  0.580  0.564  0.595  0.578  0.614  0.622  0.607  0.608  0.652  0.622  0.980  0.988  0.923  0.925  0.591  0.590  0.598  0.618  0.738  0.743  0.607  0.578  0.663  0.659  0.744  0.614  0.605  0.598  0.598  0.588  0.588  0.535  0.531  0.567  0.511  0.515  1.000  0.958  0.695  0.653  0.677  0.678  0.592  0.579  0.544  0.549  0.598  0.601  0.531  0.532  0.598  0.603  0.609  0.615  0.584  0.550
+  W47 search[twin   0.610  0.615  0.598  0.609  0.639  0.637  0.592  0.608  0.602  0.603  0.584  0.576  0.597  0.587  0.622  0.624  0.604  0.608  0.657  0.617  0.946  0.933  0.953  0.951  0.594  0.596  0.610  0.631  0.743  0.749  0.595  0.569  0.643  0.637  0.779  0.643  0.618  0.615  0.615  0.612  0.612  0.551  0.546  0.587  0.509  0.530  0.958  1.000  0.677  0.643  0.679  0.676  0.602  0.588  0.549  0.559  0.607  0.611  0.519  0.521  0.615  0.621  0.609  0.619  0.565  0.541
+  W48 search[glass  0.592  0.594  0.585  0.604  0.600  0.619  0.558  0.582  0.571  0.570  0.569  0.553  0.574  0.563  0.612  0.618  0.603  0.592  0.595  0.561  0.693  0.700  0.679  0.687  0.603  0.603  0.552  0.567  0.569  0.581  0.602  0.585  0.720  0.722  0.648  0.608  0.600  0.585  0.585  0.574  0.574  0.506  0.523  0.528  0.503  0.481  0.695  0.677  1.000  0.940  0.668  0.662  0.549  0.564  0.570  0.549  0.537  0.545  0.595  0.600  0.541  0.549  0.563  0.570  0.561  0.537
+  W49 search[glass  0.599  0.603  0.596  0.602  0.605  0.618  0.561  0.585  0.576  0.576  0.566  0.550  0.578  0.565  0.621  0.625  0.592  0.588  0.567  0.541  0.658  0.659  0.648  0.654  0.587  0.590  0.549  0.565  0.563  0.577  0.595  0.571  0.706  0.716  0.651  0.618  0.616  0.583  0.583  0.592  0.592  0.504  0.521  0.516  0.513  0.490  0.653  0.643  0.940  1.000  0.665  0.660  0.541  0.550  0.567  0.545  0.551  0.561  0.580  0.590  0.538  0.546  0.559  0.570  0.574  0.554
+  W50 search[round  0.592  0.597  0.584  0.579  0.613  0.626  0.568  0.582  0.627  0.625  0.578  0.576  0.582  0.579  0.623  0.616  0.613  0.607  0.583  0.609  0.684  0.678  0.661  0.666  0.614  0.614  0.486  0.498  0.659  0.663  0.672  0.622  0.636  0.636  0.668  0.608  0.591  0.547  0.547  0.557  0.557  0.477  0.495  0.534  0.482  0.498  0.677  0.679  0.668  0.665  1.000  0.990  0.531  0.516  0.499  0.482  0.525  0.529  0.536  0.541  0.620  0.625  0.621  0.626  0.588  0.579
+  W51 search[black  0.585  0.588  0.574  0.574  0.605  0.615  0.564  0.578  0.618  0.616  0.576  0.578  0.572  0.573  0.610  0.605  0.610  0.603  0.578  0.599  0.682  0.678  0.656  0.661  0.601  0.601  0.483  0.496  0.642  0.646  0.665  0.608  0.637  0.633  0.654  0.600  0.579  0.538  0.538  0.548  0.548  0.472  0.490  0.527  0.476  0.483  0.678  0.676  0.662  0.660  0.990  1.000  0.523  0.511  0.494  0.477  0.521  0.526  0.538  0.544  0.611  0.619  0.610  0.614  0.584  0.569
+  W52 search[body   0.602  0.607  0.595  0.599  0.571  0.587  0.604  0.605  0.558  0.561  0.554  0.562  0.584  0.589  0.596  0.606  0.568  0.562  0.632  0.581  0.579  0.579  0.603  0.598  0.576  0.576  0.631  0.637  0.571  0.583  0.552  0.574  0.578  0.607  0.623  0.563  0.562  0.538  0.538  0.530  0.530  0.470  0.472  0.493  0.469  0.466  0.592  0.602  0.549  0.541  0.531  0.523  1.000  0.929  0.891  0.837  0.629  0.628  0.557  0.565  0.582  0.592  0.595  0.588  0.536  0.542
+  W53 search[face   0.572  0.579  0.567  0.575  0.556  0.565  0.591  0.597  0.539  0.541  0.534  0.547  0.569  0.575  0.562  0.571  0.556  0.553  0.624  0.553  0.565  0.566  0.592  0.589  0.573  0.577  0.630  0.630  0.559  0.566  0.519  0.539  0.571  0.611  0.594  0.568  0.566  0.556  0.556  0.544  0.544  0.487  0.497  0.500  0.479  0.476  0.579  0.588  0.564  0.550  0.516  0.511  0.929  1.000  0.895  0.838  0.632  0.634  0.588  0.594  0.525  0.539  0.581  0.566  0.536  0.529
+  W54 search[cerav  0.572  0.578  0.565  0.572  0.567  0.572  0.593  0.591  0.537  0.540  0.523  0.541  0.556  0.569  0.571  0.580  0.587  0.587  0.592  0.528  0.536  0.536  0.549  0.544  0.565  0.570  0.614  0.620  0.537  0.547  0.528  0.545  0.579  0.623  0.598  0.575  0.560  0.558  0.558  0.545  0.545  0.481  0.503  0.504  0.467  0.435  0.544  0.549  0.570  0.567  0.499  0.494  0.891  0.895  1.000  0.925  0.574  0.577  0.568  0.576  0.521  0.537  0.587  0.568  0.526  0.525
+  W55 search[cetap  0.561  0.565  0.550  0.572  0.534  0.544  0.562  0.562  0.528  0.531  0.520  0.542  0.540  0.553  0.562  0.571  0.575  0.580  0.608  0.533  0.537  0.535  0.543  0.536  0.510  0.515  0.629  0.636  0.518  0.532  0.508  0.521  0.517  0.564  0.604  0.556  0.557  0.553  0.553  0.542  0.542  0.472  0.489  0.501  0.470  0.423  0.549  0.559  0.549  0.545  0.482  0.477  0.837  0.838  0.925  1.000  0.566  0.567  0.541  0.553  0.515  0.532  0.579  0.560  0.487  0.493
+  W56 search[glute  0.527  0.538  0.509  0.534  0.544  0.543  0.519  0.525  0.527  0.530  0.514  0.513  0.528  0.528  0.545  0.548  0.516  0.520  0.567  0.514  0.596  0.582  0.593  0.593  0.558  0.560  0.635  0.652  0.572  0.583  0.490  0.502  0.508  0.517  0.596  0.544  0.581  0.530  0.530  0.533  0.533  0.474  0.472  0.484  0.491  0.477  0.598  0.607  0.537  0.551  0.525  0.521  0.629  0.632  0.574  0.566  1.000  0.996  0.562  0.569  0.536  0.529  0.553  0.559  0.527  0.527
+  W57 search[honey  0.532  0.543  0.515  0.540  0.552  0.550  0.522  0.531  0.535  0.537  0.518  0.516  0.534  0.532  0.551  0.553  0.519  0.522  0.574  0.519  0.600  0.582  0.596  0.595  0.562  0.564  0.634  0.652  0.575  0.585  0.487  0.500  0.511  0.519  0.603  0.548  0.582  0.537  0.537  0.538  0.538  0.475  0.474  0.490  0.494  0.476  0.601  0.611  0.545  0.561  0.529  0.526  0.628  0.634  0.577  0.567  0.996  1.000  0.566  0.574  0.535  0.528  0.563  0.570  0.533  0.533
+  W58 search[tempe  0.557  0.562  0.554  0.545  0.553  0.565  0.516  0.535  0.540  0.541  0.517  0.510  0.556  0.550  0.571  0.585  0.520  0.506  0.543  0.509  0.530  0.532  0.518  0.527  0.571  0.575  0.500  0.514  0.524  0.525  0.507  0.509  0.537  0.565  0.586  0.542  0.551  0.518  0.518  0.513  0.513  0.447  0.450  0.459  0.458  0.392  0.531  0.519  0.595  0.580  0.536  0.538  0.557  0.588  0.568  0.541  0.562  0.566  1.000  0.993  0.519  0.516  0.556  0.553  0.521  0.536
+  W59 search[iphon  0.567  0.574  0.564  0.554  0.570  0.580  0.524  0.546  0.550  0.551  0.526  0.520  0.567  0.562  0.581  0.595  0.533  0.517  0.550  0.516  0.532  0.532  0.520  0.528  0.581  0.585  0.503  0.519  0.531  0.535  0.501  0.502  0.542  0.573  0.594  0.549  0.561  0.525  0.525  0.524  0.524  0.454  0.456  0.461  0.466  0.394  0.532  0.521  0.600  0.590  0.541  0.544  0.565  0.594  0.576  0.553  0.569  0.574  0.993  1.000  0.528  0.526  0.568  0.565  0.523  0.540
+  W60 search[men's  0.736  0.739  0.752  0.708  0.720  0.712  0.647  0.659  0.771  0.778  0.676  0.617  0.690  0.638  0.771  0.780  0.732  0.729  0.679  0.701  0.608  0.591  0.585  0.590  0.671  0.671  0.543  0.560  0.723  0.720  0.593  0.574  0.513  0.528  0.651  0.595  0.601  0.564  0.564  0.552  0.552  0.477  0.465  0.540  0.487  0.460  0.598  0.615  0.541  0.538  0.620  0.611  0.582  0.525  0.521  0.515  0.536  0.535  0.519  0.528  1.000  0.985  0.712  0.723  0.678  0.681
+  W61 search[black  0.743  0.745  0.757  0.717  0.736  0.728  0.658  0.671  0.776  0.782  0.686  0.632  0.701  0.655  0.774  0.780  0.745  0.738  0.678  0.701  0.613  0.597  0.593  0.597  0.669  0.670  0.541  0.558  0.726  0.723  0.595  0.578  0.527  0.542  0.658  0.598  0.601  0.562  0.562  0.553  0.553  0.479  0.466  0.548  0.488  0.450  0.603  0.621  0.549  0.546  0.625  0.619  0.592  0.539  0.537  0.532  0.529  0.528  0.516  0.526  0.985  1.000  0.721  0.728  0.678  0.678
+  W62 search[Hanes  0.802  0.814  0.786  0.782  0.759  0.752  0.759  0.787  0.828  0.825  0.756  0.755  0.803  0.801  0.791  0.772  0.764  0.745  0.770  0.788  0.616  0.611  0.593  0.596  0.625  0.632  0.564  0.562  0.719  0.716  0.589  0.588  0.545  0.560  0.696  0.607  0.624  0.588  0.588  0.585  0.585  0.510  0.544  0.573  0.515  0.496  0.609  0.609  0.563  0.559  0.621  0.610  0.595  0.581  0.587  0.579  0.553  0.563  0.556  0.568  0.712  0.721  1.000  0.970  0.662  0.664
+  W63 search[Hanes  0.820  0.831  0.803  0.800  0.779  0.772  0.761  0.787  0.846  0.842  0.775  0.761  0.824  0.811  0.812  0.794  0.770  0.757  0.766  0.821  0.623  0.616  0.601  0.605  0.641  0.646  0.556  0.557  0.721  0.715  0.592  0.628  0.546  0.560  0.697  0.603  0.623  0.578  0.578  0.586  0.586  0.503  0.545  0.573  0.508  0.499  0.615  0.619  0.570  0.570  0.626  0.614  0.588  0.566  0.568  0.560  0.559  0.570  0.553  0.565  0.723  0.728  0.970  1.000  0.669  0.681
+  W64 search[men's  0.655  0.660  0.639  0.610  0.669  0.662  0.642  0.659  0.653  0.648  0.609  0.614  0.640  0.648  0.672  0.671  0.660  0.649  0.588  0.598  0.593  0.585  0.574  0.578  0.731  0.730  0.500  0.509  0.724  0.712  0.593  0.592  0.544  0.557  0.637  0.593  0.590  0.585  0.585  0.555  0.555  0.491  0.517  0.559  0.517  0.436  0.584  0.565  0.561  0.574  0.588  0.584  0.536  0.536  0.526  0.487  0.527  0.533  0.521  0.523  0.678  0.678  0.662  0.669  1.000  0.957
+  W65 search[men's  0.648  0.652  0.637  0.600  0.667  0.665  0.636  0.651  0.650  0.646  0.588  0.593  0.635  0.641  0.670  0.665  0.642  0.631  0.575  0.601  0.562  0.548  0.548  0.551  0.738  0.735  0.498  0.509  0.696  0.682  0.591  0.599  0.529  0.540  0.627  0.582  0.585  0.560  0.560  0.540  0.540  0.467  0.488  0.542  0.496  0.444  0.550  0.541  0.537  0.554  0.579  0.569  0.542  0.529  0.525  0.493  0.527  0.533  0.536  0.540  0.681  0.678  0.664  0.681  0.957  1.000
+
+  动作标签:
+  W0: search[men's dress shirt short sleeve classic fit cotton spandex]
+  W1: search[men's classic fit dress shirt short sleeve cotton spandex]
+  W2: search[men's dress shirt long sleeve classic fit cotton spandex]
+  W3: search[women's dress shirt short sleeve classic fit cotton spandex]
+  W4: search[yellow henley shirt men's large]
+  W5: search[blue henley shirt men's large]
+  W6: search[Van Heusen men's classic fit short sleeve dress shirt stretch]
+  W7: search[van heusen men's classic fit stretch short sleeve dress shirt]
+  W8: search[haggar men's classic fit short sleeve dress shirt cotton spandex black x-large]
+  W9: search[haggar men's classic fit short sleeve dress shirt cotton spandex x-large black]
+  W10: search[arrow classic fit short sleeve dress shirt cotton spandex]
+  W11: search[arrow classic fit short sleeve dress shirt stretch cotton]
+  W12: search[men's button down shirt cotton spandex classic fit short sleeve]
+  W13: search[men's button down shirt stretch cotton classic fit short sleeve]
+  W14: search[cotton spandex dress shirt men's]
+  W15: search[men's dress shirt cotton spandex]
+  W16: search[silver men t-shirt xx-large]
+  W17: search[xx-large t-shirt silver men]
+  W18: search[polyester heather classic fit small women cranberry]
+  W19: search[polyester heather classic fit small women navy]
+  W20: search[wood frame bed charcoal twin]
+  W21: search[charcoal twin wood bed frame]
+  W22: search[box spring twin wood charcoal]
+  W23: search[charcoal twin box spring wood]
+  W24: search[men's loafers slip resistant rubber outsole]
+  W25: search[slip resistant men's loafers rubber outsole]
+  W26: search[dark chocolate keto milk non gmo]
+  W27: search[non gmo keto milk dark chocolate]
+  W28: search[charcoal dust jeans straight leg men's]
+  W29: search[charcoal dust men's jeans straight leg]
+  W30: search[height adjustable office chair black under 130]
+  W31: search[height adjustable office chair navy under 130]
+  W32: search[decorative mirror narrow bronze]
+  W33: search[accent bronze narrow mirror]
+  W34: search[mattress]
+  W35: search[keywords]
+  W36: search[B07FKGQKZ1]
+  W37: click[Buy Now]
+  W38: click[buy now]
+  W39: click[back to search]
+  W40: click[Back to Search]
+  W41: click[Description]
+  W42: click[small]
+  W43: click[medium]
+  W44: click[B07F2G93BJ]
+  W45: null
+  W46: search[twin wood bed frame charcoal]
+  W47: search[twin wood bed spring charcoal]
+  W48: search[glass shade pendant kitchen island living room]
+  W49: search[glass shade chandelier kitchen island living room]
+  W50: search[round area rug black gray 3x5 under 70]
+  W51: search[black gray round area rug 3x5 under 70]
+  W52: search[body lotion sensitive skin paraben free 4.2 oz]
+  W53: search[face cream sensitive skin paraben free 4.2 oz]
+  W54: search[cerave body cream sensitive skin 4.2 ounce]
+  W55: search[cetaphil body cream sensitive skin 4.2 ounce]
+  W56: search[gluten free honey cinnamon protein bar 12 pack]
+  W57: search[honey cinnamon protein bar gluten free 12 pack]
+  W58: search[tempered glass screen protector iphone 14 pro max]
+  W59: search[iphone 14 pro max tempered glass screen protector]
+  W60: search[men's polyester spandex jogger pants xx-large drawstring black]
+  W61: search[black men's polyester spandex jogger pants drawstring xx-large]
+  W62: search[Hanes men's classic fit t-shirt purple heather x-small]
+  W63: search[Hanes men's classic fit t-shirt navy heather x-small]
+  W64: search[men's sneakers breathable mesh running size 10]
+  W65: search[men's athletic shoes breathable mesh running size 10]
+
+  相似度分布（排除自身，共 2145 对）:
+    最高: 1.0000
+    最低: 0.3920
+    中位数: 0.5901
+    平均: 0.6132
+
+  相似度分段统计:
+    [0.9, 1.0):  61 |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    [0.8, 0.9):  98 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    [0.7, 0.8): 206 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    [0.6, 0.7): 560 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    [0.5, 0.6): 1061 |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+    [0.0, 0.5): 157 |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+======================================================================
+所有测试完成!
+======================================================================

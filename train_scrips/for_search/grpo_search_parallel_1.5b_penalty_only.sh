@@ -19,8 +19,8 @@ export SEARCH_URL="http://127.0.0.1:${SEARCH_PORT}/retrieve"
 
 # ========== 训练配置 - 根据需要修改 ==========
 # export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:False,max_split_size_mb:128
-batchsize=1
-export CUDA_VISIBLE_DEVICES=5
+batchsize=2
+export CUDA_VISIBLE_DEVICES=1,2
 micro_para=1
 # tensor_model_parallel_size=1
 tensor_model_parallel_size=$batchsize
@@ -34,18 +34,26 @@ export PYTHONUNBUFFERED=1
 export VLLM_ATTENTION_BACKEND=FLASH_ATTN
 # export VLLM_ATTENTION_BACKEND=XFORMERS
 
-ckpt_dir=${_CODE_BASE}/1gpu_search
-LOG_FILE="$ckpt_dir/1gpu_search.log"
+# ckpt_dir=${_CODE_BASE}/1gpu_search
+ckpt_dir=${_CODE_BASE}/2gpu_emb_search
+# LOG_FILE="$ckpt_dir/2gpu_emb_search.log"
+LOG_FILE="$ckpt_dir/log/search_emb_$(date +%Y%m%d_%H%M%S).log"
+
+# 确保地址存在
+mkdir -p "$ckpt_dir/log"
+mkdir -p "$ckpt_dir"
 
 
-rank_alpha=16
-max_steps=30
-save_freq=1
+rank_alpha=32
+max_steps=15
+save_freq=25
 # free_cache=False
 free_cache=True
-# 自定义选项
+# 自定义选项（custom 系列参数，统一在此区域设置）
 custom_print_debug=true
 custom_save_traj=true
+custom_use_embedding=true      # 启用嵌入相似度
+custom_emb_threshold=0.893     # 嵌入相似度阈值
 
 
 nohup python3 train_scrips/for_search/main_ppo_search.py \
@@ -60,7 +68,7 @@ nohup python3 train_scrips/for_search/main_ppo_search.py \
     env.num_parallel=5 \
     env.add_limit_prompt=True \
     env.lazy_envs=True \
-    env.rollout.n=3 \
+    env.rollout.n=8 \
     env.history_length=8 \
     actor_rollout_ref.actor.ppo_mini_batch_size=32 \
     actor_rollout_ref.model.lora_rank=$rank_alpha \
@@ -114,6 +122,8 @@ nohup python3 train_scrips/for_search/main_ppo_search.py \
     trainer.save_freq=$save_freq \
     +custom.print_debug=$custom_print_debug \
     +custom.save_traj=$custom_save_traj \
+    +custom.use_embedding=$custom_use_embedding \
+    +custom.emb_threshold=$custom_emb_threshold \
     trainer.test_freq=500 \
     trainer.total_epochs=1 \
     trainer.val_before_train=False \
@@ -123,4 +133,4 @@ echo "PID: $!"
 echo "Log: $LOG_FILE"
 echo "Checkpoint dir: $ckpt_dir"
 echo "To monitor: tail -f $LOG_FILE"
-tail -f "$LOG_FILE"
+tail -F "$LOG_FILE"

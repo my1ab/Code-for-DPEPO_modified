@@ -43,11 +43,9 @@ from tqdm import tqdm
 import json
 import os
 import time
-import datetime
 
 
-# 模块级全局任务计数器，生命周期与程序一致，不受类创建销毁影响
-GLOBAL_TASK_COUNTER = 0
+from .emb import EmbeddingManager
 
 
 def append_to_json_file(data, filename):
@@ -118,6 +116,35 @@ def non_tensor_to_list_of_dict(batch: DataProto) -> list[dict]:
     return total_data_list
 
 
+# 模块级全局任务计数器，生命周期与程序一致，不受类创建销毁影响
+GLOBAL_TASK_COUNTER = 0
+import datetime
+
+# ── 嵌入相似度全局开关 ──
+# False: 使用原始精确匹配（默认向后兼容）
+# True: 使用 bge-large-en-v1.5 嵌入模型 + 加权计数（方案 B + E，task_type='webshop'）
+# 这里的模块级默认值可通过 config.custom.use_embedding / config.custom.emb_threshold 覆盖
+# （在 TrajectoryCollectorParallelWebShop.__init__ 中读取并更新全局变量）
+USE_EMBEDDING_SIMILARITY = True
+
+# 嵌入模型配置（仅在 USE_EMBEDDING_SIMILARITY=True 时生效）
+# 使用 shell 脚本传入的 DPEPO_USER_HOME/DPEPO_PROJECT_NAME 拼接绝对路径
+_DPEPO_USER_HOME = os.environ.get('DPEPO_USER_HOME', '/diskpool/home/xuxz')
+_DPEPO_PROJECT_NAME = os.environ.get('DPEPO_PROJECT_NAME', 'Code-for-DPEPO')
+EMBEDDING_MODEL_PATH = os.path.join(
+    _DPEPO_USER_HOME, _DPEPO_PROJECT_NAME, 'models/bge-large-en-v1.5'
+)
+# search/click 嵌入相似度阈值（仅用于嵌入兜底，null 走精确匹配不受此阈值影响）
+# 模块级默认值，可通过 config.custom.emb_threshold 覆盖
+EMBEDDING_SIMILARITY_THRESHOLD = 0.975
+EMBEDDING_GPU_MEMORY_UTILIZATION = 0.1
+# 嵌入模型推理设备：
+#   - "cpu"（默认）：CPU 推理，绕过 Ray actor GPU 可见性问题
+#   - "cuda" 或 "cuda:N"：手动指定 GPU 推理（需确保进程有 GPU 可见性）
+# 可通过环境变量 EMBEDDING_DEVICE 覆盖
+EMBEDDING_DEVICE = os.environ.get('EMBEDDING_DEVICE', 'cpu')
+
+
 class TrajectoryCollectorParallelWebShop:
     """
     Trajectory collector for WebShop parallel environment training.
@@ -131,12 +158,62 @@ class TrajectoryCollectorParallelWebShop:
         self.tokenizer = tokenizer
         self.processor = processor
         # 从 config.custom 读取调试和保存开关，支持 shell 脚本传入覆盖
+        # save_traj 统一控制所有轨迹保存行为（case 日志 + sample JSON）
+        # 嵌入相似度方案配置同理：use_embedding / emb_threshold
+        # 传入类型由脚本规范，此处不额外做差错处理
+        # global 声明必须在引用全局变量之前（Python 语法要求）
+        global USE_EMBEDDING_SIMILARITY, EMBEDDING_SIMILARITY_THRESHOLD
         if hasattr(config, 'custom'):
             self.print_debug = config.custom.get('print_debug', True)
             self.save_traj = config.custom.get('save_traj', False)
+            self.use_embedding = config.custom.get('use_embedding', USE_EMBEDDING_SIMILARITY)
+            self.emb_threshold = config.custom.get('emb_threshold', EMBEDDING_SIMILARITY_THRESHOLD)
         else:
             self.print_debug = True
             self.save_traj = False
+            self.use_embedding = USE_EMBEDDING_SIMILARITY
+            self.emb_threshold = EMBEDDING_SIMILARITY_THRESHOLD
+        print(f'[INFO] 存档参数: print_debug={self.print_debug}，save_traj={self.save_traj}')
+        print(f'[INFO] emb参数: use_embedding={self.use_embedding}，emb_threshold={self.emb_threshold}')
+
+        USE_EMBEDDING_SIMILARITY = self.use_embedding
+        EMBEDDING_SIMILARITY_THRESHOLD = self.emb_threshold
+
+        # 读取 checkpoint 根目录，作为 case / sample 轨迹保存的父目录
+        # 对应 shell 脚本中的 trainer.default_local_dir
+        self.ckpt_dir = config.trainer.default_local_dir
+
+        # 嵌入模型延迟初始化（首次调用 calculate_penalties 时加载）
+        self.embedding_manager = None
+        self._embedding_initialized = False
+
+    def _ensure_embedding_manager(self):
+        """初始化嵌入模型（仅加载一次）。
+
+        在每个 task 开始时（vanilla_multi_turn_loop 开头）调用。
+        通过 _embedding_initialized 标志保证只加载一次，后续 task 跳过。
+
+        根据 USE_EMBEDDING_SIMILARITY 全局开关决定是否启用。
+        本地加载失败时抛 RuntimeError 终止程序（不允许远端下载）。
+        使用 task_type='webshop' 启用 WebShop 分类型策略：
+          click 精确匹配 + search 词集匹配+嵌入兜底（方案 B+E）
+        """
+        if not self._embedding_initialized:
+            self._embedding_initialized = True
+            if USE_EMBEDDING_SIMILARITY:
+                print(f'[INFO] [Task {GLOBAL_TASK_COUNTER}] 初始化嵌入模型，模型路径: {EMBEDDING_MODEL_PATH}，阈值: {EMBEDDING_SIMILARITY_THRESHOLD}，设备: {EMBEDDING_DEVICE}，task_type=webshop')
+                # EmbeddingManager 构造时会校验本地路径并禁用远端下载，失败直接 raise
+                self.embedding_manager = EmbeddingManager(
+                    model_path=EMBEDDING_MODEL_PATH,
+                    gpu_memory_utilization=EMBEDDING_GPU_MEMORY_UTILIZATION,
+                    similarity_threshold=EMBEDDING_SIMILARITY_THRESHOLD,
+                    device=EMBEDDING_DEVICE,
+                    task_type='webshop',
+                )
+                print(f'[INFO] [Task {GLOBAL_TASK_COUNTER}] 嵌入模型加载完成')
+            else:
+                print(f'[INFO] [Task {GLOBAL_TASK_COUNTER}] 未使用嵌入模型（USE_EMBEDDING_SIMILARITY=False）')
+                self.embedding_manager = None
 
     def format_available_actions(self, available_actions):
         """
@@ -469,13 +546,19 @@ class TrajectoryCollectorParallelWebShop:
         batch_size = len(total_batch_list)
         if self.print_debug:
             print(f'[DEBUG] into gather_rollout_data, batch_size={batch_size}')
-        
+        # 设置默认值，保持向后兼容性
+        # if success_flags is None:
+        #     success_flags = np.zeros(batch_size, dtype=int)
+        # if status_msgs is None:
+        #     status_msgs = ["" for _ in range(batch_size)]
 
         # 完全和官方rollout_loop_parallel.py保持一致的逻辑
         effective_batch = [] 
         for bs in range(batch_size):
             for data in total_batch_list[bs]:
                 assert traj_uid[bs] == data['traj_uid'], "data is not from the same trajectory"
+                # 此处仅保留active_masks为False的任务  即未完成的任务
+                # alf中成功才算完成  search中提交就完成
                 if data['active_masks']:
                     # 完全对齐官方实现，直接在原数据上添加字段
                     data['episode_rewards'] = episode_rewards[bs] 
@@ -483,18 +566,35 @@ class TrajectoryCollectorParallelWebShop:
                     data['tool_callings'] = tool_callings[bs]
                     # webshop特有字段保留
                     # data['success_flag'] = int(success_flags[bs])
-                    # data['status_msg'] = str(status_msgs[bs])
+                    # data['status_msg'] = str(status_msgs[bs])0
                     # if 'active_masks' not in data:
                     #     data['active_masks'] = True
                     effective_batch.append(data)
         
         # 完全和官方一样的padding流程，保留必要的多卡对齐padding
         gen_batch = DataProto.from_single_dict(data=collate_fn(effective_batch))
+        # 和官方代码一致，保留pad_dataproto_to_divisor用于多卡训练的batch对齐
+        # if hasattr(self.config, 'world_size'):
+        # if world_size != None:
+        #     # padded_gen_batch, pad_info = pad_dataproto_to_divisor(gen_batch, self.config.world_size)
+        #     print(f'[DEBUG] world_size={world_size} in gather')
+        #     padded_gen_batch, pad_info = pad_dataproto_to_divisor(gen_batch, world_size)
+        #     # if pad_info > 0:
+        #     #     padded_gen_batch.meta_info['padded_info'] = pad_info
+        #     final_batch = padded_gen_batch
+        # else:
+        #     final_batch = gen_batch
+        
+        # import gc
+        # del total_batch_list, episode_rewards, episode_lengths, traj_uid, tool_callings
+        # del success_flags, status_msgs, effective_batch, gen_batch
+        # gc.collect()
+        # if torch.cuda.is_available():
+            # torch.cuda.empty_cache()
     
         return gen_batch
 
     # ===================== Calculate 系列机制（对齐 rollout_loop_parallel.py） =====================
-    # 过程reward弃用
     def calculate_process_reward(self, total_batch_list):
         # TODO: Check the boundary situation
 
@@ -507,7 +607,7 @@ class TrajectoryCollectorParallelWebShop:
                 save_dict['expert_actions'] = trajectory[0]['expert_actions']
             else:
                 # WebShop may not have expert_actions; fall back to empty list
-                print('[WARNING] no expert actions for process reward')
+                print('[warning]no expert actions for process reward')
                 save_dict['expert_actions'] = []
 
             save_dict['parallel_action'] = {}
@@ -550,10 +650,14 @@ class TrajectoryCollectorParallelWebShop:
 
         return total_process_rewards
 
-    # 重复惩罚
     def calculate_penalties(self, history_actions, action_dict):
         # history_actions: Containing history actions in each env
         # sample: only the action_dict is useful
+
+        # 兜底初始化（实际已在 vanilla_multi_turn_loop 开头完成，此处仅为防御性保留）
+        # self._ensure_embedding_manager()
+        emb_mgr = self.embedding_manager
+
         action_keys = set(action_dict.keys()) & set(range(1, self.config.env.num_parallel + 1))
         for his_key, value in history_actions.items():
             history_actions[his_key] = [his_act.strip() for his_act in value]
@@ -568,7 +672,8 @@ class TrajectoryCollectorParallelWebShop:
             # Calculate the Simple Repeat Count
             COUNT_repeat_penalty = self.calculate_depth_repeat(
                 history_actions=env_history_actions,
-                action=env_action
+                action=env_action,
+                embedding_manager=emb_mgr,
             )
 
             if len(env_history_actions) == 0:
@@ -579,7 +684,8 @@ class TrajectoryCollectorParallelWebShop:
             # Depth Transition Repeat Count
             COUNT_depth_transition_penalty = self.calculate_transition_repeat(
                 history_actions=env_history_actions,
-                last_state_action=last_state_action
+                last_state_action=last_state_action,
+                embedding_manager=emb_mgr,
             )
 
             # Width Transition Repeat Count
@@ -588,7 +694,8 @@ class TrajectoryCollectorParallelWebShop:
                 width_history_actions = history_actions[w_idx] + [action_dict[w_idx]]
                 repeat_count = self.calculate_transition_repeat(
                     history_actions=width_history_actions,
-                    last_state_action=last_state_action
+                    last_state_action=last_state_action,
+                    embedding_manager=emb_mgr,
                 )
                 LIST_width_repeat_count.append(repeat_count)
 
@@ -608,8 +715,9 @@ class TrajectoryCollectorParallelWebShop:
 
             action_penalty_per_env.append(pooling_kind_weight)
 
-        actions_wo_look = [elem for elem in action_dict.values() if elem != 'look']
-        COUNT_width_repeat = len(actions_wo_look) - len(set(actions_wo_look))
+        # Width Repeat Count
+        # 分支判断在 _calculate_width_repeat_weighted 内部完成，与其他组件保持一致
+        COUNT_width_repeat = self._calculate_width_repeat_weighted(action_dict, emb_mgr)
         width_omega = self.config.reward_model.width_omega
         W_width_repeat = width_omega ** COUNT_width_repeat
 
@@ -622,8 +730,10 @@ class TrajectoryCollectorParallelWebShop:
     def get_state_action_pair(self, action_history):
         return [(a, b) for a, b in zip(action_history, action_history[1:])]
 
-    def calculate_transition_repeat(self, history_actions, last_state_action):
+    def calculate_transition_repeat(self, history_actions, last_state_action,
+                                     embedding_manager=None):
         # Transition Repeat
+        global USE_EMBEDDING_SIMILARITY
         full_action_list = history_actions
 
         state_action_pair_a = self.get_state_action_pair(full_action_list)
@@ -631,17 +741,80 @@ class TrajectoryCollectorParallelWebShop:
         if len(state_action_pair_a) == 0:
             return 0
 
-        repeat_count = state_action_pair_a.count(last_state_action)
+        # 分支判断直接使用全局开关 USE_EMBEDDING_SIMILARITY，避免依赖参数传递
+        if USE_EMBEDDING_SIMILARITY and embedding_manager is not None:
+            # 加权计数：转移对的两个动作都需通过阈值，权重取较小相似度（木桶效应）
+            if not isinstance(last_state_action, tuple) or len(last_state_action) < 2:
+                # 单元素元组（历史为空时的特殊情况），退化为深度匹配
+                curr = last_state_action[0] if isinstance(last_state_action, tuple) else last_state_action
+                repeat_count = 0.0
+                for pair in state_action_pair_a:
+                    repeat_count += embedding_manager.weighted_match(curr, pair[1])
+                return repeat_count
+            prev_a, curr_a = last_state_action
+            repeat_count = 0.0
+            for pair in state_action_pair_a:
+                prev_b, curr_b = pair
+                w_prev = embedding_manager.weighted_match(prev_a, prev_b)
+                w_curr = embedding_manager.weighted_match(curr_a, curr_b)
+                if w_prev > 0 and w_curr > 0:
+                    repeat_count += min(w_prev, w_curr)
+            return repeat_count
+        else:
+            repeat_count = state_action_pair_a.count(last_state_action)
 
         return repeat_count
 
-    def calculate_depth_repeat(self, history_actions, action):
+    def calculate_depth_repeat(self, history_actions, action, embedding_manager=None):
+        global USE_EMBEDDING_SIMILARITY
         repeat_count = 0
         for history_action in reversed(history_actions):
-            if action == history_action:
-                repeat_count += 1
+            # 分支判断直接使用全局开关 USE_EMBEDDING_SIMILARITY，避免依赖参数传递
+            if USE_EMBEDDING_SIMILARITY and embedding_manager is not None:
+                # 加权计数：相似度 >= 阈值时贡献相似度值，否则贡献 0
+                repeat_count += embedding_manager.weighted_match(action, history_action)
+            else:
+                if action == history_action:
+                    repeat_count += 1
 
         return repeat_count
+
+    def _calculate_width_repeat_weighted(self, action_dict, embedding_manager=None):
+        """宽度重复计数。
+
+        分支判断使用全局开关 USE_EMBEDDING_SIMILARITY，与 calculate_depth_repeat /
+        calculate_transition_repeat 保持一致风格：
+          - 开启嵌入相似度且 embedding_manager 可用：贪心聚类，每对相似动作贡献 min(sim_a, sim_b)
+            （WebShop 任务过滤 null，不过滤 'look'，因 WebShop 无 'look' 动作）
+          - 否则：精确匹配去重计数（与原副本逻辑完全一致，过滤 'look'）
+        """
+        global USE_EMBEDDING_SIMILARITY
+
+        if USE_EMBEDDING_SIMILARITY and embedding_manager is not None:
+            # 加权分支：过滤 null（无效动作不参与语义比较，WebShop 任务无 'look' 动作）
+            actions = [v for v in action_dict.values() if v != 'null']
+            n = len(actions)
+            if n <= 1:
+                return 0
+            repeat_count = 0.0
+            matched = [False] * n
+            for i in range(n):
+                if matched[i]:
+                    continue
+                for j in range(i + 1, n):
+                    if not matched[j]:
+                        w = embedding_manager.weighted_match(actions[i], actions[j])
+                        if w > 0:
+                            repeat_count += w
+                            matched[j] = True
+            return repeat_count
+        else:
+            # 精确匹配分支：与原副本（rollout_loop_parallel_search copy.py）完全一致
+            # 原副本: actions_wo_look = [elem for elem in action_dict.values() if elem != 'look']
+            #          COUNT_width_repeat = len(actions_wo_look) - len(set(actions_wo_look))
+            # WebShop 任务无 'look' 动作，此过滤实际不生效，但保留以与副本逻辑完全一致
+            actions_wo_look = [elem for elem in action_dict.values() if elem != 'null']
+            return len(actions_wo_look) - len(set(actions_wo_look))
 
     def calculate_width_repeat_rate(self, action_dict):
         num_actions = len(action_dict)
@@ -681,6 +854,11 @@ class TrajectoryCollectorParallelWebShop:
         """
         # 声明使用模块级全局变量
         global GLOBAL_TASK_COUNTER
+        # ── task 开始时初始化嵌入模型 ──
+        # 仅在首个 task 触发实际加载（_embedding_initialized 标志保证只加载一次）
+        # 本地加载失败将直接抛 RuntimeError 终止程序（不允许远端下载）
+        self._ensure_embedding_manager()
+
         # 训练阶段先对gen_batch进行repeat，确保batch_size正确扩展为train_batch_size*group_n
         if is_train:
             gen_batch = gen_batch.repeat(repeat_times=self.config.env.rollout.n, interleave=True)
@@ -691,7 +869,6 @@ class TrajectoryCollectorParallelWebShop:
         uid_batch = []
         # 训练阶段使用config.env.rollout.n创建多个重复样本，验证阶段group_n=1节省资源
         group_n = self.config.env.rollout.n if is_train else 1
-        print(f'[INFO] Starting rollout: batch_size={batch_size}, group_n(self.config.env.rollout.n)={group_n}, is_train={is_train}')
         # 验证时 [DEBUG] group_n = 1 in rollout loop, is_train=False, batch_size=50
         if self.print_debug:
             print(f'[DEBUG] group_n = {group_n} in rollout loop, is_train={is_train}, batch_size={batch_size}')
@@ -741,10 +918,8 @@ class TrajectoryCollectorParallelWebShop:
         # Trajectory collection loop（恢复copy.py原始循环逻辑，仅保留必要的成功判断功能）
         # _step为当前步数
         for _step in tqdm(range(self.config.env.max_steps)):
-            # if print_debug:
-                # print(f'[DEBUG] running task {GLOBAL_TASK_COUNTER} step {_step} of total {self.config.env.max_steps}')
-            print(f'[INFO] running task {GLOBAL_TASK_COUNTER} step {_step} of total {self.config.env.max_steps}')
-
+            if self.print_debug:
+                print(f'[DEBUG] running task {GLOBAL_TASK_COUNTER} step {_step} of total {self.config.env.max_steps}')
             # 逐个元素取反  即is_done真时将active_masks伪
             active_masks = np.logical_not(is_done)
             # 如果所有任务都完成了  即全伪  则提前退出  但之后已经有is_done判断
@@ -793,8 +968,6 @@ class TrajectoryCollectorParallelWebShop:
             # 只对 active（未完成）样本做模型推理，已完成样本跳过以减少计算量
             active_indices = np.where(active_masks)[0]
             num_active = len(active_indices)
-            if self.print_debug:
-                print(f'[INFO] Step {_step}: active samples={num_active}/{batch_size}')
             if num_active == batch_size:
                 # 全部 active，走原始路径
                 batch_input_padded, pad_size = pad_dataproto_to_divisor(batch_input, actor_rollout_wg.world_size)
@@ -868,7 +1041,6 @@ class TrajectoryCollectorParallelWebShop:
 
             # 补null动作  避免无效交互
             for i in range(batch_size):
-               
                 if not active_masks[i]:
                     action_dict = parallel_actions_dict[i].get('action_dict', {})
                     for env_idx in action_dict:
@@ -879,7 +1051,7 @@ class TrajectoryCollectorParallelWebShop:
             # 进行动作
             dict_grouped_output = envs.step_group(parallel_actions_dict)
 
-            # 计算平行惩罚 
+            # 计算平行惩罚
             # ---------Parallel Penalties (对齐 rollout_loop_parallel.py) ----------- #
             if hasattr(self.config, 'reward_model') and self.config.reward_model.get('parallel_reward', False):
                 # 重新获取 history_actions（当前步的环境已更新）
@@ -907,6 +1079,22 @@ class TrajectoryCollectorParallelWebShop:
             # single_dict_grouped_output = collate_fn(dict_grouped_output)
             dones = single_dict_grouped_output['dones']
             infos = single_dict_grouped_output['possible_actions']
+
+            # 对 possible_actions 做 2D padding：将所有环境内的可选动作列表补全到相同长度（全局最大长度），
+            # 缺项填充 "null"。这样 possible_actions 保持为 (batch_size, max_len) 的 2D numpy 数组，
+            # 避免不同 step 之间长度变化导致 collate_fn 的 broadcast 错误。(5,12)  (5,)
+            # possible_actions_raw = single_dict_grouped_output['possible_actions']
+            # if len(possible_actions_raw) > 0:
+            #     max_len = max(len(lst) for lst in possible_actions_raw)
+            #     # max_len = 12
+            #     padded_list = []
+            #     for lst in possible_actions_raw:
+            #         current = list(lst)
+            #         if len(current) < max_len:
+            #             current += ["null"] * (max_len - len(current))
+            #         padded_list.append(current)
+            #     single_dict_grouped_output['possible_actions'] = np.array(padded_list, dtype=object)
+            
 
             batch = DataProto.from_single_dict(
                 data=single_dict_grouped_output,
@@ -1000,21 +1188,19 @@ class TrajectoryCollectorParallelWebShop:
                     turn_out_range[bs] = False
                     # 只有训练阶段(group_n>1)才需要把整个组的所有worker都标记为完成，保持所有轨迹长度一致
                     # 验证阶段(group_n=1)只标记当前bs的任务，避免影响其他任务的轨迹收集
-                    if is_train:
-                        n = self.config.env.rollout.n
-                        group_idx = bs // n  # 0-based group index
-                        # 整个组全部置为完成
-                        range1 = range(group_idx * n, (group_idx + 1) * n)
-                        for g_bs in range1:
-                            if not is_done[g_bs]:
-                                is_done[g_bs] = True
-                                turn_out_range[g_bs] = False
-                        is_done[bs] = True
-                        turn_out_range[bs] = False
-                    else:
+                    # if is_train:
+                    #     n = self.config.env.rollout.n
+                    #     group_idx = bs // n  # 0-based group index
+                    #     # 整个组全部置为完成
+                    #     range1 = range(group_idx * n, (group_idx + 1) * n)
+                    #     for g_bs in range1:
+                    #         if not is_done[g_bs]:
+                    #             is_done[g_bs] = True
+                    #             turn_out_range[g_bs] = False
+                    # else:
                         # 验证阶段只标记当前任务，让其他任务自然完成，收集完整的验证轨迹
-                        is_done[bs] = True
-                        turn_out_range[bs] = False
+                        # is_done[bs] = True
+                        # turn_out_range[bs] = False
                     if self.print_debug:
                         print(f'[DEBUG] is_done trans to {is_done}')
                 elif null_count[bs] >= 2:
@@ -1024,31 +1210,28 @@ class TrajectoryCollectorParallelWebShop:
                     is_done[bs] = True
                     turn_out_range[bs] = False
                     # 要求单条轨迹结束时
-                    if is_train:
-                        n = self.config.env.rollout.n
-                        group_idx = bs // n  # 0-based group index
-                        range1 = range(group_idx * n, (group_idx + 1) * n)
-                        for g_bs in range1:
-                            if not is_done[g_bs]:
-                                is_done[g_bs] = True
-                                turn_out_range[g_bs] = False
-                    else:
-                        # 验证阶段只标记当前任务，让其他任务自然完成，收集完整的验证轨迹
-                        is_done[bs] = True
-                        turn_out_range[bs] = False
+                    # if is_train:
+                    #     n = self.config.env.rollout.n
+                    #     group_idx = bs // n  # 0-based group index
+                    #     range1 = range(group_idx * n, (group_idx + 1) * n)
+                    #     for g_bs in range1:
+                    #         if not is_done[g_bs]:
+                    #             is_done[g_bs] = True
+                    #             turn_out_range[g_bs] = False
+                    # else:
+                    #     # 验证阶段只标记当前任务，让其他任务自然完成，收集完整的验证轨迹
+                    #     is_done[bs] = True
+                    #     turn_out_range[bs] = False
                     if self.print_debug:
                         print(f'[DEBUG] is_done trans to {is_done}')
             
             # 检查是否所有任务都已完成，无论batch_size是多少，只要全部完成就立即退出
             if is_done.all():
-                num_groups = batch_size // group_n
-                task_indices = list(range(num_groups))
-                print(f"[INFO] [Task {GLOBAL_TASK_COUNTER}] Task {task_indices} completed at turn {_step + 1}, exiting rollout loop.")
+                print(f"All tasks completed at turn {_step + 1}, exiting rollout loop.")
                 break
         # ------------------ Calculation Process Reward (对齐 rollout_loop_parallel.py) ---------------------
         # reward_model和process_reward true时计算
         if hasattr(self.config, 'reward_model') and self.config.reward_model.get('process_reward', False):
-            # 使用expert_actions计算process_reward
             process_reward = self.calculate_process_reward(
                 total_batch_list=total_batch_list,
             )
@@ -1061,21 +1244,16 @@ class TrajectoryCollectorParallelWebShop:
         for bs in range(batch_size):
             if turn_out_range[bs]:
                 status_msgs[bs] = f"Task {GLOBAL_TASK_COUNTER} sample {bs} out of max turn"
-                print(f"[INFO] {status_msgs[bs]}")
+                print(status_msgs[bs])
         
-        # 添加成功判断和统计功能，改为组成功率统计：每组(group_n个worker)中任一worker成功则该组成功
-        num_groups = batch_size // group_n
-        group_success = np.zeros(num_groups, dtype=int)
-        for g in range(num_groups):
-            group_indices = list(range(g * group_n, (g + 1) * group_n))
-            group_success[g] = 1 if np.any(success_flags[group_indices] == 1) else 0
-        group_success_count = np.sum(group_success)
-        group_success_rate = group_success_count / num_groups if num_groups > 0 else 0
+        # 添加成功判断和统计功能，参考coldstart_para_his_test_1.5B_hislen8_epoch3.5_v2.py
+        success_count = np.sum(success_flags)
+        success_rate = success_count / batch_size if batch_size > 0 else 0
         print(f"\n{'='*60}")
-        print(f"[INFO] Rollout Summary:")
-        print(f"[INFO]   Total tasks: {num_groups}, Successful groups: {group_success_count}, Group success rate: {group_success_rate:.2%}")
-        print(f"[INFO]   Average episode length: {np.mean(episode_lengths):.2f} steps")
-        print(f"[INFO]   Average episode reward: {np.mean(episode_rewards):.4f}")
+        print(f"Rollout Summary:")
+        print(f"Total tasks: {batch_size // group_n}, Successful tasks: {success_count}, Success rate: {success_rate:.2%}")
+        print(f"Average episode length: {np.mean(episode_lengths):.2f} steps")
+        print(f"Average episode reward: {np.mean(episode_rewards):.4f}")
         print(f"{'='*60}")
 
         
@@ -1084,7 +1262,7 @@ class TrajectoryCollectorParallelWebShop:
         # episode_rewards = np.where(episode_rewards == 0, process_reward, episode_rewards)
         return total_batch_list, episode_rewards, episode_lengths, traj_uid, tool_callings, success_flags, status_msgs
 
-    # 新增多轮训练函数，与 rollout_loop_parallel.py 接口一致，但使用 WebShop 特定的 prompting 和历史构建
+    # 新增多轮训练函数，与 rollout_loop_parallel.py 接口一致，但使用 WebShop 特定的 prompting 和历史构建（对齐coldstart_para_his_test）
     def multi_turn_loop(
         self,
         gen_batch: DataProto,
@@ -1107,26 +1285,41 @@ class TrajectoryCollectorParallelWebShop:
             )
         
         global GLOBAL_TASK_COUNTER
-        
+        # 返回成功标记和状态消息，保持与参考文件相同的轨迹信息结构
+        # save_traj 统一控制所有轨迹保存（case 日志 + sample JSON），由 config.custom.save_traj 传入
+        # 分别保存到case sample文件夹
         print("="*80)
+        if self.print_debug:
+            print(f'[DEBUG] save_traj {self.save_traj}')
+        # print(f'[DEBUG] total_batch_list = {total_batch_list}')
+        # 将 total_batch_list 以文本格式写入独立的日志文件（代替 print 到控制台）
         log_time = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
-        
-        # 如果全局开关开启，同时保存JSON轨迹文件和人类可读的文本日志（整合原show_case功能）
         if self.save_traj:
-            # === 保存目录 ===
-            save_dir = "sample"
-            os.makedirs(save_dir, exist_ok=True)
-            
-            # === 1. 保存结构化JSON轨迹（原save_traj功能） ===
-            filename_json = os.path.join(save_dir, f"traj_batch_{GLOBAL_TASK_COUNTER}_{log_time}.json")
-            
+            log_dir = os.path.join(self.ckpt_dir, "case")
+            os.makedirs(log_dir, exist_ok=True)
+            log_filename = os.path.join(log_dir, f"total_batch_list_{GLOBAL_TASK_COUNTER}_{log_time}.log")
+            with open(log_filename, 'w', encoding='utf-8') as f:
+                f.write(f"[DEBUG] total_batch_list = {total_batch_list}\n")
+            print(f'[保存轨迹] total_batch_list has been logged to {log_filename}')
+        print("="*80)
+        
+        # 当前批次的所有任务处理完成后，递增全局计数器
+        
+        
+        
+        # 如果全局开关开启，保存当前批次的所有轨迹到新的JSON文件
+        if self.save_traj:
+            # 生成唯一的文件名，包含全局任务计数器和时间戳，避免覆盖
+            timestamp = int(time.time() * 1000)
+            # filename = f"sample/traj_batch_{GLOBAL_TASK_COUNTER}_{timestamp}.json"
+            filename = os.path.join(self.ckpt_dir, "sample", f"traj_task_{GLOBAL_TASK_COUNTER}_{log_time}.json")
             # 辅助函数：递归将所有Tensor和numpy数组转换为Python原生类型，确保JSON可序列化
             def tensor_to_native(obj):
                 if isinstance(obj, torch.Tensor):
                     return obj.tolist()
                 elif isinstance(obj, np.ndarray):
                     return obj.tolist()
-                elif isinstance(obj, np.generic):
+                elif isinstance(obj, np.generic):  # 处理numpy的标量类型，如np.int64、np.float64等
                     return obj.item()
                 elif isinstance(obj, dict):
                     return {k: tensor_to_native(v) for k, v in obj.items()}
@@ -1135,9 +1328,31 @@ class TrajectoryCollectorParallelWebShop:
                 else:
                     return obj
             
+            # 创建保存目录（如果不存在）
+            save_dir = os.path.dirname(filename)
+            if save_dir and not os.path.exists(save_dir):
+                os.makedirs(save_dir, exist_ok=True)
+            
+            # 需要在保存前去除的长向量键（这些字段数据量大但对轨迹分析无意义）
+            _LONG_VEC_KEYS = {
+                'prompts', 'responses', 'input_ids',
+                'rollout_log_probs', 'attention_mask', 'position_ids',
+            }
+            def strip_long_vectors(batch_list):
+                """递归去除 total_batch_list 中每条记录的长向量字段"""
+                for group in batch_list:
+                    for item in group:
+                        for key in list(item.keys()):
+                            if key in _LONG_VEC_KEYS:
+                                del item[key]
+                return batch_list
+
+            # 准备要保存的数据，包含所有轨迹相关信息，先转换所有非原生类型，再去除长向量
+            # total_batch_list, episode_rewards, episode_lengths, traj_uid, tool_callings, success_flags, status_msgs
+            _cleaned_batch_list = strip_long_vectors(tensor_to_native(total_batch_list))
             save_data = {
                 "batch_idx": GLOBAL_TASK_COUNTER,
-                "total_batch_list": tensor_to_native(total_batch_list),
+                "total_batch_list": _cleaned_batch_list,
                 "episode_rewards": tensor_to_native(episode_rewards),
                 "episode_lengths": tensor_to_native(episode_lengths),
                 "traj_uid": tensor_to_native(traj_uid),
@@ -1145,28 +1360,10 @@ class TrajectoryCollectorParallelWebShop:
                 "success_flags": tensor_to_native(success_flags),
                 "status_msgs": status_msgs
             }
-            with open(filename_json, 'w', encoding='utf-8') as f:
+            # 写入JSON文件（使用 default=str 兜底，防止深层 ndarray 导致写一半崩溃）
+            with open(filename, 'w', encoding='utf-8') as f:
                 json.dump(save_data, f, ensure_ascii=False, indent=4, default=str)
-            print(f"[保存轨迹] JSON轨迹已保存到: {filename_json}")
-            
-            # === 2. 保存人类可读的文本日志（整合原show_case功能） ===
-            filename_log = os.path.join(save_dir, f"traj_batch_{GLOBAL_TASK_COUNTER}_{log_time}.log")
-            with open(filename_log, 'w', encoding='utf-8') as f:
-                f.write("=" * 80 + "\n")
-                f.write(f"Batch Index: {GLOBAL_TASK_COUNTER}\n")
-                f.write(f"Timestamp: {log_time}\n")
-                f.write(f"Episode Rewards: {tensor_to_native(episode_rewards)}\n")
-                f.write(f"Episode Lengths: {tensor_to_native(episode_lengths)}\n")
-                f.write(f"Success Flags: {tensor_to_native(success_flags)}\n")
-                f.write(f"Status Messages:\n")
-                for msg in status_msgs:
-                    f.write(f"  - {msg}\n")
-                f.write(f"Trajectory UIDs: {tensor_to_native(traj_uid)}\n")
-                f.write("=" * 80 + "\n")
-                f.write(f"\n[DEBUG] total_batch_list = {total_batch_list}\n")
-            print(f"[保存轨迹] 文本日志已保存到: {filename_log}")
-        
-        print("="*80)
+            print(f"[保存轨迹] 当前批次轨迹已保存到: {filename}")
         
         GLOBAL_TASK_COUNTER += 1
 
@@ -1186,25 +1383,19 @@ class TrajectoryCollectorParallelWebShop:
                 print(f'[DEBUG] going backward computing')
             return gen_batch_output
         else:
-            # 验证阶段使用组成功率统计逻辑（验证时group_n=1，等价于逐样本统计，但保持代码一致）
-            val_group_n = self.config.env.rollout.n if is_train else 1
-            num_groups = len(success_flags) // val_group_n
-            group_success = np.zeros(num_groups, dtype=int)
-            for g in range(num_groups):
-                group_indices = list(range(g * val_group_n, (g + 1) * val_group_n))
-                group_success[g] = 1 if np.any(success_flags[group_indices] == 1) else 0
-            group_success_count = np.sum(group_success)
-            group_success_rate = group_success_count / num_groups if num_groups > 0 else 0
-            success_task_indices = [g for g, flag in enumerate(group_success) if flag == 1]
+            # 验证阶段使用与参考文件完全相同的成功统计逻辑，不调用gather_rollout_data，避免维度不匹配
+            success_count = np.sum(success_flags)
+            success_rate = success_count / len(success_flags) if len(success_flags) > 0 else 0
+            success_task_indices = [i for i, flag in enumerate(success_flags) if flag == 1]
             
             print(f"\n{'='*60}")
-            print(f"[INFO] Validation Complete Summary:")
-            print(f"[INFO]   Total validation tasks: {num_groups}")
-            print(f"[INFO]   Successful groups: {group_success_count}")
-            print(f"[INFO]   Group success rate: {group_success_rate:.2%}")
-            print(f"[INFO]   Success group indices: {success_task_indices}")
-            print(f"[INFO]   Average episode length: {np.mean(episode_lengths):.2f} steps")
-            print(f"[INFO]   Average episode reward: {np.mean(episode_rewards):.4f}")
+            print(f"Validation Complete Summary:")
+            print(f"Total validation tasks: {len(success_flags)}")
+            print(f"Successful tasks: {success_count}")
+            print(f"Success rate: {success_rate:.2%}")
+            print(f"Success task indices: {success_task_indices}")
+            print(f"Average episode length: {np.mean(episode_lengths):.2f} steps")
+            print(f"Average episode reward: {np.mean(episode_rewards):.4f}")
             print(f"{'='*60}")
             
             # 返回完整的轨迹信息，与参考文件格式保持一致

@@ -1,0 +1,266 @@
+INFO 07-16 01:59:27 [__init__.py:216] Automatically detected platform cuda.
+test started
+======================================================================
+BERT 嵌入模型相似度测试
+模型: BAAI/bge-base-en-v1.5
+本地目录: /diskpool/home/xuxz/Code-for-DPEPO/test_bert_similarity/models/bge-base-en-v1.5
+======================================================================
+
+[1/2] 确保模型已下载到本地 ...
+
+[2/2] 正在加载本地模型: models/bge-base-en-v1.5 ...
+INFO 07-16 01:59:30 [utils.py:233] non-default args: {'runner': 'pooling', 'trust_remote_code': True, 'gpu_memory_utilization': 0.1, 'disable_log_stats': True, 'model': 'models/bge-base-en-v1.5'}
+The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+INFO 07-16 01:59:30 [config.py:841] Found sentence-transformers tokenize configuration.
+INFO 07-16 01:59:30 [model.py:547] Resolved architecture: BertModel
+INFO 07-16 01:59:30 [config.py:739] Found sentence-transformers modules configuration.
+INFO 07-16 01:59:30 [config.py:759] Found pooling configuration.
+`torch_dtype` is deprecated! Use `dtype` instead!
+INFO 07-16 01:59:30 [model.py:1730] Downcasting torch.float32 to torch.float16.
+INFO 07-16 01:59:30 [model.py:1510] Using max model len 512
+INFO 07-16 01:59:30 [arg_utils.py:1575] (Disabling) chunked prefill by default
+INFO 07-16 01:59:30 [arg_utils.py:1578] (Disabling) prefix caching by default
+INFO 07-16 01:59:30 [__init__.py:440] Only "last" pooling supports chunked prefill and prefix caching; disabling both.
+[1;36m(EngineCore_DP0 pid=1704779)[0;0m INFO 07-16 01:59:30 [core.py:644] Waiting for init message from front-end.
+[1;36m(EngineCore_DP0 pid=1704779)[0;0m INFO 07-16 01:59:30 [core.py:77] Initializing a V1 LLM engine (v0.11.0) with config: model='models/bge-base-en-v1.5', speculative_config=None, tokenizer='models/bge-base-en-v1.5', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.float16, max_seq_len=512, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser=''), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None), seed=0, served_model_name=models/bge-base-en-v1.5, enable_prefix_caching=False, chunked_prefill_enabled=False, pooler_config=PoolerConfig(pooling_type='CLS', normalize=True, dimensions=None, enable_chunked_processing=None, max_embed_len=None, activation=None, logit_bias=None, softmax=None, step_tag_id=None, returned_token_ids=None), compilation_config={"level":3,"debug_dump_path":"","cache_dir":"","backend":"","custom_ops":[],"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output","vllm.mamba_mixer2","vllm.mamba_mixer","vllm.short_conv","vllm.linear_attention","vllm.plamo2_mamba_mixer","vllm.gdn_attention","vllm.sparse_attn_indexer"],"use_inductor":true,"compile_sizes":[],"inductor_compile_config":{"enable_auto_functionalized_v2":false},"inductor_passes":{},"cudagraph_mode":1,"use_cudagraph":true,"cudagraph_num_of_warmups":1,"cudagraph_capture_sizes":[512,504,496,488,480,472,464,456,448,440,432,424,416,408,400,392,384,376,368,360,352,344,336,328,320,312,304,296,288,280,272,264,256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"cudagraph_copy_inputs":false,"full_cuda_graph":false,"use_inductor_graph_partition":false,"pass_config":{},"max_capture_size":512,"local_cache_dir":null}
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[1;36m(EngineCore_DP0 pid=1704779)[0;0m INFO 07-16 01:59:33 [parallel_state.py:1208] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0, EP rank 0
+[1;36m(EngineCore_DP0 pid=1704779)[0;0m WARNING 07-16 01:59:33 [topk_topp_sampler.py:66] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+[1;36m(EngineCore_DP0 pid=1704779)[0;0m INFO 07-16 01:59:33 [gpu_model_runner.py:2602] Starting to load model models/bge-base-en-v1.5...
+[1;36m(EngineCore_DP0 pid=1704779)[0;0m INFO 07-16 01:59:33 [gpu_model_runner.py:2634] Loading model from scratch...
+[1;36m(EngineCore_DP0 pid=1704779)[0;0m INFO 07-16 01:59:33 [cuda.py:366] Using Flash Attention backend on V1 engine.
+[1;36m(EngineCore_DP0 pid=1704779)[0;0m Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+[1;36m(EngineCore_DP0 pid=1704779)[0;0m Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00, 142.14it/s]
+[1;36m(EngineCore_DP0 pid=1704779)[0;0m 
+[1;36m(EngineCore_DP0 pid=1704779)[0;0m INFO 07-16 01:59:34 [default_loader.py:267] Loading weights took 0.42 seconds
+[1;36m(EngineCore_DP0 pid=1704779)[0;0m INFO 07-16 01:59:34 [gpu_model_runner.py:2653] Model loading took 0.2091 GiB and 0.729491 seconds
+[1;36m(EngineCore_DP0 pid=1704779)[0;0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/67 [00:00<?, ?it/s][1;36m(EngineCore_DP0 pid=1704779)[0;0m INFO 07-16 01:59:36 [backends.py:548] Using cache directory: /diskpool/home/xuxz/.cache/vllm/torch_compile_cache/57ade24c11/rank_0_0/backbone for vLLM's torch.compile
+[1;36m(EngineCore_DP0 pid=1704779)[0;0m INFO 07-16 01:59:36 [backends.py:559] Dynamo bytecode transform time: 1.85 s
+[1;36m(EngineCore_DP0 pid=1704779)[0;0m INFO 07-16 01:59:37 [backends.py:164] Directly load the compiled graph(s) for dynamic shape from the cache, took 0.451 s
+[1;36m(EngineCore_DP0 pid=1704779)[0;0m INFO 07-16 01:59:37 [monitor.py:34] torch.compile takes 1.85 s in total
+Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   1%|▏         | 1/67 [00:03<03:20,  3.04s/it]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   9%|▉         | 6/67 [00:03<00:23,  2.55it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  16%|█▋        | 11/67 [00:03<00:10,  5.38it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  24%|██▍       | 16/67 [00:03<00:05,  8.85it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  31%|███▏      | 21/67 [00:03<00:03, 12.98it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  39%|███▉      | 26/67 [00:03<00:02, 17.61it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  48%|████▊     | 32/67 [00:03<00:01, 23.43it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  55%|█████▌    | 37/67 [00:03<00:01, 28.02it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  63%|██████▎   | 42/67 [00:03<00:00, 32.27it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  70%|███████   | 47/67 [00:03<00:00, 35.76it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  78%|███████▊  | 52/67 [00:04<00:00, 38.78it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  87%|████████▋ | 58/67 [00:04<00:00, 40.03it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  94%|█████████▍| 63/67 [00:04<00:00, 38.27it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 67/67 [00:04<00:00, 14.65it/s]
+[1;36m(EngineCore_DP0 pid=1704779)[0;0m INFO 07-16 01:59:39 [gpu_model_runner.py:3480] Graph capturing finished in 5 secs, took 0.21 GiB
+[1;36m(EngineCore_DP0 pid=1704779)[0;0m INFO 07-16 01:59:40 [core.py:210] init engine (profile, create kv cache, warmup model) took 5.32 seconds
+[1;36m(EngineCore_DP0 pid=1704779)[0;0m INFO 07-16 01:59:40 [core.py:121] Disabling chunked prefill for model without KVCache
+[1;36m(EngineCore_DP0 pid=1704779)[0;0m INFO 07-16 01:59:40 [__init__.py:440] Only "last" pooling supports chunked prefill and prefix caching; disabling both.
+INFO 07-16 01:59:40 [llm.py:306] Supported_tasks: ['embed', 'encode']
+模型加载完成!
+
+======================================================================
+测试 1: 使用 LLM.score 计算文本对相似度
+======================================================================
+
+  文本A: Machine learning is a branch of artificial intelligence
+  文本B: Deep learning is a subset of machine learning
+  相似度: 0.804625
+
+  文本A: The weather is beautiful today
+  文本B: The weather is beautiful today
+  相似度: 1.000000
+
+  文本A: Cats are adorable animals
+  文本B: Dogs are man's best friend
+  相似度: 0.597602
+
+  文本A: Python is a popular programming language
+  文本B: Java is also a programming language
+  相似度: 0.777386
+
+  文本A: I like eating apples
+  文本B: I like eating apples
+  相似度: 1.000000
+
+  共计算 5 对文本的相似度
+
+======================================================================
+测试 2: 使用 LLM.embed + 手动余弦相似度
+======================================================================
+
+  文本A: Machine learning is a branch of artificial intelligence
+  文本B: Deep learning is a subset of machine learning
+  余弦相似度: 0.804625
+
+  文本A: The weather is beautiful today
+  文本B: The weather is beautiful today
+  余弦相似度: 1.000000
+
+  文本A: Cats are adorable animals
+  文本B: Dogs are man's best friend
+  余弦相似度: 0.597602
+
+  文本A: Python is a popular programming language
+  文本B: Java is also a programming language
+  余弦相似度: 0.777386
+
+  文本A: I like eating apples
+  文本B: I like eating apples
+  余弦相似度: 1.000000
+
+  共计算 5 对文本的相似度
+
+======================================================================
+测试 3: 批量嵌入并构建相似度矩阵
+======================================================================
+  已生成 6 个嵌入向量，维度: 768
+
+  相似度矩阵 (6x6):
+            T0     T1     T2     T3     T4     T5   
+  T0   1.000  0.689  0.660  0.741  0.380  0.510
+  T1   0.689  1.000  0.699  0.695  0.394  0.547
+  T2   0.660  0.699  1.000  0.659  0.465  0.495
+  T3   0.741  0.695  0.659  1.000  0.344  0.516
+  T4   0.380  0.394  0.465  0.344  1.000  0.562
+  T5   0.510  0.547  0.495  0.516  0.562  1.000
+
+  文本标签:
+  T0: Artificial intelligence is transforming the world
+  T1: Machine learning enables computers to learn from data
+  T2: Deep learning has achieved great success in image recognition
+  T3: Natural language processing is an important area of AI
+  T4: The lunch today was delicious
+  T5: I love programming in Python
+
+  最相似的文本对（排除自身）:
+    T0 ↔ T3: 0.740896
+    "Artificial intelligence is transforming the world"
+    "Natural language processing is an important area of AI"
+
+  最不相似的文本对:
+    T3 ↔ T4: 0.343941
+    "Natural language processing is an important area of AI"
+    "The lunch today was delicious"
+
+======================================================================
+测试 4: WebShop 动作相似度验证
+  当前阈值: 0.85
+======================================================================
+
+  动作A                            动作B                                 相似度    阈值判定    期望   正确?  类别
+  --------------------------------------------------------------------------------------------------------------
+  search[red shoes]              search[red shoes]                1.0000      重复    重复     ✓  完全相同
+  click[Buy Now]                 click[Buy Now]                   1.0000      重复    重复     ✓  完全相同
+  click[Back]                    click[Back]                      1.0000      重复    重复     ✓  完全相同
+  click[Buy Now]                 click[buy now]                   1.0000      重复    重复     ✓  大小写差异
+  search[red shoes]              search[ Red Shoes ]              1.0000      重复    重复     ✓  大小写+空格
+  click[Buy Now]                 click[Buy  Now]                  1.0000      重复    重复     ✓  多空格
+  search[red shoes]              search[crimson footwear]         0.8358     不重复    重复     ✗  同义词
+  search[red shoes]              search[red footwear]             0.9482      重复    重复     ✓  部分同义
+  search[laptop bag]             search[computer case]            0.7966     不重复    重复     ✗  同义词
+  search[headphones]             search[earphones]                0.9093      重复    重复     ✓  同义词
+  search[red shoes]              search[red shoes size 10]        0.9286      重复    边界     —  更具体
+  search[red shoes]              search[red shoes for women]      0.9277      重复    边界     —  更具体
+  search[red shoes]              search[red sneakers]             0.9419      重复    边界     —  近义词
+  search[red shoes]              search[red boots]                0.9265      重复    边界     —  近义词
+  search[red shoes]              search[red running shoes]        0.9397      重复    边界     —  更具体+同义
+  search[red shoes]              search[red shirt]                0.8556      重复   不重复     ✗  同色不同物
+  search[red shoes]              search[blue shoes]               0.8161     不重复   不重复     ✓  同物不同色
+  search[red shoes]              search[blue shirt]               0.6796     不重复   不重复     ✓  全不同
+  search[red shoes]              search[red socks]                0.9130      重复   不重复     ✗  同类不同物
+  search[laptop]                 search[phone]                    0.7519     不重复   不重复     ✓  不同电子产品
+  search[headphones]             search[speakers]                 0.7377     不重复   不重复     ✓  不同音频设备
+  search[red shoes]              click[Buy Now]                   0.6445     不重复   不重复     ✓  不同动作类型
+  search[red shoes]              click[Back]                      0.5433     不重复   不重复     ✓  不同动作类型
+  click[Buy Now]                 click[Back]                      0.7575     不重复   不重复     ✓  不同click目标
+  click[Buy Now]                 click[Item 1]                    0.8017     不重复   不重复     ✓  不同click目标
+  click[Buy Now]                 click[Purchase]                  0.9247      重复    重复     ✓  同义click
+  click[Buy Now]                 click[Buy It Now]                0.9606      重复    重复     ✓  近义click
+  click[Back]                    click[←]                         0.8826      重复    重复     ✓  同义click(符号)
+  null                           null                             1.0000      重复    重复     ✓  null完全相同
+  null                           search[red shoes]                0.5435     不重复   不重复     ✓  null vs 有效动作
+  null                           click[Back]                      0.5817     不重复   不重复     ✓  null vs 有效动作
+
+  阈值判定正确率: 22/26 = 84.6%
+
+  阈值判定错误（4 对）:
+    search[red shoes] vs search[crimson footwear]: sim=0.8358, 判定=不重复, 期望=重复 [同义词]
+    search[laptop bag] vs search[computer case]: sim=0.7966, 判定=不重复, 期望=重复 [同义词]
+    search[red shoes] vs search[red shirt]: sim=0.8556, 判定=重复, 期望=不重复 [同色不同物]
+    search[red shoes] vs search[red socks]: sim=0.9130, 判定=重复, 期望=不重复 [同类不同物]
+
+  各类别相似度范围:
+  类别                     数量       最小       最大       平均
+  --------------------------------------------------
+  null vs 有效动作            2   0.5435   0.5817   0.5626
+  null完全相同                1   1.0000   1.0000   1.0000
+  不同click目标               2   0.7575   0.8017   0.7796
+  不同动作类型                  2   0.5433   0.6445   0.5939
+  不同电子产品                  1   0.7519   0.7519   0.7519
+  不同音频设备                  1   0.7377   0.7377   0.7377
+  全不同                     1   0.6796   0.6796   0.6796
+  同义click                 1   0.9247   0.9247   0.9247
+  同义click(符号)             1   0.8826   0.8826   0.8826
+  同义词                     3   0.7966   0.9093   0.8472
+  同物不同色                   1   0.8161   0.8161   0.8161
+  同类不同物                   1   0.9130   0.9130   0.9130
+  同色不同物                   1   0.8556   0.8556   0.8556
+  多空格                     1   1.0000   1.0000   1.0000
+  大小写+空格                  1   1.0000   1.0000   1.0000
+  大小写差异                   1   1.0000   1.0000   1.0000
+  完全相同                    3   1.0000   1.0000   1.0000
+  更具体                     2   0.9277   0.9286   0.9281
+  更具体+同义                  1   0.9397   0.9397   0.9397
+  近义click                 1   0.9606   0.9606   0.9606
+  近义词                     2   0.9265   0.9419   0.9342
+  部分同义                    1   0.9482   0.9482   0.9482
+
+  阈值分析 (当前=0.85):
+
+======================================================================
+测试 5: WebShop 动作相似度矩阵
+======================================================================
+  已生成 11 个嵌入向量，维度: 768
+
+  相似度矩阵 (11x11):
+                W0    W1    W2    W3    W4    W5    W6    W7    W8    W9    W10 
+  W0 search[red s  1.000  0.856  0.816  0.836  0.929  0.645  0.645  0.624  0.543  0.613  0.544
+  W1 search[red s  0.856  1.000  0.703  0.768  0.793  0.650  0.650  0.627  0.551  0.606  0.546
+  W2 search[blue   0.816  0.703  1.000  0.770  0.766  0.664  0.664  0.635  0.566  0.618  0.549
+  W3 search[crims  0.836  0.768  0.770  1.000  0.815  0.655  0.655  0.635  0.543  0.605  0.512
+  W4 search[red s  0.929  0.793  0.766  0.815  1.000  0.628  0.628  0.615  0.501  0.578  0.501
+  W5 click[Buy No  0.645  0.650  0.664  0.655  0.628  1.000  1.000  0.925  0.757  0.802  0.542
+  W6 click[buy no  0.645  0.650  0.664  0.655  0.628  1.000  1.000  0.925  0.757  0.802  0.542
+  W7 click[Purcha  0.624  0.627  0.635  0.635  0.615  0.925  0.925  1.000  0.771  0.812  0.528
+  W8 click[Back]   0.543  0.551  0.566  0.543  0.501  0.757  0.757  0.771  1.000  0.824  0.582
+  W9 click[Item 1  0.613  0.606  0.618  0.605  0.578  0.802  0.802  0.812  0.824  1.000  0.603
+  W10 null          0.544  0.546  0.549  0.512  0.501  0.542  0.542  0.528  0.582  0.603  1.000
+
+  动作标签:
+  W0: search[red shoes]
+  W1: search[red shirt]
+  W2: search[blue shoes]
+  W3: search[crimson footwear]
+  W4: search[red shoes size 10]
+  W5: click[Buy Now]
+  W6: click[buy now]
+  W7: click[Purchase]
+  W8: click[Back]
+  W9: click[Item 1]
+  W10: null
+
+  相似度分布（排除自身，共 55 对）:
+    最高: 1.0000
+    最低: 0.5009
+    中位数: 0.6445
+    平均: 0.6767
+
+  相似度分段统计:
+    [0.9, 1.0):   3 ███
+    [0.8, 0.9):   8 ████████
+    [0.7, 0.8):   8 ████████
+    [0.6, 0.7):  20 ████████████████████
+    [0.5, 0.6):  15 ███████████████
+    [0.0, 0.5):   0 
+
+======================================================================
+测试 4: Matryoshka 不同维度下的嵌入相似度
+======================================================================
+  维度=768   不支持: Model "models/bge-base-en-v1.5" does not support matryoshka representation, changing output dimensions will lead to poor results.
+
+======================================================================
+所有测试完成!
+======================================================================

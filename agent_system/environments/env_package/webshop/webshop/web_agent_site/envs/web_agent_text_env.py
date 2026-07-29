@@ -112,6 +112,7 @@ class WebAgentTextEnv(gym.Env):
         self.get_available_actions()
 
         # Determine action type (click, search) and argument
+        # 仅识别小写
         action_name, action_arg = parse_action(action)
         if action_arg is not None:
             action_arg = action_arg.lower()

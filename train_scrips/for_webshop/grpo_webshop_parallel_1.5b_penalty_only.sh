@@ -22,10 +22,12 @@ _MODEL_ROOT=${DPEPO_USER_HOME}/ms-swift
 # ========== 训练超参数 - 根据需要修改 ==========
 # export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:False,max_split_size_mb:128
 batchsize=2
-export CUDA_VISIBLE_DEVICES=5,6
+export CUDA_VISIBLE_DEVICES=0,1
 micro_para=1
 # tensor_model_parallel_size=1
 tensor_model_parallel_size=$batchsize
+# 禁用 Ray Dashboard，避免 opentelemetry 版本冲突导致启动失败
+# export RAY_DASHBOARD_DISABLE=true
 # ==========================================
 
 echo "GPU: $CUDA_VISIBLE_DEVICES"
@@ -37,18 +39,44 @@ export VLLM_ATTENTION_BACKEND=FLASH_ATTN
 # export VLLM_ATTENTION_BACKEND=XFORMERS
 
 ckpt_dir=${_CODE_BASE}/2gpu_webshop
-LOG_FILE="$ckpt_dir/2gpu_only_penalty.log"
+# LOG_FILE="$ckpt_dir/2gpu_only_penalty.log"
+# LOG_FILE="$SCRIPT_DIR/log/test_bert_webshop_$(date +%Y%m%d_%H%M%S).log"
+# LOG_FILE="$ckpt_dir/log/only_penalty_$(date +%Y%m%d_%H%M%S).log"
+LOG_FILE="$ckpt_dir/log/only_penalty_emb_$(date +%Y%m%d_%H%M%S).log"
+
+# 确保 checkpoint 目录和日志目录存在，避免 nohup 写日志和 verl 保存 checkpoint 时失败
+mkdir -p "$ckpt_dir/log"
+# 同时确保 verl 的 default_local_dir 子目录存在（verl 不会自动创建）
+mkdir -p "$ckpt_dir"
+
 
 
 rank_alpha=16
 max_steps=30
-save_freq=1
+# save_freq=1
+save_freq=25
 # free_cache=False
 free_cache=True
 # 自定义选项
 custom_print_debug=true
 custom_save_traj=false
 
+# ========== 限制训练任务数 ==========
+# 完成固定个任务后停止训练（不遍历整个训练文件）
+# -1: 不限制，跑完整个 parquet（默认行为）
+# 正整数 N: 训练 N 个任务后停止（每个 step 处理 train_batch_size 个任务）
+# 注意：实际处理的任务数为 total_training_steps * train_batch_size
+#       所以 total_training_steps = ceil(max_tasks / train_batch_size)
+# max_tasks=20
+# if [ "$max_tasks" -gt 0 ]; then
+#     # 向上取整：即使 max_tasks 不能被 batchsize 整除，也至少跑够 max_tasks 个任务
+#     total_training_steps=$(( (max_tasks + batchsize - 1) / batchsize ))
+# else
+#     # 不限制：不传该参数，让 verl 使用默认值 len(dataloader)*total_epochs
+#     total_training_steps=""
+# fi
+# echo "Max tasks: $max_tasks, Total training steps: ${total_training_steps:-unlimited} (batch_size=$batchsize)"
+# ${total_training_steps:+trainer.total_training_steps=$total_training_steps} \
 
 nohup python3 train_scrips/for_webshop/main_ppo_webshop.py \
     algorithm.adv_estimator=grpo \
@@ -62,7 +90,7 @@ nohup python3 train_scrips/for_webshop/main_ppo_webshop.py \
     env.num_parallel=5 \
     env.add_limit_prompt=True \
     env.lazy_envs=True \
-    env.rollout.n=8 \
+    env.rollout.n=3 \
     env.history_length=8 \
     actor_rollout_ref.actor.ppo_mini_batch_size=32 \
     actor_rollout_ref.model.lora_rank=$rank_alpha \
@@ -114,8 +142,8 @@ nohup python3 train_scrips/for_webshop/main_ppo_webshop.py \
     trainer.n_gpus_per_node=$batchsize \
     trainer.nnodes=1 \
     trainer.save_freq=$save_freq \
-    custom.print_debug=$custom_print_debug \
-    custom.save_traj=$custom_save_traj \
+    +custom.print_debug=$custom_print_debug \
+    +custom.save_traj=$custom_save_traj \
     trainer.test_freq=500 \
     trainer.total_epochs=1 \
     trainer.val_before_train=False \
@@ -125,4 +153,4 @@ echo "PID: $!"
 echo "Log: $LOG_FILE"
 echo "Checkpoint dir: $ckpt_dir"
 echo "To monitor: tail -f $LOG_FILE"
-tail -f "$LOG_FILE"
+tail -F "$LOG_FILE"

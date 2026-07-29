@@ -107,4 +107,4 @@ nohup python3 -m verl-webshop.for_webshop.main_ppo_webshop \
 echo "PID: $!"
 echo "Log: $LOG_FILE"
 echo "To monitor: tail -f $LOG_FILE"
-tail -f "$LOG_FILE"
+tail -F "$LOG_FILE"

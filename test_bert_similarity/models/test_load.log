@@ -1,0 +1,38 @@
+Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1
+Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+import build_search_envs success
+
+============================================================
+Loading tokenizer and model from checkpoint: /diskpool/home/xuxz/Code-for-DPEPO/2gpu_emb_search/global_step_250/merged
+============================================================
+Loading tokenizer...
+Tokenizer loaded: Qwen2TokenizerFast
+Set tokenizer model_max_length to: 32768
+Set tokenizer truncation_side to: right
+============================================================
+
+Loading model weights from /diskpool/home/xuxz/Code-for-DPEPO/2gpu_emb_search/global_step_250/merged
+
+============================================================
+Model loaded successfully!
+Model type: Qwen2ForCausalLM
+Model device: cuda:0
+Model dtype: torch.bfloat16
+Number of parameters: 1,543,714,304
+Max context length: 32768
+============================================================
+load_local_model success
+============================================================
+============================================================
+Testing Local model connectivity...
+============================================================
+
+Response: system
+Hello! I'm an artificial intelligence designed to assist with various tasks. Let me know if you need help with anything specific!
+
+============================================================
+Local model test PASSED!
+============================================================
+[DEBUG] load test done

@@ -1,0 +1,369 @@
+Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1
+Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+test started
+======================================================================
+BERT 嵌入模型相似度测试（基于 EmbeddingManager）- Search 任务版
+模型目录: /diskpool/home/xuxz/Code-for-DPEPO/test_bert_similarity/models/bge-large-en-v1.5
+相似度阈值: 0.8
+任务类型: search
+======================================================================
+
+[1/1] 正在加载 EmbeddingManager (task_type=search) ...
+[EmbeddingManager] 推理设备: CPU（默认，绕过 Ray actor GPU 可见性问题）, gpu_memory_utilization=0.1（仅 GPU 模式参考）
+[EmbeddingManager] 本地模型校验通过: /diskpool/home/xuxz/Code-for-DPEPO/test_bert_similarity/models/bge-large-en-v1.5
+[EmbeddingManager] 模型已加载到 cpu
+EmbeddingManager 加载完成!
+
+======================================================================
+测试 4: Search 动作相似度验证（方案 B+E: search/answer 词集匹配+嵌入兜底）
+  search/answer 阈值: 0.8  |  null: 精确匹配  |  词集匹配: 优先  |  task_type=search
+======================================================================
+
+  #   动作A                                        动作B                                             原始      归一  判定  期望  类别
+  ----------------------------------------------------------------------------------------------------------------------------------
+  0   search[head of NASA during Apollo 11]      search[head of NASA during Apollo 11]       1.0000  1.0000   Y   Y  OK  完全相同-search [exact]
+  1   search[The Terminal director]              search[The Terminal director]               1.0000  1.0000   Y   Y  OK  完全相同-search [exact]
+  2   search[Andy Murray brother]                search[Andy Murray brother]                 1.0000  1.0000   Y   Y  OK  完全相同-search [exact]
+  3   search[author of The Jungle]               search[author of The Jungle]                1.0000  1.0000   Y   Y  OK  完全相同-search [exact]
+  4   search[American Hustle director]           search[American Hustle director]            1.0000  1.0000   Y   Y  OK  完全相同-American Hustle [exact]
+  5   search[Beaches 1988 film director]         search[Beaches 1988 film director]          1.0000  1.0000   Y   Y  OK  完全相同-Beaches 1988 [exact]
+  6   search[Battle of Tarawa date]              search[Battle of Tarawa date]               1.0000  1.0000   Y   Y  OK  完全相同-Battle of Tarawa [exact]
+  7   search[Alicia Keys education university]   search[Alicia Keys education university]    1.0000  1.0000   Y   Y  OK  完全相同-Alicia Keys [exact]
+  8   search[Alessandro Allori Bronzino adoption] search[Alessandro Allori Bronzino adoption]  1.0000  1.0000   Y   Y  OK  完全相同-Alessandro Allori [exact]
+  9   search[Alexandros Matsas birthplace]       search[Alexandros Matsas birthplace]        1.0000  1.0000   Y   Y  OK  完全相同-Alexandros Matsas [exact]
+  10  search[The Terminal director]              search[the terminal director]               1.0000  1.0000   Y   Y  OK  大小写-The Terminal [exact]
+  11  search[The Believers composer]             search[the believers composer]              1.0000  1.0000   Y   Y  OK  大小写-The Believers [exact]
+  12  search[The Last Days of Pompeii producer]  search[the last days of pompeii producer]   1.0000  1.0000   Y   Y  OK  大小写-The Last Days [exact]
+  13  search[NASA administrator Apollo 11]       search[nasa administrator apollo 11]        1.0000  1.0000   Y   Y  OK  大小写-NASA Apollo [exact]
+  14  search[Britney Spears birthplace city state] search[britney spears birthplace city state]  1.0000  1.0000   Y   Y  OK  大小写-Britney Spears [exact]
+  15  search[Andy Murray brother]                search[andy murray brother]                 1.0000  1.0000   Y   Y  OK  大小写-Andy Murray [exact]
+  16  search["Before Midnight" screenwriter Ethan Hawke] search[before midnight ethan hawke screenwriter]  0.9683  0.8417   Y   Y  OK  大小写-Before Midnight [embedding]
+  17  search[Marty's girlfriend Back to the Future actress] search[marty's girlfriend back to the future actress]  1.0000  1.0000   Y   Y  OK  大小写-Back to the Future [exact]
+  18  search[American Hustle director]           search[american hustle director]            1.0000  1.0000   Y   Y  OK  大小写-American Hustle [exact]
+  19  search[Beaches 1988 film director]         search[beaches 1988 film director]          1.0000  1.0000   Y   Y  OK  大小写-Beaches 1988 [exact]
+  20  search[Alessandro Allori Bronzino adoption] search[alessandro allori bronzino adoption]  1.0000  1.0000   Y   Y  OK  大小写-Alessandro Allori [exact]
+  21  search[Alexandros Matsas birthplace]       search[alexandros matsas birthplace]        1.0000  1.0000   Y   Y  OK  大小写-Alexandros Matsas [exact]
+  22  search[Battle of Tarawa date]              search[battle of tarawa date]               1.0000  1.0000   Y   Y  OK  大小写-Battle of Tarawa [exact]
+  23  search[Team USA starting pitchers 2000 Summer Olympics] search[2000 Summer Olympics baseball USA starting pitchers]  0.8131  0.0656   Y   Y  OK  词序-Team USA重排 [embedding]
+  24  search[Team USA starting pitchers 2000 Summer Olympics] search[Baseball at 2000 Summer Olympics USA starting pitchers list]  0.7821  0.0000   N   Y  XX  词序-Team USA重排2 [embedding]
+  25  search[BBC Sports Personality of the Year awards winner most wins] search[player with most BBC Sports Personality of the Year awards]  0.8609  0.3044   Y   Y  OK  词序-BBC奖项重排 [embedding]
+  26  search[BBC Sports Personality of the Year awards winner most wins] search[who won the most BBC Sports Personality of the Year]  0.8393  0.1966   Y   Y  OK  词序-BBC奖项重排2 [embedding]
+  27  search[Oak Beach New York between which island] search[Island between Oak Beach and Great South Bay New York]  0.8587  0.2936   Y   Y  OK  词序-Oak Beach重排 [embedding]
+  28  search[Alessandro Allori Bronzino uncle death] search[Alessandro Allori uncle Bronzino death]  1.0000  1.0000   Y   Y  OK  词序-Allori uncle Bronzino重排 [wordset]
+  29  search["Bob Boles" "opera" cast]           search["Bob Boles" cast "opera"]            1.0000  1.0000   Y   Y  OK  词序-Bob Boles opera cast重排 [wordset]
+  30  search[Ned Keene Bob Boles opera]          search[opera Bob Boles Ned Keene]           1.0000  1.0000   Y   Y  OK  词序-Ned Keene Bob Boles重排 [wordset]
+  31  search[Ned Keene Bob Boles opera together] search[Ned Keene Bob Boles together opera]  1.0000  1.0000   Y   Y  OK  词序-Ned Keene together重排 [wordset]
+  32  search["Curious" fragrance singer]         search[Curious women's fragrance singer]    0.9365  0.6827   Y   Y  OK  引号-Curious加引号 [embedding]
+  33  search["The Arrangement" author]           search[author of The Arrangement]           0.9288  0.6442   Y   Y  OK  引号-The Arrangement加引号 [embedding]
+  34  search["Umchabezi River" mouth]            search[Umchabezi River mouth]               0.9692  0.8461   Y   Y  OK  引号-Umchabezi River加引号 [embedding]
+  35  search["Before Midnight" screenwriter Ethan Hawke] search[Before Midnight Ethan Hawke screenwriter]  0.9683  0.8417   Y   Y  OK  引号-Before Midnight加引号 [embedding]
+  36  search["Bankim Chandra Chatterjee" brother] search[Bankim Chandra Chatterjee brother]   0.9603  0.8015   Y   Y  OK  引号-Bankim Chandra加引号 [embedding]
+  37  search["Came Home" father]                 search[Came Home father Gone West]          0.8651  0.3256   Y   Y  OK  引号-Came Home father加引号 [embedding]
+  38  search["Came Home" "father" "Gone West"]   search["Came Home" "father" Gone West]      0.9747  0.8734   Y   Y  OK  引号-Came Home Gone West引号差异 [embedding]
+  39  search["Bob Boles" opera]                  search[Bob Boles opera]                     0.8441  0.2207   Y   Y  OK  引号-Bob Boles加引号 [embedding]
+  40  search["Bronzino" "uncle" painting]        search[Bronzino uncle painting]             0.9557  0.7787   Y   Y  OK  引号-Bronzino uncle加引号 [embedding]
+  41  search[moon landing NASA administrator]    search[moon landingNASA administrator]      0.9106  0.5532   Y   Y  OK  空格-moon landingNASA缺空格 [embedding]
+  42  search[Team USA starting pitchers 2000 Summer Olympics] search[Team USA starting pitcher 2000 Summer Olympics]  0.9727  0.8637   Y   Y  OK  单复数-pitchers vs pitcher [embedding]
+  43  search[BBC Sports Personality of the Year awards winner most wins] search[BBC Sports Personality of the Year award winner most wins]  0.9948  0.9740   Y   Y  OK  单复数-awards vs award [embedding]
+  44  search[Great South Bay between which islands] search[Great South Bay between which island]  0.9818  0.9088   Y   Y  OK  单复数-islands vs island [embedding]
+  45  search[Murray brothers tennis]             search[Murray brother tennis]               0.9597  0.7983   Y   Y  OK  单复数-brothers vs brother [embedding]
+  46  search[mattress]                           search[mattress]                            1.0000  1.0000   Y   Y  OK  短查询-完全相同 [exact]
+  47  search[keywords]                           search[keywords]                            1.0000  1.0000   Y   Y  OK  短查询-占位符相同 [exact]
+  48  search[Andy Murray]                        search[Andy Murray]                         1.0000  1.0000   Y   Y  OK  短查询-人名相同 [exact]
+  49  search[American Hustle]                    search[American Hustle]                     1.0000  1.0000   Y   Y  OK  短查询-American Hustle相同 [exact]
+  50  search[Battle of Tarawa]                   search[Battle of Tarawa]                    1.0000  1.0000   Y   Y  OK  短查询-Battle of Tarawa相同 [exact]
+  51  search[Andy Murray]                        search[Andy Murray brother]                 0.7859  0.0000   N   N  OK  不同-短查询增加brother [embedding]
+  52  search[Britney Spears]                     search[Britney Spears birthplace]           0.6794  0.0000   N   N  OK  不同-短查询增加birthplace [embedding]
+  53  search[The Terminal]                       search[The Terminal director]               0.8100  0.0501   Y   N  XX  不同-短查询增加director [embedding]
+  54  search[American Hustle]                    search[American Hustle director]            0.8265  0.1327   Y   N  XX  不同-短查询American Hustle增加director [embedding]
+  55  search[Battle of Tarawa]                   search[Battle of Tarawa date]               0.8191  0.0954   Y   N  XX  不同-短查询Tarawa增加date [embedding]
+  56  search[Battle of Tarawa]                   search[Battle of Tarawa 1943]               0.8731  0.3653   Y   N  XX  不同-短查询Tarawa增加1943 [embedding]
+  57  search[Andy Murray brother]                search[Andrey Murray brother tennis]        0.8920  0.4602   Y   N  XX  不同-Andy vs Andrey误拼 [embedding]
+  58  search[Oak Beach New York between which island] search[Oakh Beach New York location]        0.8277  0.1385   Y   N  XX  不同-Oak Beach vs Oakh Beach [embedding]
+  59  search[The Terminal director]              search[The Last Days of Pompeii producer]   0.5095  0.0000   N   N  OK  不同-The Terminal vs Last Days of Pompeii [embedding]
+  60  search[screenwriter of Before Midnight]    search[Marty's girlfriend Back to the Future actress]  0.4645  0.0000   N   N  OK  不同-Before Midnight vs Back to the Future [embedding]
+  61  search[American Hustle director]           search[Beaches 1988 film director]          0.5986  0.0000   N   N  OK  不同-American Hustle vs Beaches [embedding]
+  62  search[American Hustle director]           search[The Terminal director]               0.5713  0.0000   N   N  OK  不同-American Hustle vs The Terminal [embedding]
+  63  search[Andy Murray brother]                search[Britney Spears birthplace city state]  0.3393  0.0000   N   N  OK  不同-Andy Murray vs Britney Spears [embedding]
+  64  search[author of The Jungle]               search["The Arrangement" author]            0.6913  0.0000   N   N  OK  不同-The Jungle vs The Arrangement [embedding]
+  65  search[Alexandros Matsas birthplace]       search[Alicia Keys education university]    0.3556  0.0000   N   N  OK  不同-Matsas vs Alicia Keys [embedding]
+  66  search[Alessandro Allori Bronzino adoption] search[Alexandros Matsas birthplace]        0.3811  0.0000   N   N  OK  不同-Allori vs Matsas [embedding]
+  67  search[Andy Murray brother]                search[Andy Murray birthplace]              0.7015  0.0000   N   N  OK  不同-Andy Murray brother vs birthplace [embedding]
+  68  search[Britney Spears birthplace city state] search[Britney Spears fragrance]            0.6126  0.0000   N   N  OK  不同-Britney Spears birthplace vs fragrance [embedding]
+  69  search[Beaches 1988 film director]         search[Beaches 1988 film director nationality]  0.9608  0.8040   Y   N  XX  不同-Beaches director vs nationality [embedding]
+  70  search[Beaches 1988 film director]         search[Beaches 1988 film director American]  0.9736  0.8678   Y   N  XX  不同-Beaches director vs American [embedding]
+  71  search[Beaches 1988 film director]         search[Beaches 1988 film director British]  0.9463  0.7313   Y   N  XX  不同-Beaches director vs British [embedding]
+  72  search[head of NASA during Apollo 11]      search[BBC Sports Personality of the Year awards winner most wins]  0.3706  0.0000   N   N  OK  不同-NASA vs BBC [embedding]
+  73  search[Team USA starting pitchers 2000 Summer Olympics] search[Oak Beach New York between which island]  0.2708  0.0000   N   N  OK  不同-奥运会 vs Oak Beach [embedding]
+  74  search[Battle of Tarawa date]              search[Battle of the Ch'ongch'on River 1945]  0.5072  0.0000   N   N  OK  不同-Tarawa vs Chongchon River [embedding]
+  75  search["Bankim Chandra Chatterjee" brother] search[Bankim Chandra Chattopadhyay sister]  0.7894  0.0000   N   N  OK  不同-Chatterjee brother vs sister [embedding]
+  76  search["Bankim Chandra Chatterjee" brother] search[who is the wife of Bankim Chandra Chattopadhyay]  0.6854  0.0000   N   N  OK  不同-Chatterjee brother vs wife [embedding]
+  77  search[Andy Murray brother]                search[Andy Murray sister]                  0.8661  0.3304   Y   N  XX  不同-brother vs sister [embedding]
+  78  search[Britney Spears birthplace city state] search[Britney Spears nationality country]  0.8002  0.0010   Y   N  XX  不同-birthplace vs nationality [embedding]
+  79  search[The Terminal director]              search[The Terminal producer]               0.8079  0.0396   Y   N  XX  不同-director vs producer [embedding]
+  80  search[author of The Jungle]               search[illustrator of The Jungle]           0.7948  0.0000   N   N  OK  不同-author vs illustrator [embedding]
+  81  search[The Believers composer]             search[The Believers lyricist]              0.8842  0.4211   Y   N  XX  不同-composer vs lyricist [embedding]
+  82  search["Bob Boles" opera]                  search[Bob Boles opera roles other than La boheme]  0.8304  0.1520   Y   N  XX  不同-Bob Boles opera vs roles excluding La boheme [embedding]
+  83  search[Albany International Airport location] search[Albany International Airport town]   0.8206  0.1032   Y   N  XX  不同-Albany location vs town [embedding]
+  84  search[Albany International Airport location] search[Albany International Airport town nearly Albany]  0.8152  0.0758   Y   N  XX  不同-Albany location vs town nearly [embedding]
+  85  search["Bronzino" "uncle" painting]        search[Bronzino name change uncle death]    0.6705  0.0000   N   N  OK  不同-Bronzino uncle vs name change [embedding]
+  86  search["Bronzino" "uncle" painting]        search[Bronzino painter 1535-1607 uncle]    0.8496  0.2479   Y   N  XX  不同-Bronzino uncle vs painter年份 [embedding]
+  87  search["Came Home" father]                 search["Came Home" misspelled]              0.7416  0.0000   N   N  OK  不同-Came Home father vs misspelled [embedding]
+  88  search["Came Home" father]                 search[Came Home horse father]              0.8372  0.1861   Y   N  XX  不同-Came Home father vs horse father [embedding]
+  89  search["Came Home" father]                 search[Came Home movie father]              0.8779  0.3896   Y   N  XX  不同-Came Home father vs movie father [embedding]
+  90  search["Came Home" father]                 search[Came Home paternal father]           0.9071  0.5355   Y   N  XX  不同-Came Home father vs paternal father [embedding]
+  91  search[head of NASA during Apollo 11]      search[Apollo 11 mission commander NASA]    0.8794  0.3970   Y   N  XX  不同-NASA head vs commander [embedding]
+  92  answer[Thomas O. Paine]                    answer[Thomas O. Paine]                     1.0000  1.0000   Y   Y  OK  完全相同-answer [unknown]
+  93  answer[Steven Spielberg]                   answer[Steven Spielberg]                    1.0000  1.0000   Y   Y  OK  完全相同-answer [unknown]
+  94  answer[Upton Sinclair]                     answer[Upton Sinclair]                      1.0000  1.0000   Y   Y  OK  完全相同-answer [unknown]
+  95  answer[Elia Kazan]                         answer[Elia Kazan]                          1.0000  1.0000   Y   Y  OK  完全相同-answer [unknown]
+  96  answer[Long Island]                        answer[Long Island]                         1.0000  1.0000   Y   Y  OK  完全相同-answer [unknown]
+  97  answer[Jamie Murray]                       answer[Jamie Murray]                        1.0000  1.0000   Y   Y  OK  完全相同-answer [unknown]
+  98  answer[Alessandro Allori]                  answer[Alessandro Allori]                   1.0000  1.0000   Y   Y  OK  完全相同-Alessandro Allori [unknown]
+  99  answer[Antonio Vivaldi]                    answer[Antonio Vivaldi]                     1.0000  1.0000   Y   Y  OK  完全相同-Antonio Vivaldi [unknown]
+  100 answer[Anthony Hopkins]                    answer[Anthony Hopkins]                     1.0000  1.0000   Y   Y  OK  完全相同-Anthony Hopkins [unknown]
+  101 answer[Bryan Cranston]                     answer[Bryan Cranston]                      1.0000  1.0000   Y   Y  OK  完全相同-Bryan Cranston [unknown]
+  102 answer[Baton Rouge, Louisiana]             answer[Baton Rouge, Louisiana]              1.0000  1.0000   Y   Y  OK  完全相同-Baton Rouge [unknown]
+  103 answer[Columbia University]                answer[Columbia University]                 1.0000  1.0000   Y   Y  OK  完全相同-Columbia University [unknown]
+  104 answer[Steven Spielberg]                   answer[steven spielberg]                    1.0000  1.0000   Y   Y  OK  大小写-answer Spielberg [unknown]
+  105 answer[Thomas O. Paine]                    answer[thomas o. paine]                     1.0000  1.0000   Y   Y  OK  大小写-answer Paine [unknown]
+  106 answer[Upton Sinclair]                     answer[upton sinclair]                      1.0000  1.0000   Y   Y  OK  大小写-answer Sinclair [unknown]
+  107 answer[Long Island]                        answer[long island]                         1.0000  1.0000   Y   Y  OK  大小写-answer Long Island [unknown]
+  108 answer[Alessandro Allori]                  answer[alessandro allori]                   1.0000  1.0000   Y   Y  OK  大小写-Alessandro Allori [unknown]
+  109 answer[Antonio Vivaldi]                    answer[antonio vivaldi]                     1.0000  1.0000   Y   Y  OK  大小写-Antonio Vivaldi [unknown]
+  110 answer[Anthony Hopkins]                    answer[anthony hopkins]                     1.0000  1.0000   Y   Y  OK  大小写-Anthony Hopkins [unknown]
+  111 answer[Bryan Cranston]                     answer[bryan cranston]                      1.0000  1.0000   Y   Y  OK  大小写-Bryan Cranston [unknown]
+  112 answer[Columbia University]                answer[columbia university]                 1.0000  1.0000   Y   Y  OK  大小写-Columbia University [unknown]
+  113 answer[George IV of the United Kingdom]    answer[George IV]                           0.0000  0.0000   N   N  OK  同义-全称 vs 简称 George IV [unknown]
+  114 answer[King George IV]                     answer[George IV]                           0.0000  0.0000   N   N  OK  同义-King George IV vs George IV [unknown]
+  115 answer[Thomas O. Paine]                    answer[Thomas Paine]                        0.0000  0.0000   N   N  OK  同义-Thomas O. Paine vs Thomas Paine [unknown]
+  116 answer[Upton Sinclair]                     answer[Sinclair]                            0.0000  0.0000   N   N  OK  同义-Upton Sinclair vs Sinclair [unknown]
+  117 answer[McComb, Mississippi]                answer[McComb Mississippi]                  0.0000  0.0000   N   N  OK  同义-逗号差异 McComb [unknown]
+  118 answer[McComb, Mississippi]                answer[McComb, MS]                          0.0000  0.0000   N   N  OK  同义-全称 vs 缩写 Mississippi MS [unknown]
+  119 answer[Baton Rouge, Louisiana]             answer[Baton Rouge Louisiana]               0.0000  0.0000   N   N  OK  同义-Baton Rouge逗号差异 [unknown]
+  120 answer[Baton Rouge, Louisiana]             answer[Baton Rouge, LA]                     0.0000  0.0000   N   N  OK  同义-Baton Rouge全称vs缩写 [unknown]
+  121 answer[Steven Spielberg]                   answer[Stephen Spielberg]                   0.0000  0.0000   N   N  OK  同义-Steven vs Stephen Spielberg [unknown]
+  122 answer[Claudia Wells]                      answer[Claudia Grace Wells]                 0.0000  0.0000   N   N  OK  同义-Claudia Wells vs Claudia Grace Wells [unknown]
+  123 answer[Thomas O. Paine]                    answer[Steven Spielberg]                    0.0000  0.0000   N   N  OK  不同-answer Paine vs Spielberg [unknown]
+  124 answer[Upton Sinclair]                     answer[Elia Kazan]                          0.0000  0.0000   N   N  OK  不同-answer Sinclair vs Kazan [unknown]
+  125 answer[Jamie Murray]                       answer[Andy Murray]                         0.0000  0.0000   N   N  OK  不同-answer Jamie vs Andy Murray [unknown]
+  126 answer[Long Island]                        answer[McComb, Mississippi]                 0.0000  0.0000   N   N  OK  不同-answer Long Island vs McComb [unknown]
+  127 answer[Thomas O. Paine]                    answer[Thomas Paine]                        0.0000  0.0000   N   N  OK  同义-Thomas O. Paine vs Thomas Paine（同义区域） [unknown]
+  128 answer[Andy Murray]                        answer[Jamie Murray]                        0.0000  0.0000   N   N  OK  不同-answer Andy vs Jamie Murray [unknown]
+  129 answer[Upton Sinclair]                     answer[Christine Sinclair]                  0.0000  0.0000   N   N  OK  不同-Upton Sinclair vs Christine Sinclair [unknown]
+  130 answer[Alessandro Allori]                  answer[Antonio Vivaldi]                     0.0000  0.0000   N   N  OK  不同-Allori vs Vivaldi [unknown]
+  131 answer[Anthony Hopkins]                    answer[Bryan Cranston]                      0.0000  0.0000   N   N  OK  不同-Hopkins vs Cranston [unknown]
+  132 answer[Baton Rouge, Louisiana]             answer[Columbia University]                 0.0000  0.0000   N   N  OK  不同-Baton Rouge vs Columbia [unknown]
+  133 answer[Claudia Wells]                      answer[Alessandro Allori]                   0.0000  0.0000   N   N  OK  不同-Claudia Wells vs Allori [unknown]
+  134 null                                       null                                        1.0000  1.0000   Y   Y  OK  null完全相同 [null]
+  135 null                                       search[head of NASA during Apollo 11]       0.0000  0.0000   N   N  OK  null vs 有效搜索 [null]
+  136 null                                       answer[Thomas O. Paine]                     0.0000  0.0000   N   N  OK  null vs 有效答案 [null]
+  137 null                                       search[Andy Murray brother]                 0.0000  0.0000   N   N  OK  null vs 有效搜索2 [null]
+  138 null                                       answer[Steven Spielberg]                    0.0000  0.0000   N   N  OK  null vs 有效答案2 [null]
+  139 search[head of NASA during Apollo 11]      answer[Thomas O. Paine]                     0.0000  0.0000   N   N  OK  跨类型-search vs answer [cross-type]
+  140 search[The Terminal director]              answer[Steven Spielberg]                    0.0000  0.0000   N   N  OK  跨类型-search vs answer [cross-type]
+  141 search[author of The Jungle]               answer[Upton Sinclair]                      0.0000  0.0000   N   N  OK  跨类型-search vs answer [cross-type]
+  142 search[Andy Murray brother]                answer[Jamie Murray]                        0.0000  0.0000   N   N  OK  跨类型-search vs answer [cross-type]
+  143 answer[Thomas O. Paine]                    search[head of NASA during Apollo 11]       0.0000  0.0000   N   N  OK  跨类型-answer vs search [cross-type]
+  144 answer[Steven Spielberg]                   search[The Terminal director]               0.0000  0.0000   N   N  OK  跨类型-answer vs search [cross-type]
+  145 search[head of NASA during Apollo 11]      null                                        0.0000  0.0000   N   N  OK  跨类型-search vs null [null]
+  146 answer[Thomas O. Paine]                    null                                        0.0000  0.0000   N   N  OK  跨类型-answer vs null [null]
+  147 search[American Hustle director]           answer[David O. Russell]                    0.0000  0.0000   N   N  OK  跨类型-search American Hustle vs answer [cross-type]
+  148 search[Beaches 1988 film director]         answer[Garry Marshall]                      0.0000  0.0000   N   N  OK  跨类型-search Beaches vs answer [cross-type]
+  149 search[Battle of Tarawa date]              answer[1943]                                0.0000  0.0000   N   N  OK  跨类型-search Tarawa vs answer [cross-type]
+  150 search[Alessandro Allori Bronzino adoption] answer[Alessandro Allori]                   0.0000  0.0000   N   N  OK  跨类型-search Allori vs answer [cross-type]
+  151 search[Alexandros Matsas birthplace]       answer[Athens]                              0.0000  0.0000   N   N  OK  跨类型-search Matsas vs answer [cross-type]
+  152 search[Alicia Keys education university]   answer[Columbia University]                 0.0000  0.0000   N   N  OK  跨类型-search Alicia Keys vs answer [cross-type]
+  153 answer[Antonio Vivaldi]                    search[Alessandro Allori Bronzino adoption]  0.0000  0.0000   N   N  OK  跨类型-answer Vivaldi vs search Allori [cross-type]
+  154 answer[Bryan Cranston]                     search[American Hustle director]            0.0000  0.0000   N   N  OK  跨类型-answer Cranston vs search American Hustle [cross-type]
+
+  阈值判定正确率: 133/155 = 85.8%
+
+  阈值判定错误（22 对）:
+    [漏检] search[Team USA starting pitchers 2000 Summer Olympics] vs search[Baseball at 2000 Summer Olympics USA starting pitchers list] raw=0.7821 norm=0.0000 [词序-Team USA重排2]
+    [误检] search[The Terminal]                       vs search[The Terminal director]              raw=0.8100 norm=0.0501 [不同-短查询增加director]
+    [误检] search[American Hustle]                    vs search[American Hustle director]           raw=0.8265 norm=0.1327 [不同-短查询American Hustle增加director]
+    [误检] search[Battle of Tarawa]                   vs search[Battle of Tarawa date]              raw=0.8191 norm=0.0954 [不同-短查询Tarawa增加date]
+    [误检] search[Battle of Tarawa]                   vs search[Battle of Tarawa 1943]              raw=0.8731 norm=0.3653 [不同-短查询Tarawa增加1943]
+    [误检] search[Andy Murray brother]                vs search[Andrey Murray brother tennis]       raw=0.8920 norm=0.4602 [不同-Andy vs Andrey误拼]
+    [误检] search[Oak Beach New York between which island] vs search[Oakh Beach New York location]       raw=0.8277 norm=0.1385 [不同-Oak Beach vs Oakh Beach]
+    [误检] search[Beaches 1988 film director]         vs search[Beaches 1988 film director nationality] raw=0.9608 norm=0.8040 [不同-Beaches director vs nationality]
+    [误检] search[Beaches 1988 film director]         vs search[Beaches 1988 film director American] raw=0.9736 norm=0.8678 [不同-Beaches director vs American]
+    [误检] search[Beaches 1988 film director]         vs search[Beaches 1988 film director British] raw=0.9463 norm=0.7313 [不同-Beaches director vs British]
+    [误检] search[Andy Murray brother]                vs search[Andy Murray sister]                 raw=0.8661 norm=0.3304 [不同-brother vs sister]
+    [误检] search[Britney Spears birthplace city state] vs search[Britney Spears nationality country] raw=0.8002 norm=0.0010 [不同-birthplace vs nationality]
+    [误检] search[The Terminal director]              vs search[The Terminal producer]              raw=0.8079 norm=0.0396 [不同-director vs producer]
+    [误检] search[The Believers composer]             vs search[The Believers lyricist]             raw=0.8842 norm=0.4211 [不同-composer vs lyricist]
+    [误检] search["Bob Boles" opera]                  vs search[Bob Boles opera roles other than La boheme] raw=0.8304 norm=0.1520 [不同-Bob Boles opera vs roles excluding La boheme]
+    [误检] search[Albany International Airport location] vs search[Albany International Airport town]  raw=0.8206 norm=0.1032 [不同-Albany location vs town]
+    [误检] search[Albany International Airport location] vs search[Albany International Airport town nearly Albany] raw=0.8152 norm=0.0758 [不同-Albany location vs town nearly]
+    [误检] search["Bronzino" "uncle" painting]        vs search[Bronzino painter 1535-1607 uncle]   raw=0.8496 norm=0.2479 [不同-Bronzino uncle vs painter年份]
+    [误检] search["Came Home" father]                 vs search[Came Home horse father]             raw=0.8372 norm=0.1861 [不同-Came Home father vs horse father]
+    [误检] search["Came Home" father]                 vs search[Came Home movie father]             raw=0.8779 norm=0.3896 [不同-Came Home father vs movie father]
+    [误检] search["Came Home" father]                 vs search[Came Home paternal father]          raw=0.9071 norm=0.5355 [不同-Came Home father vs paternal father]
+    [误检] search[head of NASA during Apollo 11]      vs search[Apollo 11 mission commander NASA]   raw=0.8794 norm=0.3970 [不同-NASA head vs commander]
+
+  各类别相似度范围:
+  类别                       数量      最小      最大      平均  分布
+  -----------------------------------------------------------------
+  null vs 有效搜索              1  0.0000  0.0000  0.0000  
+  null vs 有效搜索2             1  0.0000  0.0000  0.0000  
+  null vs 有效答案              1  0.0000  0.0000  0.0000  
+  null vs 有效答案2             1  0.0000  0.0000  0.0000  
+  null完全相同                  1  1.0000  1.0000  1.0000  ####################
+  不同-Albany location vs town    1  0.1032  0.1032  0.1032  ##
+  不同-Albany location vs town nearly    1  0.0758  0.0758  0.0758  #
+  不同-Allori vs Matsas       1  0.0000  0.0000  0.0000  
+  不同-Allori vs Vivaldi      1  0.0000  0.0000  0.0000  
+  不同-American Hustle vs Beaches    1  0.0000  0.0000  0.0000  
+  不同-American Hustle vs The Terminal    1  0.0000  0.0000  0.0000  
+  不同-Andy Murray brother vs birthplace    1  0.0000  0.0000  0.0000  
+  不同-Andy Murray vs Britney Spears    1  0.0000  0.0000  0.0000  
+  不同-Andy vs Andrey误拼       1  0.4602  0.4602  0.4602  #########
+  不同-Baton Rouge vs Columbia    1  0.0000  0.0000  0.0000  
+  不同-Beaches director vs American    1  0.8678  0.8678  0.8678  #################
+  不同-Beaches director vs British    1  0.7313  0.7313  0.7313  ##############
+  不同-Beaches director vs nationality    1  0.8040  0.8040  0.8040  ################
+  不同-Before Midnight vs Back to the Future    1  0.0000  0.0000  0.0000  
+  不同-Bob Boles opera vs roles excluding La boheme    1  0.1520  0.1520  0.1520  ###
+  不同-Britney Spears birthplace vs fragrance    1  0.0000  0.0000  0.0000  
+  不同-Bronzino uncle vs name change    1  0.0000  0.0000  0.0000  
+  不同-Bronzino uncle vs painter年份    1  0.2479  0.2479  0.2479  ####
+  不同-Came Home father vs horse father    1  0.1861  0.1861  0.1861  ###
+  不同-Came Home father vs misspelled    1  0.0000  0.0000  0.0000  
+  不同-Came Home father vs movie father    1  0.3896  0.3896  0.3896  #######
+  不同-Came Home father vs paternal father    1  0.5355  0.5355  0.5355  ##########
+  不同-Chatterjee brother vs sister    1  0.0000  0.0000  0.0000  
+  不同-Chatterjee brother vs wife    1  0.0000  0.0000  0.0000  
+  不同-Claudia Wells vs Allori    1  0.0000  0.0000  0.0000  
+  不同-Hopkins vs Cranston    1  0.0000  0.0000  0.0000  
+  不同-Matsas vs Alicia Keys    1  0.0000  0.0000  0.0000  
+  不同-NASA head vs commander    1  0.3970  0.3970  0.3970  #######
+  不同-NASA vs BBC            1  0.0000  0.0000  0.0000  
+  不同-Oak Beach vs Oakh Beach    1  0.1385  0.1385  0.1385  ##
+  不同-Tarawa vs Chongchon River    1  0.0000  0.0000  0.0000  
+  不同-The Jungle vs The Arrangement    1  0.0000  0.0000  0.0000  
+  不同-The Terminal vs Last Days of Pompeii    1  0.0000  0.0000  0.0000  
+  不同-Upton Sinclair vs Christine Sinclair    1  0.0000  0.0000  0.0000  
+  不同-answer Andy vs Jamie Murray    1  0.0000  0.0000  0.0000  
+  不同-answer Jamie vs Andy Murray    1  0.0000  0.0000  0.0000  
+  不同-answer Long Island vs McComb    1  0.0000  0.0000  0.0000  
+  不同-answer Paine vs Spielberg    1  0.0000  0.0000  0.0000  
+  不同-answer Sinclair vs Kazan    1  0.0000  0.0000  0.0000  
+  不同-author vs illustrator    1  0.0000  0.0000  0.0000  
+  不同-birthplace vs nationality    1  0.0010  0.0010  0.0010  
+  不同-brother vs sister      1  0.3304  0.3304  0.3304  ######
+  不同-composer vs lyricist    1  0.4211  0.4211  0.4211  ########
+  不同-director vs producer    1  0.0396  0.0396  0.0396  
+  不同-奥运会 vs Oak Beach       1  0.0000  0.0000  0.0000  
+  不同-短查询American Hustle增加director    1  0.1327  0.1327  0.1327  ##
+  不同-短查询Tarawa增加1943        1  0.3653  0.3653  0.3653  #######
+  不同-短查询Tarawa增加date        1  0.0954  0.0954  0.0954  #
+  不同-短查询增加birthplace        1  0.0000  0.0000  0.0000  
+  不同-短查询增加brother           1  0.0000  0.0000  0.0000  
+  不同-短查询增加director          1  0.0501  0.0501  0.0501  #
+  单复数-awards vs award       1  0.9740  0.9740  0.9740  ###################
+  单复数-brothers vs brother    1  0.7983  0.7983  0.7983  ###############
+  单复数-islands vs island     1  0.9088  0.9088  0.9088  ##################
+  单复数-pitchers vs pitcher    1  0.8637  0.8637  0.8637  #################
+  同义-Baton Rouge全称vs缩写      1  0.0000  0.0000  0.0000  
+  同义-Baton Rouge逗号差异        1  0.0000  0.0000  0.0000  
+  同义-Claudia Wells vs Claudia Grace Wells    1  0.0000  0.0000  0.0000  
+  同义-King George IV vs George IV    1  0.0000  0.0000  0.0000  
+  同义-Steven vs Stephen Spielberg    1  0.0000  0.0000  0.0000  
+  同义-Thomas O. Paine vs Thomas Paine    1  0.0000  0.0000  0.0000  
+  同义-Thomas O. Paine vs Thomas Paine（同义区域）    1  0.0000  0.0000  0.0000  
+  同义-Upton Sinclair vs Sinclair    1  0.0000  0.0000  0.0000  
+  同义-全称 vs 简称 George IV     1  0.0000  0.0000  0.0000  
+  同义-全称 vs 缩写 Mississippi MS    1  0.0000  0.0000  0.0000  
+  同义-逗号差异 McComb            1  0.0000  0.0000  0.0000  
+  大小写-Alessandro Allori     2  1.0000  1.0000  1.0000  ####################
+  大小写-Alexandros Matsas     1  1.0000  1.0000  1.0000  ####################
+  大小写-American Hustle       1  1.0000  1.0000  1.0000  ####################
+  大小写-Andy Murray           1  1.0000  1.0000  1.0000  ####################
+  大小写-Anthony Hopkins       1  1.0000  1.0000  1.0000  ####################
+  大小写-Antonio Vivaldi       1  1.0000  1.0000  1.0000  ####################
+  大小写-Back to the Future    1  1.0000  1.0000  1.0000  ####################
+  大小写-Battle of Tarawa      1  1.0000  1.0000  1.0000  ####################
+  大小写-Beaches 1988          1  1.0000  1.0000  1.0000  ####################
+  大小写-Before Midnight       1  0.8417  0.8417  0.8417  ################
+  大小写-Britney Spears        1  1.0000  1.0000  1.0000  ####################
+  大小写-Bryan Cranston        1  1.0000  1.0000  1.0000  ####################
+  大小写-Columbia University    1  1.0000  1.0000  1.0000  ####################
+  大小写-NASA Apollo           1  1.0000  1.0000  1.0000  ####################
+  大小写-The Believers         1  1.0000  1.0000  1.0000  ####################
+  大小写-The Last Days         1  1.0000  1.0000  1.0000  ####################
+  大小写-The Terminal          1  1.0000  1.0000  1.0000  ####################
+  大小写-answer Long Island    1  1.0000  1.0000  1.0000  ####################
+  大小写-answer Paine          1  1.0000  1.0000  1.0000  ####################
+  大小写-answer Sinclair       1  1.0000  1.0000  1.0000  ####################
+  大小写-answer Spielberg      1  1.0000  1.0000  1.0000  ####################
+  完全相同-Alessandro Allori    2  1.0000  1.0000  1.0000  ####################
+  完全相同-Alexandros Matsas    1  1.0000  1.0000  1.0000  ####################
+  完全相同-Alicia Keys          1  1.0000  1.0000  1.0000  ####################
+  完全相同-American Hustle      1  1.0000  1.0000  1.0000  ####################
+  完全相同-Anthony Hopkins      1  1.0000  1.0000  1.0000  ####################
+  完全相同-Antonio Vivaldi      1  1.0000  1.0000  1.0000  ####################
+  完全相同-Baton Rouge          1  1.0000  1.0000  1.0000  ####################
+  完全相同-Battle of Tarawa     1  1.0000  1.0000  1.0000  ####################
+  完全相同-Beaches 1988         1  1.0000  1.0000  1.0000  ####################
+  完全相同-Bryan Cranston       1  1.0000  1.0000  1.0000  ####################
+  完全相同-Columbia University    1  1.0000  1.0000  1.0000  ####################
+  完全相同-answer               6  1.0000  1.0000  1.0000  ####################
+  完全相同-search               4  1.0000  1.0000  1.0000  ####################
+  引号-Bankim Chandra加引号      1  0.8015  0.8015  0.8015  ################
+  引号-Before Midnight加引号     1  0.8417  0.8417  0.8417  ################
+  引号-Bob Boles加引号           1  0.2207  0.2207  0.2207  ####
+  引号-Bronzino uncle加引号      1  0.7787  0.7787  0.7787  ###############
+  引号-Came Home Gone West引号差异    1  0.8734  0.8734  0.8734  #################
+  引号-Came Home father加引号    1  0.3256  0.3256  0.3256  ######
+  引号-Curious加引号             1  0.6827  0.6827  0.6827  #############
+  引号-The Arrangement加引号     1  0.6442  0.6442  0.6442  ############
+  引号-Umchabezi River加引号     1  0.8461  0.8461  0.8461  ################
+  短查询-American Hustle相同     1  1.0000  1.0000  1.0000  ####################
+  短查询-Battle of Tarawa相同    1  1.0000  1.0000  1.0000  ####################
+  短查询-人名相同                  1  1.0000  1.0000  1.0000  ####################
+  短查询-占位符相同                 1  1.0000  1.0000  1.0000  ####################
+  短查询-完全相同                  1  1.0000  1.0000  1.0000  ####################
+  空格-moon landingNASA缺空格    1  0.5532  0.5532  0.5532  ###########
+  词序-Allori uncle Bronzino重排    1  1.0000  1.0000  1.0000  ####################
+  词序-BBC奖项重排                1  0.3044  0.3044  0.3044  ######
+  词序-BBC奖项重排2               1  0.1966  0.1966  0.1966  ###
+  词序-Bob Boles opera cast重排    1  1.0000  1.0000  1.0000  ####################
+  词序-Ned Keene Bob Boles重排    1  1.0000  1.0000  1.0000  ####################
+  词序-Ned Keene together重排    1  1.0000  1.0000  1.0000  ####################
+  词序-Oak Beach重排            1  0.2936  0.2936  0.2936  #####
+  词序-Team USA重排             1  0.0656  0.0656  0.0656  #
+  词序-Team USA重排2            1  0.0000  0.0000  0.0000  
+  跨类型-answer Cranston vs search American Hustle    1  0.0000  0.0000  0.0000  
+  跨类型-answer Vivaldi vs search Allori    1  0.0000  0.0000  0.0000  
+  跨类型-answer vs null        1  0.0000  0.0000  0.0000  
+  跨类型-answer vs search      2  0.0000  0.0000  0.0000  
+  跨类型-search Alicia Keys vs answer    1  0.0000  0.0000  0.0000  
+  跨类型-search Allori vs answer    1  0.0000  0.0000  0.0000  
+  跨类型-search American Hustle vs answer    1  0.0000  0.0000  0.0000  
+  跨类型-search Beaches vs answer    1  0.0000  0.0000  0.0000  
+  跨类型-search Matsas vs answer    1  0.0000  0.0000  0.0000  
+  跨类型-search Tarawa vs answer    1  0.0000  0.0000  0.0000  
+  跨类型-search vs answer      4  0.0000  0.0000  0.0000  
+  跨类型-search vs null        1  0.0000  0.0000  0.0000  
+
+  阈值分析 (当前=0.8):
+    [归一化相似度]
+    应判重复的最低归一化相似度: 0.0000
+    不应判重复的最高归一化相似度: 0.8678
+    分离间隙: -0.8678
+    ⚠ 分离间隙为负，存在重叠区域，阈值无法完美区分
+      重叠区间: [0.8678, 0.0000]
+    [原始相似度（阈值过滤前、线性放大前）]
+    应判重复的最低原始相似度: 0.7821
+    不应判重复的最高原始相似度: 0.9736
+    分离间隙: -0.1915
+    ⚠ 分离间隙为负，存在重叠区域，阈值无法完美区分
+      重叠区间: [0.9736, 0.7821]
+
+======================================================================
+所有测试完成!
+======================================================================

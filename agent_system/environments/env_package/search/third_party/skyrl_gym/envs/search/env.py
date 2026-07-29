@@ -81,6 +81,7 @@ class SearchEnv(BaseTextEnv):
         self.chat_history.append({"role": "assistant", "content": action})
 
         error = None
+        # _is_done判断是否为answer模式
         if not self.done:
             done = self._is_done(action)
             self.done = done
@@ -89,6 +90,7 @@ class SearchEnv(BaseTextEnv):
 
         reward = self._get_reward(action, done)
 
+        # done后返回空观察
         if done:
             return BaseTextEnvStepOutput(
                 observations=[], reward=reward, done=done, metadata={"data_source": self.data_source, "tool_calling": False}, postprocessed_action=action

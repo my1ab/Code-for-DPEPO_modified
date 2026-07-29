@@ -265,7 +265,7 @@ class Env:
         self.auto_reset = False
         self.is_done = False
     
-    def step(self,action):
+    def step(self, action):
         # if self.is_done is True:
         #     obs, reward, done, infos = self.last_command[-1] 
 

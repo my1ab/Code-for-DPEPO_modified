@@ -49,6 +49,7 @@ def main(config):
 
 def run_ppo(config) -> None:
     if not ray.is_initialized():
+        cvd = os.environ.get("CUDA_VISIBLE_DEVICES", "0")
         ray.init(
             runtime_env={
                 "env_vars": {
@@ -56,6 +57,7 @@ def run_ppo(config) -> None:
                     "NCCL_DEBUG": "WARN",
                     "VLLM_LOGGING_LEVEL": "WARN",
                     "VLLM_ALLOW_RUNTIME_LORA_UPDATING": "true",
+                    "CUDA_VISIBLE_DEVICES": cvd,
                 }
             },
             num_cpus=config.ray_init.num_cpus,

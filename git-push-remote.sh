@@ -84,15 +84,17 @@ echo ""
 echo "=== 定义需要排除的路径 ==="
 EXCLUDE_PATHS=(
     # 排除coldstart_test下的所有子文件夹
-    1gpu_search
-    1gpu_webshop
-    2gpu
-    2gpu_only_penalty
-    2gpu_only_penalty_1
-    "sample"
-    "sample copy"
-    "case"
-    sample_backup
+    2gpu_emb_search_080
+    2gpu_emb_search_090
+    2gpu_emb_search_noemb
+    3emb_model_bs1
+    3emb_model_bs2
+    3emb_model_bs4
+    3emb_model_bs4_webshop
+    3emb_model_resume
+    交接文档
+    解析文件
+    修改日志
     webshop_para_full_result
     webshop_checkpoint_para
     webshop_checkpoint
@@ -180,10 +182,10 @@ git status
 # echo "=== 暂存区大小统计 ==="
 # git diff --cached --stat
 
-# echo ""
-# echo "=== 暂存区总大小 ==="
-# TOTAL_SIZE=$(git diff --cached --numstat | awk '{sum+=$1+$2} END {print sum/1024/1024}')
-# echo "总大小: $TOTAL_SIZE MB"
+echo ""
+echo "=== 暂存区总大小 ==="
+TOTAL_SIZE=$(git diff --cached --numstat | awk '{sum+=$1+$2} END {print sum/1024/1024}')
+echo "总大小: $TOTAL_SIZE MB"
 
 echo ""
 echo "=== 提交更改 ==="

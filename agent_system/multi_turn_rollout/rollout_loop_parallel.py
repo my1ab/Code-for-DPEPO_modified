@@ -373,6 +373,9 @@ class TrajectoryCollectorParallel:
             # sum the rewards for each data in total_batch_list[bs]
             for data in total_batch_list[bs]:
                 assert traj_uid[bs] == data['traj_uid'], "data is not from the same trajectory"
+                # batch.non_tensor_batch['active_masks'] = active_masks
+                # batch.non_tensor_batch['active_masks'] = torch_to_numpy(active_masks, is_object=True)
+                # 尚未成功时加入
                 if data['active_masks']:
                     # episode_rewards
                     data['episode_rewards'] = episode_rewards[bs] 
@@ -751,6 +754,7 @@ class TrajectoryCollectorParallel:
 
             action_penalty_per_env.append(pooling_kind_weight)
         
+        # != 'null'
         actions_wo_look = [elem for elem in action_dict.values() if elem != 'look']
         COUNT_width_repeat = len(actions_wo_look) - len(set(actions_wo_look)) 
         width_omega = self.config.reward_model.width_omega
