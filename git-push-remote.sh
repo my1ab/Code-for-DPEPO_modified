@@ -66,6 +66,7 @@ EXCLUDE_PATHS=(
     webshop_checkpoint_para
     webshop_checkpoint
     file_sft_search
+    models
     test_bert_similarity/学习轨迹
     test_bert_similarity/验证轨迹
     test_bert_similarity/验证轨迹search
@@ -90,9 +91,12 @@ if [ -n "$REMOTE_COMMIT" ]; then
     BAD_LARGE=$(git rev-list --objects "$REMOTE_COMMIT"..HEAD 2>/dev/null \
         | git cat-file --batch-check='%(objecttype) %(objectsize) %(rest)' \
         | awk '$1=="blob" && $2 > 104857600 {print $3}')
-    if [ -n "$BAD_LARGE" ]; then
-        echo "⚠️  检测到未推送的提交中包含超过 100MB 的大文件："
-        echo "$BAD_LARGE" | head -10
+    # 扫描未推送提交中是否有 LFS pointer 文件（pointer 本身很小，按大小检测不到）
+    LFS_FILES=$(git grep -l '^version https://git-lfs' $(git rev-list "$REMOTE_COMMIT"..HEAD) 2>/dev/null \
+        | sed 's/^[^:]*://' | sort -u)
+    if [ -n "$BAD_LARGE" ] || [ -n "$LFS_FILES" ]; then
+        [ -n "$BAD_LARGE" ] && echo "⚠️  检测到超过 100MB 的大文件：" && echo "$BAD_LARGE" | head -10
+        [ -n "$LFS_FILES" ] && echo "⚠️  检测到 LFS pointer 文件：" && echo "$LFS_FILES" | head -10
         if command -v git-filter-repo &>/dev/null; then
             echo "  使用 git-filter-repo 清理大文件..."
             git branch backup-before-filterrepo 2>/dev/null || true
@@ -101,7 +105,19 @@ if [ -n "$REMOTE_COMMIT" ]; then
             if ! git diff --quiet || ! git diff --cached --quiet; then
                 git stash push -m "auto-stash-before-filterrepo" 2>&1 && STASH_DONE=true
             fi
-            # 一条命令清理所有超过 100MB 的 blob
+            # 收集需要从历史中移除的路径：大文件 + LFS pointer 文件
+            CLEANUP_ARGS=()
+            [ -s <(echo "$BAD_LARGE") ] && while IFS= read -r f; do
+                [ -n "$f" ] && CLEANUP_ARGS+=(--path "$f")
+            done <<< "$BAD_LARGE"
+            [ -s <(echo "$LFS_FILES") ] && while IFS= read -r f; do
+                [ -n "$f" ] && CLEANUP_ARGS+=(--path "$f")
+            done <<< "$LFS_FILES"
+            if [ ${#CLEANUP_ARGS[@]} -gt 0 ]; then
+                git filter-repo "${CLEANUP_ARGS[@]}" --invert-paths --force 2>&1
+                rm -f .git/filter-repo/already_ran
+            fi
+            # 兜底：清理所有超过 100MB 的 blob
             git filter-repo --strip-blobs-bigger-than 100M --force 2>&1
             rm -f .git/filter-repo/already_ran
             # filter-repo 会移除远程引用，重新添加
