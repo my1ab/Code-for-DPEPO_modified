@@ -99,6 +99,12 @@ EXCLUDE_PATHS=(
     webshop_checkpoint_para
     webshop_checkpoint
     file_sft_search
+    test_bert_similarity/学习轨迹
+    test_bert_similarity/验证轨迹
+    test_bert_similarity/验证轨迹search
+    test_bert_similarity/file_for_sft_webshop
+    test_bert_similarity/log
+    test_bert_similarity/models
     "*.pt"
     "*.ckpt"
     "*.safetensors"
