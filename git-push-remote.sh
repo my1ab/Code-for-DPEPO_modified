@@ -48,39 +48,6 @@ else
 fi
 
 echo ""
-echo "=== 检查本地是否有未推送且含大文件的提交，如有则回退 ==="
-# 获取远端最后的提交
-REMOTE_REF="${REPO_NAME}/${TARGET_BRANCH}"
-REMOTE_COMMIT=$(git rev-parse "$REMOTE_REF" 2>/dev/null || echo "")
-if [ -n "$REMOTE_COMMIT" ]; then
-    # 检查本地 HEAD 与远端之间的提交中是否有超过 100MB 的文件
-    BAD_LARGE=$(git diff --name-only "$REMOTE_COMMIT"..HEAD 2>/dev/null | while read f; do
-        # 检查每个提交中该文件的大小
-        size=$(git cat-file -s "HEAD:$f" 2>/dev/null || echo 0)
-        if [ "$size" -gt 104857600 ] 2>/dev/null; then
-            echo "$f"
-        fi
-    done)
-    if [ -n "$BAD_LARGE" ]; then
-        echo "⚠️  检测到未推送的提交中包含超过 100MB 的大文件，正在回退到远端最后的提交..."
-        echo "受影响的文件："
-        echo "$BAD_LARGE" | head -10
-        # 软回退到远端最后的提交，保留工作区文件不变
-        git reset --soft "$REMOTE_COMMIT"
-        echo "已回退到 $REMOTE_COMMIT"
-    else
-        echo "✅ 未推送的提交中没有大文件"
-    fi
-else
-    echo "未找到远端提交，跳过大文件检查"
-fi
-
-echo ""
-echo "=== 先清空所有暂存区，保证干净的状态 ==="
-git reset HEAD -- .  # 取消所有暂存的文件  但git add可以覆盖这个操作
-git status
-
-echo ""
 echo "=== 定义需要排除的路径 ==="
 EXCLUDE_PATHS=(
     # 排除coldstart_test下的所有子文件夹
@@ -113,6 +80,102 @@ EXCLUDE_PATHS=(
     "*.pyc"
     "*.pyo"
 )
+
+echo ""
+echo "=== 检查本地是否有未推送且含大文件的提交，如有则用 filter-repo 清理 ==="
+# 获取远端最后的提交
+REMOTE_REF="${REPO_NAME}/${TARGET_BRANCH}"
+REMOTE_COMMIT=$(git rev-parse "$REMOTE_REF" 2>/dev/null || echo "")
+if [ -n "$REMOTE_COMMIT" ]; then
+    # 检查本地 HEAD 与远端之间的提交中是否有超过 100MB 的文件
+    BAD_LARGE=$(git diff --name-only "$REMOTE_COMMIT"..HEAD 2>/dev/null | while read f; do
+        size=$(git cat-file -s "HEAD:$f" 2>/dev/null || echo 0)
+        if [ "$size" -gt 104857600 ] 2>/dev/null; then
+            echo "$f"
+        fi
+    done)
+    if [ -n "$BAD_LARGE" ]; then
+        echo "⚠️  检测到未推送的提交中包含超过 100MB 的大文件："
+        echo "$BAD_LARGE" | head -10
+        echo ""
+
+        # 检查 git-filter-repo 是否可用
+        if command -v git-filter-repo &>/dev/null; then
+            echo "  使用 git-filter-repo 从历史中彻底清理大文件..."
+            # 备份当前 HEAD
+            git branch backup-before-filterrepo 2>/dev/null || true
+            echo "  已创建备份分支 backup-before-filterrepo"
+            # 确保工作区干净（filter-repo 要求无未提交的修改）
+            if ! git diff --quiet || ! git diff --cached --quiet; then
+                echo "  暂存未提交的修改以便 filter-repo 运行..."
+                git stash push -m "auto-stash-before-filterrepo" 2>&1
+                STASH_DONE=true
+            fi
+
+            # 收集所有需要清理的路径：检测到的大文件 + EXCLUDE_PATHS 中已被跟踪的
+            TEMP_PATHLIST=$(mktemp)
+            while IFS= read -r f; do
+                [ -n "$f" ] && echo "$f" >> "$TEMP_PATHLIST"
+            done <<< "$BAD_LARGE"
+            for path in "${EXCLUDE_PATHS[@]}"; do
+                case "$path" in
+                    *\** | *\?*) ;;  # 跳过通配符
+                    *)
+                        if git rev-list --objects "$REMOTE_COMMIT"..HEAD -- "$path" 2>/dev/null | grep -q .; then
+                            echo "  历史中存在被跟踪的排除路径: $path"
+                            echo "$path" >> "$TEMP_PATHLIST"
+                        fi
+                        ;;
+                esac
+            done
+            # 去重
+            sort -u "$TEMP_PATHLIST" -o "$TEMP_PATHLIST"
+
+            # 先按路径清理（从历史中移除已跟踪的排除路径 + 检测到的大文件路径）
+            if [ -s "$TEMP_PATHLIST" ]; then
+                echo "  待清理路径列表:"
+                cat "$TEMP_PATHLIST"
+                git filter-repo --paths-from-file "$TEMP_PATHLIST" --invert-paths --force 2>&1
+                # 清理 already_ran 标记，允许后续 filter-repo 调用
+                rm -f .git/filter-repo/already_ran
+            fi
+            # 兜底：清理所有超过 100MB 的 blob（无论路径是什么）
+            git filter-repo --strip-blobs-bigger-than 100M --force 2>&1
+            rm -f .git/filter-repo/already_ran
+            rm -f "$TEMP_PATHLIST"
+
+            # 重新添加远程仓库（filter-repo 会移除远程引用）
+            echo "  重新添加远程仓库..."
+            git remote add $REPO_NAME "$REMOTE_URL" 2>/dev/null || true
+            git remote -v
+
+            # 重新获取 REMOTE_COMMIT（历史被重写，引用已变）
+            REMOTE_COMMIT=$(git rev-parse "$REMOTE_REF" 2>/dev/null || echo "")
+
+            echo "✅ filter-repo 历史清理完成"
+
+            # 恢复之前暂存的修改
+            if [ "${STASH_DONE:-false}" = true ]; then
+                echo "  恢复暂存的修改..."
+                git stash pop 2>&1 || true
+            fi
+        else
+            echo "   git-filter-repo 未安装，回退到 git reset --soft..."
+            echo "   安装方式: pip install git-filter-repo"
+            git reset --soft "$REMOTE_COMMIT"
+            echo "  已回退到 $REMOTE_COMMIT"
+        fi
+    else
+        echo "✅ 未推送的提交中没有大文件"
+    fi
+else
+    echo "未找到远端提交，跳过大文件检查"
+fi
+
+echo ""
+echo "=== 先清空所有暂存区，保证干净的状态 ==="
+git reset HEAD -- .  # 取消所有暂存的文件  但git add可以覆盖这个操作
+git status
 
 echo ""
 echo "=== 从 Git 索引中移除 EXCLUDE_PATHS 中已跟踪的文件 ==="
