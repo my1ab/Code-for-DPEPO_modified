@@ -1,0 +1,146 @@
+Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1
+Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+<frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+<frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+<frozen importlib._bootstrap>:241: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+import WebAgentTextEnv success
+
+============================================================
+Loading tokenizer and model from checkpoint: /diskpool/home/xuxz/ms-swift/model/Qwen2.5-1.5B-Instruct
+ 
+============================================================
+Loading tokenizer...
+Tokenizer loaded: Qwen2TokenizerFast
+Set tokenizer model_max_length to: 32768
+Set tokenizer truncation_side to: right
+============================================================
+============================================================
+load_local_model success
+============================================================
+
+================================================================================
+
+Output file: result/1.5B_epoch3.5_hislen8_test_3.json
+
+================================================================================
+
+
+================================================================================
+
+Warning: log file exists (result/1.5B_epoch3.5_hislen8_test_3.log) but output file does not exist.
+This indicates a previous run was interrupted.
+Deleting incomplete log file and starting fresh...
+Start time: 2026-06-04 00:57:58
+log_file: result/1.5B_epoch3.5_hislen8_test_3.log
+
+================================================================================
+
+Evaluating test samples (idx 200 to 499) with 30 max turns each...
+group_n: 5, env_num: 1, num_para: 5
+load_all: 0, human_goals: False, limit_goals: -1, seed: 42, start_index: 200, end_idx: 499
+using local model (Qwen2.5-1.5/3/7B), path: /diskpool/home/xuxz/ms-swift/model/Qwen2.5-1.5B-Instruct
+prompt: 3, his_len: 8, Max context length: 32768
+
+================================================================================
+
+file_path: /diskpool/home/xuxz/data/items_shuffle_1000.json 
+ attr_path: /diskpool/home/xuxz/data/items_ins_v2_1000.json
+2026-06-04 00:58:02,183	INFO worker.py:1917 -- Started a local Ray instance.
+[36m(pid=844541)[0m Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1
+[36m(pid=844541)[0m Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+[36m(pid=844541)[0m Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+[36m(pid=844541)[0m See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[36m(WebshopWorker pid=844541)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+[36m(WebshopWorker pid=844541)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+[36m(WebshopWorker pid=844541)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+[36m(pid=844543)[0m Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1[32m [repeated 4x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(pid=844543)[0m Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.[32m [repeated 4x across cluster][0m
+[36m(pid=844543)[0m Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.[32m [repeated 4x across cluster][0m
+[36m(pid=844543)[0m See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=844541)[0m   0%|          | 0/1000 [00:00<?, ?it/s]
+[36m(WebshopWorker pid=844545)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=844545)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=844545)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type swigvarlink has no __module__ attribute[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=844541)[0m Products loaded.
+[36m(WebshopWorker pid=844541)[0m Keys cleaned.
+[36m(WebshopWorker pid=844541)[0m Attributes loaded.
+[36m(WebshopWorker pid=844541)[0m 100%|██████████| 1000/1000 [00:00<00:00, 42149.15it/s]
+[36m(WebshopWorker pid=844541)[0m /diskpool/home/xuxz/miniconda3/envs/dpepo_webshop/lib/python3.11/site-packages/bs4/element.py:784: DeprecationWarning: The 'text' argument to find()-type methods is deprecated. Use 'string' instead.
+[36m(WebshopWorker pid=844541)[0m   warnings.warn(
+[36m(WebshopWorker pid=844541)[0m Loaded 6910 goals.
+
+ Split: test, Goal indices: range(0, 500), Exclude: True, Sequential: True 
+
+Environment built, took 23.819744348526 seconds
+
+================================================================================
+
+Skipping first 200 resets to sync random state...
+Done skipping 200 resets, took 5.934955596923828 seconds.
+
+================================================================================
+
+Evaluating test data:   0%|          | 0/300 [00:00<?, ?it/s] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 200 exit(all null) at turn 11
+Evaluating test data:   0%|          | 1/300 [05:30<27:28:03, 330.71s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 201 exit(all null) at turn 3
+Evaluating test data:   1%|          | 2/300 [06:21<13:46:00, 166.31s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 202 exit(all null) at turn 7
+Evaluating test data:   1%|          | 3/300 [07:33<10:09:11, 123.07s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+*** SIGTERM received at time=1780506618 on cpu 99 ***
+PC: @     0x7b89fc957623  (unknown)  c10::cuda::CUDACachingAllocator::Native::DeviceCachingAllocator::alloc_found_block()
+    @     0x7b8e44842520  (unknown)  (unknown)
+    @     0x7b89fc96fe3c       2048  c10::cuda::CUDACachingAllocator::Native::DeviceCachingAllocator::malloc()
+    @     0x7b89fc971d07        208  c10::cuda::CUDACachingAllocator::Native::NativeCachingAllocator::malloc()
+    @     0x7b89e0007ff9        272  at::detail::_empty_generic<>()
+    @     0x7b89e0002eb4        512  at::detail::empty_generic()
+    @     0x7b89aa665dc5       1304  at::detail::empty_cuda()
+    @                0x1  (unknown)  (unknown)
+[2026-06-04 01:10:18,982 E 835956 835956] logging.cc:496: *** SIGTERM received at time=1780506618 on cpu 99 ***
+[2026-06-04 01:10:18,982 E 835956 835956] logging.cc:496: PC: @     0x7b89fc957623  (unknown)  c10::cuda::CUDACachingAllocator::Native::DeviceCachingAllocator::alloc_found_block()
+[2026-06-04 01:10:18,987 E 835956 835956] logging.cc:496:     @     0x7b8e44842520  (unknown)  (unknown)
+[2026-06-04 01:10:18,987 E 835956 835956] logging.cc:496:     @     0x7b89fc96fe3c       2048  c10::cuda::CUDACachingAllocator::Native::DeviceCachingAllocator::malloc()
+[2026-06-04 01:10:18,987 E 835956 835956] logging.cc:496:     @     0x7b89fc971d07        208  c10::cuda::CUDACachingAllocator::Native::NativeCachingAllocator::malloc()
+[2026-06-04 01:10:18,987 E 835956 835956] logging.cc:496:     @     0x7b89e0007ff9        272  at::detail::_empty_generic<>()
+[2026-06-04 01:10:18,987 E 835956 835956] logging.cc:496:     @     0x7b89e0002eb4        512  at::detail::empty_generic()
+[2026-06-04 01:10:18,987 E 835956 835956] logging.cc:496:     @     0x7b89aa665dc5       1304  at::detail::empty_cuda()
+[2026-06-04 01:10:18,991 E 835956 835956] logging.cc:496:     @                0x1  (unknown)  (unknown)
+Evaluating test data:   1%|          | 3/300 [11:50<19:33:01, 236.98s/it]
+[36m(WebshopWorker pid=844545)[0m Products loaded.[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=844545)[0m Keys cleaned.[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=844545)[0m Attributes loaded.[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=844545)[0m Loaded 6910 goals.[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=844545)[0m   0%|          | 0/1000 [00:00<?, ?it/s]100%|██████████| 1000/1000 [00:00<00:00, 136050.60it/s][32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=844545)[0m /diskpool/home/xuxz/miniconda3/envs/dpepo_webshop/lib/python3.11/site-packages/bs4/element.py:784: DeprecationWarning: The 'text' argument to find()-type methods is deprecated. Use 'string' instead.[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=844545)[0m   warnings.warn([32m [repeated 4x across cluster][0m

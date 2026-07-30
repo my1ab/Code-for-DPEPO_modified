@@ -86,7 +86,15 @@ def extract_think_and_actions(text):
 class Env:
     def __init__(self, game_file):
         self.gamefile = game_file
-        self.env_path = '/data/home/zhangjs/disk/project/verl-agent/agent_system/environments/env_package/webshop/webshop'
+        # 环境包路径：优先使用环境变量 WEBSHOP_ENV_PATH 覆盖，
+        # 否则基于当前文件位置动态解析到本项目自带的 webshop 环境包
+        self.env_path = os.environ.get(
+            'WEBSHOP_ENV_PATH',
+            os.path.join(
+                os.path.dirname(os.path.abspath(__file__)),
+                'env_package', 'webshop', 'webshop',
+            ),
+        )
         self.env_kwargs = {
             'observation_mode': 'text', 
             'num_products': None, 
@@ -109,6 +117,7 @@ class Env:
         self.is_done = False
     
     def step(self, action):
+        # 此处仅接受4参数
         obs, reward, done, info = self.env.step(action) 
         
         # 处理 info 可能为 None 的情况

@@ -144,7 +144,8 @@ class WebAgentTextEnv(gym.Env):
         if status['done']:
             self.reset()
         # 新增action_valid
-        return state, status['reward'], status['done'], info, action_valid
+        # return state, status['reward'], status['done'], info, action_valid
+        return state, status['reward'], status['done'], info
 
     def get_available_actions(self):
         """Returns list of available actions at the current step"""

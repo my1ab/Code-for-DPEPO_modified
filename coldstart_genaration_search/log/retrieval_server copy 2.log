@@ -1,0 +1,13 @@
+path = /diskpool/home/xuxz/data/searchR1/e5_Flat.index
+loading index using: self.index = faiss.read_index(self.index_path)
+Loading corpus from /diskpool/home/xuxz/data/searchR1/wiki-18.jsonl with num_proc=16 ...
+Corpus loaded: 21015324 documents
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 14297.38it/s]
+INFO:     Started server process [1977]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1977]

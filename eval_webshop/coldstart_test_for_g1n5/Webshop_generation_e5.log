@@ -1,0 +1,215 @@
+Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1
+Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+<frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+<frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+<frozen importlib._bootstrap>:241: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+import WebAgentTextEnv success
+
+================================================================================
+
+Output file: 1.5B_epoch5_hislen8_test.json
+
+================================================================================
+
+
+============================================================
+Loading tokenizer and model from checkpoint: /diskpool/home/xuxz/ms-swift/checkpoint/Qwen2.5-1.5B-Instruct-Parallel-Epoch5/v4-20260529-110357/checkpoint-8800
+ 
+============================================================
+Loading tokenizer...
+Tokenizer loaded: Qwen2TokenizerFast
+Set tokenizer model_max_length to: 32768
+Set tokenizer truncation_side to: right
+============================================================
+============================================================
+load_local_model success
+============================================================
+
+================================================================================
+
+Warning: log file exists (1.5B_epoch5_hislen8_test.log) but output file does not exist.
+This indicates a previous run was interrupted.
+Deleting incomplete log file and starting fresh...
+Start time: 2026-06-02 19:58:16
+log_file: 1.5B_epoch5_hislen8_test.log
+
+================================================================================
+
+Evaluating test samples (idx 0 to 99) with 30 max turns each...
+group_n: 5, env_num: 1, num_para: 5
+load_all: 0, human_goals: False, limit_goals: -1, seed: 42, start_index: 0, end_idx: 99
+using local model (Qwen2.5-1.5/3/7B), path: /diskpool/home/xuxz/ms-swift/checkpoint/Qwen2.5-1.5B-Instruct-Parallel-Epoch5/v4-20260529-110357/checkpoint-8800
+prompt: 3, his_len: 8, Max context length: 32768
+
+================================================================================
+
+file_path: /diskpool/home/xuxz/data/items_shuffle_1000.json 
+ attr_path: /diskpool/home/xuxz/data/items_ins_v2_1000.json
+2026-06-02 19:58:19,255	INFO worker.py:1917 -- Started a local Ray instance.
+[36m(pid=1117153)[0m Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1
+[36m(pid=1117153)[0m Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+[36m(pid=1117153)[0m Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+[36m(pid=1117153)[0m See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[36m(WebshopWorker pid=1117152)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+[36m(WebshopWorker pid=1117152)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+[36m(WebshopWorker pid=1117152)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+[36m(WebshopWorker pid=1117152)[0m Products loaded.
+[36m(WebshopWorker pid=1117152)[0m Keys cleaned.
+[36m(WebshopWorker pid=1117152)[0m Attributes loaded.
+[36m(WebshopWorker pid=1117152)[0m   0%|          | 0/1000 [00:00<?, ?it/s]100%|██████████| 1000/1000 [00:00<00:00, 138613.44it/s]
+[36m(pid=1117154)[0m Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1[32m [repeated 4x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(pid=1117154)[0m Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.[32m [repeated 4x across cluster][0m
+[36m(pid=1117154)[0m Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.[32m [repeated 4x across cluster][0m
+[36m(pid=1117154)[0m See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=1117152)[0m Loaded 6910 goals.
+ Split: test, Goal indices: range(0, 500), Exclude: True, Sequential: True 
+
+
+Environment built, took 12.891119241714478 seconds[36m(WebshopWorker pid=1117152)[0m /diskpool/home/xuxz/miniconda3/envs/dpepo_webshop/lib/python3.11/site-packages/bs4/element.py:784: DeprecationWarning: The 'text' argument to find()-type methods is deprecated. Use 'string' instead.
+
+[36m(WebshopWorker pid=1117152)[0m   warnings.warn(
+Evaluating test data:   0%|          | 0/100 [00:00<?, ?it/s]start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 0 SUCCESS at turn 11 in environments [2]
+Evaluating test data:   1%|          | 1/100 [03:10<5:14:27, 190.58s/it]start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 1 SUCCESS at turn 7 in environments [1]
+Evaluating test data:   2%|▏         | 2/100 [05:08<4:01:14, 147.70s/it]start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 2 FAILED at turn 24 in environments [1]
+Evaluating test data:   3%|▎         | 3/100 [11:54<7:09:20, 265.57s/it]start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 3 FAILED at turn 3 in environments [4]
+Evaluating test data:   4%|▍         | 4/100 [12:29<4:39:17, 174.55s/it]start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 4 FAILED at turn 12 in environments [0, 4]
+Evaluating test data:   5%|▌         | 5/100 [15:37<4:44:20, 179.59s/it]start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 5 FAILED at turn 24 in environments [1]
+Evaluating test data:   6%|▌         | 6/100 [24:50<8:00:01, 306.40s/it]start with input and stripping
+*** SIGTERM received at time=1780403013 on cpu 63 ***
+PC: @     0x784844298051  (unknown)  __pthread_mutex_lock
+    @     0x784844242520  (unknown)  (unknown)
+    @     0x78433c18e455         64  (unknown)
+    @     0x78433c18ec1c        816  (unknown)
+    @     0x78433c190693        160  (unknown)
+    @     0x78433c335f37        848  (unknown)
+    @     0x784350ffc25e        256  (unknown)
+    @     0x78435105ef2b        352  (unknown)
+    @     0x78434eb7e60d        128  (unknown)
+    @     0x78434ea35a83        544  (unknown)
+    @     0x78434e0e5af1      28208  (unknown)
+    @     0x78434e1fbbeb      14736  (unknown)
+    @     0x78434e24bb21        336  cublasLtTSTMatmul
+    @     0x78436c07d87d        848  (unknown)
+    @     0x78436c07f9d6        384  (unknown)
+    @     0x78436c0583de        256  (unknown)
+    @     0x78436c2eeaf4        240  (unknown)
+    @     0x78436c2eef80        208  (unknown)
+    @     0x78436bbddc66        240  cublasGemmEx
+    @     0x7843acb67d1f  (unknown)  at::cuda::blas::gemm_internal_cublas<>()
+    @ 0x7fffffff00000200  (unknown)  (unknown)
+[2026-06-02 20:23:33,591 E 1108564 1108564] logging.cc:496: *** SIGTERM received at time=1780403013 on cpu 63 ***
+[2026-06-02 20:23:33,591 E 1108564 1108564] logging.cc:496: PC: @     0x784844298051  (unknown)  __pthread_mutex_lock
+[2026-06-02 20:23:33,594 E 1108564 1108564] logging.cc:496:     @     0x784844242520  (unknown)  (unknown)
+[2026-06-02 20:23:33,594 E 1108564 1108564] logging.cc:496:     @     0x78433c18e455         64  (unknown)
+[2026-06-02 20:23:33,594 E 1108564 1108564] logging.cc:496:     @     0x78433c18ec1c        816  (unknown)
+[2026-06-02 20:23:33,594 E 1108564 1108564] logging.cc:496:     @     0x78433c190693        160  (unknown)
+[2026-06-02 20:23:33,595 E 1108564 1108564] logging.cc:496:     @     0x78433c335f37        848  (unknown)
+[2026-06-02 20:23:33,595 E 1108564 1108564] logging.cc:496:     @     0x784350ffc25e        256  (unknown)
+[2026-06-02 20:23:33,595 E 1108564 1108564] logging.cc:496:     @     0x78435105ef2b        352  (unknown)
+[2026-06-02 20:23:33,595 E 1108564 1108564] logging.cc:496:     @     0x78434eb7e60d        128  (unknown)
+[2026-06-02 20:23:33,595 E 1108564 1108564] logging.cc:496:     @     0x78434ea35a83        544  (unknown)
+[2026-06-02 20:23:33,595 E 1108564 1108564] logging.cc:496:     @     0x78434e0e5af1      28208  (unknown)
+[2026-06-02 20:23:33,595 E 1108564 1108564] logging.cc:496:     @     0x78434e1fbbeb      14736  (unknown)
+[2026-06-02 20:23:33,595 E 1108564 1108564] logging.cc:496:     @     0x78434e24bb21        336  cublasLtTSTMatmul
+[2026-06-02 20:23:33,595 E 1108564 1108564] logging.cc:496:     @     0x78436c07d87d        848  (unknown)
+[2026-06-02 20:23:33,595 E 1108564 1108564] logging.cc:496:     @     0x78436c07f9d6        384  (unknown)
+[2026-06-02 20:23:33,595 E 1108564 1108564] logging.cc:496:     @     0x78436c0583de        256  (unknown)
+[2026-06-02 20:23:33,595 E 1108564 1108564] logging.cc:496:     @     0x78436c2eeaf4        240  (unknown)
+[2026-06-02 20:23:33,595 E 1108564 1108564] logging.cc:496:     @     0x78436c2eef80        208  (unknown)
+[2026-06-02 20:23:33,595 E 1108564 1108564] logging.cc:496:     @     0x78436bbddc66        240  cublasGemmEx
+[2026-06-02 20:23:33,595 E 1108564 1108564] logging.cc:496:     @     0x7843acb67d1f  (unknown)  at::cuda::blas::gemm_internal_cublas<>()
+[2026-06-02 20:23:33,598 E 1108564 1108564] logging.cc:496:     @ 0x7fffffff00000200  (unknown)  (unknown)
+Evaluating test data:   6%|▌         | 6/100 [25:04<6:32:49, 250.74s/it]
+[36m(WebshopWorker pid=1117151)[0m Products loaded.[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=1117151)[0m Keys cleaned.[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=1117151)[0m Attributes loaded.[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=1117151)[0m Loaded 6910 goals.[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=1117154)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=1117154)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=1117154)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type swigvarlink has no __module__ attribute[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=1117154)[0m   0%|          | 0/1000 [00:00<?, ?it/s]100%|██████████| 1000/1000 [00:00<00:00, 170050.84it/s][32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=1117151)[0m /diskpool/home/xuxz/miniconda3/envs/dpepo_webshop/lib/python3.11/site-packages/bs4/element.py:784: DeprecationWarning: The 'text' argument to find()-type methods is deprecated. Use 'string' instead.[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=1117151)[0m   warnings.warn([32m [repeated 4x across cluster][0m

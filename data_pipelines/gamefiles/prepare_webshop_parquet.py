@@ -23,12 +23,13 @@ _DPEPO_CODE_BASE = os.path.join(_DPEPO_USER_HOME, _DPEPO_PROJECT_NAME)
 TRAIN_SIZE = 500
 TEST_SIZE = 50
 SEED = 42
-GOAL_NUM = 6910  # number of goals when human_goals=False in WebShop envs
+
 
 # Goal index ranges matching agent_system/environments/env_package/webshop/envs.py:
 #   test:  range(0, 500)       → 0-499
 #   sft:   range(600, GOAL_NUM) → 600-6909
 #   train: range(600, GOAL_NUM) → 600-6909
+GOAL_NUM = 6910  # number of goals when human_goals=False in WebShop envs
 TRAIN_GOAL_START = 600
 TEST_GOAL_END = 500
 
@@ -64,8 +65,8 @@ def load_success_logical_indices(log_path, list_len=500):
     print(f"[Success] Loaded {len(truncated)} previously solved linear indices (first {list_len}) from {log_path}")
     return truncated
 
-# EXCLUDE_SUCCESS=True  # Set to True to exclude previously solved tasks based on SUCCESS_LOG
-EXCLUDE_SUCCESS=False  # Set to True to exclude previously solved tasks based on SUCCESS_LOG
+EXCLUDE_SUCCESS=True  # Set to True to exclude previously solved tasks based on SUCCESS_LOG
+# EXCLUDE_SUCCESS=False  # Set to True to exclude previously solved tasks based on SUCCESS_LOG
 def main(exclude_success=EXCLUDE_SUCCESS):
     os.makedirs(JSON_DIR, exist_ok=True)
     os.makedirs(PARQUET_DIR, exist_ok=True)
@@ -75,8 +76,8 @@ def main(exclude_success=EXCLUDE_SUCCESS):
     # Goal pools matching envs.py split ranges exactly:
     #   test:  range(500)          → goal indices 0-499
     #   train: range(600, GOAL_NUM) → goal indices 600-6909
-    train_pool = list(range(600, GOAL_NUM))
-    test_pool = list(range(500))
+    train_pool = list(range(TRAIN_GOAL_START, GOAL_NUM))
+    test_pool = list(range(TEST_GOAL_END))
 
     print(f"[Range] Test pool:  0-499 ({len(test_pool)} candidates)")
     print(f"[Range] Train pool: 600-{GOAL_NUM-1} ({len(train_pool)} candidates)")

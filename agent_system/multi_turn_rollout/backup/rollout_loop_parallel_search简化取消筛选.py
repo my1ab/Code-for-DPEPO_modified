@@ -142,7 +142,7 @@ USE_EMBEDDING_SIMILARITY = True
 _DPEPO_USER_HOME = os.environ.get('DPEPO_USER_HOME', '/diskpool/home/xuxz')
 _DPEPO_PROJECT_NAME = os.environ.get('DPEPO_PROJECT_NAME', 'Code-for-DPEPO')
 EMBEDDING_MODEL_PATH = os.path.join(
-    _DPEPO_USER_HOME, _DPEPO_PROJECT_NAME, 'models/bge-large-en-v1.5'
+    _DPEPO_USER_HOME, _DPEPO_PROJECT_NAME, 'emb_models/bge-large-en-v1.5'
 )
 # search/answer 嵌入相似度阈值（仅用于嵌入兜底，null 走精确匹配不受此阈值影响）
 # 模块级默认值，可通过 config.custom.emb_threshold 覆盖

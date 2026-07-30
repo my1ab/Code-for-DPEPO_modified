@@ -1,0 +1,820 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+import build_search_envs success
+============================================================
+Testing DeepSeek API connectivity...
+============================================================
+[turn None] model: deepseek-v4-flash, effort: high
+
+Response: Hello! How can I assist you today?
+
+============================================================
+DeepSeek API test PASSED!
+============================================================
+[DEBUG] test done
+SearchTaskSampler loading: /diskpool/home/xuxz/data/searchR1_processed_direct/train.parquet
+  Total rows: 169615
+  Split 'sft': goal_idxs = [0, 169615)  (169615 tasks)
+Sampling mode: sequential (seed<0 forced)
+Seed: -1
+
+================================================================================
+Generating with sampler: SearchTaskSampler(total=169615, remaining=169615, sequential=True, exclude=False)
+Parallel config: group_n=5, env_num=1, total_envs=5, num_para=5
+Slice ranges: [(200, 299), (300, 399), (400, 499), (500, 599), (600, 699), (700, 799), (800, 899), (900, 999)]
+================================================================================
+
+
+────────────────────────────────────────────────────────────
+Processing chunk [200, 299] → search_coldstart_200_299.json
+────────────────────────────────────────────────────────────
+Start time: 2026-07-03 00:37:27
+log_file: /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search/search_coldstart_200_299.log
+Evaluating search coldstart: 169615 samples
+max_turns: 25, his_len: 8
+use_local_model: False
+sampler: SearchTaskSampler(total=169615, remaining=169415, sequential=True, exclude=False)
+search_url: http://127.0.0.1:8000/retrieve, topk: 3
+group_n: 5, env_num: 1, total_envs: 5, num_para: 5
+building environment
+Environment built successfully
+Processing idx range: [200, 299]  (100 tasks)
+Evaluating test data:   0%|          | 0/100 [00:00<?, ?it/s]Task 200 SUCCESS at turn 2 in environments [0]
+Evaluating test data:   1%|          | 1/100 [00:34<57:11, 34.66s/it]Task 201 SUCCESS at turn 2 in environments [0]
+Evaluating test data:   2%|▏         | 2/100 [00:50<38:09, 23.36s/it]Task 202 SUCCESS at turn 3 in environments [0]
+Evaluating test data:   3%|▎         | 3/100 [01:16<39:55, 24.70s/it]Task 203 FAILED at turn 2 in environments [0]
+Evaluating test data:   4%|▍         | 4/100 [01:30<32:48, 20.51s/it]Task 204 SUCCESS at turn 2 in environments [0]
+Evaluating test data:   5%|▌         | 5/100 [01:46<29:47, 18.82s/it]Task 205 FAILED at turn 3 in environments [0]
+Evaluating test data:   6%|▌         | 6/100 [03:09<1:03:30, 40.54s/it]Task 206 out of max turn
+Evaluating test data:   7%|▋         | 7/100 [10:54<4:38:07, 179.44s/it]Task 207 SUCCESS at turn 2 in environments [0]
+Evaluating test data:   8%|▊         | 8/100 [11:10<3:15:09, 127.28s/it]Task 208 FAILED at turn 2 in environments [0]
+Evaluating test data:   9%|▉         | 9/100 [11:31<2:23:00, 94.29s/it] Task 209 SUCCESS at turn 2 in environments [3]
+Evaluating test data:  10%|█         | 10/100 [11:51<1:46:45, 71.17s/it]Task 210 FAILED at turn 2 in environments [0]
+Evaluating test data:  11%|█         | 11/100 [12:11<1:22:37, 55.71s/it]Task 211 FAILED at turn 2 in environments [0]
+Evaluating test data:  12%|█▏        | 12/100 [12:28<1:04:12, 43.78s/it]Task 212 FAILED at turn 2 in environments [0]
+Evaluating test data:  13%|█▎        | 13/100 [12:53<55:16, 38.12s/it]  Task 213 FAILED at turn 3 in environments [0]
+Evaluating test data:  14%|█▍        | 14/100 [13:23<51:11, 35.71s/it]Task 214 FAILED at turn 2 in environments [0]
+Evaluating test data:  15%|█▌        | 15/100 [13:46<45:16, 31.96s/it]Task 215 FAILED at turn 2 in environments [0]
+Evaluating test data:  16%|█▌        | 16/100 [14:03<38:20, 27.38s/it]Task 216 FAILED at turn 2 in environments [0]
+Evaluating test data:  17%|█▋        | 17/100 [14:18<32:54, 23.78s/it]Task 217 FAILED at turn 3 in environments [0]
+Evaluating test data:  18%|█▊        | 18/100 [14:46<34:11, 25.01s/it]Task 218 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  19%|█▉        | 19/100 [15:00<29:21, 21.74s/it][Search Request ID: 11ea9dcb-31dc-4716-81ff-296c970c3281] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: d09129ee-17f9-4126-9396-ed77666f24d1] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 8f6227c9-6c0b-4663-ada7-dff9178ab456] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: f78e2e97-ffac-4a18-8849-a6298c79453e] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: d534ecb2-2a9a-43ef-8ca0-4a9ac743806a] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 219 FAILED at turn 2 in environments [0]
+Evaluating test data:  20%|██        | 20/100 [16:29<55:40, 41.75s/it]Task 220 FAILED at turn 5 in environments [0]
+Evaluating test data:  21%|██        | 21/100 [17:41<1:06:53, 50.80s/it]Task 221 FAILED at turn 2 in environments [0]
+Evaluating test data:  22%|██▏       | 22/100 [17:56<52:16, 40.21s/it]  Task 222 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  23%|██▎       | 23/100 [18:29<48:42, 37.96s/it]Task 223 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  24%|██▍       | 24/100 [18:44<39:24, 31.11s/it][Search Request ID: 4adfda2d-9364-4662-ac95-a78770e4cb4b] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: e12d6cf7-eff2-4642-8366-8fa8ce2f0fe0] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: d5494ee2-92a3-4f25-bb56-930500c15a89] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 963620af-c4f8-4b90-a0cb-6f552c91ff14] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 6b8c808a-8468-4f4e-9d97-4d0de0b105fe] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 702effbf-5419-4081-8f15-0774c4c90ad4] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 82938ad3-97f7-4c90-99df-fdddee931f3f] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 3686279f-6080-4abf-ae1a-679a84279b01] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: bb10bd73-93f4-42ff-a6b3-8b180017678c] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: a941a921-9307-4a68-be6c-d847b954abed] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 224 FAILED at turn 22 in environments [0]
+Evaluating test data:  25%|██▌       | 25/100 [27:44<3:49:44, 183.80s/it]Task 225 FAILED at turn 11 in environments [0]
+Evaluating test data:  26%|██▌       | 26/100 [30:39<3:43:15, 181.01s/it]Task 226 FAILED at turn 3 in environments [0]
+Evaluating test data:  27%|██▋       | 27/100 [31:10<2:45:29, 136.02s/it]Task 227 SUCCESS at turn 3 in environments [0]
+Evaluating test data:  28%|██▊       | 28/100 [31:45<2:06:57, 105.80s/it]Task 228 SUCCESS at turn 2 in environments [2]
+Evaluating test data:  29%|██▉       | 29/100 [32:03<1:33:58, 79.41s/it] Task 229 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  30%|███       | 30/100 [32:20<1:10:53, 60.76s/it]Task 230 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  31%|███       | 31/100 [39:01<3:07:22, 162.93s/it]Task 231 FAILED at turn 3 in environments [0]
+Evaluating test data:  32%|███▏      | 32/100 [39:27<2:18:02, 121.81s/it]Task 232 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  33%|███▎      | 33/100 [45:41<3:40:33, 197.52s/it]Task 233 FAILED at turn 2 in environments [0]
+Evaluating test data:  34%|███▍      | 34/100 [45:58<2:37:24, 143.09s/it]Task 234 FAILED at turn 3 in environments [0]
+Evaluating test data:  35%|███▌      | 35/100 [46:36<2:00:55, 111.63s/it]Task 235 FAILED at turn 4 in environments [0]
+Evaluating test data:  36%|███▌      | 36/100 [47:33<1:41:46, 95.41s/it] Task 236 FAILED at turn 3 in environments [0]
+Evaluating test data:  37%|███▋      | 37/100 [48:16<1:23:39, 79.68s/it]Task 237 FAILED at turn 2 in environments [0]
+Evaluating test data:  38%|███▊      | 38/100 [48:39<1:04:49, 62.74s/it]Task 238 SUCCESS at turn 3 in environments [0]
+Evaluating test data:  39%|███▉      | 39/100 [49:18<56:17, 55.36s/it]  Task 239 FAILED at turn 3 in environments [0]
+Evaluating test data:  40%|████      | 40/100 [49:55<50:03, 50.07s/it][Search Request ID: 7db72e75-0141-4ea5-a792-1fc8bc8a1ee0] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 27c2f677-b969-48cb-81da-cd34f195d49e] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: ed25f6f3-cbb1-449d-ace1-4c368abbf577] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: a60f5d0e-d34e-4b4b-a56b-481b7fc3718f] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: a9738ff5-52d2-4be7-b3af-92fb7983045b] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 240 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  41%|████      | 41/100 [59:45<3:28:24, 211.94s/it]Task 241 FAILED at turn 2 in environments [0]
+Evaluating test data:  42%|████▏     | 42/100 [59:58<2:27:15, 152.34s/it]Task 242 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  43%|████▎     | 43/100 [1:00:12<1:45:20, 110.88s/it]Task 243 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  44%|████▍     | 44/100 [1:00:27<1:16:31, 81.99s/it] Task 244 FAILED at turn 3 in environments [0]
+Evaluating test data:  45%|████▌     | 45/100 [1:01:10<1:04:22, 70.23s/it]Task 245 FAILED at turn 2 in environments [0]
+Evaluating test data:  46%|████▌     | 46/100 [1:01:26<48:29, 53.88s/it]  Task 246 FAILED at turn 2 in environments [0]
+Evaluating test data:  47%|████▋     | 47/100 [1:01:42<37:45, 42.74s/it]Task 247 FAILED at turn 2 in environments [0]
+Evaluating test data:  48%|████▊     | 48/100 [1:01:59<30:16, 34.94s/it]Task 248 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  49%|████▉     | 49/100 [1:02:12<24:08, 28.40s/it][Search Request ID: d5aac8e9-ac7b-482c-8517-2f3d76219185] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 646daca3-a637-40ce-8995-18c4ca27535c] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: afb16820-679f-46e9-b05c-cad50ae5613c] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: a2ac9ced-a6b9-4a9f-ac20-24bc615931a4] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 2e4ec2d8-a7f9-4a1b-a3a5-9af1065a67ff] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 249 SUCCESS at turn 3 in environments [0]
+Evaluating test data:  50%|█████     | 50/100 [1:03:41<38:42, 46.44s/it]Task 250 SUCCESS at turn 2 in environments [2]
+Evaluating test data:  51%|█████     | 51/100 [1:03:59<31:04, 38.05s/it]Task 251 FAILED at turn 7 in environments [0]
+Evaluating test data:  52%|█████▏    | 52/100 [1:05:49<47:38, 59.54s/it]Task 252 FAILED at turn 2 in environments [0]
+Evaluating test data:  53%|█████▎    | 53/100 [1:06:04<36:07, 46.12s/it]Task 253 FAILED at turn 2 in environments [0]
+Evaluating test data:  54%|█████▍    | 54/100 [1:06:19<28:11, 36.76s/it]Task 254 FAILED at turn 6 in environments [0]
+Evaluating test data:  55%|█████▌    | 55/100 [1:07:29<35:10, 46.90s/it]Task 255 FAILED at turn 2 in environments [0]
+Evaluating test data:  56%|█████▌    | 56/100 [1:07:47<28:03, 38.26s/it]Task 256 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  57%|█████▋    | 57/100 [1:08:11<24:13, 33.80s/it]Task 257 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  58%|█████▊    | 58/100 [1:08:30<20:40, 29.55s/it]Task 258 FAILED at turn 2 in environments [2]
+Evaluating test data:  59%|█████▉    | 59/100 [1:08:47<17:36, 25.77s/it]Task 259 SUCCESS at turn 3 in environments [0]
+Evaluating test data:  60%|██████    | 60/100 [1:09:18<18:14, 27.36s/it]Task 260 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  61%|██████    | 61/100 [1:16:16<1:33:52, 144.43s/it][Search Request ID: 63bf2676-d462-4850-9704-9a29a7c73a4e] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 16a6c058-ae97-42fd-b690-a009d80eeaa8] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 908c3384-5ac8-475a-8aaf-fbe800793bea] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: be889834-9008-461c-a863-d5dd7fc2cfc0] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: fdcfcc4f-35f1-4eb8-86fb-d4bc08b3829f] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 5dd4b7a1-ff92-4f2b-bda2-f3e95d62033e] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 384c67e5-9f21-4796-b27d-38e21064eade] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 09d81dbe-9023-47ba-9294-ee9710184b7f] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: e0837f65-1c09-404d-8b4f-f2b5609d091a] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 12bcf18d-2bd7-4044-9422-7885d0dce55e] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 261 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  62%|██████▏   | 62/100 [1:24:58<2:43:17, 257.84s/it]Task 262 FAILED at turn 2 in environments [0]
+Evaluating test data:  63%|██████▎   | 63/100 [1:25:13<1:53:59, 184.85s/it][Search Request ID: 01b5667b-3ca8-452e-8c41-aad91e212733] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: fd0ceba2-a78f-44a0-8d6e-7bbfad7f1f7a] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: ce06c695-6c19-4226-a5f9-ee61e25b352b] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 07326f45-eae8-43c3-897c-14d03278eec8] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 3131884e-b2ee-47a8-9a2b-87f3b9fb0123] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 70ff9932-d642-4b82-b917-77680cb4d131] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 56a696e1-431a-4e46-bbb5-7392d1244aa9] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 479a807d-8f3a-4bc6-b805-b37ab3e4881b] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 7ee6443b-ebc9-45e2-a732-c263bd1d7854] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 292046f9-3d49-4ce0-998d-7784ac9b108f] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 263 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  64%|██████▍   | 64/100 [1:35:15<3:06:03, 310.10s/it]Task 264 FAILED at turn 2 in environments [0]
+Evaluating test data:  65%|██████▌   | 65/100 [1:35:36<2:10:12, 223.23s/it]Task 265 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  66%|██████▌   | 66/100 [1:35:50<1:30:58, 160.55s/it]Task 266 FAILED at turn 24 in environments [3]
+Evaluating test data:  67%|██████▋   | 67/100 [1:43:13<2:14:49, 245.14s/it]Task 267 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  68%|██████▊   | 68/100 [1:50:40<2:43:03, 305.73s/it]Task 268 FAILED at turn 2 in environments [0]
+Evaluating test data:  69%|██████▉   | 69/100 [1:50:53<1:52:37, 218.00s/it]Task 269 SUCCESS at turn 4 in environments [0]
+Evaluating test data:  70%|███████   | 70/100 [1:51:35<1:22:35, 165.18s/it]Task 270 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  71%|███████   | 71/100 [1:51:49<58:00, 120.01s/it]  Task 271 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  72%|███████▏  | 72/100 [1:52:08<41:48, 89.58s/it] Task 272 FAILED at turn 6 in environments [0]
+Evaluating test data:  73%|███████▎  | 73/100 [1:53:33<39:37, 88.04s/it]Task 273 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  74%|███████▍  | 74/100 [1:53:44<28:09, 64.98s/it]Task 274 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  75%|███████▌  | 75/100 [1:54:00<20:59, 50.38s/it]Task 275 FAILED at turn 2 in environments [0]
+Evaluating test data:  76%|███████▌  | 76/100 [1:54:19<16:26, 41.09s/it]Task 276 FAILED at turn 3 in environments [0]
+Evaluating test data:  77%|███████▋  | 77/100 [1:54:51<14:36, 38.12s/it]Task 277 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  78%|███████▊  | 78/100 [1:55:09<11:46, 32.12s/it]Task 278 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  79%|███████▉  | 79/100 [1:55:21<09:10, 26.20s/it]Task 279 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  80%|████████  | 80/100 [1:55:36<07:35, 22.79s/it][Search Request ID: ad4584d2-a09b-4b50-b090-a0f78672daba] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 8d191d85-25fa-4227-b669-36354ae4c539] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: eeea7c48-fbf1-4c81-abe3-ea2e051d78f9] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 270ad623-9e10-4d0e-82ca-f394a90e2525] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 8b5a02c4-8fdf-4b9d-8122-ab2e2084e960] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 280 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  81%|████████  | 81/100 [2:04:08<53:44, 169.72s/it]Task 281 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  82%|████████▏ | 82/100 [2:04:22<36:54, 123.01s/it]Task 282 SUCCESS at turn 8 in environments [0]
+Evaluating test data:  83%|████████▎ | 83/100 [2:07:23<39:45, 140.34s/it]Task 283 FAILED at turn 4 in environments [0]
+Evaluating test data:  84%|████████▍ | 84/100 [2:08:03<29:21, 110.07s/it]Task 284 FAILED at turn 2 in environments [0]
+Evaluating test data:  85%|████████▌ | 85/100 [2:08:19<20:29, 81.96s/it] Task 285 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  86%|████████▌ | 86/100 [2:08:33<14:20, 61.46s/it]Task 286 FAILED at turn 2 in environments [0]
+Evaluating test data:  87%|████████▋ | 87/100 [2:08:48<10:19, 47.64s/it]Task 287 FAILED at turn 3 in environments [0]
+Evaluating test data:  88%|████████▊ | 88/100 [2:09:19<08:31, 42.61s/it]Task 288 SUCCESS at turn 4 in environments [0]
+Evaluating test data:  89%|████████▉ | 89/100 [2:09:47<07:00, 38.22s/it]Task 289 SUCCESS at turn 10 in environments [0]
+Evaluating test data:  90%|█████████ | 90/100 [2:13:10<14:37, 87.72s/it]Task 290 FAILED at turn 2 in environments [0]
+Evaluating test data:  91%|█████████ | 91/100 [2:13:25<09:51, 65.76s/it]Task 291 SUCCESS at turn 11 in environments [0]
+Evaluating test data:  92%|█████████▏| 92/100 [2:16:32<13:36, 102.11s/it]Task 292 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  93%|█████████▎| 93/100 [2:16:48<08:55, 76.51s/it] Task 293 FAILED at turn 2 in environments [0]
+Evaluating test data:  94%|█████████▍| 94/100 [2:17:02<05:46, 57.70s/it]Task 294 FAILED at turn 14 in environments [0]
+Evaluating test data:  95%|█████████▌| 95/100 [2:21:14<09:39, 115.90s/it]Task 295 FAILED at turn 16 in environments [0]
+Evaluating test data:  96%|█████████▌| 96/100 [2:25:31<10:33, 158.39s/it]Task 296 FAILED at turn 2 in environments [0]
+Evaluating test data:  97%|█████████▋| 97/100 [2:25:46<05:46, 115.37s/it]Task 297 FAILED at turn 3 in environments [0]
+Evaluating test data:  98%|█████████▊| 98/100 [2:26:15<02:58, 89.32s/it] [Search Request ID: 9d087b16-de22-44ec-8878-0ca000133157] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 33845fbb-9d08-4033-9b4b-958f002c454d] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 1c49e737-7c39-41fa-8b93-daa307ddacd9] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 6df169d4-1c63-4d0f-840c-4a6fa84b940d] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: ebea950a-1f30-43ca-aa71-2c1cabc4f397] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 298 FAILED at turn 18 in environments [0]
+Evaluating test data:  99%|█████████▉| 99/100 [2:32:58<03:03, 183.57s/it]Task 299 FAILED at turn 11 in environments [0]
+Evaluating test data: 100%|██████████| 100/100 [2:36:27<00:00, 191.19s/it]Evaluating test data: 100%|██████████| 100/100 [2:36:27<00:00, 93.88s/it] 
+
+============================================================
+Total: 100, Success: 37, Rate: 37.00%
+============================================================
+Trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search/search_coldstart_200_299.json
+Success trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search/search_coldstart_200_299_success.json
+Seperated data saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search/search_coldstart_200_299_seperated.json
+Seperated count: 100
+Start time: 2026-07-03 00:37:27
+End time: 2026-07-03 03:13:55
+Elapsed time: 9388.2s
+
+────────────────────────────────────────────────────────────
+Processing chunk [300, 399] → search_coldstart_300_399.json
+────────────────────────────────────────────────────────────
+Start time: 2026-07-03 03:13:55
+log_file: /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search/search_coldstart_300_399.log
+Evaluating search coldstart: 169615 samples
+max_turns: 25, his_len: 8
+use_local_model: False
+sampler: SearchTaskSampler(total=169615, remaining=169315, sequential=True, exclude=False)
+search_url: http://127.0.0.1:8000/retrieve, topk: 3
+group_n: 5, env_num: 1, total_envs: 5, num_para: 5
+building environment
+Environment built successfully
+Processing idx range: [300, 399]  (100 tasks)
+Evaluating test data:   0%|          | 0/100 [00:00<?, ?it/s]Task 300 FAILED at turn 2 in environments [0]
+Evaluating test data:   1%|          | 1/100 [00:13<21:31, 13.04s/it]Task 301 SUCCESS at turn 2 in environments [0]
+Evaluating test data:   2%|▏         | 2/100 [00:34<29:01, 17.77s/it]Task 302 FAILED at turn 2 in environments [0]
+Evaluating test data:   3%|▎         | 3/100 [00:51<28:05, 17.38s/it]Task 303 FAILED at turn 4 in environments [0]
+Evaluating test data:   4%|▍         | 4/100 [02:08<1:05:39, 41.03s/it]Task 304 FAILED at turn 2 in environments [0]
+Evaluating test data:   5%|▌         | 5/100 [02:23<50:24, 31.84s/it]  Task 305 SUCCESS at turn 2 in environments [0]
+Evaluating test data:   6%|▌         | 6/100 [02:34<38:44, 24.73s/it]Task 306 SUCCESS at turn 2 in environments [0]
+Evaluating test data:   7%|▋         | 7/100 [02:51<34:08, 22.03s/it]Task 307 FAILED at turn 14 in environments [0]
+Evaluating test data:   8%|▊         | 8/100 [12:55<5:18:02, 207.42s/it]Task 308 SUCCESS at turn 2 in environments [0]
+Evaluating test data:   9%|▉         | 9/100 [13:10<3:43:24, 147.30s/it]Task 309 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  10%|█         | 10/100 [13:24<2:39:15, 106.17s/it]Task 310 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  11%|█         | 11/100 [13:45<1:58:28, 79.87s/it] Task 311 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  12%|█▏        | 12/100 [14:04<1:30:02, 61.39s/it]Task 312 FAILED at turn 3 in environments [0]
+Evaluating test data:  13%|█▎        | 13/100 [14:50<1:22:21, 56.80s/it]Task 313 FAILED at turn 2 in environments [0]
+Evaluating test data:  14%|█▍        | 14/100 [15:30<1:14:16, 51.82s/it]Task 314 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  15%|█▌        | 15/100 [15:43<56:50, 40.12s/it]  Task 315 FAILED at turn 3 in environments [0]
+Evaluating test data:  16%|█▌        | 16/100 [16:13<51:49, 37.02s/it][Search Request ID: dcc02f34-9a7d-40d4-8668-11656e9c1a30] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 89276360-e467-49dd-88f7-21cd608d70eb] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 99b02f30-b6c4-4c25-a659-c766090f8262] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 1fc1d655-4684-4e4e-92b2-54321537e727] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 270fdfcf-3750-4e3c-b643-10465c26a0f5] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: dcc02f34-9a7d-40d4-8668-11656e9c1a30] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 89276360-e467-49dd-88f7-21cd608d70eb] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 270fdfcf-3750-4e3c-b643-10465c26a0f5] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 99b02f30-b6c4-4c25-a659-c766090f8262] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 1fc1d655-4684-4e4e-92b2-54321537e727] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 316 FAILED at turn 9 in environments [0]
+Evaluating test data:  17%|█▋        | 17/100 [21:15<2:41:33, 116.79s/it]Task 317 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  18%|█▊        | 18/100 [21:43<2:02:58, 89.98s/it] Task 318 FAILED at turn 2 in environments [0]
+Evaluating test data:  19%|█▉        | 19/100 [22:00<1:32:05, 68.22s/it]Task 319 FAILED at turn 2 in environments [0]
+Evaluating test data:  20%|██        | 20/100 [22:23<1:12:29, 54.37s/it]Task 320 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  21%|██        | 21/100 [22:40<56:57, 43.26s/it]  Task 321 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  22%|██▏       | 22/100 [22:54<45:01, 34.63s/it]Task 322 FAILED at turn 3 in environments [0]
+Evaluating test data:  23%|██▎       | 23/100 [23:21<41:20, 32.21s/it]Task 323 FAILED at turn 4 in environments [4]
+Evaluating test data:  24%|██▍       | 24/100 [23:59<43:05, 34.01s/it]Task 324 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  25%|██▌       | 25/100 [24:14<35:14, 28.19s/it]Task 325 FAILED at turn 3 in environments [0]
+Evaluating test data:  26%|██▌       | 26/100 [24:44<35:39, 28.91s/it]Task 326 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  27%|██▋       | 27/100 [24:58<29:33, 24.30s/it]Task 327 FAILED at turn 7 in environments [0]
+Evaluating test data:  28%|██▊       | 28/100 [27:01<1:04:47, 53.99s/it]Task 328 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  29%|██▉       | 29/100 [27:16<49:51, 42.14s/it]  Task 329 FAILED at turn 2 in environments [0]
+Evaluating test data:  30%|███       | 30/100 [27:29<39:08, 33.55s/it]Task 330 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  31%|███       | 31/100 [27:44<32:08, 27.95s/it]Task 331 FAILED at turn 3 in environments [0]
+Evaluating test data:  32%|███▏      | 32/100 [28:47<43:26, 38.32s/it]Task 332 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  33%|███▎      | 33/100 [29:02<35:14, 31.56s/it]Task 333 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  34%|███▍      | 34/100 [29:22<30:47, 27.99s/it]Task 334 FAILED at turn 3 in environments [0]
+Evaluating test data:  35%|███▌      | 35/100 [29:52<30:49, 28.46s/it]Task 335 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  36%|███▌      | 36/100 [30:08<26:22, 24.73s/it]Task 336 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  37%|███▋      | 37/100 [30:24<23:12, 22.11s/it]Task 337 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  38%|███▊      | 38/100 [30:39<20:50, 20.18s/it]Task 338 FAILED at turn 2 in environments [0]
+Evaluating test data:  39%|███▉      | 39/100 [31:10<23:42, 23.31s/it]Task 339 FAILED at turn 2 in environments [0]
+Evaluating test data:  40%|████      | 40/100 [31:32<22:57, 22.96s/it][Search Request ID: 03913cfa-96b6-4d03-842f-2368558aa76f] Connection Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Task 340 SUCCESS at turn 6 in environments [0]
+Evaluating test data:  41%|████      | 41/100 [32:45<37:12, 37.83s/it]Task 341 FAILED at turn 2 in environments [0]
+Evaluating test data:  42%|████▏     | 42/100 [33:06<31:46, 32.86s/it]Task 342 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  43%|████▎     | 43/100 [33:18<25:12, 26.53s/it]Task 343 FAILED at turn 2 in environments [0]
+Evaluating test data:  44%|████▍     | 44/100 [33:32<21:21, 22.88s/it]Task 344 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  45%|████▌     | 45/100 [41:13<2:21:25, 154.28s/it]Task 345 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  46%|████▌     | 46/100 [48:45<3:39:22, 243.75s/it]Task 346 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  47%|████▋     | 47/100 [49:01<2:34:48, 175.25s/it]Task 347 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  48%|████▊     | 48/100 [49:14<1:49:45, 126.64s/it]Task 348 SUCCESS at turn 4 in environments [0]
+Evaluating test data:  49%|████▉     | 49/100 [50:13<1:30:24, 106.36s/it]Task 349 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  50%|█████     | 50/100 [50:25<1:04:57, 77.94s/it] Task 350 FAILED at turn 3 in environments [0]
+Evaluating test data:  51%|█████     | 51/100 [51:04<54:09, 66.32s/it]  Task 351 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  52%|█████▏    | 52/100 [51:24<41:58, 52.47s/it]Task 352 FAILED at turn 2 in environments [0]
+Evaluating test data:  53%|█████▎    | 53/100 [51:44<33:22, 42.61s/it]Task 353 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  54%|█████▍    | 54/100 [51:59<26:26, 34.49s/it]Task 354 SUCCESS at turn 2 in environments [1]
+Evaluating test data:  55%|█████▌    | 55/100 [52:15<21:35, 28.79s/it]Task 355 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  56%|█████▌    | 56/100 [52:30<18:15, 24.90s/it]Task 356 FAILED at turn 2 in environments [0]
+Evaluating test data:  57%|█████▋    | 57/100 [52:51<17:00, 23.73s/it]Task 357 FAILED at turn 7 in environments [0]
+Evaluating test data:  58%|█████▊    | 58/100 [54:24<31:07, 44.47s/it][Search Request ID: 1607bba9-fd91-4689-8d28-c08c5aee9c5c] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 59d187e8-73e1-4e7d-8895-5f7702e8db66] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 3f6582a5-53f1-43d4-ab47-b4967faacbc0] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 1489df22-6959-4d5e-a939-2e0f3da473fc] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 9f6bfa25-90f9-4778-bc9e-8d6b2fa18c3d] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 358 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  59%|█████▉    | 59/100 [1:03:41<2:15:28, 198.25s/it]Task 359 FAILED at turn 2 in environments [2]
+Evaluating test data:  60%|██████    | 60/100 [1:04:14<1:38:56, 148.41s/it]Task 360 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  61%|██████    | 61/100 [1:04:29<1:10:31, 108.51s/it]Task 361 FAILED at turn 5 in environments [0]
+Evaluating test data:  62%|██████▏   | 62/100 [1:07:06<1:17:56, 123.06s/it]Task 362 FAILED at turn 2 in environments [0]
+Evaluating test data:  63%|██████▎   | 63/100 [1:07:27<57:01, 92.47s/it]   Task 363 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  64%|██████▍   | 64/100 [1:07:57<44:11, 73.64s/it]Task 364 FAILED at turn 16 in environments [0]
+Evaluating test data:  65%|██████▌   | 65/100 [1:13:23<1:27:13, 149.54s/it]Task 365 FAILED at turn 2 in environments [0]
+Evaluating test data:  66%|██████▌   | 66/100 [1:13:46<1:03:07, 111.39s/it]Task 366 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  67%|██████▋   | 67/100 [1:13:58<44:56, 81.73s/it]   Task 367 FAILED at turn 2 in environments [0]
+Evaluating test data:  68%|██████▊   | 68/100 [1:14:14<32:56, 61.77s/it]Task 368 FAILED at turn 14 in environments [3]
+Evaluating test data:  69%|██████▉   | 69/100 [1:18:52<1:05:31, 126.83s/it][Search Request ID: ca990ce6-3b32-4a45-9981-dd0637064cd0] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: e9aeaf99-5a1c-4598-a4cc-841ed5b794db] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 9b2c9416-a9d0-4180-a6e6-683bf2e85560] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: b0b7309d-a19e-464d-b925-9b2d9f3bb4d8] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: ee6e4c02-bead-420d-a4e3-b954b7a2e085] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 41f0e70e-071b-4683-b341-8351f84ad2cf] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 4870118e-9cec-4e35-a33a-ccdeba8b0dac] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: ec2660b0-b27a-48f1-8de5-9372c2f16d76] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 1763a807-5f8b-4a9b-8c8c-8faa9d20bcd6] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 4df5fd54-3154-4816-b22d-799bf80a9be0] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: d51e11e4-3b7f-458d-ad87-6bbdaff328e5] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 1efed702-282c-4bcd-975a-1fdfe87b5e59] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 9803e5a0-c2bc-4e98-b09c-666f419fb896] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 6077a7b1-59d5-4631-8c34-75363ee2c441] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 0c2f5a4d-9d98-4a99-9333-01414e0c1ad6] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 3ec6fd2c-80e3-4c3b-bb06-9d4e53468df6] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 3f887b7a-3941-4490-af0f-8382d80d3abd] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 26aa5cb0-8c42-494c-8fb7-534091e1ce86] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 8f513e40-9f02-4bb8-8b64-8766a7b6dd56] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: ff258124-a3cd-4983-9de8-fcfb9fd7f1bb] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 369 out of max turn
+Evaluating test data:  70%|███████   | 70/100 [1:31:48<2:40:47, 321.58s/it]Task 370 FAILED at turn 7 in environments [0]
+Evaluating test data:  71%|███████   | 71/100 [1:33:18<2:01:53, 252.20s/it]Task 371 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  72%|███████▏  | 72/100 [1:40:42<2:24:26, 309.54s/it]Task 372 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  73%|███████▎  | 73/100 [1:40:57<1:39:32, 221.20s/it]Task 373 FAILED at turn 2 in environments [0]
+Evaluating test data:  74%|███████▍  | 74/100 [1:41:15<1:09:27, 160.30s/it]Task 374 out of max turn
+Evaluating test data:  75%|███████▌  | 75/100 [1:49:31<1:48:43, 260.93s/it]Task 375 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  76%|███████▌  | 76/100 [1:49:49<1:15:11, 187.99s/it]Task 376 FAILED at turn 2 in environments [0]
+Evaluating test data:  77%|███████▋  | 77/100 [1:50:04<52:13, 136.26s/it]  Task 377 FAILED at turn 2 in environments [0]
+Evaluating test data:  78%|███████▊  | 78/100 [1:50:20<36:43, 100.18s/it]Task 378 FAILED at turn 8 in environments [0]
+Evaluating test data:  79%|███████▉  | 79/100 [1:52:36<38:50, 111.00s/it]Task 379 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  80%|████████  | 80/100 [1:52:52<27:26, 82.34s/it] Task 380 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  81%|████████  | 81/100 [1:53:05<19:31, 61.64s/it]Task 381 FAILED at turn 3 in environments [0]
+Evaluating test data:  82%|████████▏ | 82/100 [1:53:42<16:13, 54.06s/it]Task 382 SUCCESS at turn 11 in environments [0]
+Evaluating test data:  83%|████████▎ | 83/100 [1:56:37<25:37, 90.44s/it]Task 383 FAILED at turn 3 in environments [0]
+Evaluating test data:  84%|████████▍ | 84/100 [1:57:05<19:05, 71.62s/it]Task 384 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  85%|████████▌ | 85/100 [1:57:19<13:35, 54.38s/it]Task 385 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  86%|████████▌ | 86/100 [1:57:35<09:59, 42.81s/it]Task 386 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  87%|████████▋ | 87/100 [1:57:54<07:46, 35.92s/it]Task 387 FAILED at turn 2 in environments [0]
+Evaluating test data:  88%|████████▊ | 88/100 [1:58:18<06:27, 32.33s/it]Task 388 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  89%|████████▉ | 89/100 [1:58:35<05:03, 27.56s/it][Search Request ID: 9ff4b3e7-b9fa-46e3-9f24-bed4f461b4b9] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 7895da58-2deb-42f0-a992-df23d41c33d6] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 098bcdc0-1001-45d4-ac52-f8f8d7290dcb] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: a47c5517-8fd2-4dd1-8e4b-3c09ef70fa10] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: e543b67c-7f21-4b67-9414-441b48dd9623] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 389 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  90%|█████████ | 90/100 [2:08:03<31:37, 189.76s/it]Task 390 FAILED at turn 2 in environments [0]
+Evaluating test data:  91%|█████████ | 91/100 [2:08:22<20:46, 138.46s/it][Search Request ID: 223b92fd-86dc-4e59-b0f7-a23ba3052970] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 9ff70701-9a39-46af-be01-3c671f8b9939] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 13eca8df-4a08-4697-9b02-4c928a945819] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: aef8404b-9134-4463-9f12-9ef8d3bd8a78] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 40b3d5f7-738f-4eaf-be78-f6b9b7409c4d] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 391 FAILED at turn 2 in environments [0]
+Evaluating test data:  92%|█████████▏| 92/100 [2:09:41<16:05, 120.72s/it]Task 392 FAILED at turn 7 in environments [0]
+Evaluating test data:  93%|█████████▎| 93/100 [2:11:12<13:02, 111.76s/it]Task 393 FAILED at turn 9 in environments [0]
+Evaluating test data:  94%|█████████▍| 94/100 [2:14:51<14:24, 144.08s/it]Task 394 FAILED at turn 2 in environments [0]
+Evaluating test data:  95%|█████████▌| 95/100 [2:15:09<08:50, 106.00s/it]Task 395 FAILED at turn 2 in environments [0]
+Evaluating test data:  96%|█████████▌| 96/100 [2:15:27<05:19, 79.83s/it] Task 396 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  97%|█████████▋| 97/100 [2:15:41<03:00, 60.02s/it]Task 397 SUCCESS at turn 3 in environments [0]
+Evaluating test data:  98%|█████████▊| 98/100 [2:16:06<01:39, 49.57s/it]Task 398 SUCCESS at turn 5 in environments [0]
+Evaluating test data:  99%|█████████▉| 99/100 [2:17:08<00:53, 53.26s/it]Task 399 FAILED at turn 2 in environments [4]
+Evaluating test data: 100%|██████████| 100/100 [2:17:38<00:00, 46.12s/it]Evaluating test data: 100%|██████████| 100/100 [2:17:38<00:00, 82.58s/it]
+
+============================================================
+Total: 100, Success: 45, Rate: 45.00%
+============================================================
+Trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search/search_coldstart_300_399.json
+Success trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search/search_coldstart_300_399_success.json
+Seperated data saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search/search_coldstart_300_399_seperated.json
+Seperated count: 100
+Start time: 2026-07-03 03:13:55
+End time: 2026-07-03 05:31:33
+Elapsed time: 8258.3s
+
+────────────────────────────────────────────────────────────
+Processing chunk [400, 499] → search_coldstart_400_499.json
+────────────────────────────────────────────────────────────
+Start time: 2026-07-03 05:31:34
+log_file: /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search/search_coldstart_400_499.log
+Evaluating search coldstart: 169615 samples
+max_turns: 25, his_len: 8
+use_local_model: False
+sampler: SearchTaskSampler(total=169615, remaining=169215, sequential=True, exclude=False)
+search_url: http://127.0.0.1:8000/retrieve, topk: 3
+group_n: 5, env_num: 1, total_envs: 5, num_para: 5
+building environment
+Environment built successfully
+Processing idx range: [400, 499]  (100 tasks)
+Evaluating test data:   0%|          | 0/100 [00:00<?, ?it/s][Search Request ID: 9dd49528-138f-44ed-af31-4ccb98f86015] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: aa21348d-bd96-404f-9d18-e6fd3b5421dd] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 5a8e4d86-b8f3-4b59-bef3-2fa8fe67ffe2] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 2427b86f-38fd-4500-ba7e-9db1dec123b8] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: ca10663d-7ab7-4ba7-9f56-f47b0e0f4bbc] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 400 FAILED at turn 22 in environments [0]
+Evaluating test data:   1%|          | 1/100 [08:45<14:26:41, 525.27s/it][Search Request ID: 5f89e8ea-361a-4709-97e3-9fd4fc50f61d] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 150b1942-14d9-4896-b2e6-1f392ea15a7c] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: c5b5a077-63e2-4365-9d3f-f4511d1a9641] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 852bf6d5-95b5-4e2a-b5e2-2cff94906229] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 2be509a9-7a40-4347-a127-82cbd9b4fd99] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 401 FAILED at turn 17 in environments [0]
+Evaluating test data:   2%|▏         | 2/100 [14:11<11:06:54, 408.31s/it]Task 402 SUCCESS at turn 2 in environments [0]
+Evaluating test data:   3%|▎         | 3/100 [14:24<6:08:06, 227.70s/it] Task 403 FAILED at turn 11 in environments [0]
+Evaluating test data:   4%|▍         | 4/100 [17:12<5:26:49, 204.27s/it]Task 404 SUCCESS at turn 3 in environments [0]
+Evaluating test data:   5%|▌         | 5/100 [17:38<3:41:27, 139.86s/it]Task 405 SUCCESS at turn 3 in environments [0]
+Evaluating test data:   6%|▌         | 6/100 [18:20<2:47:13, 106.74s/it]Task 406 SUCCESS at turn 2 in environments [0]
+Evaluating test data:   7%|▋         | 7/100 [18:34<1:58:14, 76.29s/it] Task 407 FAILED at turn 2 in environments [0]
+Evaluating test data:   8%|▊         | 8/100 [18:49<1:27:06, 56.81s/it]Task 408 SUCCESS at turn 2 in environments [0]
+Evaluating test data:   9%|▉         | 9/100 [19:05<1:06:46, 44.02s/it]Task 409 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  10%|█         | 10/100 [19:28<56:27, 37.64s/it] Task 410 FAILED at turn 10 in environments [0]
+Evaluating test data:  11%|█         | 11/100 [21:48<1:42:13, 68.91s/it]Task 411 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  12%|█▏        | 12/100 [22:23<1:25:56, 58.60s/it]Task 412 FAILED at turn 4 in environments [0]
+Evaluating test data:  13%|█▎        | 13/100 [23:38<1:31:56, 63.40s/it]Task 413 FAILED at turn 12 in environments [0]
+Evaluating test data:  14%|█▍        | 14/100 [27:26<2:42:18, 113.24s/it]Task 414 FAILED at turn 2 in environments [0]
+Evaluating test data:  15%|█▌        | 15/100 [27:49<2:01:44, 85.94s/it] Task 415 FAILED at turn 1 in environments [0]
+Evaluating test data:  16%|█▌        | 16/100 [27:52<1:25:33, 61.11s/it]Task 416 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  17%|█▋        | 17/100 [28:08<1:05:29, 47.35s/it]Task 417 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  18%|█▊        | 18/100 [28:22<51:10, 37.45s/it]  Task 418 FAILED at turn 1 in environments [1]
+Evaluating test data:  19%|█▉        | 19/100 [28:34<40:16, 29.83s/it][Search Request ID: 229a91f9-3f06-4073-8ee8-5a075e9727ae] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 2c7985df-7df3-4e01-9f7c-85d81a839559] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 85277216-cbb7-49ac-99f8-4a19f2167828] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 42cf9bd9-0b15-4584-ba5e-5423342ad417] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 6cbd168a-fcb9-4a58-a3dd-e86a65ba73d3] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 419 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  20%|██        | 20/100 [29:51<58:33, 43.92s/it]Task 420 FAILED at turn 2 in environments [0]
+Evaluating test data:  21%|██        | 21/100 [30:08<47:26, 36.03s/it]Task 421 FAILED at turn 2 in environments [0]
+Evaluating test data:  22%|██▏       | 22/100 [30:23<38:35, 29.69s/it]Task 422 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  23%|██▎       | 23/100 [30:44<34:29, 26.87s/it]Task 423 FAILED at turn 2 in environments [0]
+Evaluating test data:  24%|██▍       | 24/100 [31:35<43:13, 34.13s/it]Task 424 FAILED at turn 2 in environments [0]
+Evaluating test data:  25%|██▌       | 25/100 [31:51<36:03, 28.84s/it]Task 425 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  26%|██▌       | 26/100 [32:06<30:33, 24.78s/it][Search Request ID: a70c7dcb-9148-46ed-ace7-a2099727cdbb] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 111f8136-2c55-4fda-ad63-3cda0f67e885] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 50521cf3-42fb-4581-8720-537eef01f41e] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 29c6bf97-c124-483e-a54a-06d1e22cd366] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: a0565f33-70d7-4c76-8a10-f3e98352eedc] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 426 SUCCESS at turn 3 in environments [0]
+Evaluating test data:  27%|██▋       | 27/100 [34:07<1:05:13, 53.61s/it]Task 427 FAILED at turn 2 in environments [0]
+Evaluating test data:  28%|██▊       | 28/100 [34:26<51:42, 43.09s/it]  Task 428 FAILED at turn 2 in environments [0]
+Evaluating test data:  29%|██▉       | 29/100 [34:43<41:36, 35.17s/it]Task 429 FAILED at turn 2 in environments [0]
+Evaluating test data:  30%|███       | 30/100 [35:06<36:49, 31.57s/it]Task 430 FAILED at turn 2 in environments [0]
+Evaluating test data:  31%|███       | 31/100 [35:20<30:26, 26.47s/it]Task 431 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  32%|███▏      | 32/100 [35:37<26:31, 23.40s/it]Task 432 FAILED at turn 3 in environments [0]
+Evaluating test data:  33%|███▎      | 33/100 [36:09<29:11, 26.14s/it]Task 433 FAILED at turn 2 in environments [0]
+Evaluating test data:  34%|███▍      | 34/100 [36:22<24:23, 22.17s/it][Search Request ID: 51256381-f200-4fa5-841f-82fbdfcc56db] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 17a00cba-30d2-4f4b-996a-040db1ee1596] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 74d9dce2-51e6-4165-ae48-28867cb042e0] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: cc262315-3336-4b16-866b-7d86a67eb5bc] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 9b0a885f-e551-4714-9402-99fca26accbe] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: f546e943-f5af-42fa-b59a-b0b6a425a3d2] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: fc63786b-4bbb-4ad2-bb3b-b67448b04299] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 7f48ab65-282b-430a-831d-29bce3cb8910] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 2fa70c11-1439-482e-bd25-ed12a87b8bd3] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: cb3ae707-57a7-4946-8a5a-3e691f09d646] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 434 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  35%|███▌      | 35/100 [44:29<2:55:00, 161.54s/it]Task 435 FAILED at turn 2 in environments [0]
+Evaluating test data:  36%|███▌      | 36/100 [45:14<2:15:14, 126.79s/it]Task 436 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  37%|███▋      | 37/100 [45:41<1:41:26, 96.61s/it] Task 437 SUCCESS at turn 3 in environments [0]
+Evaluating test data:  38%|███▊      | 38/100 [46:09<1:18:43, 76.18s/it]Task 438 FAILED at turn 3 in environments [0]
+Evaluating test data:  39%|███▉      | 39/100 [47:03<1:10:31, 69.37s/it]Task 439 FAILED at turn 2 in environments [0]
+Evaluating test data:  40%|████      | 40/100 [47:21<54:10, 54.17s/it]  Task 440 FAILED at turn 17 in environments [0]
+Evaluating test data:  41%|████      | 41/100 [52:36<2:09:57, 132.17s/it]Task 441 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  42%|████▏     | 42/100 [52:52<1:34:06, 97.35s/it] Task 442 FAILED at turn 2 in environments [0]
+Evaluating test data:  43%|████▎     | 43/100 [53:04<1:08:18, 71.91s/it]Task 443 FAILED at turn 7 in environments [0]
+Evaluating test data:  44%|████▍     | 44/100 [55:02<1:19:55, 85.63s/it]Task 444 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  45%|████▌     | 45/100 [1:03:26<3:13:34, 211.17s/it]Task 445 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  46%|████▌     | 46/100 [1:03:39<2:16:40, 151.87s/it]Task 446 FAILED at turn 14 in environments [0]
+Evaluating test data:  47%|████▋     | 47/100 [1:07:52<2:40:44, 181.96s/it]Task 447 SUCCESS at turn 3 in environments [0]
+Evaluating test data:  48%|████▊     | 48/100 [1:08:32<2:00:58, 139.58s/it]Task 448 FAILED at turn 2 in environments [0]
+Evaluating test data:  49%|████▉     | 49/100 [1:08:47<1:26:52, 102.21s/it]Task 449 FAILED at turn 2 in environments [0]
+Evaluating test data:  50%|█████     | 50/100 [1:09:08<1:04:42, 77.66s/it] Task 450 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  51%|█████     | 51/100 [1:09:26<48:55, 59.92s/it]  Task 451 FAILED at turn 5 in environments [0]
+Evaluating test data:  52%|█████▏    | 52/100 [1:10:41<51:36, 64.51s/it]Task 452 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  53%|█████▎    | 53/100 [1:11:01<40:00, 51.07s/it]Task 453 SUCCESS at turn 4 in environments [0]
+Evaluating test data:  54%|█████▍    | 54/100 [1:11:45<37:29, 48.91s/it][Search Request ID: 4454a944-b5ec-40eb-8e15-b60db87d9069] Connection Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+[Search Request ID: 100c9a90-a9f1-4e5b-83e0-3a32410a1d87] Connection Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Task 454 FAILED at turn 6 in environments [0]
+Evaluating test data:  55%|█████▌    | 55/100 [1:13:43<52:17, 69.73s/it]Task 455 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  56%|█████▌    | 56/100 [1:14:02<39:58, 54.52s/it]Task 456 SUCCESS at turn 10 in environments [0]
+Evaluating test data:  57%|█████▋    | 57/100 [1:16:22<57:27, 80.17s/it][Search Request ID: 9c0220da-4d9b-4817-add3-4eacbd84c5f0] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: b6f52dd0-f8c8-4602-b2bb-614671220399] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 597a79e0-16f8-4c58-b9f7-9324f1850c67] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 2b9b8d50-a666-4c15-9ec5-3840faf1b63b] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: ca5e4b18-126f-470a-aa43-0926afa167e1] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 3d950e91-db87-4465-899b-2ae399bc4c53] Connection Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Task 457 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  58%|█████▊    | 58/100 [1:24:52<2:26:15, 208.95s/it][Search Request ID: 4c5a3793-643e-401d-a516-7326e805ac51] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: c797dce8-f3da-40b7-b12b-60324f02f909] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: c6dbde45-1627-424e-933b-68b6748d6f5a] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 68281867-a7e6-4cdb-adfc-93063b3c84f5] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: ecb1ee55-732d-49e4-933f-ef3ef0e745a3] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: b7e77a2f-79a9-4b78-9422-e8b7490e638e] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: f6319f2c-ccde-4509-81b2-d718e929a966] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: eae06b18-9ace-4b2c-8034-60cd0a0ebd90] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 458 SUCCESS at turn 15 in environments [0]
+Evaluating test data:  59%|█████▉    | 59/100 [1:31:22<2:59:58, 263.37s/it]Task 459 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  60%|██████    | 60/100 [1:31:51<2:08:39, 192.99s/it]Task 460 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  61%|██████    | 61/100 [1:32:20<1:33:25, 143.72s/it]Task 461 FAILED at turn 2 in environments [0, 1, 2]
+Evaluating test data:  62%|██████▏   | 62/100 [1:32:38<1:07:12, 106.11s/it]Task 462 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  63%|██████▎   | 63/100 [1:32:59<49:40, 80.55s/it]   Task 463 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  64%|██████▍   | 64/100 [1:41:18<2:03:43, 206.21s/it][Search Request ID: 77b67c94-3b05-46a9-8e13-e04178af8f24] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 63112562-42be-4b48-9721-d1c4ccabc502] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 0fce38d4-e6dd-4339-9af5-5d88d839a795] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: e42025f2-1507-41de-8b13-f673d174e992] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: f34ae7c5-3db1-4c6c-a9c6-97faa2043ec3] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 6e3fa631-03b1-43d8-b3ea-9daf4db54e70] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 7e8ab3e7-a97a-4623-8df3-c16f260fe615] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: e5fea698-4fad-45e5-af23-363f0ef302be] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: e8a6fcb1-831c-436f-a020-5090d2a03103] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: c62861b0-93b7-47e8-8f7d-4b046881cb2b] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: f491c424-3583-45c5-9131-4833d460ffba] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 84e46c3b-78a7-40c1-8605-6b1cfefd42e2] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 061f0b95-d18b-4142-b4f0-f4eec175a22d] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 285f9bea-51af-4847-a622-787740fb7edc] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 8db09e30-a288-48bc-87db-c466ff5dc09c] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 464 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  65%|██████▌   | 65/100 [1:51:48<3:14:23, 333.25s/it]Task 465 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  66%|██████▌   | 66/100 [2:00:11<3:37:38, 384.09s/it]Task 466 FAILED at turn 8 in environments [0]
+Evaluating test data:  67%|██████▋   | 67/100 [2:02:21<2:49:21, 307.93s/it][Search Request ID: c7c5e214-378e-4781-8c00-81fdac9d0916] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: d57164b1-fb97-4628-85be-839d4b951153] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: da9e1470-08b4-424d-8a01-8a4ab773e275] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 467 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  68%|██████▊   | 68/100 [2:10:25<3:12:27, 360.87s/it][Search Request ID: d1bed470-d57c-4547-8763-67c933a8de34] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: c100a8a0-30e1-49a7-85f8-659e21a5a768] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 14722ad7-8933-4c6f-b9c0-950c4f2d3460] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 6685d413-61e5-4f5d-b7c7-851c374d27de] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 29452f92-71ba-4555-bf24-25144d3b4335] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 468 FAILED at turn 15 in environments [0]
+Evaluating test data:  69%|██████▉   | 69/100 [2:15:54<3:01:23, 351.08s/it]Task 469 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  70%|███████   | 70/100 [2:24:11<3:17:30, 395.03s/it]Task 470 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  71%|███████   | 71/100 [2:24:24<2:15:30, 280.36s/it]Task 471 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  72%|███████▏  | 72/100 [2:24:39<1:33:38, 200.64s/it]Task 472 SUCCESS at turn 4 in environments [0]
+Evaluating test data:  73%|███████▎  | 73/100 [2:25:22<1:09:03, 153.47s/it][Search Request ID: f56b725c-08cb-4d7d-a981-d5d4d235671e] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 32c24f9b-0c45-4b01-9574-4d30e6f97bcd] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: c3d30324-9002-40e1-acff-2075c2f4db79] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 473 out of max turn
+Evaluating test data:  74%|███████▍  | 74/100 [2:34:25<1:57:09, 270.38s/it]Task 474 FAILED at turn 2 in environments [0]
+Evaluating test data:  75%|███████▌  | 75/100 [2:34:41<1:20:47, 193.89s/it]Task 475 SUCCESS at turn 1 in environments [0]
+Evaluating test data:  76%|███████▌  | 76/100 [2:34:43<54:36, 136.52s/it]  Task 476 FAILED at turn 5 in environments [0]
+Evaluating test data:  77%|███████▋  | 77/100 [2:35:50<44:17, 115.55s/it]Task 477 FAILED at turn 2 in environments [0]
+Evaluating test data:  78%|███████▊  | 78/100 [2:36:13<32:13, 87.88s/it] Task 478 FAILED at turn 4 in environments [0]
+Evaluating test data:  79%|███████▉  | 79/100 [2:37:06<27:04, 77.35s/it][Search Request ID: 5a4d6f77-40d3-45c1-b013-8057951d169e] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: fc7166d8-3381-49aa-9832-1ce569aa278c] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 2f8d6acc-71a3-4766-9762-6905a4fa631f] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: a5936444-d2ff-494c-bbab-e66a109bcfae] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 390d5708-4104-494a-95d4-732044cc5795] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 479 SUCCESS at turn 5 in environments [0]
+Evaluating test data:  80%|████████  | 80/100 [2:39:20<31:25, 94.28s/it]Task 480 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  81%|████████  | 81/100 [2:39:38<22:36, 71.41s/it]Task 481 FAILED at turn 2 in environments [0]
+Evaluating test data:  82%|████████▏ | 82/100 [2:39:53<16:24, 54.69s/it]Task 482 FAILED at turn 2 in environments [0]
+Evaluating test data:  83%|████████▎ | 83/100 [2:40:10<12:17, 43.38s/it]Task 483 FAILED at turn 2 in environments [0]
+Evaluating test data:  84%|████████▍ | 84/100 [2:40:46<10:58, 41.14s/it][Search Request ID: 7668d608-1aae-4f59-9bf1-e969a5aa68d0] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: a29df5da-88e9-420b-a5e4-f7732dbd573f] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 63b7bfde-5b57-4729-8b89-7f97351e2a1d] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 8322cc8a-f422-479e-a9d4-fecdc557db37] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 04e6e2b0-a5f0-4fb6-aebd-5275cc064b00] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 484 FAILED at turn 4 in environments [0]
+Evaluating test data:  85%|████████▌ | 85/100 [2:42:33<15:11, 60.77s/it]Task 485 FAILED at turn 2 in environments [0]
+Evaluating test data:  86%|████████▌ | 86/100 [2:42:45<10:46, 46.17s/it]Task 486 SUCCESS at turn 1 in environments [0]
+Evaluating test data:  87%|████████▋ | 87/100 [2:42:48<07:09, 33.07s/it]Task 487 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  88%|████████▊ | 88/100 [2:43:00<05:23, 26.97s/it]Task 488 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  89%|████████▉ | 89/100 [2:43:12<04:06, 22.44s/it]Task 489 FAILED at turn 4 in environments [0]
+Evaluating test data:  90%|█████████ | 90/100 [2:43:50<04:29, 26.91s/it][Search Request ID: c4131eee-6d88-4801-a79c-caa1f9691ccc] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: eb177967-9c03-485a-925f-a88987b79009] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 25bdc21f-30b2-4d91-88dd-514118fcae2b] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: e62d3169-69a8-40fb-bb7a-a6929f7fd164] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: aa2f22b3-7200-4895-8578-3bdde9a699d8] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 490 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  91%|█████████ | 91/100 [2:52:05<25:07, 167.47s/it]Task 491 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  92%|█████████▏| 92/100 [2:52:19<16:11, 121.48s/it]Task 492 FAILED at turn 3 in environments [0]
+Evaluating test data:  93%|█████████▎| 93/100 [2:53:34<12:32, 107.48s/it]Task 493 FAILED at turn 2 in environments [0]
+Evaluating test data:  94%|█████████▍| 94/100 [2:54:14<08:43, 87.27s/it] Task 494 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  95%|█████████▌| 95/100 [2:54:30<05:29, 65.84s/it]Task 495 FAILED at turn 3 in environments [0]
+Evaluating test data:  96%|█████████▌| 96/100 [2:55:22<04:06, 61.59s/it]Task 496 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  97%|█████████▋| 97/100 [3:00:49<07:04, 141.44s/it]Task 497 SUCCESS at turn 7 in environments [0]
+Evaluating test data:  98%|█████████▊| 98/100 [3:03:15<04:45, 142.76s/it][Search Request ID: 0f2afecc-fcac-4b4e-8515-2d7681858148] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: eedc9517-71d6-4c04-bbdf-62ec4d8cb899] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: ef07fe40-48e5-46d0-ba16-e98492568af6] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: e90096ce-06c7-4536-b9b5-961507c861e7] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 5931a51b-095f-4a08-a336-ff5a7c5cfb8c] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 498 FAILED at turn 4 in environments [0]
+Evaluating test data:  99%|█████████▉| 99/100 [3:05:41<02:23, 143.79s/it]Task 499 FAILED at turn 8 in environments [0]
+Evaluating test data: 100%|██████████| 100/100 [3:08:18<00:00, 147.57s/it]Evaluating test data: 100%|██████████| 100/100 [3:08:18<00:00, 112.98s/it]
+
+============================================================
+Total: 100, Success: 40, Rate: 40.00%
+============================================================
+Trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search/search_coldstart_400_499.json
+Success trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search/search_coldstart_400_499_success.json
+Seperated data saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search/search_coldstart_400_499_seperated.json
+Seperated count: 100
+Start time: 2026-07-03 05:31:34
+End time: 2026-07-03 08:39:52
+Elapsed time: 11298.5s
+
+────────────────────────────────────────────────────────────
+Processing chunk [500, 599] → search_coldstart_500_599.json
+────────────────────────────────────────────────────────────
+Start time: 2026-07-03 08:39:52
+log_file: /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search/search_coldstart_500_599.log
+Evaluating search coldstart: 169615 samples
+max_turns: 25, his_len: 8
+use_local_model: False
+sampler: SearchTaskSampler(total=169615, remaining=169115, sequential=True, exclude=False)
+search_url: http://127.0.0.1:8000/retrieve, topk: 3
+group_n: 5, env_num: 1, total_envs: 5, num_para: 5
+building environment
+Environment built successfully
+Processing idx range: [500, 599]  (100 tasks)
+Evaluating test data:   0%|          | 0/100 [00:00<?, ?it/s]Task 500 FAILED at turn 2 in environments [0]
+Evaluating test data:   1%|          | 1/100 [00:15<25:03, 15.19s/it]Task 501 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:   2%|▏         | 2/100 [08:03<7:39:59, 281.63s/it]Task 502 FAILED at turn 2 in environments [0]
+Evaluating test data:   3%|▎         | 3/100 [08:19<4:19:00, 160.21s/it]Task 503 SUCCESS at turn 2 in environments [0]
+Evaluating test data:   4%|▍         | 4/100 [08:34<2:45:09, 103.23s/it]Task 504 FAILED at turn 3 in environments [0]
+Evaluating test data:   5%|▌         | 5/100 [09:31<2:16:59, 86.52s/it] Task 505 FAILED at turn 2 in environments [0]
+Evaluating test data:   6%|▌         | 6/100 [09:47<1:37:42, 62.37s/it]Task 506 FAILED at turn 5 in environments [0]
+Evaluating test data:   7%|▋         | 7/100 [11:01<1:42:47, 66.32s/it]Task 507 FAILED at turn 2 in environments [0]
+Evaluating test data:   8%|▊         | 8/100 [11:16<1:16:43, 50.04s/it][Search Request ID: da35a486-5d06-4902-b5f4-e6f1b440d211] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 4f0d1b68-fae6-488f-8084-421a1c06d893] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: b9554066-5596-4c84-8e68-b5870c909527] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 1717801d-aaea-40c9-bb30-6ecd14cef963] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 9cb6fc20-6001-404a-b1fa-cdd0cac48794] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 508 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:   9%|▉         | 9/100 [20:50<5:24:01, 213.64s/it]Task 509 FAILED at turn 2 in environments [0]
+Evaluating test data:  10%|█         | 10/100 [21:09<3:50:15, 153.50s/it]Task 510 FAILED at turn 2 in environments [0]
+Evaluating test data:  11%|█         | 11/100 [21:51<2:57:16, 119.51s/it]Task 511 FAILED at turn 2 in environments [0]
+Evaluating test data:  12%|█▏        | 12/100 [22:14<2:12:18, 90.21s/it] Task 512 SUCCESS at turn 6 in environments [0]
+Evaluating test data:  13%|█▎        | 13/100 [23:49<2:12:54, 91.66s/it]Task 513 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  14%|█▍        | 14/100 [31:24<4:48:21, 201.18s/it]Task 514 FAILED at turn 14 in environments [0]
+Evaluating test data:  15%|█▌        | 15/100 [35:21<5:00:29, 212.12s/it]Task 515 FAILED at turn 3 in environments [0]
+Evaluating test data:  16%|█▌        | 16/100 [35:54<3:41:32, 158.25s/it]Task 516 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  17%|█▋        | 17/100 [36:07<2:38:34, 114.63s/it]Task 517 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  18%|█▊        | 18/100 [36:19<1:54:20, 83.67s/it] Task 518 SUCCESS at turn 6 in environments [0]
+Evaluating test data:  19%|█▉        | 19/100 [38:37<2:15:01, 100.02s/it][Search Request ID: bbbd958e-7127-4aa2-9c34-e3aa98c36954] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: d09a37b3-c6d5-4cfb-a27b-feb3aec149f0] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 643cc1fc-189d-4a47-9958-972ca6acdd83] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: efc3ccf2-6385-4d9b-99e3-38a249b52277] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 28e881d5-f793-446f-8834-0aa60a2fddcf] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 519 out of max turn
+Evaluating test data:  20%|██        | 20/100 [47:52<5:15:32, 236.66s/it]Task 520 FAILED at turn 3 in environments [0]
+Evaluating test data:  21%|██        | 21/100 [48:46<3:59:25, 181.84s/it]Task 521 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  22%|██▏       | 22/100 [49:03<2:52:05, 132.38s/it]Task 522 FAILED at turn 23 in environments [0]
+Evaluating test data:  23%|██▎       | 23/100 [56:03<4:40:26, 218.53s/it]Task 523 FAILED at turn 6 in environments [0]
+Evaluating test data:  24%|██▍       | 24/100 [57:16<3:41:45, 175.08s/it]Task 524 FAILED at turn 2 in environments [0]
+Evaluating test data:  25%|██▌       | 25/100 [57:35<2:40:00, 128.01s/it][Search Request ID: 98d78542-a8b1-497d-9ea8-6fcdba837472] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 05ac4c70-a8c2-4212-bbee-d0f6b367a424] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 190e1bd0-de13-4db6-8a91-c2b69298c04d] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 3b3e7935-fdd9-4da5-9a7b-3fec97bd13e6] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: a80511a8-54f1-4662-b613-9528380a4be8] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 525 FAILED at turn 6 in environments [0]
+Evaluating test data:  26%|██▌       | 26/100 [1:00:18<2:51:08, 138.76s/it]Task 526 out of max turn
+Evaluating test data:  27%|██▋       | 27/100 [1:06:41<4:17:54, 211.98s/it]Task 527 FAILED at turn 2 in environments [0]
+Evaluating test data:  28%|██▊       | 28/100 [1:06:57<3:03:33, 152.97s/it]Task 528 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  29%|██▉       | 29/100 [1:07:15<2:13:19, 112.67s/it][Search Request ID: ac7d968a-ec0f-4998-9378-7950b1b1df2b] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: b1e69bc9-19c5-4f7d-8458-0d8d0bd36b15] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: fbe327c2-818c-4fc9-a3fc-b8d8508deb89] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: a5798d20-f38d-48df-8e8a-019edf9a9135] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 96ec202b-36f7-4c55-9718-db8980fc3798] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 529 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  30%|███       | 30/100 [1:18:02<5:18:13, 272.77s/it][Search Request ID: f867ddcf-7ebe-4b6c-9d2a-ee1ce35d43bc] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 3905661b-5740-4e69-ac4a-10f8546e9050] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: deef4769-bf9c-4614-8356-dfc9ef8c1ec4] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 10243863-cbf1-4461-bf95-6076f9ae4b98] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: eec4c28d-497f-49a9-977b-8223558eadbc] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 530 FAILED at turn 19 in environments [0]
+Evaluating test data:  31%|███       | 31/100 [1:24:52<6:01:20, 314.21s/it]Task 531 FAILED at turn 4 in environments [0]
+Evaluating test data:  32%|███▏      | 32/100 [1:25:57<4:31:07, 239.23s/it][Search Request ID: e00d3ed8-4583-41eb-afe0-3cfaa2799fea] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: a857fa9d-3fc3-4dd5-9649-d1473aff8fa2] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 1353c657-f3bf-40f3-a481-68e5436404ef] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 5eb01c4c-e5bb-49a3-94d2-9a7f2330fb65] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 97086cc3-7603-49b9-a04e-e5660f6c584a] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 532 FAILED at turn 2 in environments [0]
+Evaluating test data:  33%|███▎      | 33/100 [1:27:15<3:33:15, 190.97s/it]Task 533 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  34%|███▍      | 34/100 [1:27:27<2:30:54, 137.20s/it]Task 534 FAILED at turn 2 in environments [0]
+Evaluating test data:  35%|███▌      | 35/100 [1:27:46<1:50:16, 101.79s/it]Task 535 SUCCESS at turn 7 in environments [0]
+Evaluating test data:  36%|███▌      | 36/100 [1:30:12<2:02:48, 115.13s/it]Task 536 FAILED at turn 2 in environments [0]
+Evaluating test data:  37%|███▋      | 37/100 [1:30:34<1:31:24, 87.06s/it] Task 537 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  38%|███▊      | 38/100 [1:37:45<3:16:31, 190.19s/it]Task 538 FAILED at turn 9 in environments [0]
+Evaluating test data:  39%|███▉      | 39/100 [1:40:27<3:04:57, 181.92s/it]Task 539 FAILED at turn 2 in environments [0]
+Evaluating test data:  40%|████      | 40/100 [1:40:40<2:11:12, 131.21s/it]Task 540 SUCCESS at turn 2 in environments [3]
+Evaluating test data:  41%|████      | 41/100 [1:41:12<1:39:49, 101.52s/it]Task 541 FAILED at turn 2 in environments [0]
+Evaluating test data:  42%|████▏     | 42/100 [1:41:31<1:14:12, 76.77s/it] Task 542 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  43%|████▎     | 43/100 [1:41:55<57:49, 60.86s/it]  Task 543 SUCCESS at turn 1 in environments [0]
+Evaluating test data:  44%|████▍     | 44/100 [1:42:00<41:01, 43.96s/it]Task 544 SUCCESS at turn 2 in environments [4]
+Evaluating test data:  45%|████▌     | 45/100 [1:42:21<34:12, 37.31s/it][Search Request ID: 8fdf83bf-0f5a-4544-97bb-6c7985978065] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 16183727-60ba-466c-ad52-a48f96cebf36] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 6134cf56-d928-4b62-8052-b4fac1bf4a67] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: a8c05758-5d67-4ab1-b2b2-fc08c86ed282] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 2a302ba9-2b76-4e08-ae08-3097875f3651] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 8fdf83bf-0f5a-4544-97bb-6c7985978065] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: a8c05758-5d67-4ab1-b2b2-fc08c86ed282] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 6134cf56-d928-4b62-8052-b4fac1bf4a67] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 16183727-60ba-466c-ad52-a48f96cebf36] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 2a302ba9-2b76-4e08-ae08-3097875f3651] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 545 FAILED at turn 18 in environments [0]
+Evaluating test data:  46%|████▌     | 46/100 [1:49:53<2:25:26, 161.60s/it]Task 546 FAILED at turn 2 in environments [0]
+Evaluating test data:  47%|████▋     | 47/100 [1:50:35<1:51:05, 125.76s/it]Task 547 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  48%|████▊     | 48/100 [1:57:00<2:56:21, 203.48s/it]Task 548 FAILED at turn 2 in environments [0]
+Evaluating test data:  49%|████▉     | 49/100 [1:57:18<2:05:34, 147.73s/it][Search Request ID: 32a0421f-830b-4cf8-974f-167ad5751dab] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 4a6e1a88-e8d8-4889-b25b-c2c8c27fb86d] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 0b6ec1f3-204f-4ba9-8c4a-23e40b826993] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: dd1fd6f2-6669-45b9-93c7-4f90907b7c34] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 170d7d8c-3dc3-4c9b-b903-af66d3ca9d1c] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: edca3951-bbed-4605-b323-3d0dcb650848] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 1f74a47c-12a6-4cf7-acca-ce457113e2b9] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: b199cd06-8f2f-498d-8c5c-e325d1cccb07] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 22bb11ed-7aa9-49cd-b35c-52a85fd02f26] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: a96c8bef-0ebc-455c-a9c1-0142bfc9cdd2] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 549 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  50%|█████     | 50/100 [2:08:09<4:09:01, 298.83s/it]Task 550 FAILED at turn 2 in environments [0]
+Evaluating test data:  51%|█████     | 51/100 [2:08:53<3:01:39, 222.43s/it]Task 551 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  52%|█████▏    | 52/100 [2:09:21<2:11:07, 163.91s/it]Task 552 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  53%|█████▎    | 53/100 [2:09:41<1:34:39, 120.84s/it]Task 553 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  54%|█████▍    | 54/100 [2:09:55<1:08:04, 88.80s/it] Task 554 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  55%|█████▌    | 55/100 [2:10:15<51:12, 68.27s/it]  [Search Request ID: 83adfb4d-4f44-4187-898e-2a1bb5cff8a6] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: b6d70877-1631-4346-a8b3-87b44a60d680] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 2be190a9-f7a9-419b-9e51-9c0f8ec36ea1] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 9801ce49-162c-4deb-8b27-fefc4cf92f0e] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 26b575cd-8f60-4c46-8fca-e8d734144770] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 478a60e0-c613-4164-9d86-adde510b21f7] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: eb12b391-3623-4c51-aeff-89af73e5dffa] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 5c8c3782-5658-49d4-ada0-db1c3d0a12a6] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: b11724de-2d9f-493c-aa44-995f96e2976a] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 2bfcb3d0-0238-40c9-b5ec-da930bb3a208] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 1adf5b50-f264-4a65-91fd-18522bd36d8e] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: bf00957f-14aa-4283-8bea-5a502517dbd5] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 29be3c16-12d2-4218-a4a7-7a2567dc66e0] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 09ed50ae-7ae6-48f2-9ffd-d9a7b94e8b64] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 405f8928-5409-4682-af5a-232441875c88] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 555 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  56%|█████▌    | 56/100 [2:21:05<2:58:02, 242.78s/it]Task 556 FAILED at turn 3 in environments [0]
+Evaluating test data:  57%|█████▋    | 57/100 [2:21:46<2:10:26, 182.01s/it]Task 557 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  58%|█████▊    | 58/100 [2:22:02<1:32:35, 132.26s/it]Task 558 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  59%|█████▉    | 59/100 [2:22:17<1:06:22, 97.14s/it] Task 559 FAILED at turn 2 in environments [0]
+Evaluating test data:  60%|██████    | 60/100 [2:22:57<53:23, 80.08s/it]  Task 560 FAILED at turn 2 in environments [0]
+Evaluating test data:  61%|██████    | 61/100 [2:23:15<39:59, 61.52s/it]Task 561 FAILED at turn 6 in environments [0]
+Evaluating test data:  62%|██████▏   | 62/100 [2:24:42<43:44, 69.07s/it]Task 562 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  63%|██████▎   | 63/100 [2:24:57<32:34, 52.82s/it]Task 563 SUCCESS at turn 12 in environments [0]
+Evaluating test data:  64%|██████▍   | 64/100 [2:28:03<55:37, 92.70s/it]Task 564 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  65%|██████▌   | 65/100 [2:28:16<40:09, 68.83s/it]Task 565 FAILED at turn 2 in environments [0]
+Evaluating test data:  66%|██████▌   | 66/100 [2:28:29<29:27, 52.00s/it]Task 566 FAILED at turn 5 in environments [0]
+Evaluating test data:  67%|██████▋   | 67/100 [2:29:57<34:37, 62.95s/it]Task 567 SUCCESS at turn 18 in environments [0]
+Evaluating test data:  68%|██████▊   | 68/100 [2:36:50<1:29:29, 167.81s/it]Task 568 FAILED at turn 4 in environments [0]
+Evaluating test data:  69%|██████▉   | 69/100 [2:37:39<1:08:24, 132.41s/it]Task 569 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  70%|███████   | 70/100 [2:45:47<1:59:31, 239.04s/it]Task 570 FAILED at turn 3 in environments [0]
+Evaluating test data:  71%|███████   | 71/100 [2:46:18<1:25:17, 176.45s/it]Task 571 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  72%|███████▏  | 72/100 [2:46:37<1:00:24, 129.44s/it]Task 572 FAILED at turn 16 in environments [0]
+Evaluating test data:  73%|███████▎  | 73/100 [2:51:18<1:18:43, 174.94s/it]Task 573 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  74%|███████▍  | 74/100 [3:00:24<2:04:01, 286.22s/it]Task 574 FAILED at turn 2 in environments [0]
+Evaluating test data:  75%|███████▌  | 75/100 [3:00:42<1:25:42, 205.71s/it][Search Request ID: e456c4a4-3c0d-4195-865a-769e02cea681] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 6747a80a-e8ee-4860-a5ec-8424f57f54da] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 3d1a7c73-5580-4cab-80a6-2b090e462c9f] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: c4a29a93-8dc6-495e-bd38-de51c10b2af8] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+[Search Request ID: 06563e77-4c48-4c62-b039-ffcff3928950] Timeout Error: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=60)
+Task 575 FAILED at turn 8 in environments [0]
+Evaluating test data:  76%|███████▌  | 76/100 [3:04:31<1:25:00, 212.52s/it]Task 576 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  77%|███████▋  | 77/100 [3:10:17<1:36:48, 252.56s/it]Task 577 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  78%|███████▊  | 78/100 [3:20:16<2:10:47, 356.71s/it]Task 578 FAILED at turn 2 in environments [0]
+Evaluating test data:  79%|███████▉  | 79/100 [3:21:14<1:33:29, 267.12s/it]  [turn 1] [Retry 1/5] DeepSeek API 连接失败，1s 后重试...
+  [turn 1] [Retry 2/5] DeepSeek API 连接失败，1s 后重试...
+Task 579 SUCCESS at turn 4 in environments [0]
+Evaluating test data:  80%|████████  | 80/100 [3:28:54<1:48:14, 324.72s/it]Task 580 FAILED at turn 5 in environments [0]
+Evaluating test data:  81%|████████  | 81/100 [3:30:11<1:19:18, 250.46s/it]Task 581 FAILED at turn 3 in environments [0]
+Evaluating test data:  82%|████████▏ | 82/100 [3:30:41<55:19, 184.40s/it]  Task 582 FAILED at turn 3 in environments [0]
+Evaluating test data:  83%|████████▎ | 83/100 [3:31:31<40:50, 144.17s/it]Task 583 FAILED at turn 2 in environments [0]
+Evaluating test data:  84%|████████▍ | 84/100 [3:32:22<30:56, 116.03s/it]Task 584 FAILED at turn 25 in environments [0, 1, 2, 3, 4]
+Evaluating test data:  85%|████████▌ | 85/100 [3:39:35<52:48, 211.22s/it]Task 585 FAILED at turn 3 in environments [0]
+Evaluating test data:  86%|████████▌ | 86/100 [3:40:05<36:37, 156.94s/it]Task 586 SUCCESS at turn 6 in environments [0]
+Evaluating test data:  87%|████████▋ | 87/100 [3:42:08<31:47, 146.70s/it]Task 587 FAILED at turn 3 in environments [0]
+Evaluating test data:  88%|████████▊ | 88/100 [3:42:47<22:53, 114.45s/it]Task 588 FAILED at turn 8 in environments [0]
+Evaluating test data:  89%|████████▉ | 89/100 [3:44:47<21:15, 115.94s/it]Task 589 FAILED at turn 6 in environments [0]
+Evaluating test data:  90%|█████████ | 90/100 [3:46:54<19:54, 119.47s/it]Task 590 SUCCESS at turn 4 in environments [0]
+Evaluating test data:  91%|█████████ | 91/100 [3:47:37<14:28, 96.55s/it] Task 591 FAILED at turn 3 in environments [0]
+Evaluating test data:  92%|█████████▏| 92/100 [3:48:55<12:07, 90.93s/it]Task 592 FAILED at turn 3 in environments [0]
+Evaluating test data:  93%|█████████▎| 93/100 [3:49:45<09:10, 78.61s/it]Task 593 FAILED at turn 2 in environments [0]
+Evaluating test data:  94%|█████████▍| 94/100 [3:50:01<05:58, 59.70s/it]Task 594 FAILED at turn 4 in environments [0]
+Evaluating test data:  95%|█████████▌| 95/100 [3:51:01<04:59, 59.92s/it]Task 595 FAILED at turn 2 in environments [1]
+Evaluating test data:  96%|█████████▌| 96/100 [3:51:16<03:05, 46.29s/it]Task 596 FAILED at turn 5 in environments [0]
+Evaluating test data:  97%|█████████▋| 97/100 [3:52:18<02:33, 51.09s/it]Task 597 SUCCESS at turn 2 in environments [0]
+Evaluating test data:  98%|█████████▊| 98/100 [3:52:35<01:21, 40.95s/it]Task 598 FAILED at turn 2 in environments [0]
+Evaluating test data:  99%|█████████▉| 99/100 [3:52:53<00:33, 33.93s/it]Task 599 FAILED at turn 3 in environments [0]
+Evaluating test data: 100%|██████████| 100/100 [3:53:29<00:00, 34.56s/it]Evaluating test data: 100%|██████████| 100/100 [3:53:29<00:00, 140.09s/it]
+
+============================================================
+Total: 100, Success: 28, Rate: 28.00%
+============================================================
+Trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search/search_coldstart_500_599.json
+Success trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search/search_coldstart_500_599_success.json
+Seperated data saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search/search_coldstart_500_599_seperated.json
+Seperated count: 100
+Start time: 2026-07-03 08:39:52
+End time: 2026-07-03 12:33:22
+Elapsed time: 14009.7s
+
+────────────────────────────────────────────────────────────
+Processing chunk [600, 699] → search_coldstart_600_699.json
+────────────────────────────────────────────────────────────
+Start time: 2026-07-03 12:33:22
+log_file: /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search/search_coldstart_600_699.log
+Evaluating search coldstart: 169615 samples
+max_turns: 25, his_len: 8
+use_local_model: False
+sampler: SearchTaskSampler(total=169615, remaining=169015, sequential=True, exclude=False)
+search_url: http://127.0.0.1:8000/retrieve, topk: 3
+group_n: 5, env_num: 1, total_envs: 5, num_para: 5
+building environment
+Environment built successfully
+Processing idx range: [600, 699]  (100 tasks)
+Evaluating test data:   0%|          | 0/100 [00:00<?, ?it/s]Task 600 SUCCESS at turn 2 in environments [0]
+Evaluating test data:   1%|          | 1/100 [00:19<32:04, 19.44s/it]Task 601 SUCCESS at turn 2 in environments [0]
+Evaluating test data:   2%|▏         | 2/100 [00:33<26:23, 16.16s/it]Task 602 FAILED at turn 2 in environments [0]
+Evaluating test data:   3%|▎         | 3/100 [00:56<31:14, 19.32s/it]

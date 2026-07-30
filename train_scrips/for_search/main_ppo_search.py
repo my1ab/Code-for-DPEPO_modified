@@ -85,20 +85,9 @@ class TaskRunner:
 
         from agent_system.environments import build_parallel_search_envs
 
-        # ===== [Search 相对于 WebShop 的修改] =====
-        # gamefiles 从训练 parquet 的 gamefile 列读取, 类型为 int physical_idx (与 JSON 一致)。
-        # 需通过 SOURCE_PARQUET 的 iloc[int] 解析为 question 字符串 + ground_truth dict。
-        # lazy/非 lazy 使用同一份数据源，统一传递 parquet_path。
-        # lazy/非 lazy 使用同一份数据源，统一传递 parquet_path。
-        # ==========================================
-        import pandas as pd
-        train_df = pd.read_parquet(config.data.train_files)
-        gamefiles = train_df['gamefile'].tolist()
-
-        # ===== [Search 相对于 WebShop 的修改] =====
-        # Search 环境需要从 config.env.search.* 提取 search_url/topk/timeout/log_requests/max_turns
-        # 作为 env_kwargs 传入 build_parallel_search_envs，用于 Env.build_env() 中构造 SearchEnv。
-        # ==========================================
+        # ===== [修改] 非 lazy 时从 JSON 读取 gamefiles（对齐 WebShop/ALFWorld） =====
+        # lazy 时由 ray_trainer 从 dataloader (parquet) 的 gamefile 列按 batch 动态构建。
+        # =========================================================================
         search_env_config = {}
         if hasattr(config.env, 'search'):
             if hasattr(config.env.search, 'search_url'):
@@ -115,11 +104,15 @@ class TaskRunner:
         # SOURCE_PARQUET: 通过 physical_idx(int) → iloc → question 字符串
         SOURCE_PARQUET = os.path.join(_DPEPO_USER_HOME, 'data', 'searchR1_processed_direct', 'train.parquet')
 
-        # ===== [Search 相对于 WebShop 的修改] =====
-        # lazy/非 lazy 统一: env_kwargs 均含 parquet_path, ParallelSearchEnvs 内部
-        # 通过 iloc[int] 从 source parquet 解析 question + ground_truth。
-        # ==========================================
         lazy_envs = config.env.get("lazy_envs", False)
+        # 从 JSON 读取所有 gamefiles，lazy/non-lazy 共用
+        # lazy 时由 ray_trainer 从 dataloader (parquet) 的 gamefile 列按 batch 动态构建
+        data = json.load(open(config.env.env_path, 'r'))
+        if isinstance(data, dict):
+            gamefiles = list(data.values())
+        else:
+            gamefiles = [item["gamefile"] for item in data]
+
         if not lazy_envs:
             parallel_envs = build_parallel_search_envs(
                 gamefiles=gamefiles,
@@ -152,7 +145,7 @@ class TaskRunner:
         print(f"[INFO] Created parallel environments: {config.env.num_parallel} completed in build_parallel_search_envs")
         print(f"[INFO] lazy_envs = {lazy_envs}")
         print(f"[INFO] search_env_config = {search_env_config}")
-        print(f"[INFO] gamefiles loaded from parquet: {len(gamefiles)} tasks, type={type(gamefiles[0]) if gamefiles else 'N/A'}")
+        print(f"[INFO] gamefiles loaded from JSON: {len(gamefiles)} tasks, type={type(gamefiles[0]) if gamefiles else 'N/A'}")
 
         # Instantiate tokenizer
         from verl.utils import hf_processor, hf_tokenizer

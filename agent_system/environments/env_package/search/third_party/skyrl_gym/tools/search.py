@@ -43,6 +43,7 @@ def call_search_api(
         error_msg: The error message if the request failed.
     """
     request_id = str(uuid.uuid4())
+    # 10次尝试重连
     log_prefix = f"[Search Request ID: {request_id}] "
 
     payload = {"query": query, "topk": topk, "return_scores": return_scores}
@@ -101,6 +102,7 @@ def call_search_api(
                 time.sleep(delay)
             continue
         except requests.exceptions.Timeout as e:
+            # 日志可见
             last_error = f"{log_prefix}Timeout Error: {e}"
             logger.warning(last_error)
             if attempt < MAX_RETRIES - 1:
@@ -120,6 +122,7 @@ def call_search_api(
             break  # Exit retry loop on other unexpected errors
 
     # If we reach here, all attempts failed
+    # 10次尝试全部失败
     logger.error(f"{log_prefix}API Request Failed after {MAX_RETRIES} attempts: {last_error}")
 
     # Close session if we created it

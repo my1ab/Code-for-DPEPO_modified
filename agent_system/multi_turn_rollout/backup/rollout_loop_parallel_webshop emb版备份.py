@@ -60,7 +60,7 @@ USE_EMBEDDING_SIMILARITY = True
 _DPEPO_USER_HOME = os.environ.get('DPEPO_USER_HOME', '/diskpool/home/xuxz')
 _DPEPO_PROJECT_NAME = os.environ.get('DPEPO_PROJECT_NAME', 'Code-for-DPEPO')
 EMBEDDING_MODEL_PATH = os.path.join(
-    _DPEPO_USER_HOME, _DPEPO_PROJECT_NAME, 'models/bge-large-en-v1.5'
+    _DPEPO_USER_HOME, _DPEPO_PROJECT_NAME, 'emb_models/bge-large-en-v1.5'
 )
 # search 嵌入相似度阈值（仅 search 动作的嵌入兜底使用，click 走精确匹配不受此阈值影响）
 EMBEDDING_SIMILARITY_THRESHOLD = 0.975

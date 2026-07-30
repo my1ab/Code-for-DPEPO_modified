@@ -41,9 +41,9 @@ class EmbeddingManager:
             cls._instance = super().__new__(cls)
         return cls._instance
 
-    def __init__(self, model_path="models/bge-large-en-v1.5",
+    def __init__(self, model_path="emb_models/bge-large-en-v1.5",
                  gpu_memory_utilization=0.1,
-                 similarity_threshold=0.975,
+                 similarity_threshold=0.9,
                  device='cpu',
                  task_type='webshop'):
         """初始化嵌入模型。

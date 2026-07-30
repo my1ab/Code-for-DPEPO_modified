@@ -1,0 +1,1784 @@
+Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1
+Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+<frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+<frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+<frozen importlib._bootstrap>:241: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+import WebAgentTextEnv success
+
+================================================================================
+
+Output file: result/1.5B_epoch3.5_hislen8_test.json
+
+================================================================================
+
+
+============================================================
+Loading tokenizer and model from checkpoint: /diskpool/home/xuxz/ms-swift/model/Qwen2.5-1.5B-Instruct
+ 
+============================================================
+Loading tokenizer...
+Tokenizer loaded: Qwen2TokenizerFast
+Set tokenizer model_max_length to: 32768
+Set tokenizer truncation_side to: right
+============================================================
+============================================================
+load_local_model success
+============================================================
+
+================================================================================
+
+Warning: log file exists (result/1.5B_epoch3.5_hislen8_test.log) but output file does not exist.
+This indicates a previous run was interrupted.
+Deleting incomplete log file and starting fresh...
+Start time: 2026-06-03 01:02:07
+log_file: result/1.5B_epoch3.5_hislen8_test.log
+
+================================================================================
+
+Evaluating test samples (idx 0 to 99) with 30 max turns each...
+group_n: 5, env_num: 1, num_para: 5
+load_all: 0, human_goals: False, limit_goals: -1, seed: 42, start_index: 0, end_idx: 99
+using local model (Qwen2.5-1.5/3/7B), path: /diskpool/home/xuxz/ms-swift/model/Qwen2.5-1.5B-Instruct
+prompt: 3, his_len: 8, Max context length: 32768
+
+================================================================================
+
+file_path: /diskpool/home/xuxz/data/items_shuffle_1000.json 
+ attr_path: /diskpool/home/xuxz/data/items_ins_v2_1000.json
+2026-06-03 01:02:09,334	INFO worker.py:1917 -- Started a local Ray instance.
+[36m(pid=1941442)[0m Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1
+[36m(pid=1941442)[0m Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+[36m(pid=1941442)[0m Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+[36m(pid=1941442)[0m See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[36m(WebshopWorker pid=1941445)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+[36m(WebshopWorker pid=1941445)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+[36m(WebshopWorker pid=1941445)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+[36m(WebshopWorker pid=1941444)[0m Products loaded.
+[36m(WebshopWorker pid=1941444)[0m Keys cleaned.
+[36m(WebshopWorker pid=1941444)[0m Attributes loaded.
+[36m(WebshopWorker pid=1941444)[0m   0%|          | 0/1000 [00:00<?, ?it/s]
+[36m(pid=1941446)[0m Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1[32m [repeated 4x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(pid=1941446)[0m Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.[32m [repeated 4x across cluster][0m
+[36m(pid=1941446)[0m Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.[32m [repeated 4x across cluster][0m
+[36m(pid=1941446)[0m See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=1941444)[0m 100%|██████████| 1000/1000 [00:00<00:00, 161767.36it/s]
+[36m(WebshopWorker pid=1941445)[0m 100%|██████████| 1000/1000 [00:00<00:00, 136644.53it/s]
+[36m(WebshopWorker pid=1941443)[0m 100%|██████████| 1000/1000 [00:00<00:00, 158269.65it/s]
+[36m(WebshopWorker pid=1941442)[0m Loaded 6910 goals.
+[36m(WebshopWorker pid=1941442)[0m /diskpool/home/xuxz/miniconda3/envs/dpepo_webshop/lib/python3.11/site-packages/bs4/element.py:784: DeprecationWarning: The 'text' argument to find()-type methods is deprecated. Use 'string' instead.
+[36m(WebshopWorker pid=1941442)[0m   warnings.warn(
+
+ Split: test, Goal indices: range(0, 500), Exclude: True, Sequential: True 
+
+Environment built, took 11.85888385772705 seconds
+Evaluating test data:   0%|          | 0/100 [00:00<?, ?it/s] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 0 exit(all null) at turn 7
+Evaluating test data:   1%|          | 1/100 [01:17<2:07:20, 77.18s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 1 exit(all null) at turn 7
+Evaluating test data:   2%|▏         | 2/100 [01:56<1:29:33, 54.83s/it] 
+start with input and stripping
+start with input and stripping
+Task 2 exit(all null) at turn 2
+Evaluating test data:   3%|▎         | 3/100 [01:58<49:49, 30.82s/it]   
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 3 exit(all null) at turn 4
+Evaluating test data:   4%|▍         | 4/100 [04:01<1:47:39, 67.29s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 4 exit(all null) at turn 12
+Evaluating test data:   5%|▌         | 5/100 [09:08<4:03:23, 153.73s/it] 
+start with input and stripping
+start with input and stripping
+Task 5 exit(all null) at turn 2
+Evaluating test data:   6%|▌         | 6/100 [09:12<2:41:00, 102.77s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 6 exit(all null) at turn 3
+Evaluating test data:   7%|▋         | 7/100 [09:57<2:09:49, 83.75s/it]  
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 7 exit(all null) at turn 8
+Evaluating test data:   8%|▊         | 8/100 [10:41<1:49:03, 71.13s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 8 exit(all null) at turn 3
+Evaluating test data:   9%|▉         | 9/100 [11:18<1:31:42, 60.47s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 9 exit(all null) at turn 7
+Evaluating test data:  10%|█         | 10/100 [14:18<2:25:56, 97.29s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 10 exit(all null) at turn 12
+Evaluating test data:  11%|█         | 11/100 [19:37<4:04:59, 165.16s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 11 exit(all null) at turn 11
+Evaluating test data:  12%|█▏        | 12/100 [25:17<5:20:23, 218.44s/it] 
+start with input and stripping
+start with input and stripping
+Task 12 exit(all null) at turn 2
+Evaluating test data:  13%|█▎        | 13/100 [25:22<3:42:49, 153.67s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 13 exit(all null) at turn 4
+Evaluating test data:  14%|█▍        | 14/100 [26:11<2:55:08, 122.19s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 14 exit(all null) at turn 11
+Evaluating test data:  15%|█▌        | 15/100 [27:18<2:29:35, 105.59s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 15 exit(all null) at turn 13
+Evaluating test data:  16%|█▌        | 16/100 [29:00<2:26:21, 104.54s/it] 
+start with input and stripping
+start with input and stripping
+Task 16 exit(all null) at turn 2
+Evaluating test data:  17%|█▋        | 17/100 [29:21<1:49:39, 79.27s/it]  
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 17 exit(all null) at turn 3
+Evaluating test data:  18%|█▊        | 18/100 [29:28<1:18:33, 57.48s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+WARNING: Input truncated to max length!
+Original input tokens: 29328, truncating to 28672
+start with input and stripping
+WARNING: Input truncated to max length!
+Original input tokens: 29220, truncating to 28672
+start with input and stripping
+Task 18 exit(all null) at turn 10
+Evaluating test data:  19%|█▉        | 19/100 [30:34<1:21:03, 60.04s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 19 exit(all null) at turn 6
+Evaluating test data:  20%|██        | 20/100 [31:29<1:18:17, 58.72s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 20 exit(all null) at turn 4
+Evaluating test data:  21%|██        | 21/100 [32:23<1:15:25, 57.29s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 21 exit(all null) at turn 3
+Evaluating test data:  22%|██▏       | 22/100 [32:36<57:04, 43.91s/it]   
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 22 exit(all null) at turn 3
+Evaluating test data:  23%|██▎       | 23/100 [32:42<41:57, 32.69s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 23 exit(all null) at turn 8
+Evaluating test data:  24%|██▍       | 24/100 [33:24<44:43, 35.31s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 24 exit(all null) at turn 4
+Evaluating test data:  25%|██▌       | 25/100 [33:41<37:11, 29.76s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 25 exit(all null) at turn 3
+Evaluating test data:  26%|██▌       | 26/100 [33:54<30:46, 24.95s/it] 
+start with input and stripping
+start with input and stripping
+Task 26 exit(all null) at turn 2
+Evaluating test data:  27%|██▋       | 27/100 [33:58<22:34, 18.55s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 27 exit(all null) at turn 6
+Evaluating test data:  28%|██▊       | 28/100 [34:32<27:58, 23.31s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 28 exit(all null) at turn 3
+Evaluating test data:  29%|██▉       | 29/100 [35:08<31:53, 26.96s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 29 exit(all null) at turn 7
+Evaluating test data:  30%|███       | 30/100 [36:06<42:31, 36.45s/it] 
+start with input and stripping
+start with input and stripping
+Task 30 exit(all null) at turn 2
+Evaluating test data:  31%|███       | 31/100 [36:12<31:08, 27.08s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 31 exit(all null) at turn 3
+Evaluating test data:  32%|███▏      | 32/100 [38:14<1:03:00, 55.60s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 32 exit(all null) at turn 4
+Evaluating test data:  33%|███▎      | 33/100 [38:26<47:26, 42.49s/it]   
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 33 exit(all null) at turn 22
+Evaluating test data:  34%|███▍      | 34/100 [43:32<2:13:44, 121.58s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 34 exit(all null) at turn 4
+Evaluating test data:  35%|███▌      | 35/100 [43:45<1:36:21, 88.94s/it]  
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 35 exit(all null) at turn 3
+Evaluating test data:  36%|███▌      | 36/100 [44:14<1:15:45, 71.02s/it] 
+start with input and stripping
+start with input and stripping
+Task 36 exit(all null) at turn 2
+Evaluating test data:  37%|███▋      | 37/100 [44:27<56:15, 53.58s/it]   
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 37 exit(all null) at turn 7
+Evaluating test data:  38%|███▊      | 38/100 [45:33<59:18, 57.40s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 38 exit(all null) at turn 14
+Evaluating test data:  39%|███▉      | 39/100 [47:43<1:20:34, 79.25s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 39 exit(all null) at turn 10
+Evaluating test data:  40%|████      | 40/100 [48:50<1:15:27, 75.46s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 40 exit(all null) at turn 8
+Evaluating test data:  41%|████      | 41/100 [51:33<1:40:03, 101.75s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 41 exit(all null) at turn 11
+Evaluating test data:  42%|████▏     | 42/100 [55:07<2:10:52, 135.39s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 42 exit(all null) at turn 5
+Evaluating test data:  43%|████▎     | 43/100 [58:40<2:30:45, 158.70s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 43 exit(all null) at turn 5
+Evaluating test data:  44%|████▍     | 44/100 [59:26<1:56:29, 124.82s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 44 exit(all null) at turn 3
+Evaluating test data:  45%|████▌     | 45/100 [1:00:11<1:32:39, 101.09s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 45 exit(all null) at turn 14
+Evaluating test data:  46%|████▌     | 46/100 [1:02:36<1:42:45, 114.17s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 46 exit(all null) at turn 3
+Evaluating test data:  47%|████▋     | 47/100 [1:02:49<1:14:03, 83.84s/it]  
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 47 exit(all null) at turn 6
+Evaluating test data:  48%|████▊     | 48/100 [1:03:31<1:01:40, 71.16s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 48 exit(all null) at turn 5
+Evaluating test data:  49%|████▉     | 49/100 [1:05:51<1:18:10, 91.96s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 49 exit(all null) at turn 5
+Evaluating test data:  50%|█████     | 50/100 [1:06:12<58:45, 70.50s/it]   
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 50 exit(all null) at turn 3
+Evaluating test data:  51%|█████     | 51/100 [1:06:28<44:21, 54.32s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 51 exit(all null) at turn 6
+Evaluating test data:  52%|█████▏    | 52/100 [1:07:04<38:53, 48.62s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 52 exit(all null) at turn 8
+Evaluating test data:  53%|█████▎    | 53/100 [1:11:41<1:31:51, 117.26s/it] 
+start with input and stripping
+start with input and stripping
+Task 53 exit(all null) at turn 2
+Evaluating test data:  54%|█████▍    | 54/100 [1:13:39<1:30:07, 117.56s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 54 exit(all null) at turn 6
+Evaluating test data:  55%|█████▌    | 55/100 [1:16:11<1:35:56, 127.92s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 55 exit(all null) at turn 14
+Evaluating test data:  56%|█████▌    | 56/100 [1:19:53<1:54:27, 156.08s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 56 exit(all null) at turn 3
+Evaluating test data:  57%|█████▋    | 57/100 [1:20:15<1:22:54, 115.68s/it] 
+start with input and stripping
+start with input and stripping
+Task 57 exit(all null) at turn 2
+Evaluating test data:  58%|█████▊    | 58/100 [1:20:19<57:38, 82.35s/it]    
+start with input and stripping
+start with input and stripping
+Task 58 exit(all null) at turn 2
+Evaluating test data:  59%|█████▉    | 59/100 [1:20:22<40:00, 58.56s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 59 exit(all null) at turn 6
+Evaluating test data:  60%|██████    | 60/100 [1:22:58<58:32, 87.80s/it] 
+start with input and stripping
+start with input and stripping
+Task 60 exit(all null) at turn 2
+Evaluating test data:  61%|██████    | 61/100 [1:23:00<40:23, 62.13s/it] 
+start with input and stripping
+start with input and stripping
+Task 61 exit(all null) at turn 2
+Evaluating test data:  62%|██████▏   | 62/100 [1:23:03<27:56, 44.12s/it] 
+start with input and stripping
+start with input and stripping
+Task 62 exit(all null) at turn 2
+Evaluating test data:  63%|██████▎   | 63/100 [1:23:08<20:08, 32.67s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 63 exit(all null) at turn 8
+Evaluating test data:  64%|██████▍   | 64/100 [1:25:46<42:08, 70.23s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 64 exit(all null) at turn 9
+Evaluating test data:  65%|██████▌   | 65/100 [1:26:40<38:04, 65.29s/it] 
+start with input and stripping
+start with input and stripping
+Task 65 exit(all null) at turn 2
+Evaluating test data:  66%|██████▌   | 66/100 [1:26:44<26:34, 46.90s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 66 exit(all null) at turn 10
+Evaluating test data:  67%|██████▋   | 67/100 [1:31:35<1:06:07, 120.23s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 67 exit(all null) at turn 4
+Evaluating test data:  68%|██████▊   | 68/100 [1:33:50<1:06:24, 124.51s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 68 exit(all null) at turn 10
+Evaluating test data:  69%|██████▉   | 69/100 [1:35:07<57:03, 110.42s/it]   
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 69 exit(all null) at turn 10
+Evaluating test data:  70%|███████   | 70/100 [1:38:21<1:07:40, 135.36s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 70 exit(all null) at turn 11
+Evaluating test data:  71%|███████   | 71/100 [1:39:26<55:15, 114.32s/it]   
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 71 exit(all null) at turn 5
+Evaluating test data:  72%|███████▏  | 72/100 [1:39:53<41:03, 87.97s/it]  
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 72 exit(all null) at turn 5
+Evaluating test data:  73%|███████▎  | 73/100 [1:40:41<34:10, 75.94s/it] 
+start with input and stripping
+start with input and stripping
+Task 73 exit(all null) at turn 2
+Evaluating test data:  74%|███████▍  | 74/100 [1:41:08<26:34, 61.33s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 74 exit(all null) at turn 7
+Evaluating test data:  75%|███████▌  | 75/100 [1:44:29<43:03, 103.35s/it] 
+start with input and stripping
+start with input and stripping
+Task 75 exit(all null) at turn 2
+Evaluating test data:  76%|███████▌  | 76/100 [1:44:33<29:24, 73.54s/it]  
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 76 exit(all null) at turn 4
+Evaluating test data:  77%|███████▋  | 77/100 [1:45:24<25:36, 66.79s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 77 exit(all null) at turn 4
+Evaluating test data:  78%|███████▊  | 78/100 [1:47:42<32:18, 88.10s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 78 exit(all null) at turn 20
+Evaluating test data:  79%|███████▉  | 79/100 [1:49:55<35:30, 101.44s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 79 exit(all null) at turn 10
+Evaluating test data:  80%|████████  | 80/100 [1:53:27<44:51, 134.57s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 80 exit(all null) at turn 3
+Evaluating test data:  81%|████████  | 81/100 [1:53:51<32:08, 101.50s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 81 exit(all null) at turn 5
+Evaluating test data:  82%|████████▏ | 82/100 [1:54:26<24:27, 81.52s/it]  
+start with input and stripping
+start with input and stripping
+Task 82 exit(all null) at turn 2
+Evaluating test data:  83%|████████▎ | 83/100 [1:54:32<16:44, 59.08s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 83 exit(all null) at turn 8
+Evaluating test data:  84%|████████▍ | 84/100 [1:56:09<18:43, 70.20s/it] 
+start with input and stripping
+start with input and stripping
+Task 84 exit(all null) at turn 2
+Evaluating test data:  85%|████████▌ | 85/100 [1:56:23<13:19, 53.32s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 85 exit(all null) at turn 8
+Evaluating test data:  86%|████████▌ | 86/100 [2:01:03<28:21, 121.50s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 86 exit(all null) at turn 7
+Evaluating test data:  87%|████████▋ | 87/100 [2:01:27<19:59, 92.27s/it]  
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+WARNING: Input truncated to max length!
+Original input tokens: 30756, truncating to 28672
+start with input and stripping
+Task 87 exit(all null) at turn 11
+Evaluating test data:  88%|████████▊ | 88/100 [2:05:06<26:01, 130.16s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+WARNING: Input truncated to max length!
+Original input tokens: 30348, truncating to 28672
+start with input and stripping
+WARNING: Input truncated to max length!
+Original input tokens: 30645, truncating to 28672
+start with input and stripping
+Task 88 exit(all null) at turn 12
+Evaluating test data:  89%|████████▉ | 89/100 [2:08:09<26:47, 146.11s/it] 
+start with input and stripping
+start with input and stripping
+Task 89 exit(all null) at turn 2
+Evaluating test data:  90%|█████████ | 90/100 [2:08:25<17:50, 107.04s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+WARNING: Input truncated to max length!
+Original input tokens: 29754, truncating to 28672
+start with input and stripping
+WARNING: Input truncated to max length!
+Original input tokens: 32439, truncating to 28672
+start with input and stripping
+WARNING: Input truncated to max length!
+Original input tokens: 32224, truncating to 28672
+start with input and stripping
+Task 90 exit(all null) at turn 13
+Evaluating test data:  91%|█████████ | 91/100 [2:15:58<31:36, 210.70s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 91 exit(all null) at turn 11
+Evaluating test data:  92%|█████████▏| 92/100 [2:21:02<31:50, 238.85s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 92 exit(all null) at turn 4
+Evaluating test data:  93%|█████████▎| 93/100 [2:21:37<20:44, 177.80s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+WARNING: Input truncated to max length!
+Original input tokens: 28859, truncating to 28672
+start with input and stripping
+Task 93 exit(all null) at turn 20
+Evaluating test data:  94%|█████████▍| 94/100 [2:27:30<23:01, 230.29s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 94 exit(all null) at turn 6
+Evaluating test data:  95%|█████████▌| 95/100 [2:28:14<14:31, 174.20s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 95 exit(all null) at turn 5
+Evaluating test data:  96%|█████████▌| 96/100 [2:28:46<08:47, 131.76s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 96 exit(all null) at turn 9
+Evaluating test data:  97%|█████████▋| 97/100 [2:29:54<05:37, 112.49s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 97 exit(all null) at turn 4
+Evaluating test data:  98%|█████████▊| 98/100 [2:31:01<03:17, 98.81s/it]  
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+WARNING: Input truncated to max length!
+Original input tokens: 29927, truncating to 28672
+start with input and stripping
+WARNING: Input truncated to max length!
+Original input tokens: 32460, truncating to 28672
+start with input and stripping
+Task 98 exit(all null) at turn 12
+Evaluating test data:  99%|█████████▉| 99/100 [2:35:09<02:23, 143.66s/it] 
+start with input and stripping
+start with input and stripping
+Task 99 exit(all null) at turn 2
+Evaluating test data: 100%|██████████| 100/100 [2:35:29<00:00, 106.50s/it]Evaluating test data: 100%|██████████| 100/100 [2:35:29<00:00, 93.29s/it] 
+Total 100 entries evaluated
+Test data saved to result/1.5B_epoch3.5_hislen8_test.json
+Seperated data saved to result/1.5B_epoch3.5_hislen8_test_test_seperated.json
+Seperated data count: 100
+Success count: 0, Success rate: 0.00%
+No success trajectories generated.
+Start time: 2026-06-03 01:02:07
+End time: 2026-06-03 03:37:48
+Elapsed time: 9341.276764392853s
+
+================================================================================
+
+Output file: result/1.5B_epoch3.5_hislen8_test_1.json
+
+================================================================================
+
+
+================================================================================
+
+Start time: 2026-06-03 03:37:48
+log_file: result/1.5B_epoch3.5_hislen8_test_1.log
+
+================================================================================
+
+Evaluating test samples (idx 100 to 199) with 30 max turns each...
+group_n: 5, env_num: 1, num_para: 5
+load_all: 0, human_goals: False, limit_goals: -1, seed: 42, start_index: 100, end_idx: 199
+using local model (Qwen2.5-1.5/3/7B), path: /diskpool/home/xuxz/ms-swift/model/Qwen2.5-1.5B-Instruct
+prompt: 3, his_len: 8, Max context length: 32768
+
+================================================================================
+
+file_path: /diskpool/home/xuxz/data/items_shuffle_1000.json 
+ attr_path: /diskpool/home/xuxz/data/items_ins_v2_1000.json
+[36m(WebshopWorker pid=1941446)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=1941446)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=1941446)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type swigvarlink has no __module__ attribute[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=1941446)[0m   0%|          | 0/1000 [00:00<?, ?it/s]100%|██████████| 1000/1000 [00:00<00:00, 136653.44it/s][32m [repeated 4x across cluster][0m
+[36m(pid=2326707)[0m Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1
+[36m(pid=2326707)[0m Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+[36m(pid=2326707)[0m Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+[36m(pid=2326707)[0m See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[36m(WebshopWorker pid=1941446)[0m /diskpool/home/xuxz/miniconda3/envs/dpepo_webshop/lib/python3.11/site-packages/bs4/element.py:784: DeprecationWarning: The 'text' argument to find()-type methods is deprecated. Use 'string' instead.[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=1941446)[0m   warnings.warn([32m [repeated 4x across cluster][0m
+[36m(pid=2326706)[0m Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1
+[36m(pid=2326706)[0m Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+[36m(pid=2326706)[0m Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+[36m(pid=2326706)[0m See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+[36m(WebshopWorker pid=2326707)[0m Products loaded.[32m [repeated 5x across cluster][0m
+[36m(WebshopWorker pid=2326707)[0m Keys cleaned.[32m [repeated 5x across cluster][0m
+[36m(WebshopWorker pid=2326707)[0m Attributes loaded.[32m [repeated 5x across cluster][0m
+[36m(WebshopWorker pid=1941446)[0m Loaded 6910 goals.[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=2326705)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute[32m [repeated 5x across cluster][0m
+[36m(WebshopWorker pid=2326705)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute[32m [repeated 5x across cluster][0m
+[36m(WebshopWorker pid=2326705)[0m <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type swigvarlink has no __module__ attribute[32m [repeated 5x across cluster][0m
+[36m(WebshopWorker pid=2326707)[0m   0%|          | 0/1000 [00:00<?, ?it/s]100%|██████████| 1000/1000 [00:00<00:00, 160449.26it/s]
+[36m(pid=2326705)[0m Warning: Gym version v0.24.0 has a number of critical issues with `gym.make` such that the `reset` and `step` functions are called before returning the environment. It is recommend to downgrading to v0.23.1 or upgrading to v0.25.1[32m [repeated 3x across cluster][0m
+[36m(pid=2326705)[0m Additionally, Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.[32m [repeated 3x across cluster][0m
+[36m(pid=2326705)[0m Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.[32m [repeated 3x across cluster][0m
+[36m(pid=2326705)[0m See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.[32m [repeated 3x across cluster][0m
+[36m(WebshopWorker pid=2326706)[0m   0%|          | 0/1000 [00:00<?, ?it/s]100%|██████████| 1000/1000 [00:00<00:00, 167037.20it/s]
+[36m(WebshopWorker pid=2326707)[0m /diskpool/home/xuxz/miniconda3/envs/dpepo_webshop/lib/python3.11/site-packages/bs4/element.py:784: DeprecationWarning: The 'text' argument to find()-type methods is deprecated. Use 'string' instead.
+[36m(WebshopWorker pid=2326707)[0m   warnings.warn(
+[36m(WebshopWorker pid=2326709)[0m 100%|██████████| 1000/1000 [00:00<00:00, 139438.30it/s]
+
+ Split: test, Goal indices: range(0, 500), Exclude: True, Sequential: True 
+
+Environment built, took 9.423171043395996 seconds
+
+================================================================================
+
+Skipping first 100 resets to sync random state...
+Done skipping 100 resets, took 0.7435319423675537 seconds.
+
+================================================================================
+
+Evaluating test data:   0%|          | 0/100 [00:00<?, ?it/s] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 100 exit(all null) at turn 4
+Evaluating test data:   1%|          | 1/100 [00:31<52:09, 31.61s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 101 exit(all null) at turn 6
+Evaluating test data:   2%|▏         | 2/100 [04:16<3:57:04, 145.14s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 102 exit(all null) at turn 3
+Evaluating test data:   3%|▎         | 3/100 [04:54<2:35:55, 96.45s/it]  
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 103 exit(all null) at turn 3
+Evaluating test data:   4%|▍         | 4/100 [05:01<1:37:47, 61.12s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 104 exit(all null) at turn 16
+Evaluating test data:   5%|▌         | 5/100 [10:26<4:07:18, 156.19s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 105 exit(all null) at turn 15
+Evaluating test data:   6%|▌         | 6/100 [17:38<6:31:46, 250.07s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 106 exit(all null) at turn 12
+Evaluating test data:   7%|▋         | 7/100 [19:20<5:12:35, 201.67s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 107 exit(all null) at turn 5
+Evaluating test data:   8%|▊         | 8/100 [19:48<3:44:19, 146.30s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 108 exit(all null) at turn 13
+Evaluating test data:   9%|▉         | 9/100 [22:53<4:00:26, 158.54s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 109 exit(all null) at turn 5
+Evaluating test data:  10%|█         | 10/100 [23:22<2:57:47, 118.53s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 110 exit(all null) at turn 5
+Evaluating test data:  11%|█         | 11/100 [25:33<3:01:26, 122.32s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 111 exit(all null) at turn 7
+Evaluating test data:  12%|█▏        | 12/100 [27:20<2:52:28, 117.59s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 112 exit(all null) at turn 5
+Evaluating test data:  13%|█▎        | 13/100 [27:31<2:03:45, 85.35s/it]  
+start with input and stripping
+start with input and stripping
+Task 113 exit(all null) at turn 2
+Evaluating test data:  14%|█▍        | 14/100 [27:44<1:30:55, 63.43s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 114 exit(all null) at turn 8
+Evaluating test data:  15%|█▌        | 15/100 [29:13<1:40:37, 71.03s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+WARNING: Input truncated to max length!
+Original input tokens: 30925, truncating to 28672
+start with input and stripping
+Task 115 exit(all null) at turn 14
+Evaluating test data:  16%|█▌        | 16/100 [32:29<2:32:02, 108.60s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 116 exit(all null) at turn 7
+Evaluating test data:  17%|█▋        | 17/100 [36:39<3:29:22, 151.36s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 117 exit(all null) at turn 4
+Evaluating test data:  18%|█▊        | 18/100 [36:51<2:29:36, 109.46s/it] 
+start with input and stripping
+start with input and stripping
+Task 118 exit(all null) at turn 2
+Evaluating test data:  19%|█▉        | 19/100 [36:54<1:44:24, 77.34s/it]  
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 119 exit(all null) at turn 4
+Evaluating test data:  20%|██        | 20/100 [37:14<1:20:24, 60.30s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 120 exit(all null) at turn 4
+Evaluating test data:  21%|██        | 21/100 [39:03<1:38:37, 74.90s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 121 exit(all null) at turn 6
+Evaluating test data:  22%|██▏       | 22/100 [39:32<1:19:09, 60.89s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 122 exit(all null) at turn 8
+Evaluating test data:  23%|██▎       | 23/100 [40:40<1:20:53, 63.04s/it] 
+start with input and stripping
+start with input and stripping
+Task 123 exit(all null) at turn 2
+Evaluating test data:  24%|██▍       | 24/100 [40:50<59:48, 47.21s/it]   
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 124 exit(all null) at turn 4
+Evaluating test data:  25%|██▌       | 25/100 [43:02<1:31:01, 72.82s/it] 
+start with input and stripping
+start with input and stripping
+Task 125 exit(all null) at turn 2
+Evaluating test data:  26%|██▌       | 26/100 [43:09<1:05:25, 53.05s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 126 exit(all null) at turn 12
+Evaluating test data:  27%|██▋       | 27/100 [46:08<1:50:29, 90.82s/it] 
+start with input and stripping
+start with input and stripping
+Task 127 exit(all null) at turn 2
+Evaluating test data:  28%|██▊       | 28/100 [46:15<1:18:43, 65.60s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 128 exit(all null) at turn 3
+Evaluating test data:  29%|██▉       | 29/100 [46:34<1:01:09, 51.68s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 129 exit(all null) at turn 4
+Evaluating test data:  30%|███       | 30/100 [46:57<50:06, 42.95s/it]   
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 130 exit(all null) at turn 8
+Evaluating test data:  31%|███       | 31/100 [48:21<1:03:28, 55.20s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 131 exit(all null) at turn 7
+Evaluating test data:  32%|███▏      | 32/100 [49:14<1:02:05, 54.78s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 132 exit(all null) at turn 4
+Evaluating test data:  33%|███▎      | 33/100 [49:37<50:24, 45.14s/it]   
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 133 exit(all null) at turn 3
+Evaluating test data:  34%|███▍      | 34/100 [49:57<41:25, 37.65s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 134 exit(all null) at turn 4
+Evaluating test data:  35%|███▌      | 35/100 [50:19<35:29, 32.76s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 135 exit(all null) at turn 6
+Evaluating test data:  36%|███▌      | 36/100 [51:03<38:41, 36.27s/it] 
+start with input and stripping
+start with input and stripping
+Task 136 exit(all null) at turn 2
+Evaluating test data:  37%|███▋      | 37/100 [51:10<28:58, 27.59s/it] 
+start with input and stripping
+start with input and stripping
+Task 137 exit(all null) at turn 2
+Evaluating test data:  38%|███▊      | 38/100 [51:18<22:22, 21.65s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 138 exit(all null) at turn 4
+Evaluating test data:  39%|███▉      | 39/100 [53:56<1:03:27, 62.42s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 139 exit(all null) at turn 5
+Evaluating test data:  40%|████      | 40/100 [54:40<56:54, 56.91s/it]   
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 140 exit(all null) at turn 8
+Evaluating test data:  41%|████      | 41/100 [56:08<1:05:12, 66.31s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 141 exit(all null) at turn 4
+Evaluating test data:  42%|████▏     | 42/100 [57:58<1:16:42, 79.35s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 142 exit(all null) at turn 12
+Evaluating test data:  43%|████▎     | 43/100 [1:05:02<2:53:37, 182.76s/it] 
+start with input and stripping
+start with input and stripping
+Task 143 exit(all null) at turn 2
+Evaluating test data:  44%|████▍     | 44/100 [1:07:00<2:32:21, 163.23s/it] 
+start with input and stripping
+start with input and stripping
+Task 144 exit(all null) at turn 2
+Evaluating test data:  45%|████▌     | 45/100 [1:07:03<1:45:38, 115.25s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 145 exit(all null) at turn 4
+Evaluating test data:  46%|████▌     | 46/100 [1:09:11<1:47:20, 119.27s/it] 
+start with input and stripping
+start with input and stripping
+Task 146 exit(all null) at turn 2
+Evaluating test data:  47%|████▋     | 47/100 [1:09:24<1:16:59, 87.17s/it]  
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 147 exit(all null) at turn 5
+Evaluating test data:  48%|████▊     | 48/100 [1:09:44<58:10, 67.12s/it]   
+start with input and stripping
+start with input and stripping
+Task 148 exit(all null) at turn 2
+Evaluating test data:  49%|████▉     | 49/100 [1:13:31<1:37:54, 115.18s/it] 
+start with input and stripping
+start with input and stripping
+Task 149 exit(all null) at turn 2
+Evaluating test data:  50%|█████     | 50/100 [1:13:39<1:09:06, 82.93s/it]  
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 150 exit(all null) at turn 12
+Evaluating test data:  51%|█████     | 51/100 [1:16:08<1:23:57, 102.80s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 151 exit(all null) at turn 4
+Evaluating test data:  52%|█████▏    | 52/100 [1:16:38<1:04:36, 80.76s/it]  
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 152 exit(all null) at turn 6
+Evaluating test data:  53%|█████▎    | 53/100 [1:19:46<1:28:35, 113.09s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 153 exit(all null) at turn 6
+Evaluating test data:  54%|█████▍    | 54/100 [1:20:17<1:07:46, 88.41s/it]  
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 154 exit(all null) at turn 4
+Evaluating test data:  55%|█████▌    | 55/100 [1:20:38<51:08, 68.18s/it]   
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 155 exit(all null) at turn 9
+Evaluating test data:  56%|█████▌    | 56/100 [1:21:12<42:36, 58.10s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 156 exit(all null) at turn 3
+Evaluating test data:  57%|█████▋    | 57/100 [1:21:30<32:50, 45.82s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 157 exit(all null) at turn 5
+Evaluating test data:  58%|█████▊    | 58/100 [1:23:34<48:29, 69.27s/it] 
+start with input and stripping
+start with input and stripping
+Task 158 exit(all null) at turn 2
+Evaluating test data:  59%|█████▉    | 59/100 [1:25:32<57:26, 84.07s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 159 exit(all null) at turn 4
+Evaluating test data:  60%|██████    | 60/100 [1:26:14<47:36, 71.41s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 160 exit(all null) at turn 10
+Evaluating test data:  61%|██████    | 61/100 [1:30:40<1:24:17, 129.68s/it] 
+start with input and stripping
+start with input and stripping
+Task 161 exit(all null) at turn 2
+Evaluating test data:  62%|██████▏   | 62/100 [1:30:51<59:38, 94.17s/it]    
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 162 exit(all null) at turn 7
+Evaluating test data:  63%|██████▎   | 63/100 [1:33:31<1:10:14, 113.89s/it] 
+start with input and stripping
+start with input and stripping
+Task 163 exit(all null) at turn 2
+Evaluating test data:  64%|██████▍   | 64/100 [1:33:34<48:22, 80.62s/it]    
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 164 exit(all null) at turn 3
+Evaluating test data:  65%|██████▌   | 65/100 [1:35:42<55:17, 94.80s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 165 exit(all null) at turn 9
+Evaluating test data:  66%|██████▌   | 66/100 [1:38:13<1:03:16, 111.65s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 166 exit(all null) at turn 9
+Evaluating test data:  67%|██████▋   | 67/100 [1:41:09<1:11:59, 130.89s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 167 exit(all null) at turn 3
+Evaluating test data:  68%|██████▊   | 68/100 [1:41:26<51:40, 96.90s/it]    
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 168 exit(all null) at turn 4
+Evaluating test data:  69%|██████▉   | 69/100 [1:45:19<1:11:03, 137.53s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 169 exit(all null) at turn 4
+Evaluating test data:  70%|███████   | 70/100 [1:45:54<53:31, 107.04s/it]   
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 170 exit(all null) at turn 5
+Evaluating test data:  71%|███████   | 71/100 [1:46:32<41:40, 86.21s/it]  
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 171 exit(all null) at turn 12
+Evaluating test data:  72%|███████▏  | 72/100 [1:51:31<1:10:03, 150.12s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 172 exit(all null) at turn 3
+Evaluating test data:  73%|███████▎  | 73/100 [1:52:12<52:49, 117.40s/it]   
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 173 exit(all null) at turn 4
+Evaluating test data:  74%|███████▍  | 74/100 [1:54:32<53:48, 124.16s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 174 exit(all null) at turn 7
+Evaluating test data:  75%|███████▌  | 75/100 [1:55:14<41:23, 99.34s/it]  
+start with input and stripping
+start with input and stripping
+Task 175 exit(all null) at turn 2
+Evaluating test data:  76%|███████▌  | 76/100 [1:55:30<29:45, 74.40s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 176 exit(all null) at turn 11
+Evaluating test data:  77%|███████▋  | 77/100 [1:59:43<49:04, 128.00s/it] 
+start with input and stripping
+start with input and stripping
+Task 177 exit(all null) at turn 2
+Evaluating test data:  78%|███████▊  | 78/100 [1:59:59<34:38, 94.50s/it]  
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 178 exit(all null) at turn 4
+Evaluating test data:  79%|███████▉  | 79/100 [2:00:47<28:10, 80.49s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 179 exit(all null) at turn 3
+Evaluating test data:  80%|████████  | 80/100 [2:01:29<22:56, 68.84s/it] 
+start with input and stripping
+start with input and stripping
+Task 180 exit(all null) at turn 2
+Evaluating test data:  81%|████████  | 81/100 [2:01:31<15:30, 48.99s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 181 exit(all null) at turn 4
+Evaluating test data:  82%|████████▏ | 82/100 [2:02:15<14:10, 47.26s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 182 exit(all null) at turn 8
+Evaluating test data:  83%|████████▎ | 83/100 [2:09:06<44:18, 156.39s/it] 
+start with input and stripping
+start with input and stripping
+Task 183 exit(all null) at turn 2
+Evaluating test data:  84%|████████▍ | 84/100 [2:09:12<29:41, 111.33s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 184 exit(all null) at turn 7
+Evaluating test data:  85%|████████▌ | 85/100 [2:10:10<23:49, 95.30s/it]  
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 185 exit(all null) at turn 23
+Evaluating test data:  86%|████████▌ | 86/100 [2:17:00<44:16, 189.74s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 186 exit(all null) at turn 5
+Evaluating test data:  87%|████████▋ | 87/100 [2:18:50<35:55, 165.80s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 187 exit(all null) at turn 11
+Evaluating test data:  88%|████████▊ | 88/100 [2:21:42<33:32, 167.71s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 188 exit(all null) at turn 7
+Evaluating test data:  89%|████████▉ | 89/100 [2:25:26<33:50, 184.58s/it] 
+start with input and stripping
+start with input and stripping
+Task 189 exit(all null) at turn 2
+Evaluating test data:  90%|█████████ | 90/100 [2:25:27<21:36, 129.65s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 190 exit(all null) at turn 4
+Evaluating test data:  91%|█████████ | 91/100 [2:25:53<14:46, 98.51s/it]  
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 191 exit(all null) at turn 3
+Evaluating test data:  92%|█████████▏| 92/100 [2:26:08<09:47, 73.38s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 192 exit(all null) at turn 3
+Evaluating test data:  93%|█████████▎| 93/100 [2:26:34<06:53, 59.05s/it] 
+start with input and stripping
+start with input and stripping
+Task 193 exit(all null) at turn 2
+Evaluating test data:  94%|█████████▍| 94/100 [2:26:36<04:11, 41.98s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 194 exit(all null) at turn 14
+Evaluating test data:  95%|█████████▌| 95/100 [2:30:39<08:32, 102.47s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 195 exit(all null) at turn 6
+Evaluating test data:  96%|█████████▌| 96/100 [2:32:47<07:20, 110.05s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 196 exit(all null) at turn 7
+Evaluating test data:  97%|█████████▋| 97/100 [2:33:14<04:15, 85.21s/it]  
+start with input and stripping
+start with input and stripping
+Task 197 exit(all null) at turn 2
+Evaluating test data:  98%|█████████▊| 98/100 [2:33:23<02:04, 62.15s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 198 exit(all null) at turn 4
+Evaluating test data:  99%|█████████▉| 99/100 [2:33:55<00:53, 53.11s/it] 
+start with input and stripping
+start with input and stripping
+start with input and stripping
+start with input and stripping
+Task 199 exit(all null) at turn 4
+Evaluating test data: 100%|██████████| 100/100 [2:34:20<00:00, 44.85s/it]Evaluating test data: 100%|██████████| 100/100 [2:34:20<00:00, 92.61s/it]
+Total 100 entries evaluated
+Test data saved to result/1.5B_epoch3.5_hislen8_test_1.json
+Seperated data saved to result/1.5B_epoch3.5_hislen8_test_1_test_seperated.json
+Seperated data count: 100
+Success count: 0, Success rate: 0.00%
+No success trajectories generated.
+Start time: 2026-06-03 03:37:48
+End time: 2026-06-03 06:12:19
+Elapsed time: 9271.006661891937s
+[36m(WebshopWorker pid=2326709)[0m Products loaded.[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=2326709)[0m Keys cleaned.[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=2326709)[0m Attributes loaded.[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=2326709)[0m Loaded 6910 goals.[32m [repeated 5x across cluster][0m
+[36m(WebshopWorker pid=2326709)[0m   0%|          | 0/1000 [00:00<?, ?it/s][32m [repeated 3x across cluster][0m
+[36m(WebshopWorker pid=2326709)[0m /diskpool/home/xuxz/miniconda3/envs/dpepo_webshop/lib/python3.11/site-packages/bs4/element.py:784: DeprecationWarning: The 'text' argument to find()-type methods is deprecated. Use 'string' instead.[32m [repeated 4x across cluster][0m
+[36m(WebshopWorker pid=2326709)[0m   warnings.warn([32m [repeated 4x across cluster][0m

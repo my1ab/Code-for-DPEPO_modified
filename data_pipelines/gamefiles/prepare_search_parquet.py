@@ -43,6 +43,7 @@ EXCLUDE_LIST = os.path.join(_DPEPO_CODE_BASE, 'data_pipelines', 'gamefiles', 'su
 TRAIN_SIZE = 500          # 训练集 size
 TEST_SIZE = 50            # 测试集 size
 SEED = 1                  # 随机种子 (同 exclude 文件中的 seed=1)
+EXCLUDE_SUCCESS = True  
 
 # JSON 输出格式控制
 #   False → {"0": physical_idx} (WebShop 兼容格式, 仅索引)
@@ -71,12 +72,17 @@ def load_success_logical_indices(exclude_path: str) -> set:
     Returns:
         set[int]: 需要排除的 logical_idx (shuffle table 中的位置)
     """
+    # 读取整个排除列表文件内容
     with open(exclude_path) as f:
         text = f.read()
+    # 用正则匹配 "success indices merged:[...]" 行，提取方括号内的索引列表
+    # DOTALL 允许跨行匹配，防止列表换行
     match = re.search(r'success indices merged:\s*\[(.*?)\]', text, re.DOTALL)
     if not match:
+        # 未找到匹配行则返回空集合，同时打印警告
         print(f"[Warning] No 'success indices merged' found in {exclude_path}")
         return set()
+    # 解析逗号分隔的字符串，转为整数集合（集合自动去重）
     indices = {int(x.strip()) for x in match.group(1).split(',') if x.strip()}
     print(f"[Exclude] Loaded {len(indices)} logical indices to exclude from {exclude_path}")
     return indices
@@ -203,6 +209,7 @@ def sample_from_shuffle_table(shuffle_table: list, goal_idxs: list, df: pd.DataF
 def build_parquet_rows(samples: list, split: str) -> list:
     rows = []
     for s in samples:
+        # 构建行
         rows.append({
             'answer': '',
             'data_source': s['data_source'],
@@ -320,18 +327,18 @@ def main():
     print(f"[Test] Sampled {len(test_samples)} test tasks")
 
     # ── 9. 生成两种训练版本 ──────────────────────────────────
-    print('=' * 80)
-    print('>>> Generating non-excluded version (no success exclusion)')
-    print('=' * 80)
-    write(shuffle_table, exclude_indices, train_goal_idxs, df_train,
-                    exclude_success=False)
+    # print('=' * 80)
+    # print('>>> Generating non-excluded version (no success exclusion)')
+    # print('=' * 80)
+    # write(shuffle_table, exclude_indices, train_goal_idxs, df_train,
+    #                 exclude_success=False)
 
     print()
     print('=' * 80)
     print('>>> Generating excluded version (with success exclusion)')
     print('=' * 80)
     write(shuffle_table, exclude_indices, train_goal_idxs, df_train,
-                    exclude_success=True)
+                    exclude_success=EXCLUDE_SUCCESS)
 
     # ── 10. 统一写出 test 数据（仅一份，不受 exclude 影响） ──
     ptest = build_parquet_rows(test_samples, 'test')

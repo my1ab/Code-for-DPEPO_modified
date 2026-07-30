@@ -148,7 +148,6 @@ pip install \
 #       "Secondary flag is not valid for non-boolean flag"，改用 pip 直接安装 wheel
 # log "Step 6b: 下载 spacy 模型"
 # pip install "en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl" || warn "en_core_web_sm 下载失败, 可稍后手动安装"
-# pip install "en_core_web_lg @ https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-3.8.0/en_core_web_lg-3.8.0-py3-none-any.whl" || warn "en_core_web_lg 下载失败, 可稍后手动安装"
 
 # alfworld 额外数据
 # log "Step 6c: 下载 ALFWorld 游戏文件（如果可用）"
@@ -156,16 +155,13 @@ pip install \
 
 # ============================================================
 # Step 7: 安装搜索/检索相关包（search 实验用）
-#   注意: faiss 1.9.0 在 PyPI 上的包名是 faiss-cpu（不是 faiss），
-#         原环境通过 conda-forge 安装了 faiss=1.9.0，
-#         这里用 pip 安装 faiss-cpu，功能等价。
 # ============================================================
 log "Step 7: 安装检索相关包"
 pip install \
     "pyserini==0.17.0" \
     "rank-bm25==0.2.2" \
-    "faiss-cpu==1.9.0" \
     "nmslib==2.1.2"
+conda install faiss-gpu==1.8.0 -c pytorch -c nvidia -y
 
 # ============================================================
 # Step 8: 安装其他工具包

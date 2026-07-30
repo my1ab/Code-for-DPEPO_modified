@@ -1,0 +1,46 @@
+webshop数据集路径：
+verl-agent/agent_system/environments/env_package/webshop/webshop/data
+
+prompts路径：
+verl-agent/agent_system/environments/prompts/webshop.py
+
+冷启动数据生成脚本：
+webshop_coldstart_synthetic.py
+
+生成文件：
+WebShop_coldstart.json
+
+使用说明：
+1. 修改 webshop_coldstart_synthetic.py 中的 DeepSeek API Key
+2. 运行命令：python webshop_coldstart_synthetic.py
+3. 生成的冷启动数据保存在 WebShop_coldstart.json
+
+数据格式：
+{
+    "prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>...<|eot_id|><|start_header_id|>user<|end_header_id|>...",
+    "completion": "<think>...</think>\n\n<action>...</action>",
+    "length": 1424
+}
+
+# 版本1：不指定可选参数 → 自动使用系统默认值（最简写法）
+response1 = client.chat.completions.create(
+    model="deepseek-chat",  # 必选参数，无默认
+    messages=[{"role": "user", "content": "你好"}]  # 必选参数，无默认
+)
+
+# 版本2：显式写出【所有默认值】→ 和版本1效果完全一样
+# 【注释：不写该参数 = 等于写了这个默认值】
+response2 = client.chat.completions.create(
+    # 必选参数（无默认，必须写）
+    model="deepseek-chat",
+    messages=[{"role": "user", "content": "你好"}],
+
+    # 🔥 常用可选参数【默认值明细】（不指定时就是以下值）
+    stream=False,                  # 默认：关闭流式输出
+    temperature=1.0,              # 默认：随机系数标准值
+    top_p=1.0,                    # 默认：核采样全开
+    max_tokens=None,               # 默认：无限制（按模型窗口）
+    frequency_penalty=0.0,        # 默认：无重复惩罚
+    presence_penalty=0.0,         # 默认：无新主题鼓励
+    stop=None                     # 默认：无自动停止符
+)

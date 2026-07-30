@@ -103,8 +103,8 @@ def extract_think_and_actions(text, num_parallel, print_debug=True):
                 actions_dict[env_index] = action
     
     # 打印提取的动作数量，调试null_count统计问题
-    if print_debug:
-        print(f"[DEBUG] [extract_think_and_actions] 提取到动作数量(排除null): {len([v for v in actions_dict.values() if v != 'null'])}, 原始匹配动作列表长度: {len(matches)}, think内容是否存在: {think_content is not None}，num_parallel={num_parallel}")
+    # if print_debug:
+        # print(f"[DEBUG] [extract_think_and_actions] 提取到动作数量(排除null): {len([v for v in actions_dict.values() if v != 'null'])}, 原始匹配动作列表长度: {len(matches)}, think内容是否存在: {think_content is not None}，num_parallel={num_parallel}")
     
     return {
         'think': think_content,
@@ -142,7 +142,7 @@ USE_EMBEDDING_SIMILARITY = True
 _DPEPO_USER_HOME = os.environ.get('DPEPO_USER_HOME', '/diskpool/home/xuxz')
 _DPEPO_PROJECT_NAME = os.environ.get('DPEPO_PROJECT_NAME', 'Code-for-DPEPO')
 EMBEDDING_MODEL_PATH = os.path.join(
-    _DPEPO_USER_HOME, _DPEPO_PROJECT_NAME, 'models/bge-large-en-v1.5'
+    _DPEPO_USER_HOME, _DPEPO_PROJECT_NAME, 'emb_models/bge-large-en-v1.5'
 )
 # search/answer 嵌入相似度阈值（仅用于嵌入兜底，null 走精确匹配不受此阈值影响）
 # 模块级默认值，可通过 config.custom.emb_threshold 覆盖
@@ -881,6 +881,7 @@ class TrajectoryCollectorParallelSearch:
 
         # Trajectory collection loop（恢复copy.py原始循环逻辑，仅保留必要的成功判断功能）
         # _step为当前步数
+        print(f'[INFO] starting task {GLOBAL_TASK_COUNTER}')
         for _step in tqdm(range(self.config.env.max_steps)):
             if self.print_debug:
                 print(f'[DEBUG] running task {GLOBAL_TASK_COUNTER} step {_step} of total {self.config.env.max_steps}')
@@ -1213,6 +1214,7 @@ class TrajectoryCollectorParallelSearch:
         # 添加成功判断和统计功能，参考coldstart_para_his_test_1.5B_hislen8_epoch3.5_v2.py
         success_count = np.sum(success_flags)
         success_rate = success_count / batch_size if batch_size > 0 else 0
+        print(f'[INFO] task {GLOBAL_TASK_COUNTER} completed')
         print(f"\n{'='*60}")
         print(f"Rollout Summary:")
         # print(f"Total tasks: {batch_size // group_n}, Successful tasks: {success_count}, Success rate: {success_rate:.2%}")

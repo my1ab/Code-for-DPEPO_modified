@@ -49,6 +49,7 @@ class SearchMultiProcessEnv(gym.Env):
         self.max_steps = env_config.max_steps
 
         self._rng = np.random.RandomState(seed)
+        # self._rng没有使用
 
         # ---------- Key changes start ----------
         # 1) Normalize search_url into a list

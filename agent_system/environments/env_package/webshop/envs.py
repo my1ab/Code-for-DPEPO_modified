@@ -175,11 +175,12 @@ class WebshopMultiProcessEnv(gym.Env):
         goals_future = self._workers[0].get_goals.remote()
         goals = ray.get(goals_future)
 
+
         # 6910 total
         if split == 'test':
             self.goal_idxs = range(500)
         elif split == 'eval':
-            self.goal_idxs = range(500, 1500)
+            self.goal_idxs = range(0, 500)
         elif split == 'train':
             # self.goal_idxs = range(1500, len(goals))
             self.goal_idxs = range(600, len(goals))
@@ -194,6 +195,25 @@ class WebshopMultiProcessEnv(gym.Env):
             #     self.goal_idxs = range(len(goals))
         else:
             self.goal_idxs = range(len(goals))
+
+        # # 6910 total
+        # if split == 'test':
+        #     self.goal_idxs = range(500)
+        # elif split == 'eval':
+        #     self.goal_idxs = range(500, 1500)
+        # elif split == 'train':
+        #     self.goal_idxs = range(1500, len(goals))
+        # elif split == 'sft':
+        #     # self.goal_idxs = range(len(goals))
+        #     # self.goal_idxs = range(500, len(goals))
+        #     self.goal_idxs = range(600, len(goals))
+        #     # self.goal_idxs = range(1500, len(goals))
+        #     # if len(goals) >= 2500:
+        #     #     self.goal_idxs = range(2500, len(goals))
+        #     # else:
+        #     #     self.goal_idxs = range(len(goals))
+        # else:
+        #     self.goal_idxs = range(len(goals))
 
         # 以下为原始代码，此时为顺序读取
         # ------- original ----------#

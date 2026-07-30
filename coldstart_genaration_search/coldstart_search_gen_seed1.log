@@ -1,0 +1,1317 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+import build_search_envs success
+============================================================
+Testing DeepSeek API connectivity...
+============================================================
+[turn None] model: deepseek-v4-flash, effort: high
+
+Response: Hello!
+
+============================================================
+DeepSeek API test PASSED!
+============================================================
+[DEBUG] test done
+SearchTaskSampler loading: /diskpool/home/xuxz/data/searchR1_processed_direct/train.parquet
+  Total rows: 169615
+  Split 'sft': goal_idxs = [0, 169615)  (169615 tasks)
+Sampling mode: random (seed=1)
+
+================================================================================
+Generating with sampler: SearchTaskSampler(total=169615, shuffle_table=unbuilt, sequential=False)
+Parallel config: group_n=5, env_num=1, total_envs=5, num_para=5
+Slice ranges: [(0, 99), (100, 199), (200, 299), (300, 399), (400, 499), (500, 599), (600, 699), (700, 799), (800, 899), (900, 999), (1000, 1099), (1100, 1199), (1200, 1299)]
+================================================================================
+
+────────────────────────────────────────────────────────────
+Processing chunk [0, 99] → search_coldstart_0_99.json
+────────────────────────────────────────────────────────────
+Shuffle table built: 169615/169615 entries
+────────────────────────────────────────────────────────────
+Start time: 2026-07-09 00:56:31
+log_file: /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_0_99.log
+────────────────────────────────────────────────────────────────────────────────
+Evaluating search coldstart: 169615 samples
+max_turns: 15, his_len: 8
+use_local_model: False
+sampler: SearchTaskSampler(total=169615, shuffle_table=built, sequential=False)
+search_url: http://127.0.0.1:8010/retrieve, topk: 3
+group_n: 5, env_num: 1, total_envs: 5, num_para: 5
+building environment
+Environment built successfully
+Processing logical range: [0, 99]
+Evaluating test data:   0%|          | 0/100 [00:00<?, ?it/s]Task 0 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=115817)
+Evaluating test data:   1%|          | 1/100 [00:41<1:08:45, 41.67s/it]Task 1 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=165646)
+Evaluating test data:   2%|▏         | 2/100 [00:55<41:35, 25.47s/it]  Task 2 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=113430)
+Evaluating test data:   3%|▎         | 3/100 [04:58<3:21:34, 124.68s/it]Task 3 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=96387)
+Evaluating test data:   4%|▍         | 4/100 [05:12<2:09:19, 80.83s/it] Task 4 SUCCESS at turn 7 in envs [0] data_source=hotpotqa (physical_idx=111992)
+Evaluating test data:   5%|▌         | 5/100 [06:48<2:16:44, 86.36s/it]Task 5 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=122019)
+Evaluating test data:   6%|▌         | 6/100 [07:19<1:46:10, 67.77s/it]Task 6 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=16216)
+Evaluating test data:   7%|▋         | 7/100 [07:40<1:21:04, 52.30s/it]Task 7 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=35223)
+Evaluating test data:   8%|▊         | 8/100 [07:58<1:03:19, 41.29s/it]Task 8 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=164916)
+Evaluating test data:   9%|▉         | 9/100 [08:13<50:27, 33.26s/it]  Task 9 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=113036)
+Evaluating test data:  10%|█         | 10/100 [08:28<41:25, 27.61s/it]Task 10 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=129258)
+Evaluating test data:  11%|█         | 11/100 [09:15<49:38, 33.47s/it]Task 11 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=120581)
+Evaluating test data:  12%|█▏        | 12/100 [09:43<46:40, 31.83s/it]Task 12 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=142630)
+Evaluating test data:  13%|█▎        | 13/100 [09:58<38:43, 26.70s/it]Task 13 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=72162)
+Evaluating test data:  14%|█▍        | 14/100 [10:16<34:24, 24.00s/it]Task 14 FAILED at turn 9 in envs [4] data_source=hotpotqa (physical_idx=155719)
+Evaluating test data:  15%|█▌        | 15/100 [12:15<1:14:52, 52.85s/it]Task 15 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=162754)
+Evaluating test data:  16%|█▌        | 16/100 [12:41<1:02:22, 44.56s/it]Task 16 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=147468)
+Evaluating test data:  17%|█▋        | 17/100 [13:03<52:33, 37.99s/it]  Task 17 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=135449)
+Evaluating test data:  18%|█▊        | 18/100 [13:18<42:07, 30.83s/it]Task 18 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=16014)
+Evaluating test data:  19%|█▉        | 19/100 [17:16<2:05:48, 93.19s/it]Task 19 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=162494)
+Evaluating test data:  20%|██        | 20/100 [17:30<1:32:20, 69.25s/it]Task 20 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=139211)
+Evaluating test data:  21%|██        | 21/100 [17:43<1:09:14, 52.58s/it]Task 21 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=19874)
+Evaluating test data:  22%|██▏       | 22/100 [17:59<53:49, 41.41s/it]  Task 22 FAILED at turn 5 in envs [0] data_source=nq (physical_idx=11297)
+Evaluating test data:  23%|██▎       | 23/100 [19:10<1:04:34, 50.31s/it]Task 23 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=137002)
+Evaluating test data:  24%|██▍       | 24/100 [23:19<2:19:16, 109.96s/it]Task 24 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=150182)
+Evaluating test data:  25%|██▌       | 25/100 [27:29<3:09:54, 151.93s/it]Task 25 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=8386)
+Evaluating test data:  26%|██▌       | 26/100 [28:00<2:22:39, 115.67s/it]Task 26 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=21413)
+Evaluating test data:  27%|██▋       | 27/100 [28:14<1:43:42, 85.24s/it] Task 27 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=77070)
+Evaluating test data:  28%|██▊       | 28/100 [28:26<1:16:04, 63.39s/it]Task 28 FAILED at turn 4 in envs [0] data_source=hotpotqa (physical_idx=118778)
+Evaluating test data:  29%|██▉       | 29/100 [29:12<1:08:46, 58.12s/it]Task 29 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=129270)
+Evaluating test data:  30%|███       | 30/100 [30:12<1:08:30, 58.72s/it]Task 30 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=122647)
+Evaluating test data:  31%|███       | 31/100 [30:37<55:50, 48.56s/it]  Task 31 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=46033)
+Evaluating test data:  32%|███▏      | 32/100 [30:52<43:40, 38.53s/it]Task 32 SUCCESS at turn 9 in envs [0] data_source=hotpotqa (physical_idx=156349)
+Evaluating test data:  33%|███▎      | 33/100 [33:45<1:27:57, 78.78s/it]Task 33 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=65494)
+Evaluating test data:  34%|███▍      | 34/100 [37:28<2:14:23, 122.18s/it]Task 34 SUCCESS at turn 4 in envs [0] data_source=hotpotqa (physical_idx=131651)
+Evaluating test data:  35%|███▌      | 35/100 [38:10<1:46:06, 97.94s/it] Task 35 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=150214)
+Evaluating test data:  36%|███▌      | 36/100 [38:26<1:18:19, 73.43s/it]Task 36 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=100198)
+Evaluating test data:  37%|███▋      | 37/100 [38:43<59:22, 56.55s/it]  Task 37 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=6727)
+Evaluating test data:  38%|███▊      | 38/100 [38:54<44:21, 42.92s/it]Task 38 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=82271)
+Evaluating test data:  39%|███▉      | 39/100 [39:09<34:52, 34.31s/it]Task 39 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=22557)
+Evaluating test data:  40%|████      | 40/100 [39:23<28:20, 28.34s/it]Task 40 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=25999)
+Evaluating test data:  41%|████      | 41/100 [39:43<25:25, 25.86s/it]Task 41 SUCCESS at turn 5 in envs [0] data_source=hotpotqa (physical_idx=121543)
+Evaluating test data:  42%|████▏     | 42/100 [40:50<36:54, 38.18s/it]Task 42 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=49278)
+Evaluating test data:  43%|████▎     | 43/100 [41:02<28:47, 30.31s/it]Task 43 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=82744)
+Evaluating test data:  44%|████▍     | 44/100 [41:37<29:42, 31.83s/it]Task 44 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=30466)
+Evaluating test data:  45%|████▌     | 45/100 [42:04<27:39, 30.18s/it]Task 45 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=143770)
+Evaluating test data:  46%|████▌     | 46/100 [42:21<23:42, 26.34s/it]Task 46 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=163771)
+Evaluating test data:  47%|████▋     | 47/100 [43:03<27:27, 31.08s/it]Task 47 FAILED at turn 4 in envs [0] data_source=hotpotqa (physical_idx=163845)
+Evaluating test data:  48%|████▊     | 48/100 [44:30<41:33, 47.95s/it]Task 48 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=137392)
+Evaluating test data:  49%|████▉     | 49/100 [45:03<36:44, 43.22s/it]Task 49 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=95248)
+Evaluating test data:  50%|█████     | 50/100 [45:36<33:36, 40.33s/it]Task 50 FAILED at turn 5 in envs [0] data_source=hotpotqa (physical_idx=101866)
+Evaluating test data:  51%|█████     | 51/100 [46:49<40:50, 50.01s/it]Task 51 out of max turn (physical_idx=126079)
+Evaluating test data:  52%|█████▏    | 52/100 [51:56<1:41:45, 127.21s/it]Task 52 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=14557)
+Evaluating test data:  53%|█████▎    | 53/100 [52:09<1:12:46, 92.90s/it] Task 53 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=142612)
+Evaluating test data:  54%|█████▍    | 54/100 [52:26<53:51, 70.24s/it]  Task 54 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=66595)
+Evaluating test data:  55%|█████▌    | 55/100 [53:18<48:36, 64.82s/it]Task 55 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=153487)
+Evaluating test data:  56%|█████▌    | 56/100 [53:42<38:24, 52.37s/it]Task 56 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=8080)
+Evaluating test data:  57%|█████▋    | 57/100 [54:00<30:10, 42.10s/it]Task 57 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=80519)
+Evaluating test data:  58%|█████▊    | 58/100 [54:30<26:50, 38.36s/it]Task 58 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=115408)
+Evaluating test data:  59%|█████▉    | 59/100 [55:05<25:30, 37.34s/it]Task 59 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=15659)
+Evaluating test data:  60%|██████    | 60/100 [58:15<55:27, 83.19s/it]Task 60 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=130716)
+Evaluating test data:  61%|██████    | 61/100 [58:32<41:08, 63.29s/it]Task 61 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=38043)
+Evaluating test data:  62%|██████▏   | 62/100 [1:02:34<1:14:12, 117.18s/it]Task 62 SUCCESS at turn 4 in envs [0] data_source=hotpotqa (physical_idx=108401)
+Evaluating test data:  63%|██████▎   | 63/100 [1:03:41<1:02:54, 102.03s/it]Task 63 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=82949)
+Evaluating test data:  64%|██████▍   | 64/100 [1:03:58<45:55, 76.53s/it]   Task 64 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=27148)
+Evaluating test data:  65%|██████▌   | 65/100 [1:04:12<33:41, 57.75s/it]Task 65 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=73455)
+Evaluating test data:  66%|██████▌   | 66/100 [1:04:29<25:48, 45.54s/it]Task 66 SUCCESS at turn 3 in envs [3] data_source=hotpotqa (physical_idx=143345)
+Evaluating test data:  67%|██████▋   | 67/100 [1:04:57<22:10, 40.33s/it]Task 67 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=97608)
+Evaluating test data:  68%|██████▊   | 68/100 [1:05:13<17:33, 32.93s/it]Task 68 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=60626)
+Evaluating test data:  69%|██████▉   | 69/100 [1:09:49<54:45, 105.98s/it]Task 69 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=163115)
+Evaluating test data:  70%|███████   | 70/100 [1:10:03<39:08, 78.28s/it] Task 70 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=110593)
+Evaluating test data:  71%|███████   | 71/100 [1:10:17<28:34, 59.11s/it]Task 71 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=112372)
+Evaluating test data:  72%|███████▏  | 72/100 [1:10:49<23:46, 50.94s/it]Task 72 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=123191)
+Evaluating test data:  73%|███████▎  | 73/100 [1:11:06<18:14, 40.54s/it]Task 73 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=120362)
+Evaluating test data:  74%|███████▍  | 74/100 [1:11:19<14:02, 32.40s/it]Task 74 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=86894)
+Evaluating test data:  75%|███████▌  | 75/100 [1:11:33<11:09, 26.78s/it]Task 75 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=34429)
+Evaluating test data:  76%|███████▌  | 76/100 [1:11:53<09:56, 24.87s/it]Task 76 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=37770)
+Evaluating test data:  77%|███████▋  | 77/100 [1:12:06<08:11, 21.36s/it]Task 77 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=71603)
+Evaluating test data:  78%|███████▊  | 78/100 [1:12:28<07:49, 21.36s/it]Task 78 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=51296)
+Evaluating test data:  79%|███████▉  | 79/100 [1:16:59<33:40, 96.23s/it]Task 79 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=49295)
+Evaluating test data:  80%|████████  | 80/100 [1:17:15<24:05, 72.26s/it]Task 80 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=154053)
+Evaluating test data:  81%|████████  | 81/100 [1:17:43<18:44, 59.16s/it]Task 81 FAILED at turn 7 in envs [0] data_source=hotpotqa (physical_idx=165996)
+Evaluating test data:  82%|████████▏ | 82/100 [1:19:43<23:08, 77.13s/it]Task 82 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=88352)
+Evaluating test data:  83%|████████▎ | 83/100 [1:19:57<16:30, 58.26s/it]Task 83 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=78932)
+Evaluating test data:  84%|████████▍ | 84/100 [1:20:10<11:57, 44.85s/it]Task 84 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=145643)
+Evaluating test data:  85%|████████▌ | 85/100 [1:24:52<28:56, 115.79s/it]Task 85 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=10546)
+Evaluating test data:  86%|████████▌ | 86/100 [1:25:04<19:46, 84.73s/it] Task 86 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=129221)
+Evaluating test data:  87%|████████▋ | 87/100 [1:25:18<13:47, 63.68s/it]Task 87 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=15773)
+Evaluating test data:  88%|████████▊ | 88/100 [1:25:36<09:58, 49.92s/it]Task 88 FAILED at turn 12 in envs [0] data_source=nq (physical_idx=38953)
+Evaluating test data:  89%|████████▉ | 89/100 [1:28:27<15:48, 86.24s/it]Task 89 SUCCESS at turn 6 in envs [1] data_source=hotpotqa (physical_idx=109063)
+Evaluating test data:  90%|█████████ | 90/100 [1:29:55<14:27, 86.76s/it]Task 90 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=51091)
+Evaluating test data:  91%|█████████ | 91/100 [1:30:08<09:41, 64.66s/it]Task 91 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=127238)
+Evaluating test data:  92%|█████████▏| 92/100 [1:30:24<06:39, 49.98s/it]Task 92 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=54785)
+Evaluating test data:  93%|█████████▎| 93/100 [1:30:38<04:34, 39.22s/it]Task 93 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=59538)
+Evaluating test data:  94%|█████████▍| 94/100 [1:31:06<03:35, 35.90s/it]Task 94 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=153003)
+Evaluating test data:  95%|█████████▌| 95/100 [1:36:14<09:47, 117.52s/it]Task 95 SUCCESS at turn 5 in envs [0] data_source=hotpotqa (physical_idx=160675)
+Evaluating test data:  96%|█████████▌| 96/100 [1:37:03<06:27, 96.77s/it] Task 96 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=109945)
+Evaluating test data:  97%|█████████▋| 97/100 [1:37:18<03:37, 72.47s/it]Task 97 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=11205)
+Evaluating test data:  98%|█████████▊| 98/100 [1:37:31<01:49, 54.65s/it]Task 98 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=85037)
+Evaluating test data:  99%|█████████▉| 99/100 [1:38:17<00:51, 51.92s/it]Task 99 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=143705)
+Evaluating test data: 100%|██████████| 100/100 [1:38:42<00:00, 43.87s/it]Evaluating test data: 100%|██████████| 100/100 [1:38:42<00:00, 59.23s/it]
+
+============================================================
+Total: 100, Success: 51, Rate: 51.00%
+============================================================
+Trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_0_99.json
+Success trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_0_99_success.json
+Start time: 2026-07-09 00:56:31
+End time: 2026-07-09 02:35:14
+Elapsed time: 5922.7s
+────────────────────────────────────────────────────────────
+Processing chunk [100, 199] → search_coldstart_100_199.json
+────────────────────────────────────────────────────────────
+Shuffle table built: 169615/169615 entries
+────────────────────────────────────────────────────────────
+Start time: 2026-07-09 02:35:14
+log_file: /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_100_199.log
+────────────────────────────────────────────────────────────────────────────────
+Evaluating search coldstart: 169615 samples
+max_turns: 15, his_len: 8
+use_local_model: False
+sampler: SearchTaskSampler(total=169615, shuffle_table=built, sequential=False)
+search_url: http://127.0.0.1:8010/retrieve, topk: 3
+group_n: 5, env_num: 1, total_envs: 5, num_para: 5
+building environment
+Environment built successfully
+Processing logical range: [100, 199]
+Evaluating test data:   0%|          | 0/100 [00:00<?, ?it/s]Task 100 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=24963)
+Evaluating test data:   1%|          | 1/100 [00:26<43:29, 26.36s/it]Task 101 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=3018)
+Evaluating test data:   2%|▏         | 2/100 [00:40<31:09, 19.08s/it]Task 102 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=30992)
+Evaluating test data:   3%|▎         | 3/100 [01:00<31:44, 19.64s/it]Task 103 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=74069)
+Evaluating test data:   4%|▍         | 4/100 [01:13<27:22, 17.11s/it]Task 104 FAILED at turn 10 in envs [0] data_source=hotpotqa (physical_idx=89326)
+Evaluating test data:   5%|▌         | 5/100 [04:37<2:13:30, 84.32s/it]Task 105 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=49849)
+Evaluating test data:   6%|▌         | 6/100 [04:52<1:35:28, 60.94s/it]Task 106 FAILED at turn 7 in envs [2] data_source=hotpotqa (physical_idx=80246)
+Evaluating test data:   7%|▋         | 7/100 [06:38<1:57:06, 75.55s/it]Task 107 SUCCESS at turn 3 in envs [2] data_source=nq (physical_idx=57743)
+Evaluating test data:   8%|▊         | 8/100 [07:09<1:34:07, 61.39s/it]Task 108 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=137315)
+Evaluating test data:   9%|▉         | 9/100 [07:27<1:12:38, 47.90s/it]Task 109 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=76447)
+Evaluating test data:  10%|█         | 10/100 [07:41<56:10, 37.45s/it] Task 110 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=120212)
+Evaluating test data:  11%|█         | 11/100 [08:13<52:47, 35.59s/it]Task 111 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=160336)
+Evaluating test data:  12%|█▏        | 12/100 [08:28<43:16, 29.50s/it]Task 112 FAILED at turn 5 in envs [0] data_source=hotpotqa (physical_idx=151543)
+Evaluating test data:  13%|█▎        | 13/100 [09:49<1:05:02, 44.85s/it]Task 113 out of max turn (physical_idx=139881)
+Evaluating test data:  14%|█▍        | 14/100 [14:00<2:33:49, 107.32s/it]Task 114 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=18911)
+Evaluating test data:  15%|█▌        | 15/100 [14:18<1:53:45, 80.30s/it] Task 115 FAILED at turn 6 in envs [0] data_source=hotpotqa (physical_idx=93819)
+Evaluating test data:  16%|█▌        | 16/100 [15:50<1:57:26, 83.89s/it]Task 116 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=4815)
+Evaluating test data:  17%|█▋        | 17/100 [16:07<1:28:03, 63.66s/it]Task 117 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=147223)
+Evaluating test data:  18%|█▊        | 18/100 [16:34<1:12:10, 52.81s/it]Task 118 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=31675)
+Evaluating test data:  19%|█▉        | 19/100 [16:48<55:34, 41.16s/it]  Task 119 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=23804)
+Evaluating test data:  20%|██        | 20/100 [17:03<44:14, 33.19s/it]Task 120 FAILED at turn 6 in envs [0] data_source=hotpotqa (physical_idx=164956)
+Evaluating test data:  21%|██        | 21/100 [18:32<1:05:46, 49.96s/it]Task 121 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=157863)
+Evaluating test data:  22%|██▏       | 22/100 [19:04<57:59, 44.61s/it]  Task 122 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=68744)
+Evaluating test data:  23%|██▎       | 23/100 [19:27<48:58, 38.16s/it]Task 123 SUCCESS at turn 2 in envs [1] data_source=nq (physical_idx=69801)
+Evaluating test data:  24%|██▍       | 24/100 [19:49<41:56, 33.11s/it]Task 124 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=151505)
+Evaluating test data:  25%|██▌       | 25/100 [20:07<35:44, 28.59s/it]Task 125 SUCCESS at turn 4 in envs [0] data_source=hotpotqa (physical_idx=108590)
+Evaluating test data:  26%|██▌       | 26/100 [20:52<41:20, 33.52s/it]Task 126 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=92093)
+Evaluating test data:  27%|██▋       | 27/100 [25:54<2:18:45, 114.04s/it]Task 127 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=97865)
+Evaluating test data:  28%|██▊       | 28/100 [26:08<1:40:52, 84.07s/it] Task 128 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=112080)
+Evaluating test data:  29%|██▉       | 29/100 [26:35<1:19:27, 67.14s/it]Task 129 FAILED at turn 7 in envs [0] data_source=hotpotqa (physical_idx=139897)
+Evaluating test data:  30%|███       | 30/100 [28:10<1:28:07, 75.54s/it]Task 130 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=145077)
+Evaluating test data:  31%|███       | 31/100 [28:21<1:04:35, 56.16s/it]Task 131 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=82308)
+Evaluating test data:  32%|███▏      | 32/100 [28:44<52:22, 46.21s/it]  Task 132 SUCCESS at turn 5 in envs [0] data_source=nq (physical_idx=63058)
+Evaluating test data:  33%|███▎      | 33/100 [30:09<1:04:33, 57.81s/it]Task 133 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=6357)
+Evaluating test data:  34%|███▍      | 34/100 [30:36<53:27, 48.60s/it]  Task 134 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=149238)
+Evaluating test data:  35%|███▌      | 35/100 [31:05<46:05, 42.54s/it]Task 135 FAILED at turn 2 in envs [1] data_source=nq (physical_idx=50390)
+Evaluating test data:  36%|███▌      | 36/100 [31:29<39:26, 36.97s/it]Task 136 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=52510)
+Evaluating test data:  37%|███▋      | 37/100 [31:56<35:53, 34.19s/it]Task 137 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=123628)
+Evaluating test data:  38%|███▊      | 38/100 [32:20<32:09, 31.12s/it]Task 138 SUCCESS at turn 4 in envs [0] data_source=hotpotqa (physical_idx=86561)
+Evaluating test data:  39%|███▉      | 39/100 [32:59<33:56, 33.38s/it]Task 139 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=40126)
+Evaluating test data:  40%|████      | 40/100 [33:15<28:07, 28.12s/it]Task 140 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=154282)
+Evaluating test data:  41%|████      | 41/100 [38:08<1:45:51, 107.66s/it]Task 141 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=9478)
+Evaluating test data:  42%|████▏     | 42/100 [38:45<1:23:28, 86.36s/it] Task 142 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=159635)
+Evaluating test data:  43%|████▎     | 43/100 [39:04<1:02:57, 66.28s/it]Task 143 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=25339)
+Evaluating test data:  44%|████▍     | 44/100 [42:22<1:38:43, 105.78s/it]Task 144 FAILED at turn 5 in envs [0] data_source=hotpotqa (physical_idx=134380)
+Evaluating test data:  45%|████▌     | 45/100 [43:54<1:33:03, 101.52s/it]Task 145 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=63959)
+Evaluating test data:  46%|████▌     | 46/100 [48:06<2:11:59, 146.65s/it]Task 146 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=104912)
+Evaluating test data:  47%|████▋     | 47/100 [48:22<1:34:57, 107.49s/it]Task 147 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=34761)
+Evaluating test data:  48%|████▊     | 48/100 [48:46<1:11:23, 82.37s/it] Task 148 FAILED at turn 12 in envs [0] data_source=nq (physical_idx=34496)
+Evaluating test data:  49%|████▉     | 49/100 [51:55<1:37:11, 114.34s/it]Task 149 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=144984)
+Evaluating test data:  50%|█████     | 50/100 [52:26<1:14:32, 89.45s/it] Task 150 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=8796)
+Evaluating test data:  51%|█████     | 51/100 [52:38<54:00, 66.12s/it]  Task 151 out of max turn (physical_idx=102018)
+Evaluating test data:  52%|█████▏    | 52/100 [57:31<1:47:24, 134.27s/it]Task 152 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=149770)
+Evaluating test data:  53%|█████▎    | 53/100 [58:02<1:20:52, 103.25s/it]Task 153 SUCCESS at turn 3 in envs [0] data_source=nq (physical_idx=8892)
+Evaluating test data:  54%|█████▍    | 54/100 [58:30<1:01:58, 80.85s/it] Task 154 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=10556)
+Evaluating test data:  55%|█████▌    | 55/100 [1:02:29<1:36:09, 128.21s/it]Task 155 SUCCESS at turn 3 in envs [0] data_source=nq (physical_idx=31263)
+Evaluating test data:  56%|█████▌    | 56/100 [1:02:55<1:11:25, 97.39s/it] Task 156 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=153547)
+Evaluating test data:  57%|█████▋    | 57/100 [1:03:07<51:27, 71.81s/it]  Task 157 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=4896)
+Evaluating test data:  58%|█████▊    | 58/100 [1:07:05<1:25:10, 121.68s/it]Task 158 SUCCESS at turn 4 in envs [0] data_source=hotpotqa (physical_idx=147860)
+Evaluating test data:  59%|█████▉    | 59/100 [1:07:51<1:07:40, 99.03s/it] Task 159 SUCCESS at turn 3 in envs [4] data_source=hotpotqa (physical_idx=161222)
+Evaluating test data:  60%|██████    | 60/100 [1:08:18<51:35, 77.40s/it]  Task 160 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=152232)
+Evaluating test data:  61%|██████    | 61/100 [1:08:34<38:27, 59.16s/it]Task 161 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=24770)
+Evaluating test data:  62%|██████▏   | 62/100 [1:08:47<28:35, 45.15s/it]Task 162 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=52914)
+Evaluating test data:  63%|██████▎   | 63/100 [1:09:03<22:29, 36.48s/it]Task 163 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=104485)
+Evaluating test data:  64%|██████▍   | 64/100 [1:09:21<18:33, 30.93s/it]Task 164 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=14936)
+Evaluating test data:  65%|██████▌   | 65/100 [1:13:43<58:24, 100.14s/it]Task 165 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=69870)
+Evaluating test data:  66%|██████▌   | 66/100 [1:13:55<41:50, 73.83s/it] Task 166 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=83430)
+Evaluating test data:  67%|██████▋   | 67/100 [1:14:07<30:21, 55.21s/it]Task 167 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=136782)
+Evaluating test data:  68%|██████▊   | 68/100 [1:14:39<25:46, 48.32s/it]Task 168 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=78381)
+Evaluating test data:  69%|██████▉   | 69/100 [1:14:52<19:29, 37.73s/it]Task 169 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=160412)
+Evaluating test data:  70%|███████   | 70/100 [1:15:16<16:45, 33.52s/it]Task 170 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=114783)
+Evaluating test data:  71%|███████   | 71/100 [1:15:31<13:36, 28.15s/it]Task 171 SUCCESS at turn 13 in envs [0] data_source=hotpotqa (physical_idx=135618)
+Evaluating test data:  72%|███████▏  | 72/100 [1:18:45<36:20, 77.89s/it]Task 172 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=41618)
+Evaluating test data:  73%|███████▎  | 73/100 [1:19:10<27:53, 61.97s/it]Task 173 SUCCESS at turn 3 in envs [4] data_source=hotpotqa (physical_idx=134810)
+Evaluating test data:  74%|███████▍  | 74/100 [1:19:42<22:58, 53.01s/it]Task 174 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=11617)
+Evaluating test data:  75%|███████▌  | 75/100 [1:19:53<16:49, 40.36s/it]Task 175 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=103074)
+Evaluating test data:  76%|███████▌  | 76/100 [1:20:25<15:08, 37.85s/it]Task 176 SUCCESS at turn 4 in envs [0] data_source=nq (physical_idx=46739)
+Evaluating test data:  77%|███████▋  | 77/100 [1:21:07<15:00, 39.15s/it]Task 177 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=112880)
+Evaluating test data:  78%|███████▊  | 78/100 [1:21:20<11:26, 31.19s/it]Task 178 SUCCESS at turn 9 in envs [0] data_source=hotpotqa (physical_idx=99236)
+Evaluating test data:  79%|███████▉  | 79/100 [1:24:18<26:19, 75.22s/it]Task 179 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=110154)
+Evaluating test data:  80%|████████  | 80/100 [1:24:34<19:09, 57.45s/it]Task 180 SUCCESS at turn 12 in envs [0] data_source=nq (physical_idx=61378)
+Evaluating test data:  81%|████████  | 81/100 [1:27:28<29:17, 92.53s/it]Task 181 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=9277)
+Evaluating test data:  82%|████████▏ | 82/100 [1:27:45<20:53, 69.65s/it]Task 182 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=5697)
+Evaluating test data:  83%|████████▎ | 83/100 [1:28:06<15:38, 55.23s/it]Task 183 SUCCESS at turn 2 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=19315)
+Evaluating test data:  84%|████████▍ | 84/100 [1:28:33<12:28, 46.81s/it]Task 184 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=9797)
+Evaluating test data:  85%|████████▌ | 85/100 [1:32:37<26:26, 105.77s/it]Task 185 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=119767)
+Evaluating test data:  86%|████████▌ | 86/100 [1:36:51<35:06, 150.46s/it]Task 186 SUCCESS at turn 9 in envs [0] data_source=nq (physical_idx=39563)
+Evaluating test data:  87%|████████▋ | 87/100 [1:38:45<30:13, 139.48s/it]Task 187 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=54372)
+Evaluating test data:  88%|████████▊ | 88/100 [1:39:03<20:36, 103.04s/it]Task 188 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=149355)
+Evaluating test data:  89%|████████▉ | 89/100 [1:39:18<14:01, 76.53s/it] Task 189 SUCCESS at turn 5 in envs [0] data_source=hotpotqa (physical_idx=109908)
+Evaluating test data:  90%|█████████ | 90/100 [1:40:25<12:17, 73.77s/it]Task 190 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=2976)
+Evaluating test data:  91%|█████████ | 91/100 [1:40:40<08:24, 56.10s/it]Task 191 SUCCESS at turn 6 in envs [0] data_source=hotpotqa (physical_idx=120672)
+Evaluating test data:  92%|█████████▏| 92/100 [1:42:42<10:07, 75.93s/it]Task 192 SUCCESS at turn 12 in envs [0] data_source=nq (physical_idx=66244)
+Evaluating test data:  93%|█████████▎| 93/100 [1:45:27<11:57, 102.45s/it]Task 193 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=56479)
+Evaluating test data:  94%|█████████▍| 94/100 [1:45:40<07:34, 75.69s/it] Task 194 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=129898)
+Evaluating test data:  95%|█████████▌| 95/100 [1:45:51<04:41, 56.36s/it]Task 195 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=19293)
+Evaluating test data:  96%|█████████▌| 96/100 [1:46:06<02:55, 43.75s/it]Task 196 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=27691)
+Evaluating test data:  97%|█████████▋| 97/100 [1:46:19<01:44, 34.77s/it]Task 197 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=133684)
+Evaluating test data:  98%|█████████▊| 98/100 [1:46:35<00:57, 28.97s/it]Task 198 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=141611)
+Evaluating test data:  99%|█████████▉| 99/100 [1:51:00<01:39, 99.92s/it]Task 199 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=127640)
+Evaluating test data: 100%|██████████| 100/100 [1:51:16<00:00, 74.52s/it]Evaluating test data: 100%|██████████| 100/100 [1:51:16<00:00, 66.76s/it]
+
+============================================================
+Total: 100, Success: 55, Rate: 55.00%
+============================================================
+Trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_100_199.json
+Success trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_100_199_success.json
+Start time: 2026-07-09 02:35:14
+End time: 2026-07-09 04:26:30
+Elapsed time: 6676.1s
+────────────────────────────────────────────────────────────
+Processing chunk [200, 299] → search_coldstart_200_299.json
+────────────────────────────────────────────────────────────
+Shuffle table built: 169615/169615 entries
+────────────────────────────────────────────────────────────
+Start time: 2026-07-09 04:26:30
+log_file: /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_200_299.log
+────────────────────────────────────────────────────────────────────────────────
+Evaluating search coldstart: 169615 samples
+max_turns: 15, his_len: 8
+use_local_model: False
+sampler: SearchTaskSampler(total=169615, shuffle_table=built, sequential=False)
+search_url: http://127.0.0.1:8010/retrieve, topk: 3
+group_n: 5, env_num: 1, total_envs: 5, num_para: 5
+building environment
+Environment built successfully
+Processing logical range: [200, 299]
+Evaluating test data:   0%|          | 0/100 [00:00<?, ?it/s]Task 200 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=168072)
+Evaluating test data:   1%|          | 1/100 [00:13<21:50, 13.23s/it]Task 201 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=31629)
+Evaluating test data:   2%|▏         | 2/100 [04:36<4:22:09, 160.50s/it]Task 202 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=108122)
+Evaluating test data:   3%|▎         | 3/100 [05:10<2:46:08, 102.77s/it]Task 203 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=35215)
+Evaluating test data:   4%|▍         | 4/100 [05:36<1:55:30, 72.19s/it] Task 204 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=155954)
+Evaluating test data:   5%|▌         | 5/100 [05:52<1:22:06, 51.86s/it]Task 205 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=18608)
+Evaluating test data:   6%|▌         | 6/100 [06:06<1:01:31, 39.27s/it]Task 206 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=82169)
+Evaluating test data:   7%|▋         | 7/100 [06:18<46:49, 30.21s/it]  Task 207 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=43001)
+Evaluating test data:   8%|▊         | 8/100 [06:29<37:12, 24.26s/it]Task 208 SUCCESS at turn 12 in envs [0] data_source=hotpotqa (physical_idx=135026)
+Evaluating test data:   9%|▉         | 9/100 [09:35<1:53:04, 74.55s/it]Task 209 FAILED at turn 4 in envs [0] data_source=nq (physical_idx=59898)
+Evaluating test data:  10%|█         | 10/100 [10:58<1:56:00, 77.33s/it]Task 210 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=85419)
+Evaluating test data:  11%|█         | 11/100 [14:59<3:08:54, 127.35s/it]Task 211 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=133650)
+Evaluating test data:  12%|█▏        | 12/100 [15:17<2:17:50, 93.98s/it] Task 212 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=154961)
+Evaluating test data:  13%|█▎        | 13/100 [15:30<1:41:04, 69.71s/it]Task 213 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=76770)
+Evaluating test data:  14%|█▍        | 14/100 [15:56<1:20:39, 56.27s/it]Task 214 FAILED at turn 5 in envs [0] data_source=nq (physical_idx=10881)
+Evaluating test data:  15%|█▌        | 15/100 [16:48<1:17:52, 54.98s/it]Task 215 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=21656)
+Evaluating test data:  16%|█▌        | 16/100 [17:05<1:01:03, 43.61s/it]Task 216 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=38521)
+Evaluating test data:  17%|█▋        | 17/100 [17:33<53:50, 38.92s/it]  Task 217 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=152910)
+Evaluating test data:  18%|█▊        | 18/100 [18:01<48:57, 35.82s/it]Task 218 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=39722)
+Evaluating test data:  19%|█▉        | 19/100 [22:08<2:13:54, 99.20s/it]Task 219 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=44856)
+Evaluating test data:  20%|██        | 20/100 [22:20<1:37:07, 72.84s/it]Task 220 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=93190)
+Evaluating test data:  21%|██        | 21/100 [22:34<1:12:53, 55.36s/it]Task 221 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=100930)
+Evaluating test data:  22%|██▏       | 22/100 [22:50<56:41, 43.61s/it]  Task 222 SUCCESS at turn 4 in envs [0] data_source=hotpotqa (physical_idx=84425)
+Evaluating test data:  23%|██▎       | 23/100 [23:49<1:01:39, 48.04s/it]Task 223 FAILED at turn 5 in envs [0] data_source=nq (physical_idx=26242)
+Evaluating test data:  24%|██▍       | 24/100 [25:13<1:14:24, 58.74s/it]Task 224 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=42620)
+Evaluating test data:  25%|██▌       | 25/100 [29:00<2:16:45, 109.40s/it]Task 225 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=95600)
+Evaluating test data:  26%|██▌       | 26/100 [29:17<1:40:37, 81.58s/it] Task 226 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=13283)
+Evaluating test data:  27%|██▋       | 27/100 [29:31<1:14:28, 61.22s/it]Task 227 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=32111)
+Evaluating test data:  28%|██▊       | 28/100 [32:58<2:06:06, 105.09s/it]Task 228 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=103772)
+Evaluating test data:  29%|██▉       | 29/100 [37:58<3:13:35, 163.59s/it]Task 229 SUCCESS at turn 5 in envs [0] data_source=hotpotqa (physical_idx=111997)
+Evaluating test data:  30%|███       | 30/100 [39:26<2:44:17, 140.82s/it]Task 230 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=60965)
+Evaluating test data:  31%|███       | 31/100 [39:47<2:00:49, 105.06s/it]Task 231 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=65146)
+Evaluating test data:  32%|███▏      | 32/100 [40:06<1:29:41, 79.14s/it] Task 232 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=33761)
+Evaluating test data:  33%|███▎      | 33/100 [45:20<2:47:00, 149.56s/it]Task 233 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=144841)
+Evaluating test data:  34%|███▍      | 34/100 [45:36<2:00:19, 109.39s/it]Task 234 SUCCESS at turn 7 in envs [0] data_source=hotpotqa (physical_idx=102599)
+Evaluating test data:  35%|███▌      | 35/100 [47:29<1:59:54, 110.69s/it]Task 235 FAILED at turn 12 in envs [0] data_source=hotpotqa (physical_idx=108746)
+Evaluating test data:  36%|███▌      | 36/100 [49:59<2:10:25, 122.28s/it]Task 236 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=78373)
+Evaluating test data:  37%|███▋      | 37/100 [50:12<1:34:08, 89.66s/it] Task 237 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=35700)
+Evaluating test data:  38%|███▊      | 38/100 [50:26<1:09:07, 66.89s/it]Task 238 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=146987)
+Evaluating test data:  39%|███▉      | 39/100 [50:42<52:29, 51.63s/it]  Task 239 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=169031)
+Evaluating test data:  40%|████      | 40/100 [50:54<39:45, 39.76s/it]Task 240 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=58593)
+Evaluating test data:  41%|████      | 41/100 [51:12<32:46, 33.33s/it]Task 241 SUCCESS at turn 3 in envs [0] data_source=nq (physical_idx=28383)
+Evaluating test data:  42%|████▏     | 42/100 [51:48<32:59, 34.13s/it]Task 242 SUCCESS at turn 4 in envs [0] data_source=nq (physical_idx=7002)
+Evaluating test data:  43%|████▎     | 43/100 [53:20<48:50, 51.41s/it]Task 243 SUCCESS at turn 9 in envs [0] data_source=hotpotqa (physical_idx=141749)
+Evaluating test data:  44%|████▍     | 44/100 [56:50<1:32:22, 98.97s/it]Task 244 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=148628)
+Evaluating test data:  45%|████▌     | 45/100 [1:00:50<2:09:32, 141.31s/it]Task 245 out of max turn (physical_idx=74533)
+Evaluating test data:  46%|████▌     | 46/100 [1:04:39<2:30:48, 167.56s/it]Task 246 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=80186)
+Evaluating test data:  47%|████▋     | 47/100 [1:05:03<1:50:00, 124.55s/it]Task 247 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=83651)
+Evaluating test data:  48%|████▊     | 48/100 [1:05:16<1:18:59, 91.14s/it] Task 248 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=7598)
+Evaluating test data:  49%|████▉     | 49/100 [1:05:30<57:50, 68.05s/it]  Task 249 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=133012)
+Evaluating test data:  50%|█████     | 50/100 [1:05:42<42:34, 51.10s/it]Task 250 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=167597)
+Evaluating test data:  51%|█████     | 51/100 [1:05:55<32:20, 39.60s/it]Task 251 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=137892)
+Evaluating test data:  52%|█████▏    | 52/100 [1:06:39<32:48, 41.00s/it]Task 252 SUCCESS at turn 7 in envs [0] data_source=hotpotqa (physical_idx=104152)
+Evaluating test data:  53%|█████▎    | 53/100 [1:08:23<46:49, 59.78s/it]Task 253 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=7386)
+Evaluating test data:  54%|█████▍    | 54/100 [1:08:38<35:32, 46.35s/it]Task 254 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=1082)
+Evaluating test data:  55%|█████▌    | 55/100 [1:08:51<27:22, 36.51s/it]Task 255 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=60879)
+Evaluating test data:  56%|█████▌    | 56/100 [1:09:12<23:20, 31.84s/it]Task 256 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=114151)
+Evaluating test data:  57%|█████▋    | 57/100 [1:09:32<20:19, 28.37s/it]Task 257 SUCCESS at turn 1 in envs [0] data_source=nq (physical_idx=20000)
+Evaluating test data:  58%|█████▊    | 58/100 [1:09:37<14:45, 21.09s/it]Task 258 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=36243)
+Evaluating test data:  59%|█████▉    | 59/100 [1:10:00<14:51, 21.74s/it]Task 259 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=158882)
+Evaluating test data:  60%|██████    | 60/100 [1:10:19<13:53, 20.84s/it]Task 260 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=149878)
+Evaluating test data:  61%|██████    | 61/100 [1:10:35<12:42, 19.54s/it]Task 261 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=81577)
+Evaluating test data:  62%|██████▏   | 62/100 [1:10:54<12:14, 19.33s/it]Task 262 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=33154)
+Evaluating test data:  63%|██████▎   | 63/100 [1:11:13<11:55, 19.35s/it]Task 263 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=44579)
+Evaluating test data:  64%|██████▍   | 64/100 [1:11:27<10:33, 17.60s/it]Task 264 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=155571)
+Evaluating test data:  65%|██████▌   | 65/100 [1:11:58<12:38, 21.67s/it]Task 265 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=2868)
+Evaluating test data:  66%|██████▌   | 66/100 [1:12:34<14:38, 25.83s/it]Task 266 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=119460)
+Evaluating test data:  67%|██████▋   | 67/100 [1:12:50<12:38, 22.99s/it]Task 267 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=22366)
+Evaluating test data:  68%|██████▊   | 68/100 [1:13:25<14:14, 26.70s/it]Task 268 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=128584)
+Evaluating test data:  69%|██████▉   | 69/100 [1:13:42<12:11, 23.59s/it]Task 269 SUCCESS at turn 6 in envs [0] data_source=nq (physical_idx=74824)
+Evaluating test data:  70%|███████   | 70/100 [1:14:59<19:56, 39.89s/it]Task 270 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=29150)
+Evaluating test data:  71%|███████   | 71/100 [1:18:40<45:30, 94.16s/it]Task 271 FAILED at turn 4 in envs [0] data_source=hotpotqa (physical_idx=82495)
+Evaluating test data:  72%|███████▏  | 72/100 [1:19:30<37:42, 80.82s/it]Task 272 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=161623)
+Evaluating test data:  73%|███████▎  | 73/100 [1:19:59<29:21, 65.25s/it]Task 273 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=61005)
+Evaluating test data:  74%|███████▍  | 74/100 [1:20:16<22:01, 50.81s/it]Task 274 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=4757)
+Evaluating test data:  75%|███████▌  | 75/100 [1:20:49<18:54, 45.39s/it]Task 275 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=139187)
+Evaluating test data:  76%|███████▌  | 76/100 [1:21:25<17:06, 42.76s/it]Task 276 FAILED at turn 11 in envs [0] data_source=nq (physical_idx=17)
+Evaluating test data:  77%|███████▋  | 77/100 [1:24:53<35:19, 92.15s/it]Task 277 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=111705)
+Evaluating test data:  78%|███████▊  | 78/100 [1:28:36<48:13, 131.52s/it]Task 278 SUCCESS at turn 3 in envs [0] data_source=nq (physical_idx=47681)
+Evaluating test data:  79%|███████▉  | 79/100 [1:29:09<35:43, 102.05s/it]Task 279 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=36203)
+Evaluating test data:  80%|████████  | 80/100 [1:29:22<25:06, 75.35s/it] Task 280 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=99832)
+Evaluating test data:  81%|████████  | 81/100 [1:29:34<17:49, 56.31s/it]Task 281 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=7311)
+Evaluating test data:  82%|████████▏ | 82/100 [1:29:48<13:01, 43.42s/it]Task 282 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=70066)
+Evaluating test data:  83%|████████▎ | 83/100 [1:30:04<10:01, 35.41s/it]Task 283 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=145297)
+Evaluating test data:  84%|████████▍ | 84/100 [1:30:44<09:47, 36.74s/it]Task 284 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=164918)
+Evaluating test data:  85%|████████▌ | 85/100 [1:30:59<07:31, 30.09s/it]Task 285 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=153641)
+Evaluating test data:  86%|████████▌ | 86/100 [1:31:17<06:10, 26.47s/it]Task 286 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=75609)
+Evaluating test data:  87%|████████▋ | 87/100 [1:31:42<05:40, 26.18s/it]Task 287 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=97228)
+Evaluating test data:  88%|████████▊ | 88/100 [1:32:17<05:44, 28.74s/it]Task 288 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=27327)
+Evaluating test data:  89%|████████▉ | 89/100 [1:32:31<04:27, 24.30s/it]Task 289 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=140180)
+Evaluating test data:  90%|█████████ | 90/100 [1:32:44<03:29, 20.97s/it]Task 290 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=162384)
+Evaluating test data:  91%|█████████ | 91/100 [1:37:27<14:56, 99.59s/it]Task 291 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=72530)
+Evaluating test data:  92%|█████████▏| 92/100 [1:42:07<20:29, 153.65s/it]Task 292 SUCCESS at turn 13 in envs [0] data_source=hotpotqa (physical_idx=161040)
+Evaluating test data:  93%|█████████▎| 93/100 [1:45:35<19:49, 169.97s/it]Task 293 SUCCESS at turn 4 in envs [0] data_source=hotpotqa (physical_idx=131707)
+Evaluating test data:  94%|█████████▍| 94/100 [1:46:23<13:20, 133.46s/it]Task 294 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=62552)
+Evaluating test data:  95%|█████████▌| 95/100 [1:46:50<08:26, 101.31s/it]Task 295 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=10437)
+Evaluating test data:  96%|█████████▌| 96/100 [1:51:06<09:51, 147.78s/it]Task 296 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=60202)
+Evaluating test data:  97%|█████████▋| 97/100 [1:51:19<05:21, 107.28s/it]Task 297 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=154202)
+Evaluating test data:  98%|█████████▊| 98/100 [1:51:32<02:38, 79.13s/it] Task 298 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=166924)
+Evaluating test data:  99%|█████████▉| 99/100 [1:51:48<01:00, 60.03s/it]Task 299 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=141966)
+Evaluating test data: 100%|██████████| 100/100 [1:52:17<00:00, 50.85s/it]Evaluating test data: 100%|██████████| 100/100 [1:52:17<00:00, 67.38s/it]
+
+============================================================
+Total: 100, Success: 49, Rate: 49.00%
+============================================================
+Trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_200_299.json
+Success trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_200_299_success.json
+Start time: 2026-07-09 04:26:30
+End time: 2026-07-09 06:18:48
+Elapsed time: 6737.6s
+────────────────────────────────────────────────────────────
+Processing chunk [300, 399] → search_coldstart_300_399.json
+────────────────────────────────────────────────────────────
+Shuffle table built: 169615/169615 entries
+────────────────────────────────────────────────────────────
+Start time: 2026-07-09 06:18:48
+log_file: /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_300_399.log
+────────────────────────────────────────────────────────────────────────────────
+Evaluating search coldstart: 169615 samples
+max_turns: 15, his_len: 8
+use_local_model: False
+sampler: SearchTaskSampler(total=169615, shuffle_table=built, sequential=False)
+search_url: http://127.0.0.1:8010/retrieve, topk: 3
+group_n: 5, env_num: 1, total_envs: 5, num_para: 5
+building environment
+Environment built successfully
+Processing logical range: [300, 399]
+Evaluating test data:   0%|          | 0/100 [00:00<?, ?it/s]Task 300 FAILED at turn 4 in envs [0] data_source=nq (physical_idx=50344)
+Evaluating test data:   1%|          | 1/100 [00:45<1:15:09, 45.55s/it]Task 301 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=133320)
+Evaluating test data:   2%|▏         | 2/100 [00:59<44:09, 27.03s/it]  Task 302 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=115441)
+Evaluating test data:   3%|▎         | 3/100 [04:43<3:08:59, 116.91s/it]Task 303 FAILED at turn 7 in envs [0] data_source=hotpotqa (physical_idx=148490)
+Evaluating test data:   4%|▍         | 4/100 [06:23<2:56:14, 110.15s/it]Task 304 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=164573)
+Evaluating test data:   5%|▌         | 5/100 [10:55<4:27:06, 168.70s/it]Task 305 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=92876)
+Evaluating test data:   6%|▌         | 6/100 [11:31<3:13:13, 123.33s/it]Task 306 FAILED at turn 11 in envs [0] data_source=nq (physical_idx=72432)
+Evaluating test data:   7%|▋         | 7/100 [14:19<3:33:51, 137.97s/it]Task 307 SUCCESS at turn 3 in envs [1] data_source=nq (physical_idx=14606)
+Evaluating test data:   8%|▊         | 8/100 [14:50<2:39:30, 104.03s/it]Task 308 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=116724)
+Evaluating test data:   9%|▉         | 9/100 [15:07<1:56:29, 76.81s/it] Task 309 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=75803)
+Evaluating test data:  10%|█         | 10/100 [15:26<1:28:22, 58.91s/it]Task 310 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=89228)
+Evaluating test data:  11%|█         | 11/100 [15:51<1:11:57, 48.52s/it]Task 311 SUCCESS at turn 5 in envs [0] data_source=hotpotqa (physical_idx=95322)
+Evaluating test data:  12%|█▏        | 12/100 [17:40<1:38:18, 67.03s/it]Task 312 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=145961)
+Evaluating test data:  13%|█▎        | 13/100 [24:32<4:08:26, 171.34s/it]Task 313 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=85281)
+Evaluating test data:  14%|█▍        | 14/100 [24:54<3:01:12, 126.42s/it]Task 314 SUCCESS at turn 2 in envs [2] data_source=nq (physical_idx=65784)
+Evaluating test data:  15%|█▌        | 15/100 [25:09<2:11:38, 92.92s/it] Task 315 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=140895)
+Evaluating test data:  16%|█▌        | 16/100 [25:38<1:43:02, 73.60s/it]Task 316 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=9904)
+Evaluating test data:  17%|█▋        | 17/100 [25:54<1:17:47, 56.24s/it]Task 317 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=56063)
+Evaluating test data:  18%|█▊        | 18/100 [26:06<58:51, 43.07s/it]  Task 318 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=133467)
+Evaluating test data:  19%|█▉        | 19/100 [26:23<47:32, 35.22s/it]Task 319 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=166330)
+Evaluating test data:  20%|██        | 20/100 [30:20<2:07:31, 95.65s/it]Task 320 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=24002)
+Evaluating test data:  21%|██        | 21/100 [30:33<1:33:31, 71.03s/it]Task 321 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=95138)
+Evaluating test data:  22%|██▏       | 22/100 [30:58<1:14:20, 57.19s/it]Task 322 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=105936)
+Evaluating test data:  23%|██▎       | 23/100 [31:12<56:40, 44.16s/it]  Task 323 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=27963)
+Evaluating test data:  24%|██▍       | 24/100 [31:26<44:26, 35.08s/it]Task 324 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=48325)
+Evaluating test data:  25%|██▌       | 25/100 [31:41<36:17, 29.03s/it]Task 325 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=68033)
+Evaluating test data:  26%|██▌       | 26/100 [31:55<30:25, 24.67s/it]Task 326 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=126755)
+Evaluating test data:  27%|██▋       | 27/100 [32:35<35:32, 29.21s/it]Task 327 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=157971)
+Evaluating test data:  28%|██▊       | 28/100 [33:00<33:33, 27.96s/it]Task 328 FAILED at turn 9 in envs [0] data_source=hotpotqa (physical_idx=127152)
+Evaluating test data:  29%|██▉       | 29/100 [35:53<1:24:38, 71.53s/it]Task 329 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=2122)
+Evaluating test data:  30%|███       | 30/100 [40:20<2:31:34, 129.92s/it]Task 330 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=90239)
+Evaluating test data:  31%|███       | 31/100 [40:35<1:49:50, 95.51s/it] Task 331 SUCCESS at turn 5 in envs [0] data_source=hotpotqa (physical_idx=117226)
+Evaluating test data:  32%|███▏      | 32/100 [41:51<1:41:45, 89.78s/it]Task 332 FAILED at turn 4 in envs [0] data_source=nq (physical_idx=43291)
+Evaluating test data:  33%|███▎      | 33/100 [42:47<1:28:44, 79.47s/it]Task 333 SUCCESS at turn 13 in envs [0] data_source=nq (physical_idx=69440)
+Evaluating test data:  34%|███▍      | 34/100 [46:40<2:18:03, 125.50s/it]Task 334 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=86525)
+Evaluating test data:  35%|███▌      | 35/100 [47:03<1:42:40, 94.77s/it] Task 335 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=32771)
+Evaluating test data:  36%|███▌      | 36/100 [47:18<1:15:30, 70.80s/it]Task 336 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=25845)
+Evaluating test data:  37%|███▋      | 37/100 [47:31<56:25, 53.73s/it]  Task 337 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=87478)
+Evaluating test data:  38%|███▊      | 38/100 [53:51<2:36:39, 151.61s/it]Task 338 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=133767)
+Evaluating test data:  39%|███▉      | 39/100 [54:10<1:53:33, 111.69s/it]Task 339 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=159188)
+Evaluating test data:  40%|████      | 40/100 [57:53<2:25:06, 145.11s/it]Task 340 SUCCESS at turn 4 in envs [0] data_source=nq (physical_idx=78711)
+Evaluating test data:  41%|████      | 41/100 [59:30<2:08:28, 130.66s/it]Task 341 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=149870)
+Evaluating test data:  42%|████▏     | 42/100 [59:48<1:33:42, 96.93s/it] Task 342 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=145765)
+Evaluating test data:  43%|████▎     | 43/100 [1:00:18<1:12:48, 76.63s/it]Task 343 SUCCESS at turn 5 in envs [0] data_source=nq (physical_idx=57618)
+Evaluating test data:  44%|████▍     | 44/100 [1:01:22<1:08:11, 73.06s/it]Task 344 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=30225)
+Evaluating test data:  45%|████▌     | 45/100 [1:01:41<52:07, 56.87s/it]  Task 345 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=156213)
+Evaluating test data:  46%|████▌     | 46/100 [1:02:00<40:50, 45.39s/it]Task 346 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=104838)
+Evaluating test data:  47%|████▋     | 47/100 [1:02:19<33:08, 37.52s/it]Task 347 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=21548)
+Evaluating test data:  48%|████▊     | 48/100 [1:02:34<26:44, 30.86s/it]Task 348 FAILED at turn 5 in envs [0] data_source=hotpotqa (physical_idx=125608)
+Evaluating test data:  49%|████▉     | 49/100 [1:03:51<37:56, 44.63s/it]Task 349 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=806)
+Evaluating test data:  50%|█████     | 50/100 [1:08:24<1:34:18, 113.16s/it]Task 350 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=152289)
+Evaluating test data:  51%|█████     | 51/100 [1:09:32<1:21:20, 99.61s/it] Task 351 FAILED at turn 4 in envs [0] data_source=nq (physical_idx=54484)
+Evaluating test data:  52%|█████▏    | 52/100 [1:10:49<1:14:07, 92.66s/it]Task 352 SUCCESS at turn 4 in envs [0] data_source=hotpotqa (physical_idx=167378)
+Evaluating test data:  53%|█████▎    | 53/100 [1:11:25<59:27, 75.91s/it]  Task 353 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=46472)
+Evaluating test data:  54%|█████▍    | 54/100 [1:11:38<43:35, 56.85s/it]Task 354 FAILED at turn 4 in envs [0] data_source=hotpotqa (physical_idx=97026)
+Evaluating test data:  55%|█████▌    | 55/100 [1:12:42<44:21, 59.14s/it]Task 355 SUCCESS at turn 4 in envs [0] data_source=nq (physical_idx=46273)
+Evaluating test data:  56%|█████▌    | 56/100 [1:13:44<43:54, 59.87s/it]Task 356 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=125432)
+Evaluating test data:  57%|█████▋    | 57/100 [1:14:08<35:17, 49.24s/it]Task 357 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=149083)
+Evaluating test data:  58%|█████▊    | 58/100 [1:14:23<27:16, 38.98s/it]Task 358 FAILED at turn 8 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=32759)
+Evaluating test data:  59%|█████▉    | 59/100 [1:16:42<47:01, 68.81s/it]Task 359 FAILED at turn 3 in envs [1] data_source=hotpotqa (physical_idx=140665)
+Evaluating test data:  60%|██████    | 60/100 [1:17:40<43:40, 65.50s/it]Task 360 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=34376)
+Evaluating test data:  61%|██████    | 61/100 [1:17:56<33:02, 50.83s/it]Task 361 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=146041)
+Evaluating test data:  62%|██████▏   | 62/100 [1:22:22<1:13:07, 115.45s/it]Task 362 FAILED at turn 7 in envs [0] data_source=nq (physical_idx=35186)
+Evaluating test data:  63%|██████▎   | 63/100 [1:23:48<1:05:42, 106.55s/it]Task 363 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=73337)
+Evaluating test data:  64%|██████▍   | 64/100 [1:24:05<47:43, 79.54s/it]   Task 364 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=116558)
+Evaluating test data:  65%|██████▌   | 65/100 [1:28:05<1:14:29, 127.70s/it]Task 365 SUCCESS at turn 3 in envs [0] data_source=nq (physical_idx=17042)
+Evaluating test data:  66%|██████▌   | 66/100 [1:28:32<55:19, 97.63s/it]   Task 366 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=165259)
+Evaluating test data:  67%|██████▋   | 67/100 [1:28:51<40:36, 73.85s/it]Task 367 FAILED at turn 2 in envs [1] data_source=nq (physical_idx=54789)
+Evaluating test data:  68%|██████▊   | 68/100 [1:29:04<29:46, 55.82s/it]Task 368 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=124310)
+Evaluating test data:  69%|██████▉   | 69/100 [1:29:20<22:36, 43.77s/it]Task 369 SUCCESS at turn 3 in envs [2] data_source=nq (physical_idx=47191)
+Evaluating test data:  70%|███████   | 70/100 [1:29:47<19:20, 38.68s/it]Task 370 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=46827)
+Evaluating test data:  71%|███████   | 71/100 [1:29:59<14:54, 30.83s/it]Task 371 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=130979)
+Evaluating test data:  72%|███████▏  | 72/100 [1:30:27<13:55, 29.83s/it]Task 372 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=118668)
+Evaluating test data:  73%|███████▎  | 73/100 [1:31:14<15:43, 34.95s/it]Task 373 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=57450)
+Evaluating test data:  74%|███████▍  | 74/100 [1:31:30<12:44, 29.39s/it]Task 374 FAILED at turn 7 in envs [0] data_source=nq (physical_idx=10771)
+Evaluating test data:  75%|███████▌  | 75/100 [1:33:26<23:06, 55.48s/it]Task 375 FAILED at turn 6 in envs [0] data_source=hotpotqa (physical_idx=133863)
+Evaluating test data:  76%|███████▌  | 76/100 [1:35:48<32:31, 81.33s/it]Task 376 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=105588)
+Evaluating test data:  77%|███████▋  | 77/100 [1:36:16<25:02, 65.35s/it]Task 377 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=129903)
+Evaluating test data:  78%|███████▊  | 78/100 [1:36:35<18:49, 51.33s/it]Task 378 SUCCESS at turn 7 in envs [0] data_source=hotpotqa (physical_idx=88437)
+Evaluating test data:  79%|███████▉  | 79/100 [1:38:06<22:10, 63.37s/it]Task 379 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=35219)
+Evaluating test data:  80%|████████  | 80/100 [1:38:34<17:32, 52.64s/it]Task 380 FAILED at turn 5 in envs [0] data_source=nq (physical_idx=3766)
+Evaluating test data:  81%|████████  | 81/100 [1:39:45<18:28, 58.33s/it]Task 381 SUCCESS at turn 5 in envs [0] data_source=nq (physical_idx=72780)
+Evaluating test data:  82%|████████▏ | 82/100 [1:41:02<19:05, 63.65s/it]Task 382 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=81103)
+Evaluating test data:  83%|████████▎ | 83/100 [1:47:45<46:56, 165.68s/it]Task 383 FAILED at turn 14 in envs [0] data_source=nq (physical_idx=53890)
+Evaluating test data:  84%|████████▍ | 84/100 [1:51:48<50:20, 188.76s/it]Task 384 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=105044)
+Evaluating test data:  85%|████████▌ | 85/100 [1:55:11<48:14, 192.98s/it]Task 385 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=96941)
+Evaluating test data:  86%|████████▌ | 86/100 [1:55:24<32:27, 139.12s/it]Task 386 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=163339)
+Evaluating test data:  87%|████████▋ | 87/100 [1:56:28<25:16, 116.65s/it]Task 387 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=159395)
+Evaluating test data:  88%|████████▊ | 88/100 [2:00:43<31:36, 158.00s/it]Task 388 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=158485)
+Evaluating test data:  89%|████████▉ | 89/100 [2:01:11<21:49, 119.04s/it]Task 389 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=151422)
+Evaluating test data:  90%|█████████ | 90/100 [2:01:51<15:52, 95.25s/it] Task 390 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=77815)
+Evaluating test data:  91%|█████████ | 91/100 [2:02:22<11:25, 76.20s/it]Task 391 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=51861)
+Evaluating test data:  92%|█████████▏| 92/100 [2:06:49<17:45, 133.15s/it]Task 392 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=130996)
+Evaluating test data:  93%|█████████▎| 93/100 [2:07:40<12:41, 108.73s/it]Task 393 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=43137)
+Evaluating test data:  94%|█████████▍| 94/100 [2:08:02<08:15, 82.56s/it] Task 394 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=92742)
+Evaluating test data:  95%|█████████▌| 95/100 [2:08:50<06:01, 72.26s/it]Task 395 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=40595)
+Evaluating test data:  96%|█████████▌| 96/100 [2:09:06<03:41, 55.27s/it]Task 396 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=39338)
+Evaluating test data:  97%|█████████▋| 97/100 [2:09:20<02:09, 43.07s/it]Task 397 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=154558)
+Evaluating test data:  98%|█████████▊| 98/100 [2:09:36<01:09, 34.95s/it]Task 398 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=167003)
+Evaluating test data:  99%|█████████▉| 99/100 [2:10:06<00:33, 33.40s/it]Task 399 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=83361)
+Evaluating test data: 100%|██████████| 100/100 [2:10:21<00:00, 27.87s/it]Evaluating test data: 100%|██████████| 100/100 [2:10:21<00:00, 78.21s/it]
+
+============================================================
+Total: 100, Success: 55, Rate: 55.00%
+============================================================
+Trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_300_399.json
+Success trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_300_399_success.json
+Start time: 2026-07-09 06:18:48
+End time: 2026-07-09 08:29:09
+Elapsed time: 7821.6s
+────────────────────────────────────────────────────────────
+Processing chunk [400, 499] → search_coldstart_400_499.json
+────────────────────────────────────────────────────────────
+Shuffle table built: 169615/169615 entries
+────────────────────────────────────────────────────────────
+Start time: 2026-07-09 08:29:09
+log_file: /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_400_499.log
+────────────────────────────────────────────────────────────────────────────────
+Evaluating search coldstart: 169615 samples
+max_turns: 15, his_len: 8
+use_local_model: False
+sampler: SearchTaskSampler(total=169615, shuffle_table=built, sequential=False)
+search_url: http://127.0.0.1:8010/retrieve, topk: 3
+group_n: 5, env_num: 1, total_envs: 5, num_para: 5
+building environment
+Environment built successfully
+Processing logical range: [400, 499]
+Evaluating test data:   0%|          | 0/100 [00:00<?, ?it/s]Task 400 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=161214)
+Evaluating test data:   1%|          | 1/100 [00:24<40:09, 24.34s/it]Task 401 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=86753)
+Evaluating test data:   2%|▏         | 2/100 [00:50<41:13, 25.24s/it]Task 402 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=83116)
+Evaluating test data:   3%|▎         | 3/100 [01:33<54:26, 33.67s/it]Task 403 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=37816)
+Evaluating test data:   4%|▍         | 4/100 [01:51<43:53, 27.43s/it]Task 404 FAILED at turn 2 in envs [1] data_source=hotpotqa (physical_idx=136174)
+Evaluating test data:   5%|▌         | 5/100 [02:07<36:30, 23.06s/it]Task 405 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=167850)
+Evaluating test data:   6%|▌         | 6/100 [02:18<30:08, 19.24s/it]Task 406 FAILED at turn 1 in envs [0] data_source=nq (physical_idx=10634)
+Evaluating test data:   7%|▋         | 7/100 [02:21<21:15, 13.71s/it]Task 407 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=37173)
+Evaluating test data:   8%|▊         | 8/100 [02:40<23:53, 15.58s/it]Task 408 SUCCESS at turn 2 in envs [1] data_source=hotpotqa (physical_idx=162191)
+Evaluating test data:   9%|▉         | 9/100 [03:13<31:55, 21.05s/it]Task 409 FAILED at turn 7 in envs [0] data_source=hotpotqa (physical_idx=165413)
+Evaluating test data:  10%|█         | 10/100 [05:40<1:29:38, 59.76s/it]Task 410 SUCCESS at turn 3 in envs [0] data_source=nq (physical_idx=22837)
+Evaluating test data:  11%|█         | 11/100 [06:15<1:17:30, 52.26s/it]Task 411 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=45733)
+Evaluating test data:  12%|█▏        | 12/100 [06:49<1:08:23, 46.63s/it]Task 412 SUCCESS at turn 7 in envs [0] data_source=hotpotqa (physical_idx=87742)
+Evaluating test data:  13%|█▎        | 13/100 [08:50<1:40:27, 69.28s/it]Task 413 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=72426)
+Evaluating test data:  14%|█▍        | 14/100 [09:13<1:19:20, 55.36s/it]Task 414 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=20650)
+Evaluating test data:  15%|█▌        | 15/100 [09:31<1:02:24, 44.06s/it]Task 415 FAILED at turn 11 in envs [0] data_source=hotpotqa (physical_idx=110662)
+Evaluating test data:  16%|█▌        | 16/100 [12:19<1:53:58, 81.41s/it]Task 416 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=149684)
+Evaluating test data:  17%|█▋        | 17/100 [13:30<1:48:02, 78.11s/it]Task 417 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=158022)
+Evaluating test data:  18%|█▊        | 18/100 [13:44<1:20:39, 59.02s/it]Task 418 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=48938)
+Evaluating test data:  19%|█▉        | 19/100 [14:05<1:03:52, 47.32s/it]Task 419 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=23255)
+Evaluating test data:  20%|██        | 20/100 [14:17<49:09, 36.87s/it]  Task 420 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=7854)
+Evaluating test data:  21%|██        | 21/100 [18:42<2:18:30, 105.20s/it]Task 421 FAILED at turn 11 in envs [0] data_source=nq (physical_idx=25591)
+Evaluating test data:  22%|██▏       | 22/100 [21:34<2:43:02, 125.42s/it]Task 422 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=54848)
+Evaluating test data:  23%|██▎       | 23/100 [25:40<3:27:11, 161.45s/it]Task 423 SUCCESS at turn 4 in envs [0] data_source=hotpotqa (physical_idx=163573)
+Evaluating test data:  24%|██▍       | 24/100 [26:44<2:47:30, 132.25s/it]Task 424 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=136696)
+Evaluating test data:  25%|██▌       | 25/100 [26:58<2:01:02, 96.84s/it] Task 425 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=71935)
+Evaluating test data:  26%|██▌       | 26/100 [27:16<1:30:23, 73.29s/it]Task 426 FAILED at turn 13 in envs [0] data_source=nq (physical_idx=74194)
+Evaluating test data:  27%|██▋       | 27/100 [30:39<2:16:30, 112.20s/it]Task 427 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=128266)
+Evaluating test data:  28%|██▊       | 28/100 [30:52<1:38:43, 82.27s/it] Task 428 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=33601)
+Evaluating test data:  29%|██▉       | 29/100 [34:55<2:34:29, 130.56s/it]Task 429 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=140376)
+Evaluating test data:  30%|███       | 30/100 [35:26<1:57:38, 100.84s/it]Task 430 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=41093)
+Evaluating test data:  31%|███       | 31/100 [35:38<1:25:13, 74.11s/it] Task 431 SUCCESS at turn 5 in envs [0] data_source=nq (physical_idx=38022)
+Evaluating test data:  32%|███▏      | 32/100 [36:29<1:16:10, 67.22s/it]Task 432 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=37049)
+Evaluating test data:  33%|███▎      | 33/100 [39:56<2:01:38, 108.93s/it]Task 433 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=59009)
+Evaluating test data:  34%|███▍      | 34/100 [40:28<1:34:35, 85.99s/it] Task 434 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=42543)
+Evaluating test data:  35%|███▌      | 35/100 [40:48<1:11:46, 66.26s/it]Task 435 SUCCESS at turn 6 in envs [0] data_source=hotpotqa (physical_idx=104548)
+Evaluating test data:  36%|███▌      | 36/100 [42:19<1:18:24, 73.51s/it]Task 436 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=14022)
+Evaluating test data:  37%|███▋      | 37/100 [46:23<2:11:03, 124.82s/it]Task 437 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=157606)
+Evaluating test data:  38%|███▊      | 38/100 [46:38<1:34:42, 91.66s/it] Task 438 FAILED at turn 10 in envs [0] data_source=hotpotqa (physical_idx=145079)
+Evaluating test data:  39%|███▉      | 39/100 [49:58<2:06:13, 124.16s/it]Task 439 SUCCESS at turn 6 in envs [0] data_source=hotpotqa (physical_idx=154645)
+Evaluating test data:  40%|████      | 40/100 [51:30<1:54:45, 114.76s/it]Task 440 SUCCESS at turn 7 in envs [0] data_source=nq (physical_idx=42103)
+Evaluating test data:  41%|████      | 41/100 [52:52<1:43:11, 104.93s/it]Task 441 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=64156)
+Evaluating test data:  42%|████▏     | 42/100 [53:12<1:16:37, 79.26s/it] Task 442 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=143858)
+Evaluating test data:  43%|████▎     | 43/100 [53:27<57:00, 60.01s/it]  Task 443 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=105044)
+Evaluating test data:  44%|████▍     | 44/100 [59:28<2:20:25, 150.46s/it]Task 444 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=44814)
+Evaluating test data:  45%|████▌     | 45/100 [59:46<1:41:16, 110.49s/it]Task 445 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=95894)
+Evaluating test data:  46%|████▌     | 46/100 [59:58<1:12:56, 81.05s/it] Task 446 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=17958)
+Evaluating test data:  47%|████▋     | 47/100 [1:00:12<53:57, 61.09s/it]Task 447 FAILED at turn 4 in envs [0] data_source=nq (physical_idx=59368)
+Evaluating test data:  48%|████▊     | 48/100 [1:01:11<52:25, 60.48s/it]Task 448 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=48870)
+Evaluating test data:  49%|████▉     | 49/100 [1:01:26<39:42, 46.72s/it]Task 449 SUCCESS at turn 5 in envs [0] data_source=nq (physical_idx=44980)
+Evaluating test data:  50%|█████     | 50/100 [1:02:24<41:41, 50.03s/it]Task 450 SUCCESS at turn 4 in envs [0] data_source=hotpotqa (physical_idx=115810)
+Evaluating test data:  51%|█████     | 51/100 [1:03:09<39:34, 48.46s/it]Task 451 FAILED at turn 5 in envs [0] data_source=nq (physical_idx=23555)
+Evaluating test data:  52%|█████▏    | 52/100 [1:04:33<47:18, 59.13s/it]Task 452 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=3392)
+Evaluating test data:  53%|█████▎    | 53/100 [1:05:16<42:29, 54.24s/it]Task 453 out of max turn (physical_idx=85647)
+Evaluating test data:  54%|█████▍    | 54/100 [1:09:42<1:30:28, 118.02s/it]Task 454 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=119576)
+Evaluating test data:  55%|█████▌    | 55/100 [1:10:11<1:08:30, 91.34s/it] Task 455 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=32931)
+Evaluating test data:  56%|█████▌    | 56/100 [1:10:48<54:55, 74.90s/it]  Task 456 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=142593)
+Evaluating test data:  57%|█████▋    | 57/100 [1:11:20<44:32, 62.16s/it]Task 457 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=53385)
+Evaluating test data:  58%|█████▊    | 58/100 [1:11:57<38:04, 54.39s/it]Task 458 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=118607)
+Evaluating test data:  59%|█████▉    | 59/100 [1:12:13<29:16, 42.84s/it]Task 459 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=62178)
+Evaluating test data:  60%|██████    | 60/100 [1:12:26<22:45, 34.14s/it]Task 460 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=24334)
+Evaluating test data:  61%|██████    | 61/100 [1:12:44<19:00, 29.24s/it]Task 461 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=33602)
+Evaluating test data:  62%|██████▏   | 62/100 [1:12:58<15:36, 24.64s/it]Task 462 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=151012)
+Evaluating test data:  63%|██████▎   | 63/100 [1:13:12<13:10, 21.37s/it]Task 463 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=158757)
+Evaluating test data:  64%|██████▍   | 64/100 [1:13:26<11:34, 19.29s/it]Task 464 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=72572)
+Evaluating test data:  65%|██████▌   | 65/100 [1:13:41<10:28, 17.97s/it]Task 465 FAILED at turn 5 in envs [0] data_source=nq (physical_idx=14705)
+Evaluating test data:  66%|██████▌   | 66/100 [1:14:47<18:15, 32.23s/it]Task 466 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=122479)
+Evaluating test data:  67%|██████▋   | 67/100 [1:15:08<15:57, 29.01s/it]Task 467 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=34280)
+Evaluating test data:  68%|██████▊   | 68/100 [1:15:28<13:56, 26.15s/it]Task 468 SUCCESS at turn 4 in envs [0] data_source=hotpotqa (physical_idx=126324)
+Evaluating test data:  69%|██████▉   | 69/100 [1:16:09<15:48, 30.59s/it]Task 469 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=165973)
+Evaluating test data:  70%|███████   | 70/100 [1:16:20<12:28, 24.96s/it]Task 470 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=110897)
+Evaluating test data:  71%|███████   | 71/100 [1:16:32<10:07, 20.94s/it]Task 471 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=65744)
+Evaluating test data:  72%|███████▏  | 72/100 [1:20:15<38:05, 81.61s/it]Task 472 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=58916)
+Evaluating test data:  73%|███████▎  | 73/100 [1:20:29<27:38, 61.42s/it]Task 473 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=101978)
+Evaluating test data:  74%|███████▍  | 74/100 [1:20:42<20:12, 46.62s/it]Task 474 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=53001)
+Evaluating test data:  75%|███████▌  | 75/100 [1:20:55<15:15, 36.63s/it]Task 475 FAILED at turn 10 in envs [0] data_source=hotpotqa (physical_idx=124010)
+Evaluating test data:  76%|███████▌  | 76/100 [1:24:23<35:17, 88.22s/it]Task 476 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=90601)
+Evaluating test data:  77%|███████▋  | 77/100 [1:24:45<26:05, 68.08s/it]Task 477 SUCCESS at turn 3 in envs [0] data_source=nq (physical_idx=63331)
+Evaluating test data:  78%|███████▊  | 78/100 [1:25:22<21:33, 58.79s/it]Task 478 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=165358)
+Evaluating test data:  79%|███████▉  | 79/100 [1:26:13<19:46, 56.52s/it]Task 479 SUCCESS at turn 8 in envs [0] data_source=hotpotqa (physical_idx=104861)
+Evaluating test data:  80%|████████  | 80/100 [1:27:47<22:37, 67.89s/it]Task 480 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=161702)
+Evaluating test data:  81%|████████  | 81/100 [1:33:43<48:49, 154.21s/it]Task 481 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=23106)
+Evaluating test data:  82%|████████▏ | 82/100 [1:34:01<34:01, 113.41s/it]Task 482 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=51331)
+Evaluating test data:  83%|████████▎ | 83/100 [1:34:19<24:01, 84.77s/it] Task 483 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=54197)
+Evaluating test data:  84%|████████▍ | 84/100 [1:34:38<17:22, 65.13s/it]Task 484 FAILED at turn 3 in envs [3] data_source=hotpotqa (physical_idx=111301)
+Evaluating test data:  85%|████████▌ | 85/100 [1:35:25<14:53, 59.57s/it]Task 485 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=14425)
+Evaluating test data:  86%|████████▌ | 86/100 [1:35:51<11:34, 49.59s/it]Task 486 FAILED at turn 4 in envs [0] data_source=nq (physical_idx=8573)
+Evaluating test data:  87%|████████▋ | 87/100 [1:36:45<11:02, 50.94s/it]Task 487 FAILED at turn 10 in envs [0] data_source=nq (physical_idx=9583)
+Evaluating test data:  88%|████████▊ | 88/100 [1:38:54<14:52, 74.34s/it]Task 488 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=14195)
+Evaluating test data:  89%|████████▉ | 89/100 [1:42:47<22:21, 121.97s/it]Task 489 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=64501)
+Evaluating test data:  90%|█████████ | 90/100 [1:47:05<27:05, 162.58s/it]Task 490 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=5493)
+Evaluating test data:  91%|█████████ | 91/100 [1:47:21<17:48, 118.71s/it]Task 491 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=96657)
+Evaluating test data:  92%|█████████▏| 92/100 [1:47:43<11:56, 89.51s/it] Task 492 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=68438)
+Evaluating test data:  93%|█████████▎| 93/100 [1:48:09<08:13, 70.50s/it]Task 493 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=96587)
+Evaluating test data:  94%|█████████▍| 94/100 [1:48:28<05:31, 55.18s/it]Task 494 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=64327)
+Evaluating test data:  95%|█████████▌| 95/100 [1:52:25<09:07, 109.57s/it]Task 495 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=145194)
+Evaluating test data:  96%|█████████▌| 96/100 [1:52:57<05:45, 86.49s/it] Task 496 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=32082)
+Evaluating test data:  97%|█████████▋| 97/100 [1:53:10<03:13, 64.51s/it]Task 497 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=66007)
+Evaluating test data:  98%|█████████▊| 98/100 [1:53:41<01:48, 54.33s/it]Task 498 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=128883)
+Evaluating test data:  99%|█████████▉| 99/100 [1:53:56<00:42, 42.38s/it]Task 499 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=95062)
+Evaluating test data: 100%|██████████| 100/100 [1:54:09<00:00, 33.71s/it]Evaluating test data: 100%|██████████| 100/100 [1:54:09<00:00, 68.49s/it]
+
+============================================================
+Total: 100, Success: 49, Rate: 49.00%
+============================================================
+Trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_400_499.json
+Success trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_400_499_success.json
+Start time: 2026-07-09 08:29:09
+End time: 2026-07-09 10:23:19
+Elapsed time: 6849.6s
+────────────────────────────────────────────────────────────
+Processing chunk [500, 599] → search_coldstart_500_599.json
+────────────────────────────────────────────────────────────
+Shuffle table built: 169615/169615 entries
+────────────────────────────────────────────────────────────
+Start time: 2026-07-09 10:23:19
+log_file: /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_500_599.log
+────────────────────────────────────────────────────────────────────────────────
+Evaluating search coldstart: 169615 samples
+max_turns: 15, his_len: 8
+use_local_model: False
+sampler: SearchTaskSampler(total=169615, shuffle_table=built, sequential=False)
+search_url: http://127.0.0.1:8010/retrieve, topk: 3
+group_n: 5, env_num: 1, total_envs: 5, num_para: 5
+building environment
+Environment built successfully
+Processing logical range: [500, 599]
+Evaluating test data:   0%|          | 0/100 [00:00<?, ?it/s]Task 500 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=160120)
+Evaluating test data:   1%|          | 1/100 [00:29<49:21, 29.92s/it]Task 501 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=152461)
+Evaluating test data:   2%|▏         | 2/100 [01:03<52:01, 31.86s/it]Task 502 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=124848)
+Evaluating test data:   3%|▎         | 3/100 [06:46<4:41:15, 173.98s/it]Task 503 SUCCESS at turn 3 in envs [0] data_source=nq (physical_idx=68931)
+Evaluating test data:   4%|▍         | 4/100 [07:20<3:09:59, 118.75s/it]Task 504 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=106998)
+Evaluating test data:   5%|▌         | 5/100 [11:36<4:26:13, 168.14s/it]Task 505 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=117493)
+Evaluating test data:   6%|▌         | 6/100 [12:05<3:09:37, 121.04s/it]Task 506 FAILED at turn 11 in envs [0] data_source=nq (physical_idx=3295)
+Evaluating test data:   7%|▋         | 7/100 [16:31<4:21:04, 168.43s/it]Task 507 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=14116)
+Evaluating test data:   8%|▊         | 8/100 [17:07<3:13:19, 126.08s/it]Task 508 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=27020)
+Evaluating test data:   9%|▉         | 9/100 [17:19<2:17:33, 90.70s/it] Task 509 FAILED at turn 5 in envs [0] data_source=nq (physical_idx=70822)
+Evaluating test data:  10%|█         | 10/100 [18:41<2:11:53, 87.92s/it]Task 510 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=135385)
+Evaluating test data:  11%|█         | 11/100 [19:22<1:49:05, 73.54s/it]Task 511 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=145328)
+Evaluating test data:  12%|█▏        | 12/100 [19:53<1:28:57, 60.66s/it]Task 512 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=144032)
+Evaluating test data:  13%|█▎        | 13/100 [20:23<1:14:26, 51.34s/it]Task 513 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=98350)
+Evaluating test data:  14%|█▍        | 14/100 [20:38<57:36, 40.19s/it]  Task 514 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=136029)
+Evaluating test data:  15%|█▌        | 15/100 [21:16<56:18, 39.75s/it]Task 515 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=152644)
+Evaluating test data:  16%|█▌        | 16/100 [21:45<50:50, 36.32s/it]Task 516 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=54987)
+Evaluating test data:  17%|█▋        | 17/100 [21:59<40:52, 29.55s/it]Task 517 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=124472)
+Evaluating test data:  18%|█▊        | 18/100 [22:24<38:38, 28.28s/it]Task 518 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=128113)
+Evaluating test data:  19%|█▉        | 19/100 [23:00<41:18, 30.60s/it]Task 519 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=83609)
+Evaluating test data:  20%|██        | 20/100 [23:15<34:48, 26.10s/it]Task 520 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=45891)
+Evaluating test data:  21%|██        | 21/100 [23:32<30:24, 23.09s/it]Task 521 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=149673)
+Evaluating test data:  22%|██▏       | 22/100 [28:33<2:18:41, 106.68s/it]Task 522 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=155633)
+Evaluating test data:  23%|██▎       | 23/100 [29:18<1:53:03, 88.10s/it] Task 523 FAILED at turn 9 in envs [0] data_source=nq (physical_idx=17289)
+Evaluating test data:  24%|██▍       | 24/100 [32:08<2:22:36, 112.58s/it]Task 524 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=13633)
+Evaluating test data:  25%|██▌       | 25/100 [32:42<1:51:19, 89.06s/it] Task physical_idx=22091, logical_idx=525 exit(all null) at turn 5
+Evaluating test data:  26%|██▌       | 26/100 [33:41<1:38:40, 80.01s/it]Task 526 FAILED at turn 6 in envs [0] data_source=hotpotqa (physical_idx=136230)
+Evaluating test data:  27%|██▋       | 27/100 [35:15<1:42:42, 84.41s/it]Task 527 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=130486)
+Evaluating test data:  28%|██▊       | 28/100 [35:32<1:17:02, 64.20s/it]Task 528 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=147607)
+Evaluating test data:  29%|██▉       | 29/100 [35:49<58:55, 49.80s/it]  Task 529 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=98598)
+Evaluating test data:  30%|███       | 30/100 [36:06<46:50, 40.14s/it]Task 530 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=96369)
+Evaluating test data:  31%|███       | 31/100 [40:31<2:03:40, 107.55s/it]Task 531 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=12900)
+Evaluating test data:  32%|███▏      | 32/100 [45:36<3:09:05, 166.84s/it]Task 532 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=71217)
+Evaluating test data:  33%|███▎      | 33/100 [45:51<2:15:20, 121.21s/it]Task 533 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=106072)
+Evaluating test data:  34%|███▍      | 34/100 [46:03<1:37:25, 88.57s/it] Task 534 SUCCESS at turn 4 in envs [0] data_source=nq (physical_idx=13729)
+Evaluating test data:  35%|███▌      | 35/100 [47:00<1:25:28, 78.91s/it]Task 535 SUCCESS at turn 2 in envs [3] data_source=hotpotqa (physical_idx=141238)
+Evaluating test data:  36%|███▌      | 36/100 [47:21<1:05:50, 61.72s/it]Task 536 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=160241)
+Evaluating test data:  37%|███▋      | 37/100 [47:37<50:14, 47.85s/it]  Task 537 SUCCESS at turn 3 in envs [2] data_source=hotpotqa (physical_idx=142237)
+Evaluating test data:  38%|███▊      | 38/100 [48:07<43:56, 42.53s/it]Task 538 FAILED at turn 11 in envs [0] data_source=nq (physical_idx=56269)
+Evaluating test data:  39%|███▉      | 39/100 [50:43<1:17:44, 76.47s/it]Task 539 SUCCESS at turn 4 in envs [2] data_source=hotpotqa (physical_idx=153079)
+Evaluating test data:  40%|████      | 40/100 [51:44<1:11:53, 71.90s/it]Task 540 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=72559)
+Evaluating test data:  41%|████      | 41/100 [52:01<54:30, 55.42s/it]  Task 541 SUCCESS at turn 8 in envs [0] data_source=nq (physical_idx=65822)
+Evaluating test data:  42%|████▏     | 42/100 [54:52<1:27:07, 90.12s/it]Task 542 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=156947)
+Evaluating test data:  43%|████▎     | 43/100 [55:33<1:11:31, 75.30s/it]Task 543 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=34695)
+Evaluating test data:  44%|████▍     | 44/100 [56:14<1:00:52, 65.22s/it]Task 544 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=77660)
+Evaluating test data:  45%|████▌     | 45/100 [56:53<52:27, 57.22s/it]  Task 545 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=34157)
+Evaluating test data:  46%|████▌     | 46/100 [57:08<40:14, 44.72s/it]Task 546 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=41626)
+Evaluating test data:  47%|████▋     | 47/100 [57:21<31:04, 35.17s/it]Task 547 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=151193)
+Evaluating test data:  48%|████▊     | 48/100 [57:34<24:32, 28.31s/it]Task 548 SUCCESS at turn 11 in envs [0] data_source=hotpotqa (physical_idx=84641)
+Evaluating test data:  49%|████▉     | 49/100 [1:00:20<59:23, 69.87s/it]Task 549 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=86562)
+Evaluating test data:  50%|█████     | 50/100 [1:00:42<46:05, 55.30s/it]Task 550 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=79563)
+Evaluating test data:  51%|█████     | 51/100 [1:01:27<42:35, 52.15s/it]Task 551 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=160355)
+Evaluating test data:  52%|█████▏    | 52/100 [1:01:40<32:23, 40.49s/it]Task 552 FAILED at turn 4 in envs [0] data_source=hotpotqa (physical_idx=100057)
+Evaluating test data:  53%|█████▎    | 53/100 [1:03:20<45:38, 58.26s/it]Task 553 SUCCESS at turn 7 in envs [0] data_source=hotpotqa (physical_idx=134361)
+Evaluating test data:  54%|█████▍    | 54/100 [1:05:21<59:09, 77.15s/it]Task 554 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=18204)
+Evaluating test data:  55%|█████▌    | 55/100 [1:05:33<43:11, 57.59s/it]Task 555 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=114879)
+Evaluating test data:  56%|█████▌    | 56/100 [1:05:43<31:48, 43.37s/it]Task 556 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=149619)
+Evaluating test data:  57%|█████▋    | 57/100 [1:05:56<24:37, 34.37s/it]Task 557 SUCCESS at turn 7 in envs [0] data_source=nq (physical_idx=37632)
+Evaluating test data:  58%|█████▊    | 58/100 [1:07:37<37:57, 54.22s/it]Task 558 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=41684)
+Evaluating test data:  59%|█████▉    | 59/100 [1:07:51<28:44, 42.06s/it]Task 559 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=7278)
+Evaluating test data:  60%|██████    | 60/100 [1:08:05<22:30, 33.76s/it]Task 560 FAILED at turn 6 in envs [0] data_source=hotpotqa (physical_idx=125158)
+Evaluating test data:  61%|██████    | 61/100 [1:09:37<33:14, 51.14s/it]Task 561 FAILED at turn 7 in envs [0] data_source=nq (physical_idx=46177)
+Evaluating test data:  62%|██████▏   | 62/100 [1:11:56<49:05, 77.51s/it]Task 562 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=105747)
+Evaluating test data:  63%|██████▎   | 63/100 [1:12:10<36:12, 58.71s/it]Task 563 SUCCESS at turn 3 in envs [1] data_source=hotpotqa (physical_idx=123444)
+Evaluating test data:  64%|██████▍   | 64/100 [1:13:07<34:48, 58.02s/it]Task 564 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=47022)
+Evaluating test data:  65%|██████▌   | 65/100 [1:13:21<26:07, 44.79s/it]Task 565 FAILED at turn 5 in envs [0] data_source=nq (physical_idx=72314)
+Evaluating test data:  66%|██████▌   | 66/100 [1:14:38<30:57, 54.63s/it]Task 566 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=127339)
+Evaluating test data:  67%|██████▋   | 67/100 [1:14:52<23:16, 42.33s/it]Task 567 out of max turn (physical_idx=62213)
+Evaluating test data:  68%|██████▊   | 68/100 [1:20:17<1:07:43, 126.98s/it]Task 568 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=10153)
+Evaluating test data:  69%|██████▉   | 69/100 [1:20:34<48:39, 94.17s/it]   Task 569 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=74758)
+Evaluating test data:  70%|███████   | 70/100 [1:21:02<37:12, 74.42s/it]Task 570 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=78616)
+Evaluating test data:  71%|███████   | 71/100 [1:21:16<27:11, 56.26s/it]Task 571 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=21135)
+Evaluating test data:  72%|███████▏  | 72/100 [1:21:30<20:20, 43.58s/it]Task 572 FAILED at turn 14 in envs [0] data_source=nq (physical_idx=63294)
+Evaluating test data:  73%|███████▎  | 73/100 [1:25:08<43:06, 95.80s/it]Task 573 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=80774)
+Evaluating test data:  74%|███████▍  | 74/100 [1:25:50<34:28, 79.57s/it]Task 574 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=141704)
+Evaluating test data:  75%|███████▌  | 75/100 [1:26:14<26:14, 62.99s/it]Task 575 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=115601)
+Evaluating test data:  76%|███████▌  | 76/100 [1:26:28<19:17, 48.25s/it]Task 576 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=91175)
+Evaluating test data:  77%|███████▋  | 77/100 [1:30:48<42:52, 111.83s/it]Task 577 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=162521)
+Evaluating test data:  78%|███████▊  | 78/100 [1:31:37<34:05, 92.98s/it] Task 578 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=154853)
+Evaluating test data:  79%|███████▉  | 79/100 [1:35:28<47:04, 134.48s/it]Task 579 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=6625)
+Evaluating test data:  80%|████████  | 80/100 [1:35:42<32:41, 98.08s/it] Task 580 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=102499)
+Evaluating test data:  81%|████████  | 81/100 [1:35:57<23:14, 73.40s/it]Task 581 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=48543)
+Evaluating test data:  82%|████████▏ | 82/100 [1:36:26<17:57, 59.87s/it]Task 582 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=54590)
+Evaluating test data:  83%|████████▎ | 83/100 [1:36:48<13:44, 48.49s/it]Task 583 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=9432)
+Evaluating test data:  84%|████████▍ | 84/100 [1:37:07<10:36, 39.75s/it]Task 584 SUCCESS at turn 4 in envs [0] data_source=hotpotqa (physical_idx=92310)
+Evaluating test data:  85%|████████▌ | 85/100 [1:38:00<10:54, 43.62s/it]Task 585 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=98283)
+Evaluating test data:  86%|████████▌ | 86/100 [1:38:31<09:20, 40.03s/it]Task 586 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=160557)
+Evaluating test data:  87%|████████▋ | 87/100 [1:38:48<07:10, 33.11s/it]Task 587 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=125132)
+Evaluating test data:  88%|████████▊ | 88/100 [1:39:06<05:43, 28.64s/it]Task 588 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=87901)
+Evaluating test data:  89%|████████▉ | 89/100 [1:42:55<16:15, 88.71s/it]Task 589 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=87017)
+Evaluating test data:  90%|█████████ | 90/100 [1:43:14<11:17, 67.72s/it]Task 590 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=74486)
+Evaluating test data:  91%|█████████ | 91/100 [1:43:26<07:38, 50.96s/it]Task 591 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=51471)
+Evaluating test data:  92%|█████████▏| 92/100 [1:44:25<07:06, 53.32s/it]Task 592 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=92272)
+Evaluating test data:  93%|█████████▎| 93/100 [1:45:04<05:44, 49.23s/it]Task 593 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=110029)
+Evaluating test data:  94%|█████████▍| 94/100 [1:45:20<03:54, 39.12s/it]Task 594 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=129039)
+Evaluating test data:  95%|█████████▌| 95/100 [1:45:44<02:53, 34.74s/it]Task 595 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=56902)
+Evaluating test data:  96%|█████████▌| 96/100 [1:50:19<07:06, 106.59s/it]Task 596 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=118743)
+Evaluating test data:  97%|█████████▋| 97/100 [1:50:54<04:15, 85.30s/it] Task 597 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=20198)
+Evaluating test data:  98%|█████████▊| 98/100 [1:51:11<02:09, 64.70s/it]Task 598 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=36468)
+Evaluating test data:  99%|█████████▉| 99/100 [1:51:38<00:53, 53.34s/it]Task 599 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=130229)
+Evaluating test data: 100%|██████████| 100/100 [1:51:58<00:00, 43.36s/it]Evaluating test data: 100%|██████████| 100/100 [1:51:58<00:00, 67.18s/it]
+
+============================================================
+Total: 100, Success: 50, Rate: 50.00%
+============================================================
+Trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_500_599.json
+Success trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_500_599_success.json
+Start time: 2026-07-09 10:23:19
+End time: 2026-07-09 12:15:17
+Elapsed time: 6718.4s
+────────────────────────────────────────────────────────────
+Processing chunk [600, 699] → search_coldstart_600_699.json
+────────────────────────────────────────────────────────────
+Shuffle table built: 169615/169615 entries
+────────────────────────────────────────────────────────────
+Start time: 2026-07-09 12:15:17
+log_file: /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_600_699.log
+────────────────────────────────────────────────────────────────────────────────
+Evaluating search coldstart: 169615 samples
+max_turns: 15, his_len: 8
+use_local_model: False
+sampler: SearchTaskSampler(total=169615, shuffle_table=built, sequential=False)
+search_url: http://127.0.0.1:8010/retrieve, topk: 3
+group_n: 5, env_num: 1, total_envs: 5, num_para: 5
+building environment
+Environment built successfully
+Processing logical range: [600, 699]
+Evaluating test data:   0%|          | 0/100 [00:00<?, ?it/s]Task 600 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=88309)
+Evaluating test data:   1%|          | 1/100 [00:40<1:06:53, 40.54s/it]Task 601 FAILED at turn 4 in envs [0] data_source=hotpotqa (physical_idx=124616)
+Evaluating test data:   2%|▏         | 2/100 [01:47<1:31:55, 56.28s/it]Task 602 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=30279)
+Evaluating test data:   3%|▎         | 3/100 [02:05<1:02:10, 38.46s/it]Task 603 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=125633)
+Evaluating test data:   4%|▍         | 4/100 [02:22<48:12, 30.13s/it]  Task 604 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=157383)
+Evaluating test data:   5%|▌         | 5/100 [02:37<39:00, 24.64s/it]Task 605 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=7301)
+Evaluating test data:   6%|▌         | 6/100 [05:56<2:11:40, 84.04s/it]Task 606 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=26213)
+Evaluating test data:   7%|▋         | 7/100 [06:11<1:35:18, 61.49s/it]Task 607 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=110300)
+Evaluating test data:   8%|▊         | 8/100 [06:25<1:10:46, 46.16s/it]Task 608 FAILED at turn 5 in envs [0] data_source=nq (physical_idx=17283)
+Evaluating test data:   9%|▉         | 9/100 [07:23<1:16:00, 50.12s/it]Task 609 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=94571)
+Evaluating test data:  10%|█         | 10/100 [12:14<3:06:44, 124.49s/it]Task 610 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=50144)
+Evaluating test data:  11%|█         | 11/100 [12:30<2:15:06, 91.08s/it] Task 611 out of max turn (physical_idx=169562)
+Evaluating test data:  12%|█▏        | 12/100 [17:57<3:58:49, 162.83s/it]Task 612 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=32795)
+Evaluating test data:  13%|█▎        | 13/100 [18:10<2:50:35, 117.65s/it]Task 613 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=45348)
+Evaluating test data:  14%|█▍        | 14/100 [18:26<2:04:27, 86.83s/it] Task 614 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=930)
+Evaluating test data:  15%|█▌        | 15/100 [19:03<1:41:54, 71.93s/it]Task 615 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=107992)
+Evaluating test data:  16%|█▌        | 16/100 [19:19<1:16:50, 54.89s/it]Task 616 FAILED at turn 4 in envs [0] data_source=nq (physical_idx=40515)
+Evaluating test data:  17%|█▋        | 17/100 [20:24<1:20:03, 57.87s/it]Task 617 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=37004)
+Evaluating test data:  18%|█▊        | 18/100 [20:43<1:03:18, 46.32s/it]Task 618 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=152974)
+Evaluating test data:  19%|█▉        | 19/100 [25:16<2:34:26, 114.41s/it]Task 619 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=57369)
+Evaluating test data:  20%|██        | 20/100 [25:29<1:51:55, 83.95s/it] Task 620 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=30684)
+Evaluating test data:  21%|██        | 21/100 [25:46<1:24:07, 63.90s/it]Task 621 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=151242)
+Evaluating test data:  22%|██▏       | 22/100 [26:03<1:04:37, 49.71s/it]Task 622 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=110046)
+Evaluating test data:  23%|██▎       | 23/100 [26:16<49:42, 38.74s/it]  Task 623 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=93217)
+Evaluating test data:  24%|██▍       | 24/100 [26:29<39:16, 31.00s/it]Task 624 FAILED at turn 5 in envs [0] data_source=hotpotqa (physical_idx=109967)
+Evaluating test data:  25%|██▌       | 25/100 [28:04<1:03:00, 50.40s/it]Task 625 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=126145)
+Evaluating test data:  26%|██▌       | 26/100 [28:20<49:09, 39.86s/it]  Task 626 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=93770)
+Evaluating test data:  27%|██▋       | 27/100 [28:37<40:04, 32.93s/it]Task 627 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=88955)
+Evaluating test data:  28%|██▊       | 28/100 [28:54<33:56, 28.28s/it]Task 628 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=118791)
+Evaluating test data:  29%|██▉       | 29/100 [29:28<35:40, 30.15s/it]Task 629 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=62603)
+Evaluating test data:  30%|███       | 30/100 [29:45<30:14, 25.92s/it]Task 630 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=76173)
+Evaluating test data:  31%|███       | 31/100 [30:01<26:37, 23.16s/it]Task 631 FAILED at turn 6 in envs [0] data_source=nq (physical_idx=57091)
+Evaluating test data:  32%|███▏      | 32/100 [31:42<52:37, 46.44s/it]Task 632 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=87468)
+Evaluating test data:  33%|███▎      | 33/100 [31:57<41:11, 36.88s/it]Task 633 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=125810)
+Evaluating test data:  34%|███▍      | 34/100 [32:11<33:11, 30.18s/it]Task 634 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=151921)
+Evaluating test data:  35%|███▌      | 35/100 [36:54<1:54:55, 106.09s/it]Task 635 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=129854)
+Evaluating test data:  36%|███▌      | 36/100 [37:09<1:23:49, 78.59s/it] Task 636 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=59478)
+Evaluating test data:  37%|███▋      | 37/100 [37:23<1:02:10, 59.22s/it]Task 637 SUCCESS at turn 4 in envs [0] data_source=hotpotqa (physical_idx=86429)
+Evaluating test data:  38%|███▊      | 38/100 [38:09<57:15, 55.41s/it]  Task 638 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=126448)
+Evaluating test data:  39%|███▉      | 39/100 [38:23<43:43, 43.01s/it]Task 639 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=62516)
+Evaluating test data:  40%|████      | 40/100 [38:39<34:56, 34.93s/it]Task 640 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=34528)
+Evaluating test data:  41%|████      | 41/100 [39:11<33:24, 33.97s/it]Task 641 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=96985)
+Evaluating test data:  42%|████▏     | 42/100 [39:45<32:55, 34.05s/it]Task 642 SUCCESS at turn 4 in envs [0] data_source=hotpotqa (physical_idx=100525)
+Evaluating test data:  43%|████▎     | 43/100 [40:35<36:40, 38.60s/it]Task 643 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=88371)
+Evaluating test data:  44%|████▍     | 44/100 [41:11<35:29, 38.02s/it]Task 644 FAILED at turn 7 in envs [0] data_source=nq (physical_idx=9751)
+Evaluating test data:  45%|████▌     | 45/100 [43:11<57:15, 62.46s/it]Task 645 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=5425)
+Evaluating test data:  46%|████▌     | 46/100 [43:35<45:46, 50.86s/it]Task 646 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=131843)
+Evaluating test data:  47%|████▋     | 47/100 [43:50<35:31, 40.22s/it]Task 647 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=68900)
+Evaluating test data:  48%|████▊     | 48/100 [49:09<1:47:25, 123.96s/it]Task 648 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=130386)
+Evaluating test data:  49%|████▉     | 49/100 [54:08<2:29:58, 176.44s/it]Task 649 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=137300)
+Evaluating test data:  50%|█████     | 50/100 [58:24<2:46:49, 200.19s/it]Task 650 FAILED at turn 6 in envs [0] data_source=nq (physical_idx=64949)
+Evaluating test data:  51%|█████     | 51/100 [59:35<2:11:56, 161.55s/it]Task 651 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=153943)
+Evaluating test data:  52%|█████▏    | 52/100 [59:48<1:33:38, 117.04s/it]Task 652 FAILED at turn 5 in envs [0] data_source=hotpotqa (physical_idx=136523)
+Evaluating test data:  53%|█████▎    | 53/100 [1:00:44<1:17:09, 98.51s/it]Task 653 SUCCESS at turn 2 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=994)
+Evaluating test data:  54%|█████▍    | 54/100 [1:01:01<56:55, 74.24s/it]  Task 654 SUCCESS at turn 3 in envs [0] data_source=nq (physical_idx=72458)
+Evaluating test data:  55%|█████▌    | 55/100 [1:01:24<44:07, 58.84s/it]Task 655 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=51954)
+Evaluating test data:  56%|█████▌    | 56/100 [1:01:42<34:13, 46.68s/it]Task 656 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=81438)
+Evaluating test data:  57%|█████▋    | 57/100 [1:02:12<29:47, 41.57s/it]Task 657 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=70008)
+Evaluating test data:  58%|█████▊    | 58/100 [1:02:28<23:47, 33.98s/it]Task 658 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=101946)
+Evaluating test data:  59%|█████▉    | 59/100 [1:03:03<23:15, 34.05s/it]Task 659 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=12729)
+Evaluating test data:  60%|██████    | 60/100 [1:03:25<20:17, 30.43s/it]Task 660 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=15106)
+Evaluating test data:  61%|██████    | 61/100 [1:03:38<16:29, 25.38s/it]Task 661 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=105759)
+Evaluating test data:  62%|██████▏   | 62/100 [1:07:20<53:21, 84.24s/it]Task 662 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=59751)
+Evaluating test data:  63%|██████▎   | 63/100 [1:07:34<39:03, 63.33s/it]Task 663 SUCCESS at turn 11 in envs [0] data_source=nq (physical_idx=39859)
+Evaluating test data:  64%|██████▍   | 64/100 [1:10:57<1:03:02, 105.06s/it]Task 664 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=142979)
+Evaluating test data:  65%|██████▌   | 65/100 [1:15:00<1:25:32, 146.65s/it]Task 665 FAILED at turn 6 in envs [0] data_source=nq (physical_idx=20369)
+Evaluating test data:  66%|██████▌   | 66/100 [1:16:44<1:15:43, 133.64s/it]Task 666 SUCCESS at turn 7 in envs [0] data_source=nq (physical_idx=10193)
+Evaluating test data:  67%|██████▋   | 67/100 [1:18:37<1:10:05, 127.44s/it]Task 667 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=8525)
+Evaluating test data:  68%|██████▊   | 68/100 [1:22:42<1:26:53, 162.93s/it]Task 668 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=43842)
+Evaluating test data:  69%|██████▉   | 69/100 [1:23:02<1:01:58, 119.94s/it]Task 669 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=135241)
+Evaluating test data:  70%|███████   | 70/100 [1:23:18<44:25, 88.86s/it]   Task 670 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=142164)
+Evaluating test data:  71%|███████   | 71/100 [1:23:45<33:53, 70.11s/it]Task 671 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=138874)
+Evaluating test data:  72%|███████▏  | 72/100 [1:24:14<26:56, 57.73s/it]Task 672 FAILED at turn 6 in envs [0] data_source=nq (physical_idx=31753)
+Evaluating test data:  73%|███████▎  | 73/100 [1:26:20<35:16, 78.40s/it]Task 673 SUCCESS at turn 2 in envs [3] data_source=hotpotqa (physical_idx=136153)
+Evaluating test data:  74%|███████▍  | 74/100 [1:26:34<25:35, 59.06s/it]Task 674 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=144842)
+Evaluating test data:  75%|███████▌  | 75/100 [1:27:03<20:50, 50.03s/it]Task 675 SUCCESS at turn 5 in envs [0] data_source=hotpotqa (physical_idx=111952)
+Evaluating test data:  76%|███████▌  | 76/100 [1:28:19<23:07, 57.83s/it]Task 676 FAILED at turn 5 in envs [0] data_source=nq (physical_idx=74238)
+Evaluating test data:  77%|███████▋  | 77/100 [1:29:57<26:45, 69.81s/it]Task 677 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=109344)
+Evaluating test data:  78%|███████▊  | 78/100 [1:30:29<21:29, 58.60s/it]Task 678 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=164607)
+Evaluating test data:  79%|███████▉  | 79/100 [1:30:43<15:48, 45.17s/it]Task 679 SUCCESS at turn 2 in envs [1] data_source=hotpotqa (physical_idx=88906)
+Evaluating test data:  80%|████████  | 80/100 [1:31:02<12:25, 37.25s/it]Task 680 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=54644)
+Evaluating test data:  81%|████████  | 81/100 [1:31:13<09:19, 29.47s/it]Task 681 FAILED at turn 11 in envs [0] data_source=nq (physical_idx=67337)
+Evaluating test data:  82%|████████▏ | 82/100 [1:34:23<23:13, 77.41s/it]Task 682 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=154080)
+Evaluating test data:  83%|████████▎ | 83/100 [1:34:36<16:31, 58.31s/it]Task 683 FAILED at turn 4 in envs [1] data_source=nq (physical_idx=18206)
+Evaluating test data:  84%|████████▍ | 84/100 [1:35:37<15:45, 59.12s/it]Task 684 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=77559)
+Evaluating test data:  85%|████████▌ | 85/100 [1:35:52<11:24, 45.63s/it]Task 685 FAILED at turn 6 in envs [0] data_source=hotpotqa (physical_idx=124962)
+Evaluating test data:  86%|████████▌ | 86/100 [1:38:06<16:52, 72.33s/it]Task 686 FAILED at turn 4 in envs [0] data_source=hotpotqa (physical_idx=165084)
+Evaluating test data:  87%|████████▋ | 87/100 [1:39:06<14:51, 68.59s/it]Task 687 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=141243)
+Evaluating test data:  88%|████████▊ | 88/100 [1:43:31<25:29, 127.50s/it]Task 688 SUCCESS at turn 8 in envs [0] data_source=hotpotqa (physical_idx=108847)
+Evaluating test data:  89%|████████▉ | 89/100 [1:45:28<22:49, 124.51s/it]Task 689 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=76210)
+Evaluating test data:  90%|█████████ | 90/100 [1:45:43<15:15, 91.58s/it] Task 690 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=38788)
+Evaluating test data:  91%|█████████ | 91/100 [1:46:01<10:24, 69.39s/it]Task 691 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=36914)
+Evaluating test data:  92%|█████████▏| 92/100 [1:49:35<15:03, 112.94s/it]Task 692 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=51237)
+Evaluating test data:  93%|█████████▎| 93/100 [1:53:48<18:03, 154.85s/it]Task 693 SUCCESS at turn 2 in envs [4] data_source=hotpotqa (physical_idx=135914)
+Evaluating test data:  94%|█████████▍| 94/100 [1:54:02<11:15, 112.60s/it]Task 694 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=3008)
+Evaluating test data:  95%|█████████▌| 95/100 [1:54:27<07:11, 86.22s/it] Task 695 SUCCESS at turn 5 in envs [0] data_source=hotpotqa (physical_idx=90969)
+Evaluating test data:  96%|█████████▌| 96/100 [1:55:53<05:44, 86.13s/it]Task 696 SUCCESS at turn 7 in envs [0] data_source=nq (physical_idx=5134)
+Evaluating test data:  97%|█████████▋| 97/100 [1:57:30<04:28, 89.64s/it][Search Request ID: 94a8c859-2724-45a6-b82f-cc8c74e2c5cf] Connection Error: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+Task 697 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=48467)
+Evaluating test data:  98%|█████████▊| 98/100 [2:01:07<04:15, 127.73s/it]Task 698 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=61257)
+Evaluating test data:  99%|█████████▉| 99/100 [2:01:42<01:39, 99.80s/it] Task 699 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=124628)
+Evaluating test data: 100%|██████████| 100/100 [2:02:08<00:00, 77.66s/it]Evaluating test data: 100%|██████████| 100/100 [2:02:08<00:00, 73.28s/it]
+
+============================================================
+Total: 100, Success: 54, Rate: 54.00%
+============================================================
+Trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_600_699.json
+Success trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_600_699_success.json
+Start time: 2026-07-09 12:15:17
+End time: 2026-07-09 14:17:26
+Elapsed time: 7328.3s
+────────────────────────────────────────────────────────────
+Processing chunk [700, 799] → search_coldstart_700_799.json
+────────────────────────────────────────────────────────────
+Shuffle table built: 169615/169615 entries
+────────────────────────────────────────────────────────────
+Start time: 2026-07-09 14:17:26
+log_file: /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_700_799.log
+────────────────────────────────────────────────────────────────────────────────
+Evaluating search coldstart: 169615 samples
+max_turns: 15, his_len: 8
+use_local_model: False
+sampler: SearchTaskSampler(total=169615, shuffle_table=built, sequential=False)
+search_url: http://127.0.0.1:8010/retrieve, topk: 3
+group_n: 5, env_num: 1, total_envs: 5, num_para: 5
+building environment
+Environment built successfully
+Processing logical range: [700, 799]
+Evaluating test data:   0%|          | 0/100 [00:00<?, ?it/s]Task 700 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=31700)
+Evaluating test data:   1%|          | 1/100 [00:13<23:05, 13.99s/it]Task 701 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=128386)
+Evaluating test data:   2%|▏         | 2/100 [00:31<25:50, 15.82s/it]Task 702 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=141080)
+Evaluating test data:   3%|▎         | 3/100 [00:45<24:17, 15.03s/it]Task 703 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=127617)
+Evaluating test data:   4%|▍         | 4/100 [01:03<26:10, 16.36s/it]Task 704 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=8123)
+Evaluating test data:   5%|▌         | 5/100 [01:17<24:35, 15.53s/it]Task 705 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=26680)
+Evaluating test data:   6%|▌         | 6/100 [01:33<24:34, 15.68s/it]Task 706 SUCCESS at turn 4 in envs [0] data_source=hotpotqa (physical_idx=93384)
+Evaluating test data:   7%|▋         | 7/100 [02:15<37:42, 24.33s/it]Task 707 FAILED at turn 4 in envs [0] data_source=nq (physical_idx=23083)
+Evaluating test data:   8%|▊         | 8/100 [03:20<56:52, 37.10s/it]Task 708 SUCCESS at turn 2 in envs [3] data_source=hotpotqa (physical_idx=104543)
+Evaluating test data:   9%|▉         | 9/100 [03:52<53:45, 35.45s/it]Task 709 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=41848)
+Evaluating test data:  10%|█         | 10/100 [04:03<41:59, 27.99s/it]Task 710 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=125949)
+Evaluating test data:  11%|█         | 11/100 [04:42<46:49, 31.56s/it]Task 711 SUCCESS at turn 9 in envs [0] data_source=hotpotqa (physical_idx=154345)
+Evaluating test data:  12%|█▏        | 12/100 [07:13<1:39:12, 67.64s/it]Task 712 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=18700)
+Evaluating test data:  13%|█▎        | 13/100 [07:27<1:14:38, 51.48s/it]Task 713 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=8701)
+Evaluating test data:  14%|█▍        | 14/100 [07:46<59:42, 41.66s/it]  Task 714 SUCCESS at turn 4 in envs [0] data_source=hotpotqa (physical_idx=139475)
+Evaluating test data:  15%|█▌        | 15/100 [08:31<1:00:20, 42.60s/it]Task 715 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=131539)
+Evaluating test data:  16%|█▌        | 16/100 [09:02<54:44, 39.10s/it]  Task 716 SUCCESS at turn 3 in envs [0] data_source=nq (physical_idx=45198)
+Evaluating test data:  17%|█▋        | 17/100 [09:29<49:00, 35.43s/it]Task 717 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=38261)
+Evaluating test data:  18%|█▊        | 18/100 [09:42<39:20, 28.78s/it]Task 718 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=10396)
+Evaluating test data:  19%|█▉        | 19/100 [10:12<39:36, 29.35s/it]Task 719 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=99065)
+Evaluating test data:  20%|██        | 20/100 [10:30<34:18, 25.73s/it]Task 720 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=66816)
+Evaluating test data:  21%|██        | 21/100 [10:45<29:43, 22.58s/it]Task 721 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=137251)
+Evaluating test data:  22%|██▏       | 22/100 [11:15<32:10, 24.75s/it]Task 722 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=80128)
+Evaluating test data:  23%|██▎       | 23/100 [11:28<27:11, 21.19s/it]Task 723 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=76610)
+Evaluating test data:  24%|██▍       | 24/100 [11:40<23:28, 18.53s/it]Task 724 out of max turn (physical_idx=43619)
+Evaluating test data:  25%|██▌       | 25/100 [16:14<1:58:54, 95.12s/it]Task 725 SUCCESS at turn 3 in envs [3] data_source=nq (physical_idx=30544)
+Evaluating test data:  26%|██▌       | 26/100 [17:05<1:41:05, 81.96s/it]Task 726 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=163641)
+Evaluating test data:  27%|██▋       | 27/100 [17:20<1:15:06, 61.73s/it]Task 727 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=111385)
+Evaluating test data:  28%|██▊       | 28/100 [17:48<1:01:56, 51.61s/it]Task 728 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=165216)
+Evaluating test data:  29%|██▉       | 29/100 [18:17<53:14, 44.99s/it]  Task 729 SUCCESS at turn 3 in envs [0] data_source=nq (physical_idx=42847)
+Evaluating test data:  30%|███       | 30/100 [18:48<47:23, 40.62s/it]Task 730 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=168238)
+Evaluating test data:  31%|███       | 31/100 [19:37<49:40, 43.19s/it]Task 731 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=168336)
+Evaluating test data:  32%|███▏      | 32/100 [19:51<39:08, 34.53s/it]Task 732 FAILED at turn 3 in envs [4] data_source=nq (physical_idx=56770)
+Evaluating test data:  33%|███▎      | 33/100 [21:02<50:48, 45.50s/it]Task 733 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=118425)
+Evaluating test data:  34%|███▍      | 34/100 [21:22<41:36, 37.82s/it]Task 734 FAILED at turn 6 in envs [0] data_source=nq (physical_idx=54484)
+Evaluating test data:  35%|███▌      | 35/100 [22:34<51:58, 47.97s/it]Task 735 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=9739)
+Evaluating test data:  36%|███▌      | 36/100 [22:55<42:30, 39.85s/it]Task 736 SUCCESS at turn 4 in envs [0] data_source=hotpotqa (physical_idx=87725)
+Evaluating test data:  37%|███▋      | 37/100 [23:47<45:41, 43.51s/it]Task 737 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=161751)
+Evaluating test data:  38%|███▊      | 38/100 [24:21<42:13, 40.86s/it]Task 738 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=99964)
+Evaluating test data:  39%|███▉      | 39/100 [25:10<44:00, 43.29s/it]Task 739 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=89657)
+Evaluating test data:  40%|████      | 40/100 [25:44<40:31, 40.52s/it]Task 740 FAILED at turn 5 in envs [0] data_source=hotpotqa (physical_idx=103038)
+Evaluating test data:  41%|████      | 41/100 [27:19<55:45, 56.70s/it]Task 741 SUCCESS at turn 3 in envs [0] data_source=nq (physical_idx=33919)
+Evaluating test data:  42%|████▏     | 42/100 [27:48<46:44, 48.35s/it]Task 742 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=5435)
+Evaluating test data:  43%|████▎     | 43/100 [28:44<48:02, 50.57s/it]Task 743 FAILED at turn 8 in envs [0] data_source=nq (physical_idx=36562)
+Evaluating test data:  44%|████▍     | 44/100 [31:25<1:18:16, 83.86s/it]Task 744 SUCCESS at turn 6 in envs [0] data_source=hotpotqa (physical_idx=103719)
+Evaluating test data:  45%|████▌     | 45/100 [32:47<1:16:28, 83.43s/it]Task 745 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=124563)
+Evaluating test data:  46%|████▌     | 46/100 [33:01<56:10, 62.41s/it]  Task 746 SUCCESS at turn 3 in envs [2] data_source=hotpotqa (physical_idx=153733)
+Evaluating test data:  47%|████▋     | 47/100 [33:45<50:18, 56.95s/it]Task 747 SUCCESS at turn 2 in envs [3] data_source=hotpotqa (physical_idx=155593)
+Evaluating test data:  48%|████▊     | 48/100 [34:09<40:48, 47.09s/it]Task 748 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=139631)
+Evaluating test data:  49%|████▉     | 49/100 [34:49<38:17, 45.04s/it]Task 749 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=41313)
+Evaluating test data:  50%|█████     | 50/100 [39:43<1:39:47, 119.75s/it]Task 750 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=103851)
+Evaluating test data:  51%|█████     | 51/100 [39:57<1:11:47, 87.91s/it] Task 751 FAILED at turn 11 in envs [0] data_source=nq (physical_idx=68600)
+Evaluating test data:  52%|█████▏    | 52/100 [42:43<1:29:06, 111.39s/it]Task 752 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=140148)
+Evaluating test data:  53%|█████▎    | 53/100 [43:15<1:08:32, 87.49s/it] Task 753 SUCCESS at turn 2 in envs [1] data_source=hotpotqa (physical_idx=144643)
+Evaluating test data:  54%|█████▍    | 54/100 [43:29<50:11, 65.46s/it]  Task 754 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=37519)
+Evaluating test data:  55%|█████▌    | 55/100 [43:46<38:12, 50.95s/it]Task 755 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=73023)
+Evaluating test data:  56%|█████▌    | 56/100 [44:04<29:58, 40.88s/it]Task 756 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=72804)
+Evaluating test data:  57%|█████▋    | 57/100 [44:16<23:11, 32.35s/it]Task 757 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=130747)
+Evaluating test data:  58%|█████▊    | 58/100 [44:41<21:08, 30.21s/it]Task 758 FAILED at turn 5 in envs [0] data_source=hotpotqa (physical_idx=145781)
+Evaluating test data:  59%|█████▉    | 59/100 [46:10<32:45, 47.93s/it]Task 759 SUCCESS at turn 6 in envs [0] data_source=hotpotqa (physical_idx=164688)
+Evaluating test data:  60%|██████    | 60/100 [47:33<38:49, 58.23s/it]Task 760 SUCCESS at turn 4 in envs [0] data_source=hotpotqa (physical_idx=162418)
+Evaluating test data:  61%|██████    | 61/100 [48:09<33:36, 51.70s/it]Task 761 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=58170)
+Evaluating test data:  62%|██████▏   | 62/100 [52:36<1:13:34, 116.17s/it]Task 762 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=139818)
+Evaluating test data:  63%|██████▎   | 63/100 [52:49<52:30, 85.14s/it]   Task 763 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=5695)
+Evaluating test data:  64%|██████▍   | 64/100 [53:07<39:00, 65.02s/it]Task 764 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=80662)
+Evaluating test data:  65%|██████▌   | 65/100 [53:23<29:25, 50.45s/it]Task 765 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=132404)
+Evaluating test data:  66%|██████▌   | 66/100 [58:03<1:07:40, 119.43s/it]Task 766 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=7881)
+Evaluating test data:  67%|██████▋   | 67/100 [58:18<48:21, 87.92s/it]   Task 767 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=124589)
+Evaluating test data:  68%|██████▊   | 68/100 [59:20<42:49, 80.30s/it]Task 768 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=151256)
+Evaluating test data:  69%|██████▉   | 69/100 [59:45<32:48, 63.49s/it]Task 769 SUCCESS at turn 11 in envs [0] data_source=hotpotqa (physical_idx=87202)
+Evaluating test data:  70%|███████   | 70/100 [1:02:23<45:58, 91.96s/it]Task 770 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=69385)
+Evaluating test data:  71%|███████   | 71/100 [1:02:36<32:59, 68.27s/it]Task 771 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=83942)
+Evaluating test data:  72%|███████▏  | 72/100 [1:07:22<1:02:16, 133.46s/it]Task 772 FAILED at turn 6 in envs [0] data_source=nq (physical_idx=74561)
+Evaluating test data:  73%|███████▎  | 73/100 [1:09:10<56:42, 126.02s/it]  Task 773 SUCCESS at turn 4 in envs [0] data_source=hotpotqa (physical_idx=114886)
+Evaluating test data:  74%|███████▍  | 74/100 [1:10:04<45:14, 104.39s/it]Task 774 SUCCESS at turn 12 in envs [0] data_source=hotpotqa (physical_idx=92332)
+Evaluating test data:  75%|███████▌  | 75/100 [1:13:18<54:42, 131.30s/it]Task 775 SUCCESS at turn 14 in envs [0] data_source=hotpotqa (physical_idx=130249)
+Evaluating test data:  76%|███████▌  | 76/100 [1:16:41<1:01:05, 152.74s/it]Task 776 FAILED at turn 5 in envs [0] data_source=nq (physical_idx=49526)
+Evaluating test data:  77%|███████▋  | 77/100 [1:18:01<50:08, 130.80s/it]  Task 777 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=121031)
+Evaluating test data:  78%|███████▊  | 78/100 [1:18:16<35:14, 96.09s/it] Task 778 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=9879)
+Evaluating test data:  79%|███████▉  | 79/100 [1:18:34<25:29, 72.83s/it]Task 779 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=81519)
+Evaluating test data:  80%|████████  | 80/100 [1:18:51<18:42, 56.12s/it]Task 780 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=130316)
+Evaluating test data:  81%|████████  | 81/100 [1:19:14<14:32, 45.94s/it]Task 781 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=130807)
+Evaluating test data:  82%|████████▏ | 82/100 [1:24:47<39:38, 132.16s/it]Task 782 SUCCESS at turn 2 in envs [2] data_source=hotpotqa (physical_idx=130004)
+Evaluating test data:  83%|████████▎ | 83/100 [1:25:05<27:43, 97.86s/it] Task 783 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=72835)
+Evaluating test data:  84%|████████▍ | 84/100 [1:25:23<19:42, 73.92s/it]Task 784 SUCCESS at turn 5 in envs [0] data_source=nq (physical_idx=27890)
+Evaluating test data:  85%|████████▌ | 85/100 [1:26:36<18:26, 73.76s/it]Task 785 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=94069)
+Evaluating test data:  86%|████████▌ | 86/100 [1:26:48<12:53, 55.24s/it]Task 786 SUCCESS at turn 7 in envs [0] data_source=nq (physical_idx=45766)
+Evaluating test data:  87%|████████▋ | 87/100 [1:29:22<18:24, 84.94s/it]Task 787 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=121520)
+Evaluating test data:  88%|████████▊ | 88/100 [1:29:37<12:46, 63.87s/it]Task 788 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=37315)
+Evaluating test data:  89%|████████▉ | 89/100 [1:29:50<08:55, 48.64s/it]Task 789 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=71210)
+Evaluating test data:  90%|█████████ | 90/100 [1:30:18<07:03, 42.38s/it]Task 790 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=7045)
+Evaluating test data:  91%|█████████ | 91/100 [1:30:30<04:58, 33.20s/it]Task 791 out of max turn (physical_idx=156237)
+Evaluating test data:  92%|█████████▏| 92/100 [1:34:00<11:30, 86.35s/it]Task 792 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=92267)
+Evaluating test data:  93%|█████████▎| 93/100 [1:34:10<07:23, 63.43s/it]Task 793 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=7329)
+Evaluating test data:  94%|█████████▍| 94/100 [1:34:24<04:50, 48.41s/it]Task 794 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=118297)
+Evaluating test data:  95%|█████████▌| 95/100 [1:34:54<03:34, 42.98s/it]Task 795 SUCCESS at turn 3 in envs [0] data_source=nq (physical_idx=59724)
+Evaluating test data:  96%|█████████▌| 96/100 [1:35:23<02:35, 38.93s/it]Task 796 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=96760)
+Evaluating test data:  97%|█████████▋| 97/100 [1:35:42<01:38, 32.90s/it]Task 797 SUCCESS at turn 13 in envs [0] data_source=hotpotqa (physical_idx=144288)
+Evaluating test data:  98%|█████████▊| 98/100 [1:39:59<03:20, 100.14s/it]Task 798 SUCCESS at turn 5 in envs [0] data_source=hotpotqa (physical_idx=112862)
+Evaluating test data:  99%|█████████▉| 99/100 [1:40:53<01:26, 86.35s/it] Task 799 FAILED at turn 11 in envs [0] data_source=hotpotqa (physical_idx=97194)
+Evaluating test data: 100%|██████████| 100/100 [1:43:31<00:00, 107.62s/it]Evaluating test data: 100%|██████████| 100/100 [1:43:31<00:00, 62.11s/it] 
+
+============================================================
+Total: 100, Success: 60, Rate: 60.00%
+============================================================
+Trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_700_799.json
+Success trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_700_799_success.json
+Start time: 2026-07-09 14:17:26
+End time: 2026-07-09 16:00:57
+Elapsed time: 6211.2s
+────────────────────────────────────────────────────────────
+Processing chunk [800, 899] → search_coldstart_800_899.json
+────────────────────────────────────────────────────────────
+Shuffle table built: 169615/169615 entries
+────────────────────────────────────────────────────────────
+Start time: 2026-07-09 16:00:57
+log_file: /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_800_899.log
+────────────────────────────────────────────────────────────────────────────────
+Evaluating search coldstart: 169615 samples
+max_turns: 15, his_len: 8
+use_local_model: False
+sampler: SearchTaskSampler(total=169615, shuffle_table=built, sequential=False)
+search_url: http://127.0.0.1:8010/retrieve, topk: 3
+group_n: 5, env_num: 1, total_envs: 5, num_para: 5
+building environment
+Environment built successfully
+Processing logical range: [800, 899]
+Evaluating test data:   0%|          | 0/100 [00:00<?, ?it/s]Task 800 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=45562)
+Evaluating test data:   1%|          | 1/100 [00:35<59:11, 35.87s/it]Task 801 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=76919)
+Evaluating test data:   2%|▏         | 2/100 [00:49<37:18, 22.84s/it]Task 802 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=60824)
+Evaluating test data:   3%|▎         | 3/100 [01:04<31:05, 19.23s/it]Task 803 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=81027)
+Evaluating test data:   4%|▍         | 4/100 [01:31<35:52, 22.42s/it]Task 804 FAILED at turn 2 in envs [1] data_source=nq (physical_idx=8908)
+Evaluating test data:   5%|▌         | 5/100 [01:53<35:17, 22.29s/it]Task 805 SUCCESS at turn 3 in envs [0] data_source=nq (physical_idx=56207)
+Evaluating test data:   6%|▌         | 6/100 [02:19<36:42, 23.43s/it]Task 806 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=96155)
+Evaluating test data:   7%|▋         | 7/100 [02:36<32:48, 21.17s/it]Task 807 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=73739)
+Evaluating test data:   8%|▊         | 8/100 [02:49<28:43, 18.73s/it]Task 808 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=100592)
+Evaluating test data:   9%|▉         | 9/100 [09:13<3:21:43, 133.01s/it]Task 809 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=57012)
+Evaluating test data:  10%|█         | 10/100 [09:25<2:23:20, 95.56s/it]Task 810 SUCCESS at turn 3 in envs [0] data_source=nq (physical_idx=47578)
+Evaluating test data:  11%|█         | 11/100 [10:02<1:55:11, 77.65s/it]Task 811 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=56408)
+Evaluating test data:  12%|█▏        | 12/100 [14:07<3:08:22, 128.44s/it]Task 812 SUCCESS at turn 5 in envs [3] data_source=hotpotqa (physical_idx=166266)
+Evaluating test data:  13%|█▎        | 13/100 [15:34<2:48:19, 116.09s/it]Task 813 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=56781)
+Evaluating test data:  14%|█▍        | 14/100 [15:54<2:04:35, 86.92s/it] Task 814 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=165538)
+Evaluating test data:  15%|█▌        | 15/100 [16:19<1:36:49, 68.34s/it]Task 815 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=97244)
+Evaluating test data:  16%|█▌        | 16/100 [16:41<1:16:09, 54.39s/it]Task 816 SUCCESS at turn 1 in envs [2] data_source=nq (physical_idx=26507)
+Evaluating test data:  17%|█▋        | 17/100 [16:54<57:52, 41.83s/it]  Task 817 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=163482)
+Evaluating test data:  18%|█▊        | 18/100 [17:28<53:59, 39.51s/it]Task 818 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=127502)
+Evaluating test data:  19%|█▉        | 19/100 [20:57<2:02:05, 90.43s/it]Task 819 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=45476)
+Evaluating test data:  20%|██        | 20/100 [21:12<1:30:23, 67.79s/it]Task 820 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=146403)
+Evaluating test data:  21%|██        | 21/100 [21:32<1:10:16, 53.38s/it]Task 821 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=25080)
+Evaluating test data:  22%|██▏       | 22/100 [21:49<55:24, 42.62s/it]  Task 822 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=129829)
+Evaluating test data:  23%|██▎       | 23/100 [22:05<44:26, 34.63s/it]Task 823 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=102969)
+Evaluating test data:  24%|██▍       | 24/100 [26:21<2:07:46, 100.88s/it]Task 824 SUCCESS at turn 2 in envs [2] data_source=nq (physical_idx=47265)
+Evaluating test data:  25%|██▌       | 25/100 [26:58<1:42:11, 81.75s/it] Task 825 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=150197)
+Evaluating test data:  26%|██▌       | 26/100 [27:22<1:19:37, 64.55s/it]Task 826 SUCCESS at turn 4 in envs [0] data_source=hotpotqa (physical_idx=165350)
+Evaluating test data:  27%|██▋       | 27/100 [27:58<1:07:55, 55.83s/it]Task 827 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=147600)
+Evaluating test data:  28%|██▊       | 28/100 [28:39<1:01:36, 51.34s/it]Task 828 out of max turn (physical_idx=86485)
+Evaluating test data:  29%|██▉       | 29/100 [33:52<2:33:48, 129.98s/it]Task 829 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=81225)
+Evaluating test data:  30%|███       | 30/100 [34:13<1:53:31, 97.31s/it] Task 830 SUCCESS at turn 2 in envs [4] data_source=nq (physical_idx=66707)
+Evaluating test data:  31%|███       | 31/100 [34:32<1:24:50, 73.77s/it]Task 831 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=55323)
+Evaluating test data:  32%|███▏      | 32/100 [34:49<1:04:10, 56.63s/it]Task 832 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=133649)
+Evaluating test data:  33%|███▎      | 33/100 [35:28<57:27, 51.45s/it]  Task 833 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=71382)
+Evaluating test data:  34%|███▍      | 34/100 [36:35<1:01:44, 56.12s/it]Task 834 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=163207)
+Evaluating test data:  35%|███▌      | 35/100 [37:08<53:11, 49.10s/it]  Task 835 FAILED at turn 4 in envs [0] data_source=hotpotqa (physical_idx=85388)
+Evaluating test data:  36%|███▌      | 36/100 [38:03<54:21, 50.97s/it]Task 836 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=87551)
+Evaluating test data:  37%|███▋      | 37/100 [38:18<42:03, 40.06s/it]Task 837 FAILED at turn 4 in envs [0] data_source=hotpotqa (physical_idx=126628)
+Evaluating test data:  38%|███▊      | 38/100 [39:04<43:12, 41.82s/it]Task 838 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=132102)
+Evaluating test data:  39%|███▉      | 39/100 [39:19<34:21, 33.79s/it]Task 839 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=113626)
+Evaluating test data:  40%|████      | 40/100 [39:32<27:41, 27.70s/it]Task 840 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=147736)
+Evaluating test data:  41%|████      | 41/100 [39:44<22:34, 22.97s/it]Task 841 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=143496)
+Evaluating test data:  42%|████▏     | 42/100 [39:57<19:18, 19.97s/it]Task 842 SUCCESS at turn 3 in envs [0] data_source=nq (physical_idx=77322)
+Evaluating test data:  43%|████▎     | 43/100 [40:31<22:52, 24.08s/it]Task 843 FAILED at turn 2 in envs [3] data_source=nq (physical_idx=33699)
+Evaluating test data:  44%|████▍     | 44/100 [40:46<19:59, 21.42s/it]Task 844 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=94537)
+Evaluating test data:  45%|████▌     | 45/100 [41:07<19:29, 21.26s/it]Task 845 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=25892)
+Evaluating test data:  46%|████▌     | 46/100 [41:50<25:05, 27.88s/it]Task 846 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=77824)
+Evaluating test data:  47%|████▋     | 47/100 [42:08<21:57, 24.87s/it]Task 847 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=13479)
+Evaluating test data:  48%|████▊     | 48/100 [42:22<18:48, 21.71s/it]Task 848 FAILED at turn 9 in envs [2] data_source=nq (physical_idx=21087)
+Evaluating test data:  49%|████▉     | 49/100 [44:13<41:02, 48.29s/it]Task 849 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=135287)
+Evaluating test data:  50%|█████     | 50/100 [44:41<35:18, 42.36s/it]Task 850 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=91088)
+Evaluating test data:  51%|█████     | 51/100 [45:25<35:00, 42.86s/it]Task 851 SUCCESS at turn 1 in envs [0] data_source=nq (physical_idx=1755)
+Evaluating test data:  52%|█████▏    | 52/100 [45:29<24:53, 31.12s/it]Task 852 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=69652)
+Evaluating test data:  53%|█████▎    | 53/100 [45:51<22:14, 28.39s/it]Task 853 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=118543)
+Evaluating test data:  54%|█████▍    | 54/100 [46:20<22:02, 28.75s/it]Task 854 FAILED at turn 4 in envs [0] data_source=hotpotqa (physical_idx=127545)
+Evaluating test data:  55%|█████▌    | 55/100 [47:21<28:42, 38.27s/it]Task 855 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=136925)
+Evaluating test data:  56%|█████▌    | 56/100 [47:36<22:53, 31.20s/it]Task 856 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=20157)
+Evaluating test data:  57%|█████▋    | 57/100 [48:10<23:07, 32.27s/it]Task 857 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=87521)
+Evaluating test data:  58%|█████▊    | 58/100 [48:26<19:06, 27.30s/it]Task 858 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=45846)
+Evaluating test data:  59%|█████▉    | 59/100 [48:39<15:37, 22.87s/it]Task 859 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=148263)
+Evaluating test data:  60%|██████    | 60/100 [51:46<48:05, 72.13s/it]Task 860 SUCCESS at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=116331)
+Evaluating test data:  61%|██████    | 61/100 [58:34<1:52:27, 173.00s/it]Task 861 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=166732)
+Evaluating test data:  62%|██████▏   | 62/100 [58:51<1:19:55, 126.19s/it]Task 862 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=14985)
+Evaluating test data:  63%|██████▎   | 63/100 [59:29<1:01:34, 99.86s/it] Task 863 FAILED at turn 12 in envs [0] data_source=nq (physical_idx=75023)
+Evaluating test data:  64%|██████▍   | 64/100 [1:02:43<1:16:47, 127.98s/it]Task 864 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=137856)
+Evaluating test data:  65%|██████▌   | 65/100 [1:02:59<55:02, 94.34s/it]   Task 865 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=86968)
+Evaluating test data:  66%|██████▌   | 66/100 [1:03:13<39:46, 70.20s/it]Task 866 FAILED at turn 10 in envs [0] data_source=nq (physical_idx=22013)
+Evaluating test data:  67%|██████▋   | 67/100 [1:06:17<57:25, 104.42s/it]Task 867 FAILED at turn 4 in envs [0] data_source=nq (physical_idx=48295)
+Evaluating test data:  68%|██████▊   | 68/100 [1:07:02<46:13, 86.66s/it] Task 868 FAILED at turn 6 in envs [0] data_source=hotpotqa (physical_idx=107697)
+Evaluating test data:  69%|██████▉   | 69/100 [1:08:38<46:09, 89.34s/it]Task 869 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=57903)
+Evaluating test data:  70%|███████   | 70/100 [1:12:13<1:03:28, 126.95s/it]Task 870 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=81787)
+Evaluating test data:  71%|███████   | 71/100 [1:12:44<47:32, 98.36s/it]   Task 871 FAILED at turn 4 in envs [0] data_source=nq (physical_idx=48180)
+Evaluating test data:  72%|███████▏  | 72/100 [1:13:22<37:24, 80.17s/it]Task 872 FAILED at turn 5 in envs [0] data_source=nq (physical_idx=62798)
+Evaluating test data:  73%|███████▎  | 73/100 [1:14:08<31:28, 69.96s/it]Task 873 FAILED at turn 5 in envs [0] data_source=nq (physical_idx=18302)
+Evaluating test data:  74%|███████▍  | 74/100 [1:15:03<28:23, 65.53s/it]Task 874 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=28513)
+Evaluating test data:  75%|███████▌  | 75/100 [1:15:24<21:40, 52.03s/it]Task 875 FAILED at turn 11 in envs [0] data_source=hotpotqa (physical_idx=131132)
+Evaluating test data:  76%|███████▌  | 76/100 [1:18:33<37:14, 93.09s/it]Task 876 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=114931)
+Evaluating test data:  77%|███████▋  | 77/100 [1:22:30<52:15, 136.32s/it]Task 877 FAILED at turn 10 in envs [0] data_source=nq (physical_idx=35664)
+Evaluating test data:  78%|███████▊  | 78/100 [1:25:11<52:45, 143.89s/it]Task 878 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=93154)
+Evaluating test data:  79%|███████▉  | 79/100 [1:25:31<37:18, 106.59s/it]Task 879 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=23096)
+Evaluating test data:  80%|████████  | 80/100 [1:25:56<27:22, 82.12s/it] Task 880 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=87510)
+Evaluating test data:  81%|████████  | 81/100 [1:26:40<22:24, 70.78s/it]Task 881 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=54524)
+Evaluating test data:  82%|████████▏ | 82/100 [1:30:38<36:15, 120.87s/it]Task 882 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=137677)
+Evaluating test data:  83%|████████▎ | 83/100 [1:30:58<25:42, 90.72s/it] Task 883 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=142440)
+Evaluating test data:  84%|████████▍ | 84/100 [1:31:12<18:03, 67.69s/it]Task 884 SUCCESS at turn 5 in envs [0] data_source=hotpotqa (physical_idx=110969)
+Evaluating test data:  85%|████████▌ | 85/100 [1:32:17<16:41, 66.76s/it]Task 885 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=97335)
+Evaluating test data:  86%|████████▌ | 86/100 [1:32:35<12:09, 52.14s/it]Task 886 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=91176)
+Evaluating test data:  87%|████████▋ | 87/100 [1:33:01<09:37, 44.42s/it]Task 887 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=85481)
+Evaluating test data:  88%|████████▊ | 88/100 [1:33:18<07:11, 35.93s/it]Task 888 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=157194)
+Evaluating test data:  89%|████████▉ | 89/100 [1:34:03<07:05, 38.65s/it]Task 889 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=50083)
+Evaluating test data:  90%|█████████ | 90/100 [1:38:08<16:45, 100.54s/it]Task 890 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=45986)
+Evaluating test data:  91%|█████████ | 91/100 [1:43:11<24:12, 161.42s/it]Task 891 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=117718)
+Evaluating test data:  92%|█████████▏| 92/100 [1:43:24<15:33, 116.75s/it]Task 892 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=97272)
+Evaluating test data:  93%|█████████▎| 93/100 [1:43:50<10:27, 89.61s/it] Task 893 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=31300)
+Evaluating test data:  94%|█████████▍| 94/100 [1:44:02<06:38, 66.44s/it]Task 894 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=19493)
+Evaluating test data:  95%|█████████▌| 95/100 [1:44:35<04:42, 56.41s/it]Task 895 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=93605)
+Evaluating test data:  96%|█████████▌| 96/100 [1:44:51<02:56, 44.16s/it]Task 896 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=7433)
+Evaluating test data:  97%|█████████▋| 97/100 [1:45:17<01:56, 38.90s/it]Task 897 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=10100)
+Evaluating test data:  98%|█████████▊| 98/100 [1:49:40<03:32, 106.09s/it]Task 898 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=129902)
+Evaluating test data:  99%|█████████▉| 99/100 [1:54:02<02:32, 152.90s/it]Task 899 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=95771)
+Evaluating test data: 100%|██████████| 100/100 [1:54:19<00:00, 112.08s/it]Evaluating test data: 100%|██████████| 100/100 [1:54:19<00:00, 68.60s/it] 
+
+============================================================
+Total: 100, Success: 51, Rate: 51.00%
+============================================================
+Trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_800_899.json
+Success trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_800_899_success.json
+Start time: 2026-07-09 16:00:57
+End time: 2026-07-09 17:55:17
+Elapsed time: 6859.8s
+────────────────────────────────────────────────────────────
+Processing chunk [900, 999] → search_coldstart_900_999.json
+────────────────────────────────────────────────────────────
+Shuffle table built: 169615/169615 entries
+────────────────────────────────────────────────────────────
+Start time: 2026-07-09 17:55:17
+log_file: /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_900_999.log
+────────────────────────────────────────────────────────────────────────────────
+Evaluating search coldstart: 169615 samples
+max_turns: 15, his_len: 8
+use_local_model: False
+sampler: SearchTaskSampler(total=169615, shuffle_table=built, sequential=False)
+search_url: http://127.0.0.1:8010/retrieve, topk: 3
+group_n: 5, env_num: 1, total_envs: 5, num_para: 5
+building environment
+Environment built successfully
+Processing logical range: [900, 999]
+Evaluating test data:   0%|          | 0/100 [00:00<?, ?it/s]Task 900 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=67223)
+Evaluating test data:   1%|          | 1/100 [00:12<19:49, 12.01s/it]Task 901 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=112187)
+Evaluating test data:   2%|▏         | 2/100 [00:42<37:41, 23.08s/it]Task 902 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=10714)
+Evaluating test data:   3%|▎         | 3/100 [01:02<34:27, 21.32s/it]Task 903 SUCCESS at turn 3 in envs [0] data_source=nq (physical_idx=48068)
+Evaluating test data:   4%|▍         | 4/100 [01:48<49:42, 31.07s/it]Task 904 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=21439)
+Evaluating test data:   5%|▌         | 5/100 [05:21<2:33:05, 96.69s/it]Task 905 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=159055)
+Evaluating test data:   6%|▌         | 6/100 [09:40<3:57:54, 151.86s/it]Task 906 FAILED at turn 4 in envs [0] data_source=hotpotqa (physical_idx=141590)
+Evaluating test data:   7%|▋         | 7/100 [10:34<3:05:56, 119.97s/it]Task 907 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=65080)
+Evaluating test data:   8%|▊         | 8/100 [10:52<2:14:11, 87.51s/it] Task 908 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=37741)
+Evaluating test data:   9%|▉         | 9/100 [11:12<1:40:57, 66.57s/it]Task 909 SUCCESS at turn 4 in envs [0] data_source=nq (physical_idx=42712)
+Evaluating test data:  10%|█         | 10/100 [12:25<1:42:32, 68.36s/it]Task 910 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=50730)
+Evaluating test data:  11%|█         | 11/100 [12:41<1:17:41, 52.38s/it]Task 911 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=164910)
+Evaluating test data:  12%|█▏        | 12/100 [13:02<1:02:42, 42.75s/it]Task 912 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=72704)
+Evaluating test data:  13%|█▎        | 13/100 [13:20<51:12, 35.32s/it]  Task 913 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=85208)
+Evaluating test data:  14%|█▍        | 14/100 [13:37<42:38, 29.75s/it]Task 914 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=140668)
+Evaluating test data:  15%|█▌        | 15/100 [14:13<44:50, 31.65s/it]Task 915 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=123824)
+Evaluating test data:  16%|█▌        | 16/100 [14:44<44:02, 31.45s/it]Task 916 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=75365)
+Evaluating test data:  17%|█▋        | 17/100 [15:02<37:50, 27.36s/it]Task 917 FAILED at turn 6 in envs [0] data_source=nq (physical_idx=65620)
+Evaluating test data:  18%|█▊        | 18/100 [16:10<54:20, 39.76s/it]Task 918 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=86664)
+Evaluating test data:  19%|█▉        | 19/100 [16:30<45:44, 33.88s/it]Task 919 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=70937)
+Evaluating test data:  20%|██        | 20/100 [16:45<37:28, 28.10s/it]Task 920 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=130530)
+Evaluating test data:  21%|██        | 21/100 [17:24<41:10, 31.27s/it]Task 921 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=101306)
+Evaluating test data:  22%|██▏       | 22/100 [17:44<36:18, 27.93s/it]Task 922 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=28436)
+Evaluating test data:  23%|██▎       | 23/100 [18:04<32:53, 25.63s/it]Task 923 SUCCESS at turn 5 in envs [0] data_source=hotpotqa (physical_idx=87806)
+Evaluating test data:  24%|██▍       | 24/100 [19:06<46:08, 36.43s/it]Task 924 FAILED at turn 4 in envs [0] data_source=hotpotqa (physical_idx=110555)
+Evaluating test data:  25%|██▌       | 25/100 [19:56<50:51, 40.68s/it]Task 925 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=72268)
+Evaluating test data:  26%|██▌       | 26/100 [20:18<43:14, 35.05s/it]Task 926 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=18760)
+Evaluating test data:  27%|██▋       | 27/100 [25:34<2:25:02, 119.21s/it]Task 927 FAILED at turn 10 in envs [0] data_source=nq (physical_idx=17777)
+Evaluating test data:  28%|██▊       | 28/100 [28:03<2:33:43, 128.10s/it]Task 928 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=138499)
+Evaluating test data:  29%|██▉       | 29/100 [28:15<1:50:37, 93.48s/it] Task 929 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=21872)
+Evaluating test data:  30%|███       | 30/100 [28:29<1:21:09, 69.56s/it]Task 930 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=58180)
+Evaluating test data:  31%|███       | 31/100 [32:13<2:13:20, 115.95s/it]Task 931 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=19640)
+Evaluating test data:  32%|███▏      | 32/100 [32:25<1:36:00, 84.72s/it] Task 932 FAILED at turn 3 in envs [0] data_source=nq (physical_idx=59502)
+Evaluating test data:  33%|███▎      | 33/100 [33:10<1:21:10, 72.70s/it]Task 933 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=123724)
+Evaluating test data:  34%|███▍      | 34/100 [33:39<1:05:38, 59.68s/it]Task 934 SUCCESS at turn 6 in envs [0] data_source=hotpotqa (physical_idx=120475)
+Evaluating test data:  35%|███▌      | 35/100 [35:38<1:23:55, 77.46s/it]Task 935 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=103828)
+Evaluating test data:  36%|███▌      | 36/100 [35:55<1:03:18, 59.35s/it]Task 936 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=145330)
+Evaluating test data:  37%|███▋      | 37/100 [36:08<47:43, 45.46s/it]  Task 937 FAILED at turn 9 in envs [0] data_source=nq (physical_idx=54325)
+Evaluating test data:  38%|███▊      | 38/100 [38:21<1:13:57, 71.57s/it]Task 938 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=96684)
+Evaluating test data:  39%|███▉      | 39/100 [38:51<1:00:06, 59.12s/it]Task 939 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=27188)
+Evaluating test data:  40%|████      | 40/100 [39:06<45:50, 45.84s/it]  Task 940 SUCCESS at turn 9 in envs [0] data_source=nq (physical_idx=71919)
+Evaluating test data:  41%|████      | 41/100 [42:09<1:25:46, 87.22s/it]Task 941 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=32443)
+Evaluating test data:  42%|████▏     | 42/100 [42:25<1:03:29, 65.68s/it]Task 942 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=168893)
+Evaluating test data:  43%|████▎     | 43/100 [42:49<50:26, 53.09s/it]  Task 943 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=44042)
+Evaluating test data:  44%|████▍     | 44/100 [43:06<39:31, 42.35s/it]Task 944 FAILED at turn 4 in envs [0] data_source=nq (physical_idx=3566)
+Evaluating test data:  45%|████▌     | 45/100 [43:51<39:38, 43.25s/it]Task 945 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=11316)
+Evaluating test data:  46%|████▌     | 46/100 [44:12<32:53, 36.54s/it]Task 946 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=22738)
+Evaluating test data:  47%|████▋     | 47/100 [44:28<26:50, 30.38s/it]Task 947 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=136039)
+Evaluating test data:  48%|████▊     | 48/100 [44:47<23:17, 26.87s/it]Task 948 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=73152)
+Evaluating test data:  49%|████▉     | 49/100 [45:09<21:37, 25.44s/it]Task 949 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=114424)
+Evaluating test data:  50%|█████     | 50/100 [45:25<18:48, 22.56s/it]Task 950 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=94216)
+Evaluating test data:  51%|█████     | 51/100 [45:46<18:02, 22.10s/it]Task 951 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=154002)
+Evaluating test data:  52%|█████▏    | 52/100 [49:29<1:05:58, 82.46s/it]Task 952 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=74834)
+Evaluating test data:  53%|█████▎    | 53/100 [49:47<49:31, 63.22s/it]  Task 953 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=58053)
+Evaluating test data:  54%|█████▍    | 54/100 [55:00<1:45:51, 138.09s/it]Task 954 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=113331)
+Evaluating test data:  55%|█████▌    | 55/100 [56:09<1:27:54, 117.20s/it]Task 955 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=64962)
+Evaluating test data:  56%|█████▌    | 56/100 [56:25<1:03:46, 86.97s/it] Task 956 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=35839)
+Evaluating test data:  57%|█████▋    | 57/100 [56:43<47:32, 66.34s/it]  Task 957 FAILED at turn 3 in envs [0] data_source=hotpotqa (physical_idx=105492)
+Evaluating test data:  58%|█████▊    | 58/100 [57:22<40:44, 58.20s/it]Task 958 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=152858)
+Evaluating test data:  59%|█████▉    | 59/100 [57:58<35:02, 51.27s/it]Task 959 SUCCESS at turn 5 in envs [0] data_source=nq (physical_idx=32435)
+Evaluating test data:  60%|██████    | 60/100 [59:15<39:28, 59.22s/it]Task 960 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=78391)
+Evaluating test data:  61%|██████    | 61/100 [59:29<29:40, 45.65s/it]Task 961 SUCCESS at turn 9 in envs [0] data_source=hotpotqa (physical_idx=128508)
+Evaluating test data:  62%|██████▏   | 62/100 [1:02:01<49:04, 77.50s/it]Task 962 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=25664)
+Evaluating test data:  63%|██████▎   | 63/100 [1:02:15<35:55, 58.26s/it]Task 963 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=41164)
+Evaluating test data:  64%|██████▍   | 64/100 [1:02:27<26:40, 44.45s/it]Task 964 SUCCESS at turn 3 in envs [0] data_source=nq (physical_idx=25134)
+Evaluating test data:  65%|██████▌   | 65/100 [1:02:55<23:03, 39.52s/it]Task 965 FAILED at turn 4 in envs [0] data_source=hotpotqa (physical_idx=122066)
+Evaluating test data:  66%|██████▌   | 66/100 [1:03:48<24:44, 43.67s/it]Task 966 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=12152)
+Evaluating test data:  67%|██████▋   | 67/100 [1:04:05<19:34, 35.58s/it]Task 967 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=5760)
+Evaluating test data:  68%|██████▊   | 68/100 [1:04:23<16:12, 30.40s/it]Task 968 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=145537)
+Evaluating test data:  69%|██████▉   | 69/100 [1:04:38<13:21, 25.85s/it]Task 969 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=147738)
+Evaluating test data:  70%|███████   | 70/100 [1:04:59<12:13, 24.44s/it]Task 970 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=116200)
+Evaluating test data:  71%|███████   | 71/100 [1:05:30<12:44, 26.37s/it]Task 971 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=116144)
+Evaluating test data:  72%|███████▏  | 72/100 [1:05:46<10:50, 23.22s/it]Task 972 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=153322)
+Evaluating test data:  73%|███████▎  | 73/100 [1:06:09<10:26, 23.21s/it]Task 973 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=hotpotqa (physical_idx=145749)
+Evaluating test data:  74%|███████▍  | 74/100 [1:11:06<45:34, 105.17s/it]Task 974 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=60574)
+Evaluating test data:  75%|███████▌  | 75/100 [1:11:20<32:24, 77.76s/it] Task 975 SUCCESS at turn 4 in envs [0] data_source=nq (physical_idx=3993)
+Evaluating test data:  76%|███████▌  | 76/100 [1:12:27<29:54, 74.78s/it]Task 976 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=111302)
+Evaluating test data:  77%|███████▋  | 77/100 [1:12:42<21:44, 56.73s/it]Task 977 SUCCESS at turn 13 in envs [0] data_source=hotpotqa (physical_idx=153311)
+Evaluating test data:  78%|███████▊  | 78/100 [1:16:16<38:03, 103.80s/it]Task 978 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=105424)
+Evaluating test data:  79%|███████▉  | 79/100 [1:16:32<27:06, 77.46s/it] Task 979 FAILED at turn 5 in envs [0] data_source=nq (physical_idx=5549)
+Evaluating test data:  80%|████████  | 80/100 [1:17:26<23:27, 70.37s/it]Task 980 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=36142)
+Evaluating test data:  81%|████████  | 81/100 [1:17:41<17:04, 53.90s/it]Task 981 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=168790)
+Evaluating test data:  82%|████████▏ | 82/100 [1:18:00<12:59, 43.29s/it]Task 982 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=93292)
+Evaluating test data:  83%|████████▎ | 83/100 [1:18:16<09:58, 35.22s/it]Task 983 FAILED at turn 11 in envs [0] data_source=nq (physical_idx=32914)
+Evaluating test data:  84%|████████▍ | 84/100 [1:21:02<19:51, 74.45s/it]Task 984 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=126311)
+Evaluating test data:  85%|████████▌ | 85/100 [1:21:24<14:42, 58.82s/it]Task 985 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=133337)
+Evaluating test data:  86%|████████▌ | 86/100 [1:21:40<10:40, 45.76s/it]Task 986 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=23241)
+Evaluating test data:  87%|████████▋ | 87/100 [1:25:54<23:26, 108.23s/it]Task 987 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=29258)
+Evaluating test data:  88%|████████▊ | 88/100 [1:26:13<16:18, 81.55s/it] Task 988 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=83634)
+Evaluating test data:  89%|████████▉ | 89/100 [1:26:26<11:12, 61.13s/it]Task 989 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=38173)
+Evaluating test data:  90%|█████████ | 90/100 [1:26:41<07:51, 47.19s/it]Task 990 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=36159)
+Evaluating test data:  91%|█████████ | 91/100 [1:26:55<05:35, 37.33s/it]Task 991 FAILED at turn 3 in envs [1] data_source=nq (physical_idx=32814)
+Evaluating test data:  92%|█████████▏| 92/100 [1:27:30<04:51, 36.49s/it]Task 992 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=105491)
+Evaluating test data:  93%|█████████▎| 93/100 [1:28:13<04:28, 38.39s/it]Task 993 FAILED at turn 2 in envs [0] data_source=nq (physical_idx=44448)
+Evaluating test data:  94%|█████████▍| 94/100 [1:28:25<03:04, 30.72s/it]Task 994 FAILED at turn 4 in envs [0] data_source=nq (physical_idx=39882)
+Evaluating test data:  95%|█████████▌| 95/100 [1:29:13<02:59, 35.87s/it]Task 995 FAILED at turn 15 in envs [0, 1, 2, 3, 4] data_source=nq (physical_idx=75413)
+Evaluating test data:  96%|█████████▌| 96/100 [1:33:14<06:29, 97.41s/it]Task 996 SUCCESS at turn 2 in envs [0] data_source=hotpotqa (physical_idx=105108)
+Evaluating test data:  97%|█████████▋| 97/100 [1:33:30<03:38, 72.81s/it]Task 997 FAILED at turn 2 in envs [0] data_source=hotpotqa (physical_idx=148274)
+Evaluating test data:  98%|█████████▊| 98/100 [1:33:50<01:54, 57.13s/it]Task 998 SUCCESS at turn 2 in envs [0] data_source=nq (physical_idx=60835)
+Evaluating test data:  99%|█████████▉| 99/100 [1:34:13<00:46, 46.79s/it]Task 999 SUCCESS at turn 3 in envs [0] data_source=hotpotqa (physical_idx=119315)
+Evaluating test data: 100%|██████████| 100/100 [1:34:38<00:00, 40.33s/it]Evaluating test data: 100%|██████████| 100/100 [1:34:38<00:00, 56.79s/it]
+
+============================================================
+Total: 100, Success: 55, Rate: 55.00%
+============================================================
+Trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_900_999.json
+Success trajectories saved to /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_900_999_success.json
+Start time: 2026-07-09 17:55:17
+End time: 2026-07-09 19:29:56
+Elapsed time: 5678.8s
+────────────────────────────────────────────────────────────
+Processing chunk [1000, 1099] → search_coldstart_1000_1099.json
+────────────────────────────────────────────────────────────
+Shuffle table built: 169615/169615 entries
+────────────────────────────────────────────────────────────
+Start time: 2026-07-09 19:29:56
+log_file: /diskpool/home/xuxz/verl-agent/coldstart_genaration_search/result_search_seed1/search_coldstart_1000_1099.log
+────────────────────────────────────────────────────────────────────────────────
+Evaluating search coldstart: 169615 samples
+max_turns: 15, his_len: 8
+use_local_model: False
+sampler: SearchTaskSampler(total=169615, shuffle_table=built, sequential=False)
+search_url: http://127.0.0.1:8010/retrieve, topk: 3
+group_n: 5, env_num: 1, total_envs: 5, num_para: 5
+building environment
+Environment built successfully
+Processing logical range: [1000, 1099]
+Evaluating test data:   0%|          | 0/100 [00:00<?, ?it/s]Task 1000 FAILED at turn 6 in envs [0] data_source=nq (physical_idx=28608)
+Evaluating test data:   1%|          | 1/100 [01:11<1:58:42, 71.95s/it]
